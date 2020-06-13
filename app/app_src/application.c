@@ -11,6 +11,7 @@
 extern void queue_serial_led_event(void);
 extern uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed);
 static void free_tx_buffer(NWK_DataReq_t *req);
+static bool get_free_rx_buffer(uint8_t *buf_id);
 
 #ifdef MBRTU
 #include "mb.h"
@@ -33,7 +34,8 @@ static uint8_t rx_ctl_mb_regs_upadte     = 0;
 void appDataConf(NWK_DataReq_t *req)
 {
  if (NWK_SUCCESS_STATUS == req->status){
-     asm("nop"); // frame was sent successfully
+    // frame was sent successfully
+     asm("nop");
  } 
  else{
      asm("nop"); // some error happened
@@ -45,13 +47,13 @@ void appDataConf(NWK_DataReq_t *req)
 static bool appDataInd(NWK_DataInd_t *ind)
 {
     // process the frame
-    uint8_t data[payloadSizeMax + 1];
-    uint8_t* dataptr = ind->data;
-    memset(data, 0 , sizeof(data));
-    for(uint8_t i = 0; i < payloadSizeMax; i++){
-        data[i] = *dataptr++;
+    uint8_t buf_id;
+    if(get_free_rx_buffer(&buf_id)){
+       uint8_t* dataptr = ind->data;
+       memset(rx_buffer[buf_id].payload, 0 , sizeof(NWK_MAX_PAYLOAD_SIZE)); 
+       rx_buffer[buf_id].rx_ind = *ind;
+       memcpy(rx_buffer[buf_id].payload,dataptr, ind->size);
     }
-    printf("RX:%04X:%s\r\n", ind->srcAddr, data);
     return true;
 }
 
@@ -78,6 +80,18 @@ static void free_tx_buffer(NWK_DataReq_t *req){
         }
         buf_id++;
     }    
+}
+
+static bool get_free_rx_buffer(uint8_t *buf_id){
+    *buf_id = 0;
+    while(*buf_id < APP_RX_BUFFER_DEPTH){
+        if(rx_buffer[*buf_id].free){
+            rx_buffer[*buf_id].free = 0;
+            return true;
+        }
+        (*buf_id)++;
+    }
+    return false;
 }
 
 /*!
@@ -362,19 +376,21 @@ static void cmdSetNaddr(char* cmd){
  * \param [IN] None.
  */
 static void cmdRecv(){
-//	if(!CircularBufferEmpty(&at_rx_buf)){
-//        struct rx_messages temp;
-//        if(0 == CircularBufferPopFront(&at_rx_buf,&temp))
-//        {
-//            printf("%02X%02X:%.*s\r\n",temp.rx_message.scr0,
-//                    temp.rx_message.scr1, payloadSizeMax, 
-//                    temp.rx_message.msg);
-//            printf("RSSI:%i\r\n", temp.rssi);
-//        }
-//    }
-//    else{
-//        printf("NOT OK:%u\r\n", (uint16_t)NO_RX_MESSAGES);
-//    }
+    //Find if there is a message to be returned
+    uint8_t buf_id = 0;
+    while(buf_id++ < APP_RX_BUFFER_DEPTH){
+        if(!rx_buffer[buf_id].free){
+            uint8_t i = 0;
+            //Found first RX message to be sent to the user
+            printf("%04X:", rx_buffer[buf_id].rx_ind.srcAddr);
+            while(rx_buffer[buf_id].rx_ind.size--){
+                putch(rx_buffer[buf_id].payload[i++]);
+            }
+            rx_buffer[buf_id].free = 1;
+            return;
+        }
+    }
+    printf("NOT OK:%u\r\n", (uint16_t)NO_RX_MESSAGES);
 	return;
 }
 
@@ -780,8 +796,13 @@ static void cmdSetSF(char* atCommand){
  * \param [IN] None.
  */
 static void cmdGetRxCnt(char* atCommand){
-//    printf("RXCNT=%u/%u\r\n", CircularBufferSize(&at_rx_buf), 
-//            AT_RX_MESSAGE_DEPTH);
+    uint8_t count = 0, buf_id = 0;
+    while(buf_id++ < APP_RX_BUFFER_DEPTH){
+        if(!rx_buffer[buf_id].free){
+            count++;
+        }
+    }
+    printf("RXCNT=%u/%u\r\n", count, APP_RX_BUFFER_DEPTH);
 }
 
 /*!

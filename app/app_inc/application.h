@@ -16,6 +16,7 @@
 #include "EEPROM.h"
 #include "errors.h"
 #include "nwk.h"
+#include "circular buffer.h"
 
 
 #ifdef	__cplusplus
@@ -109,12 +110,23 @@ struct tx_buffer_t{
     unsigned retires:2; // Number of retires left for this message
     unsigned free:1;    // Descriptor un used
     unsigned active:1;  // Messages with stack do not request operation till 0
+    unsigned resv:4;
     uint8_t backoff_timer; //Time between reties
     uint8_t msgid;
     NWK_DataReq_t nwkDataReq; //Stack request
     uint8_t payload[NWK_MAX_PAYLOAD_SIZE];//message payload
 };
 struct tx_buffer_t tx_buffer[APP_TX_BUFFER_DEPTH];
+
+#define APP_RX_BUFFER_DEPTH 5
+struct rx_buffer_t{
+    unsigned free:1;
+    unsigned resv:7;
+    NWK_DataInd_t rx_ind; //RX indication structure for the RX message
+    uint8_t payload[NWK_MAX_PAYLOAD_SIZE];//message payload
+};
+struct rx_buffer_t rx_buffer[APP_RX_BUFFER_DEPTH];
+
 
 #ifdef MBRTU
 #define MB_RTU_ADDR_MAX         247

@@ -1,9 +1,0 @@
-
-Memory Summary:
-    Program space        used  BFA2h ( 49058) of 20000h bytes   ( 37.4%)
-    Data space           used   A2Ah (  2602) of  2000h bytes   ( 31.8%)
-    Configuration bits   used     5h (     5) of     5h words   (100.0%)
-    EEPROM space         used     0h (     0) of   400h bytes   (  0.0%)
-    ID Location space    used    10h (    16) of    10h bytes   (100.0%)
-    Data stack space     used  1581h (  5505) of  1581h bytes   (100.0%)
-

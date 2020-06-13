@@ -14,6 +14,9 @@
             <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_inc/nwkDataReq.h</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/mcc_generated_files/uart1.h</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_inc/nwkFrame.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/sys/sys_inc/sysConfig.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1216/phy_src/phy.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/application.h</file>
         </group>
     </open-files>
 </project-private>
