@@ -106,7 +106,7 @@ enum endpoint_t{
  * Buffer management structures for data send operation
  ******************************************************************************/
 #define APP_TX_BUFFER_DEPTH 4
-struct tx_buffer_t{
+__pack struct tx_buffer_t{
     unsigned retires:2; // Number of retires left for this message
     unsigned free:1;    // Descriptor un used
     unsigned active:1;  // Messages with stack do not request operation till 0
@@ -116,16 +116,25 @@ struct tx_buffer_t{
     NWK_DataReq_t nwkDataReq; //Stack request
     uint8_t payload[NWK_MAX_PAYLOAD_SIZE];//message payload
 };
-struct tx_buffer_t tx_buffer[APP_TX_BUFFER_DEPTH];
+__pack struct tx_buffer_t tx_buffer[APP_TX_BUFFER_DEPTH];
 
-#define APP_RX_BUFFER_DEPTH 5
-struct rx_buffer_t{
+#if _18F26K42
+#define APP_RX_BUFFER_DEPTH 4
+#endif
+#if _18F27K42
+#define APP_RX_BUFFER_DEPTH 8
+#endif
+__pack struct rx_buffer_t{
     unsigned free:1;
     unsigned resv:7;
     NWK_DataInd_t rx_ind; //RX indication structure for the RX message
     uint8_t payload[NWK_MAX_PAYLOAD_SIZE];//message payload
 };
-struct rx_buffer_t rx_buffer[APP_RX_BUFFER_DEPTH];
+__pack struct rx_buffer_t rx_buffer[APP_RX_BUFFER_DEPTH];
+uint8_t rx_buffer_queue[APP_RX_BUFFER_DEPTH];
+CircularBufferContext rx_buffer_queue_context;
+
+
 
 
 #ifdef MBRTU

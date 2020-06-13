@@ -110,3 +110,10 @@ PIC18F27K42/dist/default/production/PIC18F27K42.production.rlf
 PIC18F27K42/dist/default/production/PIC18F27K42.production.sdb
 PIC18F27K42/dist/default/production/PIC18F27K42.production.sym
 PIC18F27K42/dist/default/production/memoryfile.xml
+PIC18F26K42/dist/default/production/PIC18F26K42.production.cmf
+PIC18F26K42/dist/default/production/PIC18F26K42.production.hxl
+PIC18F26K42/dist/default/production/PIC18F26K42.production.lst
+PIC18F26K42/dist/default/production/PIC18F26K42.production.mum
+PIC18F26K42/dist/default/production/PIC18F26K42.production.rlf
+PIC18F26K42/dist/default/production/PIC18F26K42.production.sdb
+PIC18F26K42/dist/default/production/PIC18F26K42.production.sym

@@ -53,6 +53,7 @@ static bool appDataInd(NWK_DataInd_t *ind)
        memset(rx_buffer[buf_id].payload, 0 , sizeof(NWK_MAX_PAYLOAD_SIZE)); 
        rx_buffer[buf_id].rx_ind = *ind;
        memcpy(rx_buffer[buf_id].payload,dataptr, ind->size);
+       CircularBufferPushBack(&rx_buffer_queue_context, &buf_id);
     }
     return true;
 }
@@ -377,8 +378,9 @@ static void cmdSetNaddr(char* cmd){
  */
 static void cmdRecv(){
     //Find if there is a message to be returned
-    uint8_t buf_id = 0;
-    while(buf_id++ < APP_RX_BUFFER_DEPTH){
+    if(!CircularBufferEmpty(&rx_buffer_queue_context)){
+        uint8_t buf_id;
+        CircularBufferPopFront(&rx_buffer_queue_context, &buf_id);
         if(!rx_buffer[buf_id].free){
             uint8_t i = 0;
             //Found first RX message to be sent to the user
@@ -387,10 +389,15 @@ static void cmdRecv(){
                 putch(rx_buffer[buf_id].payload[i++]);
             }
             rx_buffer[buf_id].free = 1;
-            return;
+            printf("\r\n");
+        }
+        else{
+            printf("NOT OK:%u\r\n", (uint16_t)NO_RX_MESSAGES);
         }
     }
-    printf("NOT OK:%u\r\n", (uint16_t)NO_RX_MESSAGES);
+    else{
+        printf("NOT OK:%u\r\n", (uint16_t)NO_RX_MESSAGES);
+    }
 	return;
 }
 
@@ -1411,6 +1418,11 @@ void bootLoadApplication(void)
     for(uint8_t buf_id = 0; buf_id < APP_TX_BUFFER_DEPTH; buf_id++){
         tx_buffer[buf_id].free = 1;
     }
+    for(uint8_t buf_id = 0; buf_id < APP_RX_BUFFER_DEPTH; buf_id++){
+        rx_buffer[buf_id].free = 1;
+    }
+    CircularBufferInit(&rx_buffer_queue_context,&rx_buffer_queue,
+            sizeof(rx_buffer_queue),sizeof(uint8_t));
     temp = (currentAddr0 << 8) | currentAddr1;
     if(temp > 0x8000){
         temp -= 0x8000;
