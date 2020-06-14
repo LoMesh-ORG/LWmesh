@@ -137,3 +137,12 @@ void nwkFrameCommandInit(NwkFrame_t *frame)
   frame->header.nwkFcf.security = 1;
 #endif
 }
+
+/*************************************************************************//**
+  @brief Returns the size of payload for a frame
+  @param[in] frame Pointer to the frame
+*****************************************************************************/
+inline uint8_t nwkFramePayloadSize(NwkFrame_t *frame)
+{
+  return frame->size - (frame->payload - frame->data);
+}

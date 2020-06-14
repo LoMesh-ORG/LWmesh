@@ -86,13 +86,13 @@
 #endif
 
 #define NWK_ENABLE_ROUTING
-//#define NWK_ENABLE_SECURITY
+#define NWK_ENABLE_SECURITY
 #define NWK_ENABLE_MULTICAST
 //#define NWK_ENABLE_ROUTE_DISCOVERY
-//#define NWK_ENABLE_SECURE_COMMANDS
+#define NWK_ENABLE_SECURE_COMMANDS
 
 #ifndef SYS_SECURITY_MODE
-#define SYS_SECURITY_MODE                        0
+#define SYS_SECURITY_MODE                        1
 #endif
 
 /*- Sanity checks ----------------------------------------------------------*/

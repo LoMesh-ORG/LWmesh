@@ -126,14 +126,12 @@ NwkFrame_t *nwkFrameAlloc(void);
 void nwkFrameFree(NwkFrame_t *frame);
 NwkFrame_t *nwkFrameNext(NwkFrame_t *frame);
 void nwkFrameCommandInit(NwkFrame_t *frame);
+inline uint8_t nwkFramePayloadSize(NwkFrame_t *frame);
 
 /*- Implementations --------------------------------------------------------*/
 
 /*************************************************************************//**
 *****************************************************************************/
-static inline uint8_t nwkFramePayloadSize(NwkFrame_t *frame)
-{
-  return frame->size - (frame->payload - frame->data);
-}
+
 
 #endif // _NWK_FRAME_H_

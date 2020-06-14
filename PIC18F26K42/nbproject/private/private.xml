@@ -3,22 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F26K42/main.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/hal/hal_src/Timers.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/hal/hal_inc/Timers.h</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/sys/sys_src/sysTimer.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/sys/sys_inc/sysTimer.h</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/application.h</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/application.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1216/phy_src/phy.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkRoute.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/sys/sys_inc/sysConfig.h</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkRx.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkRouteDiscovery.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1216/phy_inc/phy.h</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/circular%20buffer.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkFrame.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F26K42/mcc_generated_files/mcc.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_inc/nwkSecurity.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkSecurity.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F26K42/mcc_generated_files/memory.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/application.h</file>
         </group>
     </open-files>
 </project-private>

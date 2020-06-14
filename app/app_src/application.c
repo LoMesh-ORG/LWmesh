@@ -256,7 +256,8 @@ static void cmdSend(char* cmd){
 		tx_buffer[buf_id].nwkDataReq.dstAddr = tempaddr;
         tx_buffer[buf_id].nwkDataReq.dstEndpoint = ASCII_EP;
         tx_buffer[buf_id].nwkDataReq.srcEndpoint = ASCII_EP;
-        tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST;
+        tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST | 
+                                               NWK_OPT_ENABLE_SECURITY;
         tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
         tx_buffer[buf_id].nwkDataReq.size = strlen(p1);
         tx_buffer[buf_id].nwkDataReq.confirm = appDataConf;
@@ -292,7 +293,7 @@ static void cmdBcast(char* cmd){
 		tx_buffer[buf_id].nwkDataReq.dstAddr = NWK_BROADCAST_ADDR;
         tx_buffer[buf_id].nwkDataReq.dstEndpoint = ASCII_EP;
         tx_buffer[buf_id].nwkDataReq.srcEndpoint = ASCII_EP;
-        tx_buffer[buf_id].nwkDataReq.options = 0;
+        tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ENABLE_SECURITY;
         tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
         tx_buffer[buf_id].nwkDataReq.size = strlen(p1);
         tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
@@ -513,6 +514,7 @@ static void cmdSetAES(char* cmd){
             DATAEE_WriteByte_Platform((NETkey0 + i),byte);
         }
 	}
+    NWK_SetSecurityKey(net_key);
 	printf("OK\r\n");
 	return;
 }
@@ -1431,9 +1433,10 @@ void bootLoadApplication(void)
     }
     NWK_SetAddr(temp);
     NWK_SetPanId(0x1234);
+    NWK_SetSecurityKey(net_key);
+    NWK_OpenEndpoint(ASCII_EP, appDataInd);
     PHY_SetChannel(0x00);
     PHY_SetRxState(true);
-    NWK_OpenEndpoint(ASCII_EP, appDataInd);
 }
 
 /*!
