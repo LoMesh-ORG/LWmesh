@@ -668,7 +668,7 @@ static void cmdSetTX(char* cmd){
  * \param [IN] None.
  */
 static void cmdGetCADRSSI(){
-	printf("CAD RSS=%i\r\n",RSSITarget);
+	printf("CAD RSSI=%i\r\n",RSSITarget);
 	return;
 }
 
