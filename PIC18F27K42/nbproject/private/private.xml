@@ -13,6 +13,8 @@
             <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwk.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/application.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/application.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkRoute.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_inc/nwkRoute.h</file>
         </group>
     </open-files>
 </project-private>

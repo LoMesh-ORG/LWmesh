@@ -460,7 +460,7 @@ void initRadio(void)
     
     setFrequency(fhssList[0]);
     setSpreadingFactor(7);
-    setTxPower(17);
+    setTxPower(2);
     setSignalBandwidth(500E3);
     explicitHeaderMode();
     setCodingRate4(4);

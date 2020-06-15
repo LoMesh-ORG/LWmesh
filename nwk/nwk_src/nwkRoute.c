@@ -200,10 +200,10 @@ void nwkRouteFrameReceived(NwkFrame_t *frame)
   
   if ((header->macSrcAddr & NWK_ROUTE_NON_ROUTING) &&
       (header->macSrcAddr != header->nwkSrcAddr))
-    return;
+      return;   
   
-  if(!header->nwkFcf.repeater) //Transmitting node is not a repeater
-      return;
+//  if(!header->nwkFcf.repeater) //Transmitting node is not a repeater
+//      return;
   
   if (header->macSrcAddr != header->nwkSrcAddr)
     return;  
