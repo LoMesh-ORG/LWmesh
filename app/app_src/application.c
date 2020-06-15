@@ -1426,11 +1426,6 @@ void bootLoadApplication(void)
     CircularBufferInit(&rx_buffer_queue_context,&rx_buffer_queue,
             sizeof(rx_buffer_queue),sizeof(uint8_t));
     temp = (currentAddr0 << 8) | currentAddr1;
-    if(temp > 0x8000){
-        temp -= 0x8000;
-        currentAddr0 = (temp >> 8) & 0xFF;
-        currentAddr1 = temp & 0xFF;
-    }
     NWK_SetAddr(temp);
     NWK_SetPanId(0x1234);
     NWK_SetSecurityKey(net_key);
@@ -1815,3 +1810,10 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs,
     return MB_ENOREG;
 }
 #endif
+
+void application(void){
+#ifdef ATCOMM
+    processATCommand();
+#endif
+    nwkEnableRouting((MODE_GetValue()? false:true));
+}

@@ -148,7 +148,9 @@ static void nwkDataReqSendFrame(NWK_DataReq_t *req)
     frame->size += sizeof(NwkFrameMulticastHeader_t);
   }
 #endif
-
+#ifdef NWK_ENABLE_ROUTING
+  frame->header.nwkFcf.repeater = nwkIsRouter();
+#endif
   frame->header.nwkSeq = ++nwkIb.nwkSeqNum;
   frame->header.nwkSrcAddr = nwkIb.addr;
   frame->header.nwkDstAddr = req->dstAddr;

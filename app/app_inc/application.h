@@ -330,6 +330,14 @@ void app_processes_msg(void);
  */
 void MBRTUStack(void);
 
+/*!
+ * \brief Call every main cycle to run the application tasks
+ *
+ * \param [OUT] None.
+ * \param [IN] None.
+ */
+void application(void);
+
 #ifdef	__cplusplus
 }
 #endif

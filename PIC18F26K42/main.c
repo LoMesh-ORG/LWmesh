@@ -76,7 +76,7 @@ void main(void)
     while (1)
     {
         SYS_TaskHandler();
-        processATCommand();
+        application();
 //        if(!test_timer){
 //            test_timer = 5000;
 //            test_send();

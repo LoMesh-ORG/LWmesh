@@ -54,7 +54,7 @@
 #endif
 
 #ifndef NWK_DUPLICATE_REJECTION_TABLE_SIZE
-#define NWK_DUPLICATE_REJECTION_TABLE_SIZE       10
+#define NWK_DUPLICATE_REJECTION_TABLE_SIZE       32
 #endif
 
 #ifndef NWK_DUPLICATE_REJECTION_TTL
@@ -62,7 +62,7 @@
 #endif
 
 #ifndef NWK_ROUTE_TABLE_SIZE
-#define NWK_ROUTE_TABLE_SIZE                     10
+#define NWK_ROUTE_TABLE_SIZE                     64
 #endif
 
 #ifndef NWK_ROUTE_DEFAULT_SCORE

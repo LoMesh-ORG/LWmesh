@@ -70,6 +70,7 @@ static void nwkRouteNormalizeRanks(void);
 
 /*- Variables --------------------------------------------------------------*/
 static NWK_RouteTableEntry_t nwkRouteTable[NWK_ROUTE_TABLE_SIZE];
+static bool nwk_RoutingEnabled = false;
 
 /*- Implementations --------------------------------------------------------*/
 
@@ -196,10 +197,16 @@ void nwkRouteFrameReceived(NwkFrame_t *frame)
 #ifndef NWK_ENABLE_ROUTE_DISCOVERY
   NwkFrameHeader_t *header = &frame->header;
   NWK_RouteTableEntry_t *entry;
-
+  
   if ((header->macSrcAddr & NWK_ROUTE_NON_ROUTING) &&
       (header->macSrcAddr != header->nwkSrcAddr))
     return;
+  
+  if(!header->nwkFcf.repeater) //Transmitting node is not a repeater
+      return;
+  
+  if (header->macSrcAddr != header->nwkSrcAddr)
+    return;  
 
   if (NWK_BROADCAST_PANID == header->macDstPanId)
     return;
@@ -361,4 +368,11 @@ static void nwkRouteNormalizeRanks(void)
     nwkRouteTable[i].rank = (nwkRouteTable[i].rank >> 1) + 1;
 }
 
+void nwkEnableRouting(bool enable){
+    nwk_RoutingEnabled = enable;
+}
+
+bool nwkIsRouter(void){
+    return nwk_RoutingEnabled;
+}
 #endif // NWK_ENABLE_ROUTING

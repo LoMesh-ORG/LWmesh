@@ -55,7 +55,7 @@
 
 /*- Definitions ------------------------------------------------------------*/
 #define NWK_ROUTE_UNKNOWN            0xffff
-#define NWK_ROUTE_NON_ROUTING        0x8000
+#define NWK_ROUTE_NON_ROUTING        0x0000
 
 #ifdef NWK_ENABLE_ROUTING
 
@@ -87,6 +87,8 @@ void nwkRoutePrepareTx(NwkFrame_t *frame);
 void nwkRouteFrame(NwkFrame_t *frame);
 bool nwkRouteErrorReceived(NWK_DataInd_t *ind);
 void nwkRouteUpdateEntry(uint16_t dst, uint8_t multicast, uint16_t nextHop, uint8_t lqi);
+void nwkEnableRouting(bool enable);
+bool nwkIsRouter(void);
 
 #endif // NWK_ENABLE_ROUTING
 

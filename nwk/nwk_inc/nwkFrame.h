@@ -69,7 +69,8 @@ __pack typedef struct NwkFrameHeader_t
     uint8_t   security   : 1;
     uint8_t   linkLocal  : 1;
     uint8_t   multicast  : 1;
-    uint8_t   reserved   : 4;
+    uint8_t   repeater   : 1;
+    uint8_t   reserved   : 3;
   }           nwkFcf;
   uint8_t     nwkSeq;
   uint16_t    nwkSrcAddr;
