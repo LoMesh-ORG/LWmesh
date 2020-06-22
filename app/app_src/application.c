@@ -12,6 +12,7 @@ extern void queue_serial_led_event(void);
 extern uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed);
 static void free_tx_buffer(NWK_DataReq_t *req);
 static bool get_free_rx_buffer(uint8_t *buf_id);
+static void exract_sink_addr(uint8_t* dataptr);
 
 #ifdef MBRTU
 #include "mb.h"
@@ -56,6 +57,15 @@ static bool appDataInd(NWK_DataInd_t *ind)
        CircularBufferPushBack(&rx_buffer_queue_context, &buf_id);
     }
     return true;
+}
+
+static bool appManagementEp(NWK_DataInd_t *ind){
+    //Check if there is Sink node command
+    uint8_t* dataptr = ind->data;
+    uint8_t *ptr = strstr(dataptr,"SINK");
+    if(ptr){
+        exract_sink_addr(dataptr);
+    }
 }
 
 static bool get_free_tx_buffer(uint8_t *buf_id){
@@ -241,7 +251,7 @@ static void cmdSend(char* cmd){
 	tempaddr = strtoul(destaddr,&p2,16);
 	//Now find the message and queue it
 	p1 = strstr(cmd,"=") + 1;
-	if(strlen(p1) > payloadSizeMax){
+	if(strlen(p1) > NWK_MAX_PAYLOAD_SIZE){
 		printf("NOT OK:%u\r\n", MESSAGE_TOO_LONG);
 	}
 	else{
@@ -277,12 +287,12 @@ static void cmdBcast(char* cmd){
 	//Now find the message and queue it
 	p1 = strstr(cmd,"=") + 1;
 	//Report error and reset state machine if length if bigger than payload max
-	if((!p1) || (strlen(p1) > payloadSizeMax)){
+	if((!p1) || (strlen(p1) > NWK_MAX_PAYLOAD_SIZE)){
 		printf("NOT OK:%u\r\n", MESSAGE_TOO_LONG);
 	}
 	else{
 		uint8_t buf_id;
-        if(!get_free_tx_buffer(&buf_id)){
+        if(!get_free_tx_buffer(&buf_id)){           
             printf("NOT OK:%u\r\n", NO_FREE_BUF);
             return;
         }
@@ -423,21 +433,37 @@ static void cmdMac(){
  * \param [OUT] None.
  * \param [IN] None.
  */
-static void cmdSetSink(){
-//	char msgstr[16];
-//    memset(msgstr, 0, sizeof(msgstr));
-//	//Set this node as sink
-//	sinkAddr0 = currentAddr0;
-//	sinkAddr1 = currentAddr1;
-//	//Set the internal EEPROM address to self ID
-//	DATAEE_WriteByte(sinkAddrEE0,currentAddr0);
-//	DATAEE_WriteByte(sinkAddrEE1,currentAddr1);
-//	//Send a message on network end point to all the node as BCAST
-//	sprintf(msgstr,"SINK=%02X%02X",currentAddr0,currentAddr1);
-//	//Use Broadcast address of 0x0000
-//	queueMyMessage(msgstr,0x00,0x00,strlen(msgstr),NETWORK);
+static void cmdSetSink(*cmd){
+	char msgstr[16];
+	uint8_t buf_id;    
+    memset(msgstr, 0, sizeof(msgstr));
+	//Set this node as sink
+	sinkAddr0 = currentAddr0;
+	sinkAddr1 = currentAddr1;
+	//Set the internal EEPROM address to self ID
+	DATAEE_WriteByte(sinkAddrEE0,currentAddr0);
+	DATAEE_WriteByte(sinkAddrEE1,currentAddr1);
+	//Send a message on network end point to all the node as BCAST
+	sprintf(msgstr,"SINK=%02X%02X",currentAddr0,currentAddr1);
+    if(!get_free_tx_buffer(&buf_id)){
 #ifdef ATCOMM
-	printf("OK\r\n");
+        printf("NOT OK:%u\r\n", NO_FREE_BUF);
+#endif
+        return;
+    }
+    memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
+    memcpy(&tx_buffer[buf_id].payload,msgstr,strlen(msgstr));
+    tx_buffer[buf_id].nwkDataReq.dstAddr = NWK_BROADCAST_ADDR;
+    tx_buffer[buf_id].nwkDataReq.dstEndpoint = MANAGEMENT_EP;
+    tx_buffer[buf_id].nwkDataReq.srcEndpoint = MANAGEMENT_EP;
+    tx_buffer[buf_id].nwkDataReq.options = 0;
+    tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
+    tx_buffer[buf_id].nwkDataReq.size = strlen(msgstr);
+    tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
+    tx_buffer[buf_id].msgid = msgIDCounter++;
+    NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
+#ifdef ATCOMM
+    printf("OK:%u\r\n", tx_buffer[buf_id].msgid);
 #endif
 }
 
@@ -449,18 +475,31 @@ static void cmdSetSink(){
  * \param [IN] AT cmmand.
  */
 static void cmdSendSink(char* cmd){
-//	char *p1;
-//	p1 = strstr(atCommand,"=") + 1;
-//	if(strlen(p1) > payloadSizeMax){
-//		printf("NOT OK:%u\r\n",MESSAGE_TOO_LONG);
-//	}
-//	else{
-//		char msgstr[payloadSizeMax];
-//        memset(msgstr, 0, sizeof(msgstr));
-//		memcpy(msgstr,p1,strlen(p1));
-//		queueMyMessage(msgstr,sinkAddr0,sinkAddr1,strlen(msgstr),USERASCII);
-//		printf("OK:%u\r\n",(msgIDCounter - 1));
-//	}
+	char *p1;
+    uint8_t buf_id;
+	p1 = strstr(atCommand,"=") + 1;
+	if(strlen(p1) > NWK_MAX_PAYLOAD_SIZE){
+		printf("NOT OK:%u\r\n",MESSAGE_TOO_LONG);
+	}
+	else{
+        uint8_t buf_id;
+        if(!get_free_tx_buffer(&buf_id)){
+            printf("NOT OK:%u\r\n", NO_FREE_BUF);
+            return;
+        }
+        memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
+		memcpy(&tx_buffer[buf_id].payload,p1,strlen(p1));
+		tx_buffer[buf_id].nwkDataReq.dstAddr = (sinkAddr0 << 8) | sinkAddr1;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = ASCII_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = ASCII_EP;
+        tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST;
+        tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
+        tx_buffer[buf_id].nwkDataReq.size = strlen(p1);
+        tx_buffer[buf_id].nwkDataReq.confirm = appDataConf;
+        tx_buffer[buf_id].msgid = msgIDCounter++;
+        NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
+		printf("OK:%u\r\n", tx_buffer[buf_id].msgid); 
+	}
 }
 
 /*!
@@ -841,7 +880,7 @@ static uint8_t executeATCommand(char* cmd){
         		cmdSend(cmd);
         	}
         	else if(strstr(atCommand,"+SETSINK")){
-        		cmdSetSink();
+        		cmdSetSink(cmd);
         	}
         	else if(strstr(atCommand,"+SSINK")){
         		cmdSendSink(atCommand);
@@ -1395,7 +1434,10 @@ void bootLoadApplication(void)
     NWK_SetAddr((currentAddr0 << 8) | currentAddr1);
     NWK_SetPanId(pan_id);
 //    NWK_SetSecurityKey(net_key);
+#ifdef ATCOMM
     NWK_OpenEndpoint(ASCII_EP, appDataInd);
+#endif
+    NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
     PHY_SetRxState(true);
 }
 
@@ -1775,6 +1817,29 @@ eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress, USHORT usNRegs,
     return MB_ENOREG;
 }
 #endif
+
+static void exract_sink_addr(uint8_t* dataptr){
+    uint16_t tempaddr;
+    char *p1,*p2;
+    volatile char addrstr[5];
+    memset(addrstr,0,sizeof(addrstr));
+    p1 = strstr(dataptr,"=");
+    p1++;
+    memcpy(addrstr,p1,4);
+    //Now converter the string number to a int
+    tempaddr = strtoul(addrstr,&p2,16);
+    sinkAddr0 = (uint8_t)(tempaddr >> 8);
+    sinkAddr1 = (uint8_t)(tempaddr & 0xFF);
+    //Save the sink address to EEPROM
+    DATAEE_WriteByte_Platform(sinkAddrEE0,sinkAddr0);
+    DATAEE_WriteByte_Platform(sinkAddrEE1,sinkAddr1);
+#ifdef MBRTU
+    read_only_mb_regs[RO_SINK_ID] = (sinkAddr0 << 8) | (sinkAddr1);
+#endif
+#ifdef ATCOMM
+    printf("Sink node set:%02X%02X\r\n",DATAEE_ReadByte_Platform(sinkAddrEE0),DATAEE_ReadByte_Platform(sinkAddrEE1));
+#endif                    
+}
 
 void application(void){
 #ifdef ATCOMM
