@@ -62,10 +62,11 @@ static bool appDataInd(NWK_DataInd_t *ind)
 static bool appManagementEp(NWK_DataInd_t *ind){
     //Check if there is Sink node command
     uint8_t* dataptr = ind->data;
-    uint8_t *ptr = strstr(dataptr,"SINK");
+    uint8_t *ptr = (uint8_t*)strstr(dataptr,"SINK");
     if(ptr){
         exract_sink_addr(dataptr);
     }
+    return true;
 }
 
 static bool get_free_tx_buffer(uint8_t *buf_id){
@@ -1408,7 +1409,7 @@ void bootLoadApplication(void)
     read_write_mb_regs[RW_SF]           = current_sf;
     read_write_mb_regs[RW_RF_CH]        = channel;
     read_write_mb_regs[RW_TARGET_RSSI]  = -RSSITarget;
-    read_write_mb_regs[RW_MESH_HOPS]    = currentHopCount;
+    read_write_mb_regs[RW_MESH_HOPS]    = 0; //Depricated
     read_write_mb_regs[RW_MBADDR]       = mb_rtu_addr;
     read_write_mb_regs[RW_MB_BAUD_RATE] = uart_baud_rate;
     read_write_mb_regs[RW_MB_PARITY]    = curent_parity;
@@ -1502,7 +1503,7 @@ static void handle_write_only_regs(){
     //Set sink if needed
     if(write_only_mb_regs[WO_SET_SINK]){
         write_only_mb_regs[WO_SET_SINK] = 0;
-        cmdSetSink();
+        cmdSetSink(NULL);
         //Update sink id in read only regs
         read_only_mb_regs[RO_SINK_ID] = (sinkAddr0 << 8) | sinkAddr1;
     }
@@ -1569,7 +1570,6 @@ static void handle_rw_regs(){
         }
     }
     cadCounter = read_write_mb_regs[RW_CAD_COL];
-    currentHopCount = read_write_mb_regs[RW_MESH_HOPS];
     
     /*Check if an MB address change was requested*/
     if((0xAAAA == read_write_mb_regs[RW_MB_ADDR_KEY1]) && 
@@ -1619,9 +1619,21 @@ static void handle_tx_regs(){
         msg[i++] = tx_ctl_mb_regs[src_ptr] >> 8;
         msg[i++] = tx_ctl_mb_regs[src_ptr++];
     }
-    tx_ctl_mb_regs[RO_TX_MSG_ID] = 
-    queueMyMessage(&msg, (tx_ctl_mb_regs[TX_DEST] >> 8), 
-                   tx_ctl_mb_regs[TX_DEST], payloadSizeMax, USERBIN);
+    uint8_t buf_id;
+    if(get_free_tx_buffer(&buf_id)){  
+        memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
+        memcpy(&tx_buffer[buf_id].payload,msg,sizeof(msg));
+        tx_buffer[buf_id].nwkDataReq.dstAddr = (sinkAddr0 << 8) | sinkAddr1;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = BIN_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = BIN_EP;
+        tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST;
+        tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
+        tx_buffer[buf_id].nwkDataReq.size = sizeof(msg);
+        tx_buffer[buf_id].nwkDataReq.confirm = appDataConf;
+        tx_buffer[buf_id].msgid = msgIDCounter++;
+        NWK_DataReq(&tx_buffer[buf_id].nwkDataReq);
+    }
+    tx_ctl_mb_regs[RO_TX_MSG_ID] = tx_buffer[buf_id].msgid;
     tx_ctl_mb_regs[TX_CONTROL] = 0;
 }
 
@@ -1632,7 +1644,13 @@ static void handle_tx_regs(){
  * \param [IN] None.
  */
 static void handle_rx_regs(){
-    read_only_mb_regs[RO_RX_MSG_COUNT] = CircularBufferSize(&mb_rx_buf);
+    uint8_t count = 0, buf_id = 0;
+    while(buf_id++ < APP_RX_BUFFER_DEPTH){
+        if(!rx_buffer[buf_id].free){
+            count++;
+        }
+    }
+    read_only_mb_regs[RO_RX_MSG_COUNT] = count;
 }
 
 /*!
@@ -1642,18 +1660,26 @@ static void handle_rx_regs(){
  * \param [IN] None.
  */
 static void fill_rx_regs(){
-    struct message m;
     uint8_t i = 0, dest_ptr = RX_WORD1;
     if(rx_ctl_mb_regs[RX_CONTROL]){
         return;
     }
-    CircularBufferPopFront(&mb_rx_buf, &m);
-    rx_ctl_mb_regs[RX_SRC_ADDR] = (m.scr0 << 8) | m.scr1;
-    while(i < payloadSizeMax){
-        rx_ctl_mb_regs[dest_ptr]    = (m.msg[i++] << 8) & 0xFF00; 
-        rx_ctl_mb_regs[dest_ptr++] |= m.msg[i++];
+    if(!CircularBufferEmpty(&rx_buffer_queue_context)){
+        uint8_t buf_id;
+        CircularBufferPopFront(&rx_buffer_queue_context, &buf_id);
+        if(!rx_buffer[buf_id].free){
+            uint8_t i = 0;
+            //Found first RX message to be sent to the user
+            rx_ctl_mb_regs[RX_SRC_ADDR] = rx_buffer[buf_id].rx_ind.srcAddr;            
+            while(rx_buffer[buf_id].rx_ind.size--){
+                rx_ctl_mb_regs[dest_ptr]    = 
+                        (rx_buffer[buf_id].payload[i++] << 8) & 0xFF00;
+                rx_ctl_mb_regs[dest_ptr++] |= rx_buffer[buf_id].payload[i++];
+            }
+            rx_buffer[buf_id].free = 1;
+        }
     }
-    read_only_mb_regs[RO_RX_MSG_ID] = m.msgCnt;
+    read_only_mb_regs[RO_RX_MSG_ID] = 0;//@TODO find msg id
     rx_ctl_mb_regs[RX_CONTROL] = 1;
 }
 
@@ -1696,7 +1722,7 @@ void MBRTUStack(void){
         handle_rx_regs();
         rx_ctl_mb_regs_upadte = 0;
     }
-    if(!CircularBufferEmpty(&mb_rx_buf)){
+    if(!CircularBufferEmpty(&rx_buffer_queue_context)){
         //There is a message for modbus
         fill_rx_regs();
     }
@@ -1844,6 +1870,9 @@ static void exract_sink_addr(uint8_t* dataptr){
 void application(void){
 #ifdef ATCOMM
     processATCommand();
+#endif
+#ifdef MBRTU
+    MBRTUStack();
 #endif
     nwkEnableRouting((MODE_GetValue()? false:true));
 }

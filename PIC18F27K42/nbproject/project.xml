@@ -24,10 +24,15 @@
                 <sourceRootElem>../nwk/nwk_src</sourceRootElem>
                 <sourceRootElem>../phy/sx1216/phy_src</sourceRootElem>
                 <sourceRootElem>../sys/sys_src</sourceRootElem>
+                <sourceRootElem>../modbus</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
-                    <name>default</name>
+                    <name>base</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>MBRTU</name>
                     <type>2</type>
                 </confElem>
             </confList>

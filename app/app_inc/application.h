@@ -135,9 +135,6 @@ __pack struct rx_buffer_t rx_buffer[APP_RX_BUFFER_DEPTH];
 uint8_t rx_buffer_queue[APP_RX_BUFFER_DEPTH];
 CircularBufferContext rx_buffer_queue_context;
 
-
-
-
 #ifdef MBRTU
 #define MB_RTU_ADDR_MAX         247
 #define MB_RTU_ADDR_MIN         1
