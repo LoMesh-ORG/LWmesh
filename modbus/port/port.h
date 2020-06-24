@@ -25,6 +25,7 @@
 #include <assert.h>
 #include <stdint.h>
 #include "mcc.h"
+#include "../mcc_generated_files/tmr3.h"
 
 #define	INLINE                      inline
 #define PR_BEGIN_EXTERN_C           extern "C" {

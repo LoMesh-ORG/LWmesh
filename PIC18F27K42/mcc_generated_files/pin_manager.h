@@ -13,12 +13,12 @@
   @Description
     This header file provides APIs for driver for .
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.0
-        Device            :  PIC18F26K42
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
+        Device            :  PIC18F27K42
         Driver Version    :  2.11
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above
-        MPLAB 	          :  MPLAB X 5.35	
+        Compiler          :  XC8 2.20 and above
+        MPLAB 	          :  MPLAB X 5.40	
 */
 
 /*
@@ -84,6 +84,26 @@
 #define DIO2_SetOpenDrain()       do { ODCONAbits.ODCA0 = 1; } while(0)
 #define DIO2_SetAnalogMode()      do { ANSELAbits.ANSELA0 = 1; } while(0)
 #define DIO2_SetDigitalMode()     do { ANSELAbits.ANSELA0 = 0; } while(0)
+
+// get/set BLEN aliases
+#define BLEN_TRIS                 TRISAbits.TRISA1
+#define BLEN_LAT                  LATAbits.LATA1
+#define BLEN_PORT                 PORTAbits.RA1
+#define BLEN_WPU                  WPUAbits.WPUA1
+#define BLEN_OD                   ODCONAbits.ODCA1
+#define BLEN_ANS                  ANSELAbits.ANSELA1
+#define BLEN_SetHigh()            do { LATAbits.LATA1 = 1; } while(0)
+#define BLEN_SetLow()             do { LATAbits.LATA1 = 0; } while(0)
+#define BLEN_Toggle()             do { LATAbits.LATA1 = ~LATAbits.LATA1; } while(0)
+#define BLEN_GetValue()           PORTAbits.RA1
+#define BLEN_SetDigitalInput()    do { TRISAbits.TRISA1 = 1; } while(0)
+#define BLEN_SetDigitalOutput()   do { TRISAbits.TRISA1 = 0; } while(0)
+#define BLEN_SetPullup()          do { WPUAbits.WPUA1 = 1; } while(0)
+#define BLEN_ResetPullup()        do { WPUAbits.WPUA1 = 0; } while(0)
+#define BLEN_SetPushPull()        do { ODCONAbits.ODCA1 = 0; } while(0)
+#define BLEN_SetOpenDrain()       do { ODCONAbits.ODCA1 = 1; } while(0)
+#define BLEN_SetAnalogMode()      do { ANSELAbits.ANSELA1 = 1; } while(0)
+#define BLEN_SetDigitalMode()     do { ANSELAbits.ANSELA1 = 0; } while(0)
 
 // get/set MODE aliases
 #define MODE_TRIS                 TRISAbits.TRISA2

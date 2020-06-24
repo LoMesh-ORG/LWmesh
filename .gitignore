@@ -140,3 +140,11 @@ PIC18F27K42/dist/MBRTU/production/PIC18F27K42.production.mum
 PIC18F27K42/dist/MBRTU/production/PIC18F27K42.production.rlf
 PIC18F27K42/dist/MBRTU/production/PIC18F27K42.production.sdb
 PIC18F27K42/dist/MBRTU/production/PIC18F27K42.production.sym
+PIC18F27K42/dist/base/debug/memoryfile.xml
+PIC18F27K42/dist/base/debug/PIC18F27K42.debug.cmf
+PIC18F27K42/dist/base/debug/PIC18F27K42.debug.hxl
+PIC18F27K42/dist/base/debug/PIC18F27K42.debug.lst
+PIC18F27K42/dist/base/debug/PIC18F27K42.debug.mum
+PIC18F27K42/dist/base/debug/PIC18F27K42.debug.rlf
+PIC18F27K42/dist/base/debug/PIC18F27K42.debug.sdb
+PIC18F27K42/dist/base/debug/PIC18F27K42.debug.sym

@@ -1,17 +1,17 @@
 /**
-  TMR3 Generated Driver File
+  TMR1 Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    tmr3.c
+    tmr1.c
 
   @Summary
-    This is the generated driver implementation file for the TMR3 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated driver implementation file for the TMR1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This source file provides APIs for TMR3.
+    This source file provides APIs for TMR1.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.0
         Device            :  PIC18F26K42
@@ -49,147 +49,147 @@
 */
 
 #include <xc.h>
-#include "tmr3.h"
+#include "tmr1.h"
 #include "interrupt_manager.h"
 
 /**
   Section: Global Variables Definitions
 */
-volatile uint16_t timer3ReloadVal;
-void (*TMR3_InterruptHandler)(void);
+volatile uint16_t timer1ReloadVal;
+void (*TMR1_InterruptHandler)(void);
 
 /**
-  Section: TMR3 APIs
+  Section: TMR1 APIs
 */
 
-void TMR3_Initialize(void)
+void TMR1_Initialize(void)
 {
     //Set the Timer to the options selected in the GUI
 
-    //T3GE disabled; T3GTM disabled; T3GPOL low; T3GGO done; T3GSPM disabled; 
-    T3GCON = 0x00;
+    //T1GE disabled; T1GTM disabled; T1GPOL low; T1GGO done; T1GSPM disabled; 
+    T1GCON = 0x00;
 
-    //GSS T3G_pin; 
-    T3GATE = 0x00;
+    //GSS T1G_pin; 
+    T1GATE = 0x00;
 
-    //CS MFINTOSC_500kHz; 
-    T3CLK = 0x05;
+    //CS MFINTOSC_31.25kHz; 
+    T1CLK = 0x06;
 
-    //TMR3H 255; 
-    TMR3H = 0xFF;
+    //TMR1H 103; 
+    TMR1H = 0x67;
 
-    //TMR3L 253; 
-    TMR3L = 0xFD;
+    //TMR1L 105; 
+    TMR1L = 0x69;
 
     // Clearing IF flag before enabling the interrupt.
-    PIR6bits.TMR3IF = 0;
+    PIR4bits.TMR1IF = 0;
 
     // Load the TMR value to reload variable
-    timer3ReloadVal=(uint16_t)((TMR3H << 8) | TMR3L);
+    timer1ReloadVal=(uint16_t)((TMR1H << 8) | TMR1L);
 
-    // Enabling TMR3 interrupt.
-    PIE6bits.TMR3IE = 1;
+    // Enabling TMR1 interrupt.
+    PIE4bits.TMR1IE = 1;
 
     // Set Default Interrupt Handler
-    TMR3_SetInterruptHandler(TMR3_DefaultInterruptHandler);
+    TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
 
-    // CKPS 1:8; NOT_SYNC synchronize; TMR3ON enabled; T3RD16 enabled; 
-    T3CON = 0x33;
+    // CKPS 1:8; NOT_SYNC synchronize; TMR1ON enabled; T1RD16 disabled; 
+    T1CON = 0x31;
 }
 
-void TMR3_StartTimer(void)
+void TMR1_StartTimer(void)
 {
     // Start the Timer by writing to TMRxON bit
-    T3CONbits.TMR3ON = 1;
+    T1CONbits.TMR1ON = 1;
 }
 
-void TMR3_StopTimer(void)
+void TMR1_StopTimer(void)
 {
     // Stop the Timer by writing to TMRxON bit
-    T3CONbits.TMR3ON = 0;
+    T1CONbits.TMR1ON = 0;
 }
 
-uint16_t TMR3_ReadTimer(void)
+uint16_t TMR1_ReadTimer(void)
 {
     uint16_t readVal;
     uint8_t readValHigh;
     uint8_t readValLow;
     
-    T3CONbits.T3RD16 = 1;
+    T1CONbits.T1RD16 = 1;
 	
-    readValLow = TMR3L;
-    readValHigh = TMR3H;
+    readValLow = TMR1L;
+    readValHigh = TMR1H;
     
     readVal = ((uint16_t)readValHigh << 8) | readValLow;
 
     return readVal;
 }
 
-void TMR3_WriteTimer(uint16_t timerVal)
+void TMR1_WriteTimer(uint16_t timerVal)
 {
-    if (T3CONbits.NOT_SYNC == 1)
+    if (T1CONbits.NOT_SYNC == 1)
     {
         // Stop the Timer by writing to TMRxON bit
-        T3CONbits.TMR3ON = 0;
+        T1CONbits.TMR1ON = 0;
 
-        // Write to the Timer3 register
-        TMR3H = (timerVal >> 8);
-        TMR3L = timerVal;
+        // Write to the Timer1 register
+        TMR1H = (timerVal >> 8);
+        TMR1L = timerVal;
 
         // Start the Timer after writing to the register
-        T3CONbits.TMR3ON =1;
+        T1CONbits.TMR1ON =1;
     }
     else
     {
-        // Write to the Timer3 register
-        TMR3H = (timerVal >> 8);
-        TMR3L = timerVal;
+        // Write to the Timer1 register
+        TMR1H = (timerVal >> 8);
+        TMR1L = timerVal;
     }
 }
 
-void TMR3_Reload(void)
+void TMR1_Reload(void)
 {
-    TMR3_WriteTimer(timer3ReloadVal);
+    TMR1_WriteTimer(timer1ReloadVal);
 }
 
-void TMR3_StartSinglePulseAcquisition(void)
+void TMR1_StartSinglePulseAcquisition(void)
 {
-    T3GCONbits.T3GGO = 1;
+    T1GCONbits.T1GGO = 1;
 }
 
-uint8_t TMR3_CheckGateValueStatus(void)
+uint8_t TMR1_CheckGateValueStatus(void)
 {
-    return (T3GCONbits.T3GVAL);
+    return (T1GCONbits.T1GVAL);
 }
 
-void __interrupt(irq(TMR3),base(8)) TMR3_ISR()
+void __interrupt(irq(TMR1),base(8)) TMR1_ISR()
 {
 
-    // Clear the TMR3 interrupt flag
-    PIR6bits.TMR3IF = 0;
-    TMR3_WriteTimer(timer3ReloadVal);
+    // Clear the TMR1 interrupt flag
+    PIR4bits.TMR1IF = 0;
+    TMR1_WriteTimer(timer1ReloadVal);
 
     // ticker function call;
     // ticker is 1 -> Callback function gets called everytime this ISR executes
-    TMR3_CallBack();
+    TMR1_CallBack();
 }
 
-void TMR3_CallBack(void)
+void TMR1_CallBack(void)
 {
     // Add your custom callback code here
-    if(TMR3_InterruptHandler)
+    if(TMR1_InterruptHandler)
     {
-        TMR3_InterruptHandler();
+        TMR1_InterruptHandler();
     }
 }
 
-void TMR3_SetInterruptHandler(void (* InterruptHandler)(void)){
-    TMR3_InterruptHandler = InterruptHandler;
+void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
+    TMR1_InterruptHandler = InterruptHandler;
 }
 
-void TMR3_DefaultInterruptHandler(void){
-    // add your TMR3 interrupt custom code
-    // or set custom function using TMR3_SetInterruptHandler()
+void TMR1_DefaultInterruptHandler(void){
+    // add your TMR1 interrupt custom code
+    // or set custom function using TMR1_SetInterruptHandler()
 }
 
 /**

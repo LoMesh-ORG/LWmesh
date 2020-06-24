@@ -73,7 +73,7 @@ void SPI1_Initialize(void)
     SPI1CLK = 0x01;
     //BAUD 0; 
     SPI1BAUD = 0x03;
-    TRISBbits.TRISB2 = 0;
+    TRISCbits.TRISC7 = 0;
 }
 
 bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration)
@@ -85,7 +85,7 @@ bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration)
         SPI1CON2 = spi1_configuration[spi1UniqueConfiguration].con2 | (_SPI1CON2_SPI1RXR_MASK | _SPI1CON2_SPI1TXR_MASK);
         SPI1CLK  = 0x00;
         SPI1BAUD = spi1_configuration[spi1UniqueConfiguration].baud;        
-        TRISBbits.TRISB2 = spi1_configuration[spi1UniqueConfiguration].operation;
+        TRISCbits.TRISC7 = spi1_configuration[spi1UniqueConfiguration].operation;
         SPI1CON0bits.EN = 1;
         return true;
     }

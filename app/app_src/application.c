@@ -1440,6 +1440,8 @@ void bootLoadApplication(void)
 #endif
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
     PHY_SetRxState(true);
+    TMR0_SetInterruptHandler(Timer0Handler);
+    putch('S');
 }
 
 /*!

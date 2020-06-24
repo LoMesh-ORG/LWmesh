@@ -16,7 +16,7 @@
     all modules selected in the GUI.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
-        Device            :  PIC18F27K42
+        Device            :  PIC18F26K42
         Driver Version    :  2.12
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.10 and above or later
@@ -59,9 +59,15 @@ void  INTERRUPT_Initialize (void)
     IVTLOCK = 0xAA;
     IVTLOCKbits.IVTLOCKED = 0x00; // unlock IVT
 
-    IVTBASEU = 0;
-    IVTBASEH = 0;
-    IVTBASEL = 8;
+    IVTADU = 0;
+#if debugvector
+    IVTADH = 0;
+#elif bootable
+    IVTADH = 0x20;
+#else
+    IVTADH = 0;
+#endif
+    IVTADL = 8;
 
     IVTLOCK = 0x55;
     IVTLOCK = 0xAA;
@@ -73,6 +79,7 @@ void  INTERRUPT_Initialize (void)
     IPR3bits.U1RXIP = 1;
     IPR3bits.TMR0IP = 0;
     IPR6bits.TMR3IP = 1;
+    IPR4bits.TMR1IP = 1;
 }
 
 void __interrupt(irq(default),base(8)) Default_ISR()
