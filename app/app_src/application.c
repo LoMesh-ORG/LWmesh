@@ -35,11 +35,15 @@ static uint8_t rx_ctl_mb_regs_upadte     = 0;
 void appDataConf(NWK_DataReq_t *req)
 {
  if (NWK_SUCCESS_STATUS == req->status){
-    // frame was sent successfully     
+    // frame was sent successfully  
+#ifdef ATCOMM
      printf("ACK:%04X\r\n", req->dstAddr);
+#endif
  } 
  else{
+#ifdef ATCOMM
      printf("NACK:%04X\r\n", req->dstAddr);
+#endif
  }
  //Free the app tx buffer any way
  free_tx_buffer(req);
@@ -264,8 +268,8 @@ static void cmdSend(char* cmd){
         memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
 		memcpy(&tx_buffer[buf_id].payload,p1,strlen(p1));
 		tx_buffer[buf_id].nwkDataReq.dstAddr = tempaddr;
-        tx_buffer[buf_id].nwkDataReq.dstEndpoint = ASCII_EP;
-        tx_buffer[buf_id].nwkDataReq.srcEndpoint = ASCII_EP;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = DATA_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = DATA_EP;
         tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST;
         tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
         tx_buffer[buf_id].nwkDataReq.size = strlen(p1);
@@ -300,8 +304,8 @@ static void cmdBcast(char* cmd){
         memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
 		memcpy(&tx_buffer[buf_id].payload,p1,strlen(p1));
 		tx_buffer[buf_id].nwkDataReq.dstAddr = NWK_BROADCAST_ADDR;
-        tx_buffer[buf_id].nwkDataReq.dstEndpoint = ASCII_EP;
-        tx_buffer[buf_id].nwkDataReq.srcEndpoint = ASCII_EP;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = DATA_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = DATA_EP;
         tx_buffer[buf_id].nwkDataReq.options = 0;
         tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
         tx_buffer[buf_id].nwkDataReq.size = strlen(p1);
@@ -491,8 +495,8 @@ static void cmdSendSink(char* cmd){
         memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
 		memcpy(&tx_buffer[buf_id].payload,p1,strlen(p1));
 		tx_buffer[buf_id].nwkDataReq.dstAddr = (sinkAddr0 << 8) | sinkAddr1;
-        tx_buffer[buf_id].nwkDataReq.dstEndpoint = ASCII_EP;
-        tx_buffer[buf_id].nwkDataReq.srcEndpoint = ASCII_EP;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = DATA_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = DATA_EP;
         tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST;
         tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
         tx_buffer[buf_id].nwkDataReq.size = strlen(p1);
@@ -1434,14 +1438,11 @@ void bootLoadApplication(void)
             sizeof(rx_buffer_queue),sizeof(uint8_t));
     NWK_SetAddr((currentAddr0 << 8) | currentAddr1);
     NWK_SetPanId(pan_id);
-//    NWK_SetSecurityKey(net_key);
-#ifdef ATCOMM
-    NWK_OpenEndpoint(ASCII_EP, appDataInd);
-#endif
+    NWK_SetSecurityKey(net_key);
+    NWK_OpenEndpoint(DATA_EP, appDataInd);
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
     PHY_SetRxState(true);
     TMR0_SetInterruptHandler(Timer0Handler);
-    putch('S');
 }
 
 /*!
@@ -1625,10 +1626,12 @@ static void handle_tx_regs(){
     if(get_free_tx_buffer(&buf_id)){  
         memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
         memcpy(&tx_buffer[buf_id].payload,msg,sizeof(msg));
-        tx_buffer[buf_id].nwkDataReq.dstAddr = (sinkAddr0 << 8) | sinkAddr1;
-        tx_buffer[buf_id].nwkDataReq.dstEndpoint = BIN_EP;
-        tx_buffer[buf_id].nwkDataReq.srcEndpoint = BIN_EP;
-        tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST;
+        tx_buffer[buf_id].nwkDataReq.dstAddr = tx_ctl_mb_regs[TX_DEST];
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = DATA_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = DATA_EP;
+        tx_buffer[buf_id].nwkDataReq.options = 
+                (tx_ctl_mb_regs[TX_DEST] == NWK_BROADCAST_ADDR)?
+                    0:NWK_OPT_ACK_REQUEST;
         tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
         tx_buffer[buf_id].nwkDataReq.size = sizeof(msg);
         tx_buffer[buf_id].nwkDataReq.confirm = appDataConf;
@@ -1869,7 +1872,7 @@ static void exract_sink_addr(uint8_t* dataptr){
 #endif                    
 }
 
-void application(void){
+inline void application(void){
 #ifdef ATCOMM
     processATCommand();
 #endif
