@@ -10,14 +10,15 @@
 	; -q --opt=none --chip=18f27k42 \
 	; -Mdist/MBRTU/production/PIC18F27K42.production.map -DXPRJ_MBRTU=MBRTU \
 	; -L--defsym=__MPLAB_BUILD=1 --double=32 --float=32 --emi=wordwrite \
-	; --opt=+2 --opt=+asmfile --addrqual=ignore -DMBRTU -P -I../app/app_inc \
-	; -I../hal/hal_inc -I../nwk/nwk_inc -I../phy/sx1216/phy_inc \
-	; -I../sys/sys_inc -Imcc_generated_files -I../modbus/mb_inc \
-	; -I../modbus/port -I../modbus/rtu -I../modbus/functions --warn=-3 \
-	; --asmlist --summary=-psect,-class,+mem,-hex,-file --output=+inhx032 \
+	; --opt=+2 --opt=+asmfile --opt=+local --addrqual=ignore -DMBRTU -P \
+	; -I../app/app_inc -I../hal/hal_inc -I../nwk/nwk_inc \
+	; -I../phy/sx1216/phy_inc -I../sys/sys_inc -Imcc_generated_files \
+	; -I../modbus/mb_inc -I../modbus/port -I../modbus/rtu \
+	; -I../modbus/functions --warn=-3 --asmlist \
+	; --summary=-psect,-class,+mem,-hex,-file --output=+inhx032 \
 	; --runtime=+clear --runtime=+init --runtime=+keep --runtime=-download \
 	; --runtime=+config --std=c99 --output=+elf:multilocs \
-	; --stack=hybrid:256:auto:auto --summary=+xml \
+	; --stack=hybrid:auto:auto:auto --summary=+xml \
 	; --summarydir=dist/MBRTU/production/memoryfile.xml \
 	; -oPIC18F27K42.production.elf --objdir=dist/MBRTU/production \
 	; --outdir=dist/MBRTU/production \
@@ -139,7 +140,7 @@ __accesstop EQU 96
 
 ;Initialize the stack pointer (FSR1)
 	global stacklo, stackhi
-	stacklo	equ	0134Fh
+	stacklo	equ	0193Dh
 	stackhi	equ	01FFFh
 
 
@@ -147,21 +148,21 @@ __accesstop EQU 96
 	global ___sp,___inthi_sp,___intlo_sp
 ___sp:
 
-ds 256
+ds 577
 
 ___inthi_sp:
 
-ds 1496
+ds 577
 
 ___intlo_sp:
 
-ds 1497
+ds 577
 
 
 
 	psect	init
 start:
-	lfsr	1,4943
+	lfsr	1,6461
 	global start_initialization
 	goto start_initialization	;jump to C runtime clear & initialization
 

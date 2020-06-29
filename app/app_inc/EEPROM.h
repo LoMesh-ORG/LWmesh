@@ -80,6 +80,7 @@ extern "C" {
 #define NETkey13      NETkey12   + 1 
 #define NETkey14      NETkey13   + 1 
 #define NETkey15      NETkey14   + 1
+#define RSSI_GOOD     NETkey15   + 1
     
 enum{
     EEPROM_BOOTLOADER,
@@ -94,7 +95,8 @@ enum{
     EEPROM_UART_PARITY,
     EEPROM_UART_BAUD,
     EEPROM_SF,
-    EEPROM_MBADDR
+    EEPROM_MBADDR,
+    EEPROM_GOOD_RSSI
 }eeprom_write_flags_enum;
 
 struct eeprom_write_flags_type{
@@ -112,7 +114,8 @@ struct eeprom_write_flags_type{
     unsigned flag_uart_baud:1;
     unsigned flag_sf:1;
     unsigned flag_mbaddr:1;
-    unsigned resv:2;
+    unsigned flag_good_rssi:1;
+    unsigned resv:1;
 }eeprom_write_flags;
 
 uint8_t DATAEE_ReadByte_Platform(uint16_t addr);

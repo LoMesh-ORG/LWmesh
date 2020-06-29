@@ -842,6 +842,19 @@ void PHY_DataReq(uint8_t *data, uint8_t size){
 void PHY_TaskHandler(void){
     radio_engine();
 }
+
+inline void PHY_Set_Packet_Rssi_Threshold(int8_t rssi){
+    rssi_debug = rssi;
+}
+
+inline int8_t PHY_Get_Packet_Rssi_Threshold(void){
+    return (rssi_debug);
+}
+
+inline void PHY_Get_Packet_Rssi_Threshold_Limits(int8_t* max, int8_t* min){
+    *max = RSSIGOODMAX;
+    *min = RSSIGOODMIN;
+}
 /******************************************************************************/
 void readAllReg(void)
 {

@@ -32,6 +32,8 @@ Maintainer: Miguel Luis and Gregory Cristian
 #define SX1276RSSIMAX    -30
 #define SX1276RSSIMIN    -120
 #define PREAMBLE         12
+#define RSSIGOODMIN      -60 // @TODO: chage to -127 for production
+#define RSSIGOODMAX      -30
 
 #define PHY_RSSI_BASE_VAL                     (-157)
 /*- Types ------------------------------------------------------------------*/
@@ -387,6 +389,9 @@ void PHY_DataReq(uint8_t *data, uint8_t size);
 void PHY_DataConf(uint8_t status);
 void PHY_DataInd(PHY_DataInd_t *ind);
 void PHY_TaskHandler(void);
+inline void PHY_Set_Packet_Rssi_Threshold(int8_t rssi);
+inline int8_t PHY_Get_Packet_Rssi_Threshold(void);
+inline void PHY_Get_Packet_Rssi_Threshold_Limits(int8_t*, int8_t*);
 
 void readAllReg(void);
 

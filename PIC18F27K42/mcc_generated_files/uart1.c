@@ -316,8 +316,7 @@ void UART1_Receive_ISR(void)
 void UART1_RxDataHandler(void){
     // use this default receive interrupt handler code
     uart1RxBuffer[uart1RxHead++] = U1RXB;
-    if(sizeof(uart1RxBuffer) <= uart1RxHead)
-    {
+    if(sizeof(uart1RxBuffer) <= uart1RxHead){
         uart1RxHead = 0;
     }
     uart1RxCount++;

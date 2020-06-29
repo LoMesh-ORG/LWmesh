@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                                           Sun Jun 28 00:01:30 2020
+                                                                                                           Sun Jun 28 18:21:46 2020
 
 
      1                           	processor	18F27K42
@@ -84,340 +84,341 @@ Microchip MPLAB XC8 Assembler V2.10 build 88905656
     78                           ; -q --opt=none --chip=18f27k42 \
     79                           ; -Mdist/MBRTU/production/PIC18F27K42.production.map -DXPRJ_MBRTU=MBRTU \
     80                           ; -L--defsym=__MPLAB_BUILD=1 --double=32 --float=32 --emi=wordwrite \
-    81                           ; --opt=+2 --opt=+asmfile --addrqual=ignore -DMBRTU -P -I../app/app_inc \
-    82                           ; -I../hal/hal_inc -I../nwk/nwk_inc -I../phy/sx1216/phy_inc \
-    83                           ; -I../sys/sys_inc -Imcc_generated_files -I../modbus/mb_inc \
-    84                           ; -I../modbus/port -I../modbus/rtu -I../modbus/functions --warn=-3 \
-    85                           ; --asmlist --summary=-psect,-class,+mem,-hex,-file --output=+inhx032 \
-    86                           ; --runtime=+clear --runtime=+init --runtime=+keep --runtime=-download \
-    87                           ; --runtime=+config --std=c99 --output=+elf:multilocs \
-    88                           ; --stack=hybrid:256:auto:auto --summary=+xml \
-    89                           ; --summarydir=dist/MBRTU/production/memoryfile.xml \
-    90                           ; -oPIC18F27K42.production.elf --objdir=dist/MBRTU/production \
-    91                           ; --outdir=dist/MBRTU/production \
-    92                           ; build/MBRTU/production/_ext/669684871/mbfunccoils.p1 \
-    93                           ; build/MBRTU/production/_ext/669684871/mbfuncdiag.p1 \
-    94                           ; build/MBRTU/production/_ext/669684871/mbfuncdisc.p1 \
-    95                           ; build/MBRTU/production/_ext/669684871/mbfuncholding.p1 \
-    96                           ; build/MBRTU/production/_ext/669684871/mbfuncinput.p1 \
-    97                           ; build/MBRTU/production/_ext/669684871/mbfuncother.p1 \
-    98                           ; build/MBRTU/production/_ext/669684871/mbutils.p1 \
-    99                           ; build/MBRTU/production/_ext/815087133/portevent.p1 \
-   100                           ; build/MBRTU/production/_ext/815087133/portserial.p1 \
-   101                           ; build/MBRTU/production/_ext/815087133/porttimer.p1 \
-   102                           ; build/MBRTU/production/_ext/2104501039/mbcrc.p1 \
-   103                           ; build/MBRTU/production/_ext/2104501039/mbrtu.p1 \
-   104                           ; build/MBRTU/production/_ext/423217399/application.p1 \
-   105                           ; build/MBRTU/production/_ext/423217399/circular buffer.p1 \
-   106                           ; build/MBRTU/production/_ext/423217399/crc.p1 \
-   107                           ; build/MBRTU/production/_ext/423217399/EEPROM.p1 \
-   108                           ; build/MBRTU/production/_ext/423217399/led.p1 \
-   109                           ; build/MBRTU/production/_ext/984464531/mb.p1 \
-   110                           ; build/MBRTU/production/_ext/1339929363/Timers.p1 \
-   111                           ; build/MBRTU/production/mcc_generated_files/spi1.p1 \
-   112                           ; build/MBRTU/production/mcc_generated_files/tmr0.p1 \
-   113                           ; build/MBRTU/production/mcc_generated_files/memory.p1 \
-   114                           ; build/MBRTU/production/mcc_generated_files/device_config.p1 \
-   115                           ; build/MBRTU/production/mcc_generated_files/interrupt_manager.p1 \
-   116                           ; build/MBRTU/production/mcc_generated_files/mcc.p1 \
-   117                           ; build/MBRTU/production/mcc_generated_files/uart1.p1 \
-   118                           ; build/MBRTU/production/mcc_generated_files/pin_manager.p1 \
-   119                           ; build/MBRTU/production/mcc_generated_files/crc.p1 \
-   120                           ; build/MBRTU/production/mcc_generated_files/tmr3.p1 \
-   121                           ; build/MBRTU/production/_ext/93605685/nwk.p1 \
-   122                           ; build/MBRTU/production/_ext/93605685/nwkDataReq.p1 \
-   123                           ; build/MBRTU/production/_ext/93605685/nwkFrame.p1 \
-   124                           ; build/MBRTU/production/_ext/93605685/nwkGroup.p1 \
-   125                           ; build/MBRTU/production/_ext/93605685/nwkRoute.p1 \
-   126                           ; build/MBRTU/production/_ext/93605685/nwkRouteDiscovery.p1 \
-   127                           ; build/MBRTU/production/_ext/93605685/nwkRx.p1 \
-   128                           ; build/MBRTU/production/_ext/93605685/nwkSecurity.p1 \
-   129                           ; build/MBRTU/production/_ext/93605685/nwkTx.p1 \
-   130                           ; build/MBRTU/production/_ext/1350403839/phy.p1 \
-   131                           ; build/MBRTU/production/_ext/2045976161/sys.p1 \
-   132                           ; build/MBRTU/production/_ext/2045976161/sysEncrypt.p1 \
-   133                           ; build/MBRTU/production/_ext/2045976161/sysTimer.p1 \
-   134                           ; build/MBRTU/production/main.p1 --errformat=%f:%l:%c: error: (%n) %s \
-   135                           ; --warnformat=%f:%l:%c: warning: (%n) %s \
-   136                           ; --msgformat=%f:%l:%c: advisory: (%n) %s
-   137                           ;
-   138  0000                     
-   139                           ; Version 2.10
-   140                           ; Generated 31/07/2019 GMT
-   141                           ; 
-   142                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
-   143                           ; All rights reserved.
-   144                           ; 
-   145                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microchip").
-   146                           ; 
-   147                           ; Redistribution and use in source and binary forms, with or without modification, are
-   148                           ; permitted provided that the following conditions are met:
-   149                           ; 
-   150                           ;     1. Redistributions of source code must retain the above copyright notice, this list of
-   151                           ;        conditions and the following disclaimer.
-   152                           ; 
-   153                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this list
-   154                           ;        of conditions and the following disclaimer in the documentation and/or other
-   155                           ;        materials provided with the distribution.
-   156                           ; 
-   157                           ;     3. Microchip's name may not be used to endorse or promote products derived from this
-   158                           ;        software without specific prior written permission.
-   159                           ; 
-   160                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-   161                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-   162                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIRECT,
-   163                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
-   164                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
-   165                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-   166                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
-   167                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-   168                           ; 
+    81                           ; --opt=+2 --opt=+asmfile --opt=+local --addrqual=ignore -DMBRTU -P \
+    82                           ; -I../app/app_inc -I../hal/hal_inc -I../nwk/nwk_inc \
+    83                           ; -I../phy/sx1216/phy_inc -I../sys/sys_inc -Imcc_generated_files \
+    84                           ; -I../modbus/mb_inc -I../modbus/port -I../modbus/rtu \
+    85                           ; -I../modbus/functions --warn=-3 --asmlist \
+    86                           ; --summary=-psect,-class,+mem,-hex,-file --output=+inhx032 \
+    87                           ; --runtime=+clear --runtime=+init --runtime=+keep --runtime=-download \
+    88                           ; --runtime=+config --std=c99 --output=+elf:multilocs \
+    89                           ; --stack=hybrid:auto:auto:auto --summary=+xml \
+    90                           ; --summarydir=dist/MBRTU/production/memoryfile.xml \
+    91                           ; -oPIC18F27K42.production.elf --objdir=dist/MBRTU/production \
+    92                           ; --outdir=dist/MBRTU/production \
+    93                           ; build/MBRTU/production/_ext/669684871/mbfunccoils.p1 \
+    94                           ; build/MBRTU/production/_ext/669684871/mbfuncdiag.p1 \
+    95                           ; build/MBRTU/production/_ext/669684871/mbfuncdisc.p1 \
+    96                           ; build/MBRTU/production/_ext/669684871/mbfuncholding.p1 \
+    97                           ; build/MBRTU/production/_ext/669684871/mbfuncinput.p1 \
+    98                           ; build/MBRTU/production/_ext/669684871/mbfuncother.p1 \
+    99                           ; build/MBRTU/production/_ext/669684871/mbutils.p1 \
+   100                           ; build/MBRTU/production/_ext/815087133/portevent.p1 \
+   101                           ; build/MBRTU/production/_ext/815087133/portserial.p1 \
+   102                           ; build/MBRTU/production/_ext/815087133/porttimer.p1 \
+   103                           ; build/MBRTU/production/_ext/2104501039/mbcrc.p1 \
+   104                           ; build/MBRTU/production/_ext/2104501039/mbrtu.p1 \
+   105                           ; build/MBRTU/production/_ext/423217399/application.p1 \
+   106                           ; build/MBRTU/production/_ext/423217399/circular buffer.p1 \
+   107                           ; build/MBRTU/production/_ext/423217399/crc.p1 \
+   108                           ; build/MBRTU/production/_ext/423217399/EEPROM.p1 \
+   109                           ; build/MBRTU/production/_ext/423217399/led.p1 \
+   110                           ; build/MBRTU/production/_ext/984464531/mb.p1 \
+   111                           ; build/MBRTU/production/_ext/1339929363/Timers.p1 \
+   112                           ; build/MBRTU/production/mcc_generated_files/spi1.p1 \
+   113                           ; build/MBRTU/production/mcc_generated_files/tmr0.p1 \
+   114                           ; build/MBRTU/production/mcc_generated_files/memory.p1 \
+   115                           ; build/MBRTU/production/mcc_generated_files/device_config.p1 \
+   116                           ; build/MBRTU/production/mcc_generated_files/interrupt_manager.p1 \
+   117                           ; build/MBRTU/production/mcc_generated_files/mcc.p1 \
+   118                           ; build/MBRTU/production/mcc_generated_files/uart1.p1 \
+   119                           ; build/MBRTU/production/mcc_generated_files/pin_manager.p1 \
+   120                           ; build/MBRTU/production/mcc_generated_files/crc.p1 \
+   121                           ; build/MBRTU/production/mcc_generated_files/tmr3.p1 \
+   122                           ; build/MBRTU/production/_ext/93605685/nwk.p1 \
+   123                           ; build/MBRTU/production/_ext/93605685/nwkDataReq.p1 \
+   124                           ; build/MBRTU/production/_ext/93605685/nwkFrame.p1 \
+   125                           ; build/MBRTU/production/_ext/93605685/nwkGroup.p1 \
+   126                           ; build/MBRTU/production/_ext/93605685/nwkRoute.p1 \
+   127                           ; build/MBRTU/production/_ext/93605685/nwkRouteDiscovery.p1 \
+   128                           ; build/MBRTU/production/_ext/93605685/nwkRx.p1 \
+   129                           ; build/MBRTU/production/_ext/93605685/nwkSecurity.p1 \
+   130                           ; build/MBRTU/production/_ext/93605685/nwkTx.p1 \
+   131                           ; build/MBRTU/production/_ext/1350403839/phy.p1 \
+   132                           ; build/MBRTU/production/_ext/2045976161/sys.p1 \
+   133                           ; build/MBRTU/production/_ext/2045976161/sysEncrypt.p1 \
+   134                           ; build/MBRTU/production/_ext/2045976161/sysTimer.p1 \
+   135                           ; build/MBRTU/production/main.p1 --errformat=%f:%l:%c: error: (%n) %s \
+   136                           ; --warnformat=%f:%l:%c: warning: (%n) %s \
+   137                           ; --msgformat=%f:%l:%c: advisory: (%n) %s
+   138                           ;
+   139  0000                     
+   140                           ; Version 2.10
+   141                           ; Generated 31/07/2019 GMT
+   142                           ; 
+   143                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+   144                           ; All rights reserved.
+   145                           ; 
+   146                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microchip").
+   147                           ; 
+   148                           ; Redistribution and use in source and binary forms, with or without modification, are
+   149                           ; permitted provided that the following conditions are met:
+   150                           ; 
+   151                           ;     1. Redistributions of source code must retain the above copyright notice, this list of
+   152                           ;        conditions and the following disclaimer.
+   153                           ; 
+   154                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this list
+   155                           ;        of conditions and the following disclaimer in the documentation and/or other
+   156                           ;        materials provided with the distribution.
+   157                           ; 
+   158                           ;     3. Microchip's name may not be used to endorse or promote products derived from this
+   159                           ;        software without specific prior written permission.
+   160                           ; 
+   161                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+   162                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+   163                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIRECT,
+   164                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+   165                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+   166                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+   167                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+   168                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    169                           ; 
-   170                           ; Code-generator required, PIC18F27K42 Definitions
-   171                           ; 
-   172                           ; SFR Addresses
-   173  0000                     
-   174                           ; Config register CONFIG1L @ 0x300000
-   175                           ;	External Oscillator Selection
-   176                           ;	FEXTOSC = OFF, Oscillator not enabled
-   177                           ;	Reset Oscillator Selection
-   178                           ;	RSTOSC = HFINTOSC_64MHZ, HFINTOSC with HFFRQ = 64 MHz and CDIV = 1:1
-   179                           
-   180                           ; Config register CONFIG1H @ 0x300001
-   181                           ;	Clock out Enable bit
-   182                           ;	CLKOUTEN = OFF, CLKOUT function is disabled
-   183                           ;	PRLOCKED One-Way Set Enable bit
-   184                           ;	PR1WAY = ON, PRLOCK bit can be cleared and set only once
-   185                           ;	Clock Switch Enable bit
-   186                           ;	CSWEN = ON, Writing to NOSC and NDIV is allowed
-   187                           ;	Fail-Safe Clock Monitor Enable bit
-   188                           ;	FCMEN = ON, Fail-Safe Clock Monitor enabled
-   189                           
-   190                           ; Config register CONFIG2L @ 0x300002
-   191                           ;	MCLR Enable bit
-   192                           ;	MCLRE = EXTMCLR, If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR
-   193                           ;	Power-up timer selection bits
-   194                           ;	PWRTS = PWRT_64, PWRT set at 64ms
-   195                           ;	Multi-vector enable bit
-   196                           ;	MVECEN = ON, Multi-vector enabled, Vector table used for interrupts
-   197                           ;	IVTLOCK bit One-way set enable bit
-   198                           ;	IVT1WAY = ON, IVTLOCK bit can be cleared and set only once
-   199                           ;	Low Power BOR Enable bit
-   200                           ;	LPBOREN = OFF, ULPBOR disabled
-   201                           ;	Brown-out Reset Enable bits
-   202                           ;	BOREN = SBORDIS, Brown-out Reset enabled , SBOREN bit is ignored
-   203                           
-   204                           ; Config register CONFIG2H @ 0x300003
-   205                           ;	Brown-out Reset Voltage Selection bits
-   206                           ;	BORV = VBOR_2P45, Brown-out Reset Voltage (VBOR) set to 2.45V
-   207                           ;	ZCD Disable bit
-   208                           ;	ZCD = OFF, ZCD disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCDCON
-   209                           ;	PPSLOCK bit One-Way Set Enable bit
-   210                           ;	PPS1WAY = ON, PPSLOCK bit can be cleared and set only once; PPS registers remain locked after one 
+   170                           ; 
+   171                           ; Code-generator required, PIC18F27K42 Definitions
+   172                           ; 
+   173                           ; SFR Addresses
+   174  0000                     
+   175                           ; Config register CONFIG1L @ 0x300000
+   176                           ;	External Oscillator Selection
+   177                           ;	FEXTOSC = OFF, Oscillator not enabled
+   178                           ;	Reset Oscillator Selection
+   179                           ;	RSTOSC = HFINTOSC_64MHZ, HFINTOSC with HFFRQ = 64 MHz and CDIV = 1:1
+   180                           
+   181                           ; Config register CONFIG1H @ 0x300001
+   182                           ;	Clock out Enable bit
+   183                           ;	CLKOUTEN = OFF, CLKOUT function is disabled
+   184                           ;	PRLOCKED One-Way Set Enable bit
+   185                           ;	PR1WAY = ON, PRLOCK bit can be cleared and set only once
+   186                           ;	Clock Switch Enable bit
+   187                           ;	CSWEN = ON, Writing to NOSC and NDIV is allowed
+   188                           ;	Fail-Safe Clock Monitor Enable bit
+   189                           ;	FCMEN = ON, Fail-Safe Clock Monitor enabled
+   190                           
+   191                           ; Config register CONFIG2L @ 0x300002
+   192                           ;	MCLR Enable bit
+   193                           ;	MCLRE = EXTMCLR, If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR
+   194                           ;	Power-up timer selection bits
+   195                           ;	PWRTS = PWRT_64, PWRT set at 64ms
+   196                           ;	Multi-vector enable bit
+   197                           ;	MVECEN = ON, Multi-vector enabled, Vector table used for interrupts
+   198                           ;	IVTLOCK bit One-way set enable bit
+   199                           ;	IVT1WAY = ON, IVTLOCK bit can be cleared and set only once
+   200                           ;	Low Power BOR Enable bit
+   201                           ;	LPBOREN = OFF, ULPBOR disabled
+   202                           ;	Brown-out Reset Enable bits
+   203                           ;	BOREN = SBORDIS, Brown-out Reset enabled , SBOREN bit is ignored
+   204                           
+   205                           ; Config register CONFIG2H @ 0x300003
+   206                           ;	Brown-out Reset Voltage Selection bits
+   207                           ;	BORV = VBOR_2P45, Brown-out Reset Voltage (VBOR) set to 2.45V
+   208                           ;	ZCD Disable bit
+   209                           ;	ZCD = OFF, ZCD disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCDCON
+   210                           ;	PPSLOCK bit One-Way Set Enable bit
+   211                           ;	PPS1WAY = ON, PPSLOCK bit can be cleared and set only once; PPS registers remain locked after one 
       +                          clear/set cycle
-   211                           ;	Stack Full/Underflow Reset Enable bit
-   212                           ;	STVREN = ON, Stack full/underflow will cause Reset
-   213                           ;	Debugger Enable bit
-   214                           ;	DEBUG = OFF, Background debugger disabled
-   215                           ;	Extended Instruction Set Enable bit
-   216                           ;	XINST = OFF, Extended Instruction Set and Indexed Addressing Mode disabled
-   217                           
-   218                           ; Config register CONFIG3L @ 0x300004
-   219                           ;	WDT Period selection bits
-   220                           ;	WDTCPS = WDTCPS_31, Divider ratio 1:65536; software control of WDTPS
-   221                           ;	WDT operating mode
-   222                           ;	WDTE = OFF, WDT Disabled; SWDTEN is ignored
-   223                           
-   224                           ; Config register CONFIG3H @ 0x300005
-   225                           ;	WDT Window Select bits
-   226                           ;	WDTCWS = WDTCWS_7, window always open (100%); software control; keyed access not required
-   227                           ;	WDT input clock selector
-   228                           ;	WDTCCS = SC, Software Control
-   229                           
-   230                           ; Config register CONFIG4L @ 0x300006
-   231                           ;	Boot Block Size selection bits
-   232                           ;	BBSIZE = BBSIZE_512, Boot Block size is 512 words
-   233                           ;	Boot Block enable bit
-   234                           ;	BBEN = OFF, Boot block disabled
-   235                           ;	Storage Area Flash enable bit
-   236                           ;	SAFEN = OFF, SAF disabled
-   237                           ;	Application Block write protection bit
-   238                           ;	WRTAPP = OFF, Application Block not write protected
-   239                           
-   240                           ; Config register CONFIG4H @ 0x300007
-   241                           ;	Configuration Register Write Protection bit
-   242                           ;	WRTB = OFF, Configuration registers (300000-30000Bh) not write-protected
-   243                           ;	Boot Block Write Protection bit
-   244                           ;	WRTC = OFF, Boot Block (000000-0007FFh) not write-protected
-   245                           ;	Data EEPROM Write Protection bit
-   246                           ;	WRTD = OFF, Data EEPROM not write-protected
-   247                           ;	SAF Write protection bit
-   248                           ;	WRTSAF = OFF, SAF not Write Protected
-   249                           ;	Low Voltage Programming Enable bit
-   250                           ;	LVP = ON, Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE configuration bit 
+   212                           ;	Stack Full/Underflow Reset Enable bit
+   213                           ;	STVREN = ON, Stack full/underflow will cause Reset
+   214                           ;	Debugger Enable bit
+   215                           ;	DEBUG = OFF, Background debugger disabled
+   216                           ;	Extended Instruction Set Enable bit
+   217                           ;	XINST = OFF, Extended Instruction Set and Indexed Addressing Mode disabled
+   218                           
+   219                           ; Config register CONFIG3L @ 0x300004
+   220                           ;	WDT Period selection bits
+   221                           ;	WDTCPS = WDTCPS_31, Divider ratio 1:65536; software control of WDTPS
+   222                           ;	WDT operating mode
+   223                           ;	WDTE = OFF, WDT Disabled; SWDTEN is ignored
+   224                           
+   225                           ; Config register CONFIG3H @ 0x300005
+   226                           ;	WDT Window Select bits
+   227                           ;	WDTCWS = WDTCWS_7, window always open (100%); software control; keyed access not required
+   228                           ;	WDT input clock selector
+   229                           ;	WDTCCS = SC, Software Control
+   230                           
+   231                           ; Config register CONFIG4L @ 0x300006
+   232                           ;	Boot Block Size selection bits
+   233                           ;	BBSIZE = BBSIZE_512, Boot Block size is 512 words
+   234                           ;	Boot Block enable bit
+   235                           ;	BBEN = OFF, Boot block disabled
+   236                           ;	Storage Area Flash enable bit
+   237                           ;	SAFEN = OFF, SAF disabled
+   238                           ;	Application Block write protection bit
+   239                           ;	WRTAPP = OFF, Application Block not write protected
+   240                           
+   241                           ; Config register CONFIG4H @ 0x300007
+   242                           ;	Configuration Register Write Protection bit
+   243                           ;	WRTB = OFF, Configuration registers (300000-30000Bh) not write-protected
+   244                           ;	Boot Block Write Protection bit
+   245                           ;	WRTC = OFF, Boot Block (000000-0007FFh) not write-protected
+   246                           ;	Data EEPROM Write Protection bit
+   247                           ;	WRTD = OFF, Data EEPROM not write-protected
+   248                           ;	SAF Write protection bit
+   249                           ;	WRTSAF = OFF, SAF not Write Protected
+   250                           ;	Low Voltage Programming Enable bit
+   251                           ;	LVP = ON, Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE configuration bit 
       +                          is ignored
-   251                           
-   252                           ; Config register CONFIG5L @ 0x300008
-   253                           ;	PFM and Data EEPROM Code Protection bit
-   254                           ;	CP = OFF, PFM and Data EEPROM code protection disabled
-   255                           
-   256                           ; Config register CONFIG5H @ 0x300009
-   257                           ;	unspecified using default value
-   258                           
-   259                           	psect	config
-   260  300000                     	org	0
-   261  300000  8C                 	db	140
-   262  300001                     	org	1
-   263  300001  FF                 	db	255
-   264  300002                     	org	2
-   265  300002  FD                 	db	253
-   266  300003                     	org	3
-   267  300003  FF                 	db	255
-   268  300004                     	org	4
-   269  300004  9F                 	db	159
-   270  300005                     	org	5
-   271  300005  FF                 	db	255
-   272  300006                     	org	6
-   273  300006  FF                 	db	255
-   274  300007                     	org	7
-   275  300007  FF                 	db	255
-   276  300008                     	org	8
-   277  300008  FF                 	db	255
-   278  300009                     	org	9
-   279  300009  FF                 	db	255
-   280                           
-   281                           ; Config register IDLOC0 @ 0x200000
-   282                           ;	unspecified using default value
-   283                           
-   284                           ; Config register IDLOC1 @ 0x200002
-   285                           ;	unspecified using default value
-   286                           
-   287                           ; Config register IDLOC2 @ 0x200004
-   288                           ;	unspecified using default value
-   289                           
-   290                           ; Config register IDLOC3 @ 0x200006
-   291                           ;	unspecified using default value
-   292                           
-   293                           ; Config register IDLOC4 @ 0x200008
-   294                           ;	unspecified using default value
-   295                           
-   296                           ; Config register IDLOC5 @ 0x20000A
-   297                           ;	unspecified using default value
-   298                           
-   299                           ; Config register IDLOC6 @ 0x20000C
-   300                           ;	unspecified using default value
-   301                           
-   302                           ; Config register IDLOC7 @ 0x20000E
-   303                           ;	unspecified using default value
-   304                           
-   305                           	psect	idloc
-   306  200000                     	org	0
-   307  200000  0FFF               	dw	4095
-   308  200002                     	org	2
-   309  200002  0FFF               	dw	4095
-   310  200004                     	org	4
-   311  200004  0FFF               	dw	4095
-   312  200006                     	org	6
-   313  200006  0FFF               	dw	4095
-   314  200008                     	org	8
-   315  200008  0FFF               	dw	4095
-   316  20000A                     	org	10
-   317  20000A  0FFF               	dw	4095
-   318  20000C                     	org	12
-   319  20000C  0FFF               	dw	4095
-   320  20000E                     	org	14
-   321  20000E  0FFF               	dw	4095
-   322                           
-   323                           	psect	smallconst
-   324  000000                     __smallconst:
-   325                           	opt callstack 0
-   326                           
-   327                           	psect	mediumconst
-   328  00FB36                     __mediumconst:
-   329                           	opt callstack 0	; top of RAM usage
-   330                           
-   331                           	psect	reset_vec
-   332  000000                     
-   333                           ; No powerup routine
-   334                           ; jump to start
-   335  000000  EF57  F000         	goto	start
-   336  0000                     
-   337                           ;Initialize the stack pointer (FSR1)
-   338  0000                     
-   339                           	psect	init
-   340  0000AE                     start:
-   341                           	opt callstack 0
-   342  0000AE  EE14 F34F          	lfsr	1,4943
-   343  0000B2  EF13  F0AC         	goto	start_initialization	;jump to C runtime clear & initialization
-   344                           
-   345                           	psect	text
-   346  000000                     intlevel0:
-   347                           	opt callstack 0
-   348  000000                     intlevel1:
-   349                           	opt callstack 0
-   350  000000                     intlevel2:
-   351                           	opt callstack 0
-   352  000000                     intlevel3:
-   353                           	opt callstack 0
-   354                           
-   355                           	psect	ramtop
-   356  002000                     __ramtop:
-   357                           	opt callstack 0
-   358                           
-   359                           	psect	stack
-   360  00134F                     ___sp:
-   361                           	opt callstack 0
-   362  00134F                     	ds	256
-   363  00144F                     ___inthi_sp:
-   364                           	opt callstack 0
-   365  00144F                     	ds	1496
-   366  001A27                     ___intlo_sp:
-   367                           	opt callstack 0
-   368  001A27                     	ds	1497
-   369                           tosu	equ	0x3FFF
-   370                           tosh	equ	0x3FFE
-   371                           tosl	equ	0x3FFD
-   372                           stkptr	equ	0x3FFC
-   373                           pclatu	equ	0x3FFB
-   374                           pclath	equ	0x3FFA
-   375                           pcl	equ	0x3FF9
-   376                           tblptru	equ	0x3FF8
-   377                           tblptrh	equ	0x3FF7
-   378                           tblptrl	equ	0x3FF6
-   379                           tablat	equ	0x3FF5
-   380                           prodh	equ	0x3FF4
-   381                           prodl	equ	0x3FF3
-   382                           indf0	equ	0x3FEF
-   383                           postinc0	equ	0x3FEE
-   384                           postdec0	equ	0x3FED
-   385                           preinc0	equ	0x3FEC
-   386                           plusw0	equ	0x3FEB
-   387                           fsr0h	equ	0x3FEA
-   388                           fsr0l	equ	0x3FE9
-   389                           wreg	equ	0x3FE8
-   390                           indf1	equ	0x3FE7
-   391                           postinc1	equ	0x3FE6
-   392                           postdec1	equ	0x3FE5
-   393                           preinc1	equ	0x3FE4
-   394                           plusw1	equ	0x3FE3
-   395                           fsr1h	equ	0x3FE2
-   396                           fsr1l	equ	0x3FE1
-   397                           bsr	equ	0x3FE0
-   398                           indf2	equ	0x3FDF
-   399                           postinc2	equ	0x3FDE
-   400                           postdec2	equ	0x3FDD
-   401                           preinc2	equ	0x3FDC
-   402                           plusw2	equ	0x3FDB
-   403                           fsr2h	equ	0x3FDA
-   404                           fsr2l	equ	0x3FD9
-   405                           status	equ	0x3FD8
+   252                           
+   253                           ; Config register CONFIG5L @ 0x300008
+   254                           ;	PFM and Data EEPROM Code Protection bit
+   255                           ;	CP = OFF, PFM and Data EEPROM code protection disabled
+   256                           
+   257                           ; Config register CONFIG5H @ 0x300009
+   258                           ;	unspecified using default value
+   259                           
+   260                           	psect	config
+   261  300000                     	org	0
+   262  300000  8C                 	db	140
+   263  300001                     	org	1
+   264  300001  FF                 	db	255
+   265  300002                     	org	2
+   266  300002  FD                 	db	253
+   267  300003                     	org	3
+   268  300003  FF                 	db	255
+   269  300004                     	org	4
+   270  300004  9F                 	db	159
+   271  300005                     	org	5
+   272  300005  FF                 	db	255
+   273  300006                     	org	6
+   274  300006  FF                 	db	255
+   275  300007                     	org	7
+   276  300007  FF                 	db	255
+   277  300008                     	org	8
+   278  300008  FF                 	db	255
+   279  300009                     	org	9
+   280  300009  FF                 	db	255
+   281                           
+   282                           ; Config register IDLOC0 @ 0x200000
+   283                           ;	unspecified using default value
+   284                           
+   285                           ; Config register IDLOC1 @ 0x200002
+   286                           ;	unspecified using default value
+   287                           
+   288                           ; Config register IDLOC2 @ 0x200004
+   289                           ;	unspecified using default value
+   290                           
+   291                           ; Config register IDLOC3 @ 0x200006
+   292                           ;	unspecified using default value
+   293                           
+   294                           ; Config register IDLOC4 @ 0x200008
+   295                           ;	unspecified using default value
+   296                           
+   297                           ; Config register IDLOC5 @ 0x20000A
+   298                           ;	unspecified using default value
+   299                           
+   300                           ; Config register IDLOC6 @ 0x20000C
+   301                           ;	unspecified using default value
+   302                           
+   303                           ; Config register IDLOC7 @ 0x20000E
+   304                           ;	unspecified using default value
+   305                           
+   306                           	psect	idloc
+   307  200000                     	org	0
+   308  200000  0FFF               	dw	4095
+   309  200002                     	org	2
+   310  200002  0FFF               	dw	4095
+   311  200004                     	org	4
+   312  200004  0FFF               	dw	4095
+   313  200006                     	org	6
+   314  200006  0FFF               	dw	4095
+   315  200008                     	org	8
+   316  200008  0FFF               	dw	4095
+   317  20000A                     	org	10
+   318  20000A  0FFF               	dw	4095
+   319  20000C                     	org	12
+   320  20000C  0FFF               	dw	4095
+   321  20000E                     	org	14
+   322  20000E  0FFF               	dw	4095
+   323                           
+   324                           	psect	smallconst
+   325  000000                     __smallconst:
+   326                           	opt callstack 0
+   327                           
+   328                           	psect	mediumconst
+   329  00FB36                     __mediumconst:
+   330                           	opt callstack 0	; top of RAM usage
+   331                           
+   332                           	psect	reset_vec
+   333  000000                     
+   334                           ; No powerup routine
+   335                           ; jump to start
+   336  000000  EF57  F000         	goto	start
+   337  0000                     
+   338                           ;Initialize the stack pointer (FSR1)
+   339  0000                     
+   340                           	psect	init
+   341  0000AE                     start:
+   342                           	opt callstack 0
+   343  0000AE  EE16 F13D          	lfsr	1,6461
+   344  0000B2  EF44  F0B7         	goto	start_initialization	;jump to C runtime clear & initialization
+   345                           
+   346                           	psect	text
+   347  000000                     intlevel0:
+   348                           	opt callstack 0
+   349  000000                     intlevel1:
+   350                           	opt callstack 0
+   351  000000                     intlevel2:
+   352                           	opt callstack 0
+   353  000000                     intlevel3:
+   354                           	opt callstack 0
+   355                           
+   356                           	psect	ramtop
+   357  002000                     __ramtop:
+   358                           	opt callstack 0
+   359                           
+   360                           	psect	stack
+   361  00193D                     ___sp:
+   362                           	opt callstack 0
+   363  00193D                     	ds	577
+   364  001B7E                     ___inthi_sp:
+   365                           	opt callstack 0
+   366  001B7E                     	ds	577
+   367  001DBF                     ___intlo_sp:
+   368                           	opt callstack 0
+   369  001DBF                     	ds	577
+   370                           tosu	equ	0x3FFF
+   371                           tosh	equ	0x3FFE
+   372                           tosl	equ	0x3FFD
+   373                           stkptr	equ	0x3FFC
+   374                           pclatu	equ	0x3FFB
+   375                           pclath	equ	0x3FFA
+   376                           pcl	equ	0x3FF9
+   377                           tblptru	equ	0x3FF8
+   378                           tblptrh	equ	0x3FF7
+   379                           tblptrl	equ	0x3FF6
+   380                           tablat	equ	0x3FF5
+   381                           prodh	equ	0x3FF4
+   382                           prodl	equ	0x3FF3
+   383                           indf0	equ	0x3FEF
+   384                           postinc0	equ	0x3FEE
+   385                           postdec0	equ	0x3FED
+   386                           preinc0	equ	0x3FEC
+   387                           plusw0	equ	0x3FEB
+   388                           fsr0h	equ	0x3FEA
+   389                           fsr0l	equ	0x3FE9
+   390                           wreg	equ	0x3FE8
+   391                           indf1	equ	0x3FE7
+   392                           postinc1	equ	0x3FE6
+   393                           postdec1	equ	0x3FE5
+   394                           preinc1	equ	0x3FE4
+   395                           plusw1	equ	0x3FE3
+   396                           fsr1h	equ	0x3FE2
+   397                           fsr1l	equ	0x3FE1
+   398                           bsr	equ	0x3FE0
+   399                           indf2	equ	0x3FDF
+   400                           postinc2	equ	0x3FDE
+   401                           postdec2	equ	0x3FDD
+   402                           preinc2	equ	0x3FDC
+   403                           plusw2	equ	0x3FDB
+   404                           fsr2h	equ	0x3FDA
+   405                           fsr2l	equ	0x3FD9
+   406                           status	equ	0x3FD8
 
 
 Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                               Sun Jun 28 00:01:30 2020
+Symbol Table                                                                                               Sun Jun 28 18:21:46 2020
 
-                __S1 134F                 ___sp 134F                 _main AB5C                 start 00AE  
+                __S1 193D                 ___sp 193D                 _main C492                 start 00AE  
               __HRAM 0000                __LRAM 0001         __mediumconst FB36               stackhi 001FFF  
-             stacklo 00134F           __accesstop 000060           ___inthi_sp 144F           ___intlo_sp 1A27  
-            __ramtop 2000  start_initialization 5826          __smallconst 0000             intlevel0 0000  
+             stacklo 00193D           __accesstop 000060           ___inthi_sp 1B7E           ___intlo_sp 1DBF  
+            __ramtop 2000  start_initialization 6E88          __smallconst 0000             intlevel0 0000  
            intlevel1 0000             intlevel2 0000             intlevel3 0000             reset_vec 0000  

@@ -107,6 +107,10 @@ void sync_eeprom(void){
     else if(eeprom_write_flags.flag_serial){
         eeprom_write_flags.flag_serial = 0;
     }
+    else if(eeprom_write_flags.flag_good_rssi){
+        DATAEE_WriteByte_Platform(RSSI_GOOD, PHY_Get_Packet_Rssi_Threshold());
+        eeprom_write_flags.flag_good_rssi = 0;
+    }
     else if(eeprom_write_flags.resv){
         eeprom_write_flags.resv = 0;
     }
@@ -155,6 +159,9 @@ uint8_t set_eeprom_sync(uint8_t flag_type){
             break;
         case EEPROM_MBADDR:
             eeprom_write_flags.flag_mbaddr = 1;
+            break;
+        case EEPROM_GOOD_RSSI:
+            eeprom_write_flags.flag_good_rssi = 1;
             break;
         default:
             return ILLEGALPARAMETER;            

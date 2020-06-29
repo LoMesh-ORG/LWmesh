@@ -212,7 +212,7 @@ enum{
     WO_SET_SINK
 }MB_WO_REGS;
 
-#define RW_REG_NUM     15
+#define RW_REG_NUM     16
 #define RW_REG_BASE    1000
 #define RW_REG_START   1001
 #define RW_REG_END     (RW_REG_START + RW_REG_NUM)
@@ -232,7 +232,8 @@ enum{
     RW_MB_BAUD_RATE,
     RW_MB_PARITY,
     RW_MB_UART_KEY1,
-    RW_MB_UART_KEY2
+    RW_MB_UART_KEY2,
+    RW_MB_RSSI_ACCEPT
 }MB_RW_REGS;
 
 #define TX_REG_NUM     35

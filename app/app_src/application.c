@@ -820,7 +820,7 @@ static void cmdSetSF(char* atCommand){
  * \param [OUT] None.
  * \param [IN] None.
  */
-static void cmdGetRxCnt(char* atCommand){
+static void cmdGetRxCnt(char* cmd){
     uint8_t count = 0, buf_id = 0;
     while(buf_id++ < APP_RX_BUFFER_DEPTH){
         if(!rx_buffer[buf_id].free){
@@ -836,7 +836,7 @@ static void cmdGetRxCnt(char* atCommand){
  * \param [OUT] None.
  * \param [IN] None.
  */
-static void print_hop_table(char* atCommand){
+static void print_hop_table(char* cmd){
     NWK_RouteTableEntry_t *entry = NWK_RouteTable();
     printf("Routing Table\r\n");
     for(uint8_t i = 0; i < NWK_ROUTE_TABLE_SIZE; i++){
@@ -848,24 +848,46 @@ static void print_hop_table(char* atCommand){
 }
 
 /*!
+ * \brief Get the packet acceptance threshold
+ *
+ * \param [OUT] None.
+ * \param [IN] AT command.
+ */
+static void cmdGetPacketRssi(char* cmd){
+    printf("%d\r\n", PHY_Get_Packet_Rssi_Threshold());
+}
+
+/*!
+ * \brief Get the packet acceptance threshold
+ *
+ * \param [OUT] None.
+ * \param [IN] AT command.
+ */
+static void cmdSetPacketRssi(char* cmd){
+    char *p1,*p2;
+	char CHstr[4];
+	int8_t temp, min, max;
+	p1 = strstr(cmd,"=") + 1;
+    memset(CHstr, 0, sizeof(CHstr));
+	memcpy(CHstr,p1,3);
+	temp = (uint8_t)strtol(CHstr,&p2,10);
+    PHY_Get_Packet_Rssi_Threshold_Limits(&max, &min);
+    if((temp < min) || (temp > max)){
+        temp = min;
+    }
+    PHY_Set_Packet_Rssi_Threshold(temp);
+    eeprom_write_flags.flag_good_rssi = 1;
+    eeprom_write_flags.flag_master = 1;
+    printf("OK\r\n");
+}
+
+/*!
  * \brief Set the hop table entry time to live
  *
  * \param [OUT] None.
  * \param [IN] AT command.
  */
 static void set_hop_table_ttl(char* cmd){
-//    char* p1;
-//    uint16_t ttl;
-//    p1 = strstr(cmd,"=") + 1;
-//    if(!p1){
-//        printf("NOT OK:%u\r\n", UNDEFCMD);
-//        return;
-//    }
-//    ttl = strtoul(p1, NULL, 10); //Time in seconds
-//    if(ttl < HOP_TTL_DEFAULT){
-//        ttl = HOP_TTL_DEFAULT;
-//    }
-//    hop_table_ttl = ttl;
     printf("OK\r\n");
 }
 
@@ -881,36 +903,36 @@ static uint8_t executeATCommand(char* cmd){
     switch(*(cmd+1))
     {
         case 'S':
-        	if(strstr(atCommand,"+SEND:")){
+        	if(strstr(cmd,"+SEND:")){
         		cmdSend(cmd);
         	}
-        	else if(strstr(atCommand,"+SETSINK")){
+        	else if(strstr(cmd,"+SETSINK")){
         		cmdSetSink(cmd);
         	}
-        	else if(strstr(atCommand,"+SSINK")){
-        		cmdSendSink(atCommand);
+        	else if(strstr(cmd,"+SSINK")){
+        		cmdSendSink(cmd);
         	}
-            else if(strstr(atCommand,"+SF?")){
+            else if(strstr(cmd,"+SF?")){
         		cmdGetSF();
         	}
-            else if(strstr(atCommand,"+SF=")){
-        		cmdSetSF(atCommand);
+            else if(strstr(cmd,"+SF=")){
+        		cmdSetSF(cmd);
         	}
-            else if(strstr(atCommand,"+SHOWHOPS?")){
-                print_hop_table(atCommand);
+            else if(strstr(cmd,"+SHOWHOPS?")){
+                print_hop_table(cmd);
             }
             else{
                 goto undefcmd;
             }
             break;
         case 'B':
-        	if(strstr(atCommand,"+BCAST=")){
+        	if(strstr(cmd,"+BCAST=")){
 				cmdBcast(cmd);
 			}
-            else if(strstr(atCommand,"+BAUD=")){
-                cmdSetBaud(atCommand);
+            else if(strstr(cmd,"+BAUD=")){
+                cmdSetBaud(cmd);
             }
-            else if(strstr(atCommand,"+BOOTLOAD")){
+            else if(strstr(cmd,"+BOOTLOAD")){
                 cmdBootLoad();
             }
             else{
@@ -918,39 +940,39 @@ static uint8_t executeATCommand(char* cmd){
             }
             break;
         case 'A':
-        	if(strstr(atCommand,"+ADDR?")){
+        	if(strstr(cmd,"+ADDR?")){
         		cmdAddr();
         	}
-        	else if(strstr(atCommand,"+ADDR=")){
-				cmdSetAddr(atCommand);
+        	else if(strstr(cmd,"+ADDR=")){
+				cmdSetAddr(cmd);
 			}
-        	else if(strstr(atCommand,"+AESKEY:")){
-        		cmdSetAES(atCommand);
+        	else if(strstr(cmd,"+AESKEY:")){
+        		cmdSetAES(cmd);
         	}
             else{
                 goto undefcmd;
             }
             break;
         case 'C':
-        	if(strstr(atCommand,"+CADCOUNTER?")){
+        	if(strstr(cmd,"+CADCOUNTER?")){
         		cmdGetCAD();
         	}
-        	else if(strstr(atCommand,"+CADCOUNTERRST")){
+        	else if(strstr(cmd,"+CADCOUNTERRST")){
         		cmdRstCAD();
         	}
-        	else if(strstr(atCommand,"+CADRSSI?")){
+        	else if(strstr(cmd,"+CADRSSI?")){
         		cmdGetCADRSSI();
         	}
-        	else if(strstr(atCommand,"+CADRSSI=")){
-        		cmdSetCADRSSI(atCommand);
+        	else if(strstr(cmd,"+CADRSSI=")){
+        		cmdSetCADRSSI(cmd);
         	}
             else{
                 goto undefcmd;
             }
             break;
         case 'H':
-            if(strstr(atCommand,"+HOPTTL=")){
-                set_hop_table_ttl(atCommand);
+            if(strstr(cmd,"+HOPTTL=")){
+                set_hop_table_ttl(cmd);
             }
             else{
                 goto undefcmd;
@@ -965,10 +987,10 @@ static uint8_t executeATCommand(char* cmd){
             }
             break;
         case 'M':
-        	if(strstr(atCommand,"+MAC?")){
+        	if(strstr(cmd,"+MAC?")){
         		cmdMac();
         	}
-        	else if(strstr(atCommand,"+MODE?")){
+        	else if(strstr(cmd,"+MODE?")){
         		cmdGetMode();
         	}
             else{
@@ -976,50 +998,61 @@ static uint8_t executeATCommand(char* cmd){
             }
             break;
         case 'N':
-        	if(strstr(atCommand,"+NADDR?")){
+        	if(strstr(cmd,"+NADDR?")){
 				cmdNaddr();
 			}
-			else if(strstr(atCommand,"+NADDR=")){
-				cmdSetNaddr(atCommand);
+			else if(strstr(cmd,"+NADDR=")){
+				cmdSetNaddr(cmd);
 			}
             else{
                 goto undefcmd;
             }
             break;
         case 'P':
-            if(strstr(atCommand,"+PARITY=")){
-                cmdSetParity(atCommand);
+            if(strstr(cmd,"+PARITY=")){
+                cmdSetParity(cmd);
             }
             else{
                 goto undefcmd;
             }
         case 'R':
-        	if(strstr(atCommand,"+RECV")){
+        	if(strstr(cmd,"+RECV")){
         		cmdRecv();
         	}
-        	else if(strstr(atCommand,"+RFCH?")){
+        	else if(strstr(cmd,"+RFCH?")){
         		cmdGetRFCH();
         	}
-        	else if(strstr(atCommand,"+RFCH=")){
-        		cmdSetRFCH(atCommand);
+        	else if(strstr(cmd,"+RFCH=")){
+        		cmdSetRFCH(cmd);
         	}
-        	else if(strstr(atCommand,"+RST")){
+        	else if(strstr(cmd,"+RST")){
         		cmdReset();
         	}
-            else if(strstr(atCommand,"+RXCT?")){
-        		cmdGetRxCnt(atCommand);
+            else if(strstr(cmd,"+RXCT?")){
+        		cmdGetRxCnt(cmd);
         	}
             else{
                 goto undefcmd;
             }
             break;
         case 'T':
-        	if(strstr(atCommand,"+TXPOWER?")){
+        	if(strstr(cmd,"+TXPOWER?")){
         		cmdGetTX();
         	}
-        	else if(strstr(atCommand,"+TXPOWER=")){
-        		cmdSetTX(atCommand);
+        	else if(strstr(cmd,"+TXPOWER=")){
+        		cmdSetTX(cmd);
         	}
+            else{
+                goto undefcmd;
+            }
+            break;
+        case 'G':
+            if(strstr(cmd,"+GOODRSSI=")){
+                cmdSetPacketRssi(cmd);
+            }
+            else if(strstr(cmd,"+GOODRSSI?")){
+                cmdGetPacketRssi(cmd);
+            }
             else{
                 goto undefcmd;
             }
@@ -1195,96 +1228,6 @@ void sendInfo(void)
 #endif
 
 /*!
- * \brief process a message received for this node
- *
- * \param [OUT] None.
- * \param [IN] None.
- */
-//void app_processes_msg(void){
-//    if(!CircularBufferEmpty(&message_to_process_buf)){
-//        struct message m; 
-//        if(0 == CircularBufferPopFront(&message_to_process_buf,&m))
-//        {
-//            char data[74];
-//            uint8_t i,endpoint;
-//            newSelfMessage = 0;
-//            //Now verify the end point and as as needed
-//            endpoint = m.endpt;
-//
-//            //Calculate RSSI and SNR for all end points
-//            if(SNR > 0){
-//                packetRSSI = -157 + packetRSSI;
-//            }
-//            else{
-//                packetRSSI = (int8_t)(-157 + packetRSSI + (int8_t)(SNR>>2));
-//            }
-//            if(endpoint == USERASCII){ 
-//                int8_t rc = 0;
-//#ifdef ATCOMM
-//                struct rx_messages temp;
-//                memcpy((void*)&temp.rx_message, (void*)&m, sizeof(struct message));
-//                temp.rssi = packetRSSI;
-//                rc = CircularBufferPushBack(&at_rx_buf, &temp);
-//                
-//#endif
-//                //Now send ack to the source with mesg id if it was not a bcast
-//                if((m.dest0 != 0) && (m.dest1 != 0)){
-//                    memset(data,0,sizeof(data));
-//                    sprintf(&data,"ACK:%u",m.msgCnt);
-//                    queueMyMessage(data,m.scr0,m.scr1,strlen(data),NETWORK);
-//                }                        
-//            }
-//            else if(USERBIN == endpoint){
-//#ifdef MBRTU
-//                CircularBufferPushBack(&mb_rx_buf, &m);
-//                read_only_mb_regs[RO_RX_MSG_COUNT] = 
-//                        CircularBufferSize(&mb_rx_buf);
-//#endif
-//            }
-//            else if(NETWORK == endpoint){
-//                char* ptr;
-//                //check if this is an ACK
-//                ptr = strstr(m.msg,"ACK");
-//                if(ptr){
-//#ifdef ATCOMM
-//                struct rx_messages temp;
-//                memcpy((void*)&temp.rx_message, (void*)&m, sizeof(struct message));
-//                temp.rssi = packetRSSI;
-//                CircularBufferPushBack(&at_rx_buf, &temp);
-//#endif
-//                }
-//                //Check if there is Sink node command
-//                ptr = strstr(m.msg,"SINK");
-//                if(ptr)
-//                {
-//                    uint16_t tempaddr;
-//                    char *p1,*p2;
-//                    volatile char addrstr[5];
-//
-//                    memset(addrstr,0,sizeof(addrstr));
-//                    p1 = strstr(m.msg,"=");
-//                    p1++;
-//                    memcpy(addrstr,p1,4);
-//                    //Now converter the string number to a int
-//                    tempaddr = strtoul(addrstr,&p2,16);
-//                    sinkAddr0 = (uint8_t)(tempaddr >> 8);
-//                    sinkAddr1 = (uint8_t)(tempaddr & 0xFF);
-//                    //Save the sink address to EEPROM
-//                    DATAEE_WriteByte_Platform(sinkAddrEE0,sinkAddr0);
-//                    DATAEE_WriteByte_Platform(sinkAddrEE1,sinkAddr1);
-//#ifdef MBRTU
-//                    read_only_mb_regs[RO_SINK_ID] = (sinkAddr0 << 8) | (sinkAddr1);
-//#endif
-//#ifdef ATCOMM
-//                    printf("Sink node set:%02X%02X\r\n",DATAEE_ReadByte_Platform(sinkAddrEE0),DATAEE_ReadByte_Platform(sinkAddrEE1));
-//#endif                    
-//                }
-//            }
-//        }
-//    }
-//}
-//
-/*!
  * \brief Load the MAC address from EEPROM to global EUID array
  *
  * \param [OUT] None.
@@ -1313,7 +1256,7 @@ void bootLoadApplication(void)
 {
     uint16_t temp;
     uint8_t i;
-    
+    int8_t rssimax,rssimin, temp1;
     //Initialize the message buffer
 //    init_message_buffers();
     //Load the EUID of the node
@@ -1390,6 +1333,14 @@ void bootLoadApplication(void)
         DATAEE_WriteByte_Platform(UARTBaud,UART_BAUD_19200);
     }
     set_uart_baud(i);
+    PHY_Get_Packet_Rssi_Threshold_Limits(&rssimax, &rssimin);
+    temp1 = DATAEE_ReadByte_Platform(RSSI_GOOD);
+    if((temp1 < rssimin) || (temp1 > rssimax)){
+        temp1 = rssimin;
+        DATAEE_WriteByte_Platform(RSSI_GOOD, temp1);
+    }
+    PHY_Set_Packet_Rssi_Threshold(temp1);
+        
 #ifdef MBRTU
     /*Load the MB RTU address from EEPROM*/
     mb_rtu_addr = DATAEE_ReadByte_Platform(MBADDR);
@@ -1417,15 +1368,16 @@ void bootLoadApplication(void)
     read_write_mb_regs[RW_MBADDR]       = mb_rtu_addr;
     read_write_mb_regs[RW_MB_BAUD_RATE] = uart_baud_rate;
     read_write_mb_regs[RW_MB_PARITY]    = curent_parity;
+    read_write_mb_regs[RW_MB_RSSI_ACCEPT] = PHY_Get_Packet_Rssi_Threshold();
     
     /*Initialize the MB stack*/
-    UART1_SetFramingErrorHandler(UART_error_handler);
-    UART1_SetOverrunErrorHandler(UART_error_handler);
-    UART1_SetErrorHandler(UART_error_handler);
     TMR3_SetInterruptHandler(prvvTIMERExpiredISR);
     eMBInit( MB_RTU, mb_rtu_addr, 0, current_baud_rate, curent_parity);
     eMBEnable();
 #endif
+    UART1_SetFramingErrorHandler(UART_error_handler);
+    UART1_SetOverrunErrorHandler(UART_error_handler);
+    UART1_SetErrorHandler(UART_error_handler);
     /*Init the Stack*/
     //Free all app buffers used with stack
     for(uint8_t buf_id = 0; buf_id < APP_TX_BUFFER_DEPTH; buf_id++){
@@ -1442,7 +1394,7 @@ void bootLoadApplication(void)
     NWK_OpenEndpoint(DATA_EP, appDataInd);
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
     PHY_SetRxState(true);
-    TMR0_SetInterruptHandler(Timer0Handler);
+    TMR0_SetInterruptHandler(Timer0Handler);    
 }
 
 /*!
@@ -1600,6 +1552,11 @@ static void handle_rw_regs(){
             set_uart_baud(uart_baud_rate);
             set_eeprom_sync(EEPROM_UART_BAUD);
         }
+    }
+    /*Check if packet good rssi changed*/
+    if(read_write_mb_regs[RW_MB_RSSI_ACCEPT]!=PHY_Get_Packet_Rssi_Threshold()){
+        PHY_Set_Packet_Rssi_Threshold(read_write_mb_regs[RW_MB_RSSI_ACCEPT]);
+        set_eeprom_sync(EEPROM_GOOD_RSSI);
     }
     read_write_mb_regs[RW_MB_ADDR_KEY1] = 0;
     read_write_mb_regs[RW_MB_ADDR_KEY2] = 0;
@@ -1880,4 +1837,5 @@ inline void application(void){
     MBRTUStack();
 #endif
     nwkEnableRouting((MODE_GetValue()? false:true));
+    sync_eeprom();
 }
