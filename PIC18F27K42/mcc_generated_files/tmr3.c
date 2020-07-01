@@ -161,8 +161,11 @@ uint8_t TMR3_CheckGateValueStatus(void)
 {
     return (T3GCONbits.T3GVAL);
 }
-
+#ifdef BOOTABLE
+void __interrupt(irq(TMR3),base(16392)) TMR3_ISR()
+#else
 void __interrupt(irq(TMR3),base(8)) TMR3_ISR()
+#endif
 {
 
     // Clear the TMR3 interrupt flag

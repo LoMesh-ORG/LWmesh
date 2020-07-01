@@ -131,8 +131,11 @@ void TMR0_Reload(void)
     TMR0H = timer0ReloadVal16bit >> 8;
     TMR0L = (uint8_t) timer0ReloadVal16bit;
 }
-
+#ifdef BOOTABLE
+void __interrupt(irq(TMR0),base(16392),low_priority) TMR0_ISR()
+#else
 void __interrupt(irq(TMR0),base(8),low_priority) TMR0_ISR()
+#endif
 {
     // clear the TMR0 interrupt flag
     PIR3bits.TMR0IF = 0;

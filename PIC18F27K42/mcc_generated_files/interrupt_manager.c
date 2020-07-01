@@ -60,14 +60,14 @@ void  INTERRUPT_Initialize (void)
     IVTLOCKbits.IVTLOCKED = 0x00; // unlock IVT
 
     IVTADU = 0;
-#if debugvector
+#if DEBUGVECTOR
     IVTADH = 0;
-#elif bootable
-    IVTADH = 0x20;
+#elif BOOTABLE
+    IVTADH = 0x40;
 #else
-    IVTADH = 0;
+    IVTADH = 00;
 #endif
-    IVTADL = 8;
+    IVTADL = 0x08;
 
     IVTLOCK = 0x55;
     IVTLOCK = 0xAA;
@@ -82,7 +82,11 @@ void  INTERRUPT_Initialize (void)
     IPR4bits.TMR1IP = 1;
 }
 
+#ifdef BOOTABLE
+void __interrupt(irq(default),base(16392)) Default_ISR()
+#else
 void __interrupt(irq(default),base(8)) Default_ISR()
+#endif
 {
 }
 
