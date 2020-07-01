@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=PIC18F27K42
 
 # Active Configuration
-DEFAULTCONF=base
+DEFAULTCONF=atbootable
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=base MBRTU 
+ALLCONFS=base atbootable MBRTU 
 
 
 # build
@@ -46,6 +46,7 @@ ALLCONFS=base MBRTU
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=base clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=atbootable clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBRTU clean
 
 
@@ -53,6 +54,7 @@ ALLCONFS=base MBRTU
 # all
 .all-impl: .all-pre .depcheck-impl
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=base build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=atbootable build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBRTU build
 
 

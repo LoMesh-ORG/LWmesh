@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/atbootable/production\PIC18F27K42.production.hex">
+    <memory name="program">
+      <units>bytes</units>
+      <length>114688</length>
+      <used>50518</used>
+      <free>64170</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>8192</length>
+      <used>5992</used>
+      <free>2200</free>
+    </memory>
+  </executable>
+</project>
