@@ -3,6 +3,7 @@
 #include "phy.h"
 #include "application.h"
 #include "led.h"
+#include "uart_default_control.h"
     
 void Timer0Handler(void){
 
@@ -20,6 +21,9 @@ void Timer0Handler(void){
     }
     if(ledtimer){
         ledtimer--;
+    }
+    if(blen_sample_timer){
+        blen_sample_timer--;
     }
     halTimerIrqCount++;
 }

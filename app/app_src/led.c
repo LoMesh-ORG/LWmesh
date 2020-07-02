@@ -89,6 +89,9 @@ void handle_led_events(void)
             }
             set_timer0base(&ledtimer, temp.eventDuration);
         }
+        else{
+            LED_SetLow();
+        }
     }
 }
 

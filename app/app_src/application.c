@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "sys.h"
 #include <stdbool.h>
+#include "led.h"
+#include "uart_default_control.h"
 
 #define swap_16(x) ((x << 8) | (x >> 8))
 extern void queue_serial_led_event(void);
@@ -139,7 +141,7 @@ static void UART_error_handler(){
  * \param [OUT] None.
  * \param [IN] Parity mode.
  */
-static uint8_t set_parity(uint8_t parity)
+uint8_t set_parity(uint8_t parity)
 {
     if((parity >= UART_PARITY_SENTINAL) || (UART_7BIT_MODE == parity)){
         return ILLEGALPARAMETER; //illegal value
@@ -183,7 +185,7 @@ static uint8_t set_parity(uint8_t parity)
  * \param [OUT] None.
  * \param [IN] Baud rate.
  */
-static uint8_t set_uart_baud(uint8_t i)
+uint8_t set_uart_baud(uint8_t i)
 {
     U1CON1 &= ~(1<<7); //Disable the UART    
     switch(i)
@@ -728,6 +730,8 @@ static void cmdSetCADRSSI(char* atCommand){
  * \param [IN] None.
  */
 static void cmdReset(){
+    printf("OK\r\n");
+    __delay_ms(500);
 	RESET();
 	while(1);
 }
@@ -739,22 +743,24 @@ static void cmdReset(){
  * \param [IN] AT command.
  */
 static void cmdSetParity(char* atCommand){
+    enum UART_PARITY_ENUM new_parity = UART_9BIT_EVEN_PARITY;
     if(strstr(atCommand,"=ODD"))
     {
-        set_parity(UART_9BIT_ODD_PARITY);
+        new_parity = UART_9BIT_ODD_PARITY;
     }
     else if(strstr(atCommand,"=NONE"))
     {
-        set_parity(UART_8BIT_NO_PARITY);
+        new_parity = UART_8BIT_NO_PARITY;
     }
     else if(strstr(atCommand,"=EVEN"))
     {
-        set_parity(UART_9BIT_EVEN_PARITY);
+        new_parity = UART_9BIT_EVEN_PARITY;
     }
     else
     {
         printf("NOT OK:%u\r\n",ILLEGALPARAMETER);
     }
+    DATAEE_WriteByte_Platform(UARTParity, new_parity);
     return;
 }
 
@@ -784,7 +790,13 @@ static void cmdSetBaud(char* atCommand)
     ptr = strtok(atCommand,"=");
     ptr = strtok(NULL,"\r");
     tempbaud = (uint8_t)strtoul(ptr,NULL,10);
-    tempbaud++;
+    if(tempbaud < UART_BAUD_SENTINAL){
+        DATAEE_WriteByte_Platform(UARTBaud,tempbaud);
+        printf("OK\r\n");
+    }
+    else{
+        printf("NOT OK:%u\r\n", (uint16_t)ILLEGALPARAMETER);
+    }
 }
 
 /*!
@@ -903,7 +915,7 @@ static void cmdGetMsgAck(char* cmd){
                 (msg_ack_obj.status?"ACK":"NACK"));
     }
     else{
-        printf("NOT OK %u\r\n", (uint16_t) NO_ACK_STATUS);
+        printf("NOT OK:%u\r\n", (uint16_t) NO_ACK_STATUS);
     }
 }
 /*!
@@ -1088,11 +1100,13 @@ static uint8_t executeATCommand(char* cmd){
         default:
             //reached end of this case means command was not found.
             //Return Error UNDEFCMD 5
-undefcmd:
-            printf("NOT OK:%u\r\n", (uint16_t)UNDEFCMD);
-            break;
+            goto undefcmd;
     }
+    queue_serial_led_event();
     return (retcode);
+    undefcmd:
+    printf("NOT OK:%u\r\n", (uint16_t)UNDEFCMD);
+    return(0);
 }
 
 /*!
@@ -1285,8 +1299,8 @@ void bootLoadApplication(void)
     uint16_t temp;
     uint8_t i;
     int8_t rssimax,rssimin, temp1;
-    //Initialize the message buffer
-//    init_message_buffers();
+    //Initialize the led queue
+    ledInit();
     //Load the EUID of the node
     loadMACAddr();
     //Load the serial number and compute short id
@@ -1356,7 +1370,7 @@ void bootLoadApplication(void)
     
     //Load the saved baud  rate
     i = DATAEE_ReadByte_Platform(UARTBaud);
-    if(i > UART_BAUD_19200){
+    if(i > UART_PARITY_SENTINAL){
         i = UART_BAUD_19200;
         DATAEE_WriteByte_Platform(UARTBaud,UART_BAUD_19200);
     }
@@ -1868,4 +1882,6 @@ inline void application(void){
 #endif
     nwkEnableRouting((MODE_GetValue()? false:true));
     sync_eeprom();
+    handle_led_events();
+    uart_default_engine();
 }

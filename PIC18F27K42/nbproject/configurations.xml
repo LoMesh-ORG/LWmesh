@@ -11,6 +11,7 @@
         <itemPath>../app/app_inc/EEPROM.h</itemPath>
         <itemPath>../app/app_inc/errors.h</itemPath>
         <itemPath>../app/app_inc/led.h</itemPath>
+        <itemPath>../app/app_inc/uart_default_control.h</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_inc" displayName="hal_inc" projectFiles="true">
         <itemPath>../hal/hal_inc/Timers.h</itemPath>
@@ -94,6 +95,7 @@
         <itemPath>../app/app_src/EEPROM.c</itemPath>
         <itemPath>../app/app_src/led.c</itemPath>
         <itemPath>../modbus/mb.c</itemPath>
+        <itemPath>../app/app_src/uart_default_control.c</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_src" displayName="hal_src" projectFiles="true">
         <itemPath>../hal/hal_src/Timers.c</itemPath>
@@ -282,6 +284,7 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
