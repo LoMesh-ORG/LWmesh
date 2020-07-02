@@ -31,6 +31,7 @@ extern "C" {
         MESSAGE_NOT_IN_CACHE,
         NO_RX_MESSAGES,
         NO_FREE_BUF,
+        NO_ACK_STATUS,
         E_UNKNOWN        
     };
 

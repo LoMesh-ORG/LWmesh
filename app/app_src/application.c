@@ -10,7 +10,7 @@
 #define swap_16(x) ((x << 8) | (x >> 8))
 extern void queue_serial_led_event(void);
 extern uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed);
-static void free_tx_buffer(NWK_DataReq_t *req);
+static void free_tx_buffer(NWK_DataReq_t *req, bool ack);
 static bool get_free_rx_buffer(uint8_t *buf_id);
 static void exract_sink_addr(uint8_t* dataptr);
 
@@ -34,19 +34,22 @@ static uint8_t rx_ctl_mb_regs_upadte     = 0;
 
 void appDataConf(NWK_DataReq_t *req)
 {
- if (NWK_SUCCESS_STATUS == req->status){
+    bool ack = 0;
+    if (NWK_SUCCESS_STATUS == req->status){
     // frame was sent successfully  
-#ifdef ATCOMM
-     printf("ACK:%04X\r\n", req->dstAddr);
-#endif
- } 
- else{
-#ifdef ATCOMM
-     printf("NACK:%04X\r\n", req->dstAddr);
-#endif
- }
- //Free the app tx buffer any way
- free_tx_buffer(req);
+    #ifdef ATCOMM
+        //printf("ACK:%04X\r\n", req->dstAddr);
+        ack = true;
+    #endif
+    } 
+    else{
+    #ifdef ATCOMM
+        //printf("NACK:%04X\r\n", req->dstAddr);
+        ack = false;
+    #endif
+    }
+    //Free the app tx buffer any way
+    free_tx_buffer(req, ack);
 }
 
 static bool appDataInd(NWK_DataInd_t *ind)
@@ -85,13 +88,18 @@ static bool get_free_tx_buffer(uint8_t *buf_id){
     return false;
 }
 
-static void free_tx_buffer(NWK_DataReq_t *req){
+static void free_tx_buffer(NWK_DataReq_t *req, bool ack){
     uint8_t buf_id = 0;
     //Find which NWK_DataReq_t matches with the one passed as argument
     while(buf_id < APP_TX_BUFFER_DEPTH){
         if(req == &tx_buffer[buf_id].nwkDataReq){
+            struct msg_ack_t msg_ack_obj; 
             //Found the tx buffer we need to free
             tx_buffer[buf_id].free = 1;
+            msg_ack_obj.dest_addr = req->dstAddr;
+            msg_ack_obj.msgid = tx_buffer[buf_id].msgid;
+            msg_ack_obj.status = ack;
+            CircularBufferPushBack(&msg_ack_queue_context, &msg_ack_obj);
             return;
         }
         buf_id++;
@@ -882,6 +890,23 @@ static void cmdSetPacketRssi(char* cmd){
 }
 
 /*!
+ * \brief Get top of queue for message acks
+ *
+ * \param [OUT] None.
+ * \param [IN] AT command.
+ */
+static void cmdGetMsgAck(char* cmd){
+    if(!CircularBufferEmpty(&msg_ack_queue_context)){
+        struct msg_ack_t msg_ack_obj;
+        CircularBufferPopFront(&msg_ack_queue_context, &msg_ack_obj);
+        printf("%04X:%u:%s\r\n", msg_ack_obj.dest_addr, msg_ack_obj.msgid,
+                (msg_ack_obj.status?"ACK":"NACK"));
+    }
+    else{
+        printf("NOT OK %u\r\n", (uint16_t) NO_ACK_STATUS);
+    }
+}
+/*!
  * \brief Set the hop table entry time to live
  *
  * \param [OUT] None.
@@ -992,6 +1017,9 @@ static uint8_t executeATCommand(char* cmd){
         	}
         	else if(strstr(cmd,"+MODE?")){
         		cmdGetMode();
+        	}
+            else if(strstr(cmd,"+MSGACK?")){
+        		cmdGetMsgAck(cmd);
         	}
             else{
                 goto undefcmd;
@@ -1388,6 +1416,8 @@ void bootLoadApplication(void)
     }
     CircularBufferInit(&rx_buffer_queue_context,&rx_buffer_queue,
             sizeof(rx_buffer_queue),sizeof(uint8_t));
+    CircularBufferInit(&msg_ack_queue_context,&msg_ack_queue,
+            sizeof(msg_ack_queue),sizeof(struct msg_ack_t));
     NWK_SetAddr((currentAddr0 << 8) | currentAddr1);
     NWK_SetPanId(pan_id);
     NWK_SetSecurityKey(net_key);
