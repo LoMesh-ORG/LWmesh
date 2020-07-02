@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=PIC18F27K42
 
 # Active Configuration
-DEFAULTCONF=base
+DEFAULTCONF=MBbootable
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=base atbootable MBRTU 
+ALLCONFS=base atbootable MBRTU MBbootable 
 
 
 # build
@@ -48,6 +48,7 @@ ALLCONFS=base atbootable MBRTU
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=base clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=atbootable clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBRTU clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBbootable clean
 
 
 
@@ -56,6 +57,7 @@ ALLCONFS=base atbootable MBRTU
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=base build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=atbootable build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBRTU build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBbootable build
 
 
 

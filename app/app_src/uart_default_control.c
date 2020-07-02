@@ -3,6 +3,7 @@
 #include "Timers.h"
 #include "application.h"
 #include "EEPROM.h"
+#include "mb.h"
 
 #define BLEN_SAMPLE_TIME_MS     250
 extern uint8_t set_uart_baud(uint8_t i);

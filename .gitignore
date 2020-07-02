@@ -170,3 +170,11 @@ PIC18F27K42/dist/atbootable/production/PIC18F27K42.production.mum
 PIC18F27K42/dist/atbootable/production/PIC18F27K42.production.rlf
 PIC18F27K42/dist/atbootable/production/PIC18F27K42.production.sdb
 PIC18F27K42/dist/atbootable/production/PIC18F27K42.production.sym
+PIC18F27K42/dist/MBbootable/production/memoryfile.xml
+PIC18F27K42/dist/MBbootable/production/PIC18F27K42.production.cmf
+PIC18F27K42/dist/MBbootable/production/PIC18F27K42.production.hxl
+PIC18F27K42/dist/MBbootable/production/PIC18F27K42.production.lst
+PIC18F27K42/dist/MBbootable/production/PIC18F27K42.production.mum
+PIC18F27K42/dist/MBbootable/production/PIC18F27K42.production.rlf
+PIC18F27K42/dist/MBbootable/production/PIC18F27K42.production.sdb
+PIC18F27K42/dist/MBbootable/production/PIC18F27K42.production.sym
