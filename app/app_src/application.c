@@ -604,8 +604,8 @@ static void cmdRstCAD(){
  * \param [IN] None.
  */
 static void cmdGetMode(){
-	if(currentMode == ROUTER){
-		printf("MODE = REPEATER\r\n");
+	if(nwkIsRouter()){
+		printf("MODE = ROUTER\r\n");
 	}
 	else{
 		printf("MODE = END NODE\r\n");
