@@ -53,7 +53,7 @@
 #if _18F26K42
 #define NWK_BUFFERS_AMOUNT                       5
 #endif
-#if _18F27K42
+#if (_18F27K42 || _18F47K42)
 #define NWK_BUFFERS_AMOUNT                       16
 #endif
 #endif

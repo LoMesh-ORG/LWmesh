@@ -3,7 +3,9 @@
 #include "Timers.h"
 #include "application.h"
 #include "EEPROM.h"
+#ifdef MBRTU
 #include "mb.h"
+#endif
 
 #define BLEN_SAMPLE_TIME_MS     250
 extern uint8_t set_uart_baud(uint8_t i);

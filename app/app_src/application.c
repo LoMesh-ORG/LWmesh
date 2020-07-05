@@ -10,7 +10,9 @@
 #include "uart_default_control.h"
 
 #define swap_16(x) ((x << 8) | (x >> 8))
+#ifndef MODULE
 extern void queue_serial_led_event(void);
+#endif
 extern uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed);
 static void free_tx_buffer(NWK_DataReq_t *req, bool ack);
 static bool get_free_rx_buffer(uint8_t *buf_id);
@@ -1102,7 +1104,9 @@ static uint8_t executeATCommand(char* cmd){
             //Return Error UNDEFCMD 5
             goto undefcmd;
     }
+#ifndef MODULE
     queue_serial_led_event();
+#endif
     return (retcode);
     undefcmd:
     printf("NOT OK:%u\r\n", (uint16_t)UNDEFCMD);
@@ -1200,7 +1204,9 @@ void processATCommand(void)
             
         case processCommand:
             executeATCommand(atCommand);
+#ifndef MODULE            
             queue_serial_led_event();
+#endif
             atStateVar = resetATMachine;
             break;
         case resetATMachine:
@@ -1299,8 +1305,10 @@ void bootLoadApplication(void)
     uint16_t temp;
     uint8_t i;
     int8_t rssimax,rssimin, temp1;
+#ifndef MODULE    
     //Initialize the led queue
     ledInit();
+#endif
     //Load the EUID of the node
     loadMACAddr();
     //Load the serial number and compute short id
@@ -1880,8 +1888,10 @@ inline void application(void){
 #ifdef MBRTU
     MBRTUStack();
 #endif
+#ifndef MODULE
     nwkEnableRouting((MODE_GetValue()? false:true));
-    sync_eeprom();
     handle_led_events();
+#endif
+    sync_eeprom();
     uart_default_engine();
 }

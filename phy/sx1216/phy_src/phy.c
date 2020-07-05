@@ -662,7 +662,9 @@ void DIO0_Receive_ISR(void)
         ind.lqi  = get_lqi(ind.rssi); 
         if(ind.rssi > rssi_debug){
             PHY_DataInd(&ind);
+#ifndef MODULE            
             queue_rx_led_event();
+#endif            
         }        
     }
 rx_error:    
@@ -788,7 +790,9 @@ static void radio_engine(void){
                 radio_state_var = START_RX;
                 if(get_timer0base(&txTimeOut)){
                     PHY_DataConf(PHY_STATUS_SUCCESS);
+#ifndef MODULE                    
                     queue_tx_led_event();
+#endif                    
                 }
                 else{
                     PHY_DataConf(PHY_STATUS_NO_ACK);

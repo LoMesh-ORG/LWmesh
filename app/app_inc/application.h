@@ -122,7 +122,7 @@ __pack struct tx_buffer_t tx_buffer[APP_TX_BUFFER_DEPTH];
 #if _18F26K42
 #define APP_RX_BUFFER_DEPTH 4
 #endif
-#if _18F27K42
+#if (_18F27K42 || _18F47K42)
 #define APP_RX_BUFFER_DEPTH 8
 #endif
 __pack struct rx_buffer_t{

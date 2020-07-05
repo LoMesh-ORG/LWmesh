@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>com.microchip.mplab.nbide.embedded.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>LWmesh</name>
+            <creation-uuid>a736a34f-70eb-44d6-b4af-70d5bcac5fee</creation-uuid>
+            <make-project-type>0</make-project-type>
+            <c-extensions>c</c-extensions>
+            <cpp-extensions/>
+            <header-extensions>h</header-extensions>
+            <asminc-extensions/>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>../app/app_inc</sourceRootElem>
+                <sourceRootElem>../hal/hal_inc</sourceRootElem>
+                <sourceRootElem>../nwk/nwk_inc</sourceRootElem>
+                <sourceRootElem>../phy/sx1216/phy_inc</sourceRootElem>
+                <sourceRootElem>../sys/sys_inc</sourceRootElem>
+                <sourceRootElem>../app/app_src</sourceRootElem>
+                <sourceRootElem>../hal/hal_src</sourceRootElem>
+                <sourceRootElem>../nwk/nwk_src</sourceRootElem>
+                <sourceRootElem>../phy/sx1216/phy_src</sourceRootElem>
+                <sourceRootElem>../sys/sys_src</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>default</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>
