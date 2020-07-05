@@ -63,6 +63,7 @@
 /*- Definitions ------------------------------------------------------------*/
 #define NWK_ROUTE_MAX_RANK         255
 #define NWK_ROUTE_DEFAULT_RANK     128
+#define NWK_RX_STATE_FINISH        0x24
 
 /*- Prototypes -------------------------------------------------------------*/
 static void nwkRouteSendRouteError(uint16_t src, uint16_t dst, uint8_t multicast);

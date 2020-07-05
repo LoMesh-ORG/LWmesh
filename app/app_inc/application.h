@@ -135,7 +135,7 @@ __pack struct rx_buffer_t rx_buffer[APP_RX_BUFFER_DEPTH];
 uint8_t rx_buffer_queue[APP_RX_BUFFER_DEPTH];
 CircularBufferContext rx_buffer_queue_context;
 
-#define MSG_ACK_BUF_DEPTH   10
+#define MSG_ACK_BUF_DEPTH   8
 __pack struct msg_ack_t{
     uint16_t dest_addr;
     uint8_t msgid;
