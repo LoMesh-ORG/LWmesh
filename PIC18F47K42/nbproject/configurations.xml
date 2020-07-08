@@ -4,6 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="aes_inc" displayName="aes_inc" projectFiles="true">
+        <itemPath>../aes/aes_inc/AES.h</itemPath>
+        <itemPath>../aes/aes_inc/AESdef.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="app_inc" displayName="app_inc" projectFiles="true">
         <itemPath>../app/app_inc/application.h</itemPath>
         <itemPath>../app/app_inc/circular buffer.h</itemPath>
@@ -59,6 +63,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="aes_src" displayName="aes_src" projectFiles="true">
+        <itemPath>../aes/aes_src/AES.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="app_src" displayName="app_src" projectFiles="true">
         <itemPath>../app/app_src/application.c</itemPath>
         <itemPath>../app/app_src/circular buffer.c</itemPath>
@@ -121,6 +128,8 @@
     <Elem>../nwk/nwk_src</Elem>
     <Elem>../phy/sx1216/phy_src</Elem>
     <Elem>../sys/sys_src</Elem>
+    <Elem>../aes/aes_inc</Elem>
+    <Elem>../aes/aes_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -170,7 +179,7 @@
         <property key="define-macros" value="ATCOMM;MODULE"/>
         <property key="disable-optimizations" value="true"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\aes\aes_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -250,7 +259,6 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

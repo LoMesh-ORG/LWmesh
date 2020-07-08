@@ -194,3 +194,11 @@ PIC18F47K42/dist/default/debug/PIC18F47K42.debug.mum
 PIC18F47K42/dist/default/debug/PIC18F47K42.debug.rlf
 PIC18F47K42/dist/default/debug/PIC18F47K42.debug.sdb
 PIC18F47K42/dist/default/debug/PIC18F47K42.debug.sym
+PIC18F47K42/dist/default/production/memoryfile.xml
+PIC18F47K42/dist/default/production/PIC18F47K42.production.cmf
+PIC18F47K42/dist/default/production/PIC18F47K42.production.hxl
+PIC18F47K42/dist/default/production/PIC18F47K42.production.lst
+PIC18F47K42/dist/default/production/PIC18F47K42.production.mum
+PIC18F47K42/dist/default/production/PIC18F47K42.production.rlf
+PIC18F47K42/dist/default/production/PIC18F47K42.production.sdb
+PIC18F47K42/dist/default/production/PIC18F47K42.production.sym
