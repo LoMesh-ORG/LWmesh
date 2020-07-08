@@ -4,6 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="aes_inc" displayName="aes_inc" projectFiles="true">
+        <itemPath>../aes/aes_inc/AES.h</itemPath>
+        <itemPath>../aes/aes_inc/AESdef.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="app_inc" displayName="app_inc" projectFiles="true">
         <itemPath>../app/app_inc/application.h</itemPath>
         <itemPath>../app/app_inc/circular buffer.h</itemPath>
@@ -11,6 +15,7 @@
         <itemPath>../app/app_inc/EEPROM.h</itemPath>
         <itemPath>../app/app_inc/errors.h</itemPath>
         <itemPath>../app/app_inc/led.h</itemPath>
+        <itemPath>../app/app_inc/uart_default_control.h</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_inc" displayName="hal_inc" projectFiles="true">
         <itemPath>../hal/hal_inc/Timers.h</itemPath>
@@ -59,12 +64,16 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="aes_src" displayName="aes_src" projectFiles="true">
+        <itemPath>../aes/aes_src/AES.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="app_src" displayName="app_src" projectFiles="true">
         <itemPath>../app/app_src/application.c</itemPath>
         <itemPath>../app/app_src/circular buffer.c</itemPath>
         <itemPath>../app/app_src/crc.c</itemPath>
         <itemPath>../app/app_src/EEPROM.c</itemPath>
         <itemPath>../app/app_src/led.c</itemPath>
+        <itemPath>../app/app_src/uart_default_control.c</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_src" displayName="hal_src" projectFiles="true">
         <itemPath>../hal/hal_src/Timers.c</itemPath>
@@ -122,6 +131,8 @@
     <Elem>../nwk/nwk_src</Elem>
     <Elem>../phy/sx1216/phy_src</Elem>
     <Elem>../sys/sys_src</Elem>
+    <Elem>../aes/aes_inc</Elem>
+    <Elem>../aes/aes_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -133,7 +144,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.10</languageToolchainVersion>
+        <languageToolchainVersion>2.20</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -171,12 +182,12 @@
         <property key="define-macros" value="ATCOMM"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\aes\aes_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
         <property key="identifier-length" value="255"/>
-        <property key="local-generation" value="false"/>
+        <property key="local-generation" value="true"/>
         <property key="operation-mode" value="std"/>
         <property key="opt-xc8-compiler-strict_ansi" value="false"/>
         <property key="optimization-assembler" value="true"/>

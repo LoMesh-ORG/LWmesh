@@ -13,12 +13,12 @@
   Description:
     This header file provides implementations for pin APIs for all pins selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
         Device            :  PIC18F26K42
         Driver Version    :  2.11
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above
-        MPLAB             :  MPLAB X 5.30
+        Compiler          :  XC8 2.20 and above
+        MPLAB             :  MPLAB X 5.40
 
     Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
 */
@@ -66,14 +66,14 @@ void PIN_MANAGER_Initialize(void)
     */
     TRISA = 0xF7;
     TRISB = 0xFE;
-    TRISC = 0x1C;
+    TRISC = 0x1E;
 
     /**
     ANSELx registers
     */
     ANSELC = 0x29;
-    ANSELB = 0xCD;
-    ANSELA = 0xF2;
+    ANSELB = 0xCC;
+    ANSELA = 0xF0;
 
     /**
     WPUx registers
@@ -95,8 +95,8 @@ void PIN_MANAGER_Initialize(void)
     ODx registers
     */
     ODCONA = 0x00;
-    ODCONB = 0x06;
-    ODCONC = 0x18;
+    ODCONB = 0x00;
+    ODCONC = 0x08;
 
     /**
     SLRCONx registers
@@ -122,12 +122,11 @@ void PIN_MANAGER_Initialize(void)
 	
     RC0PPS = 0x13;   //RC0->UART1:TX1;    
     SPI1SCKPPS = 0x17;   //RC7->SPI1:SCK1;    
-    SPI1SSPPS = 0x05;   //RA5->SPI1:SS1;    
     RB0PPS = 0x1F;   //RB0->SPI1:SDO1;    
     RC1PPS = 0x14;   //RC1->UART1:TXDE1;    
     U1RXPPS = 0x12;   //RC2->UART1:RX1;
-    U1CTSPPS = 0x1F;  //RF7->UART1:CTS;    
-    RC7PPS = 0x1E;   //RC7->SPI1:SCK1;    
+    RC7PPS = 0x1E;   //RC7->SPI1:SCK1;
+    U1CTSPPS = 0x1F;  //RF7->UART1:CTS;      
     SPI1SDIPPS = 0x09;   //RB1->SPI1:SDI1;    
 }
   

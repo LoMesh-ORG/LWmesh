@@ -13,12 +13,12 @@
   @Description
     This header file provides implementations for driver APIs for SPI1.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
         Device            :  PIC18F26K42
         Driver Version    :  1.0.0
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above or later
-        MPLAB             :  MPLAB X 5.30
+        Compiler          :  XC8 2.20 and above or later
+        MPLAB             :  MPLAB X 5.40
 */
 
 /*
@@ -58,7 +58,7 @@ typedef struct {
 
 //con0 == SPIxCON0, con1 == SPIxCON1, con2 == SPIxCON2, baud == SPIxBAUD, operation == Master/Slave
 static const spi1_configuration_t spi1_configuration[] = {   
-    { 0x82, 0xc0, 0x3, 0x3, 0 }
+    { 0x82, 0xc0, 0x1, 0x3, 0 }
 };
 
 void SPI1_Initialize(void)
@@ -67,13 +67,13 @@ void SPI1_Initialize(void)
     SPI1CON0 = 0x82;
     //SMP End; CKE Active to idle; CKP Idle:Low, Active:High; FST disabled; SSP active high; SDIP active high; SDOP active high; 
     SPI1CON1 = 0xC0;
-    //SSET disabled; TXR required for a transfer; RXR suspended if the RxFIFO is full; 
-    SPI1CON2 = 0x03;
+    //SSET disabled; TXR not required for a transfer; RXR suspended if the RxFIFO is full; 
+    SPI1CON2 = 0x01;
     //CLKSEL HFINTOSC; 
     SPI1CLK = 0x01;
-    //BAUD 0; 
+    //BAUD 3; 
     SPI1BAUD = 0x03;
-    TRISBbits.TRISB2 = 0;
+    TRISCbits.TRISC7 = 0;
 }
 
 bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration)
@@ -85,7 +85,7 @@ bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration)
         SPI1CON2 = spi1_configuration[spi1UniqueConfiguration].con2 | (_SPI1CON2_SPI1RXR_MASK | _SPI1CON2_SPI1TXR_MASK);
         SPI1CLK  = 0x00;
         SPI1BAUD = spi1_configuration[spi1UniqueConfiguration].baud;        
-        TRISBbits.TRISB2 = spi1_configuration[spi1UniqueConfiguration].operation;
+        TRISCbits.TRISC7 = spi1_configuration[spi1UniqueConfiguration].operation;
         SPI1CON0bits.EN = 1;
         return true;
     }

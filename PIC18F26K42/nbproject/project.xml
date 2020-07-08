@@ -24,6 +24,8 @@
                 <sourceRootElem>../nwk/nwk_src</sourceRootElem>
                 <sourceRootElem>../phy/sx1216/phy_src</sourceRootElem>
                 <sourceRootElem>../sys/sys_src</sourceRootElem>
+                <sourceRootElem>../aes/aes_inc</sourceRootElem>
+                <sourceRootElem>../aes/aes_src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
