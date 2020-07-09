@@ -6,6 +6,13 @@
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F26K42/mcc_generated_files/memory.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F26K42/main.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F26K42/mcc_generated_files/pin_manager.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/uart_default_control.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/hal/hal_src/Timers.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1216/phy_src/phy.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F26K42/mcc_generated_files/spi1.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkFrame.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/application.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwk.c</file>
         </group>
     </open-files>
 </project-private>
