@@ -862,6 +862,13 @@ inline void PHY_Get_Packet_Rssi_Threshold_Limits(int8_t* max, int8_t* min){
     *max = RSSIGOODMAX;
     *min = RSSIGOODMIN;
 }
+
+inline uint8_t PHYGetCadCounter(void){
+    return cadCounter;
+}
+inline void PHYReSetCadCounter(void){
+    cadCounter = 0;
+}
 /******************************************************************************/
 void readAllReg(void)
 {

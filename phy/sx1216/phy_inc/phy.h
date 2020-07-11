@@ -392,6 +392,8 @@ void PHY_TaskHandler(void);
 inline void PHY_Set_Packet_Rssi_Threshold(int8_t rssi);
 inline int8_t PHY_Get_Packet_Rssi_Threshold(void);
 inline void PHY_Get_Packet_Rssi_Threshold_Limits(int8_t*, int8_t*);
+inline uint8_t PHYGetCadCounter(void);
+inline void PHYReSetCadCounter(void);
 
 void readAllReg(void);
 

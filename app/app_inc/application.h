@@ -221,7 +221,7 @@ enum{
     WO_SET_SINK
 }MB_WO_REGS;
 
-#define RW_REG_NUM     16
+#define RW_REG_NUM     17
 #define RW_REG_BASE    1000
 #define RW_REG_START   1001
 #define RW_REG_END     (RW_REG_START + RW_REG_NUM)
@@ -242,7 +242,8 @@ enum{
     RW_MB_PARITY,
     RW_MB_UART_KEY1,
     RW_MB_UART_KEY2,
-    RW_MB_RSSI_ACCEPT
+    RW_MB_RSSI_ACCEPT,
+    RW_MB_SOFT_RESET
 }MB_RW_REGS;
 
 #define TX_REG_NUM     35
@@ -256,13 +257,14 @@ enum{
     TX_WORD1
 }MB_TX_REGS;
 
-#define RX_REG_NUM     35
+#define RX_REG_NUM     36
 #define RX_REG_BASE    3000
 #define RX_REG_START   3001
 #define RX_REG_END     (RX_REG_START + RX_REG_NUM)
 
 enum{
     RX_CONTROL = 1,
+    RX_NO_MSG,
     RX_SRC_ADDR,
     RX_WORD1
 }MB_RX_REGS;
@@ -271,6 +273,9 @@ enum{
     NA = 1,
     IND
 }REGION_CODE;
+
+#define RESET_TIMER     1000; //Time in ms to wait before reset
+uint16_t reset_timer = 0;
 #endif
 #ifdef ATCOMM
 /*!

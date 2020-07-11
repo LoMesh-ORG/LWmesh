@@ -6,7 +6,6 @@
 #include "uart_default_control.h"
     
 void Timer0Handler(void){
-
     if(txTimeOut){
         txTimeOut--;
     }
@@ -24,6 +23,9 @@ void Timer0Handler(void){
     }
     if(blen_sample_timer){
         blen_sample_timer--;
+    }
+    if(reset_timer){
+        reset_timer--;
     }
     halTimerIrqCount++;
 }

@@ -35,6 +35,35 @@ static uint8_t write_only_mb_regs_update = 0;
 static uint8_t read_write_mb_regs_update = 0;
 static uint8_t tx_ctl_mb_regs_upadte     = 0;
 static uint8_t rx_ctl_mb_regs_upadte     = 0;
+static uint8_t need_reset                = 0;
+
+enum rst_state{
+    WAIT_FOR_RESET,
+    WAIT_FOR_TIMEOUT,
+    RESET_DEVICE
+};
+
+static void reset_handler(void){
+    static enum rst_state reset_state_var =  WAIT_FOR_RESET;
+    switch(reset_state_var){
+        case WAIT_FOR_RESET:
+            if(need_reset){
+                reset_state_var = WAIT_FOR_TIMEOUT;
+                reset_timer = RESET_TIMER;
+            }
+            break;
+        case WAIT_FOR_TIMEOUT:
+            if(!reset_timer){
+                reset_state_var = RESET_DEVICE;
+            }
+            break;
+        case RESET_DEVICE:
+        default:
+            //@TODO reset watchdog once
+            RESET();
+            while(1);
+    }
+}
 #endif
 
 /*!
@@ -110,6 +139,10 @@ static bool appDataInd(NWK_DataInd_t *ind)
        memcpy(rx_buffer[buf_id].payload,dataptr + AES_BLOCKLEN, 
                                           ind->size);
        CircularBufferPushBack(&rx_buffer_queue_context, &buf_id);
+#ifdef MBRTU
+       read_write_mb_regs[RX_NO_MSG] = 
+                               CircularBufferSize(&rx_buffer_queue_context);
+#endif
     }
     return true;
 }
@@ -635,7 +668,7 @@ static void cmdSetAES(char* cmd){
  * \param [IN] None.
  */
 static void cmdGetCAD(){
-	printf("CAD COUNTER = %02X\r\n",cadCounter);
+	printf("CAD COUNTER = %02X\r\n", PHYGetCadCounter());
 	return;
 }
 
@@ -646,7 +679,7 @@ static void cmdGetCAD(){
  * \param [IN] None.
  */
 static void cmdRstCAD(){
-	cadCounter = 0;
+	PHYReSetCadCounter();
 	printf("OK\r\n");
 	return;
 }
@@ -1663,6 +1696,11 @@ static void handle_rw_regs(){
         PHY_Set_Packet_Rssi_Threshold(read_write_mb_regs[RW_MB_RSSI_ACCEPT]);
         set_eeprom_sync(EEPROM_GOOD_RSSI);
     }
+    /*Check if radio reset is requested*/
+    if(read_write_mb_regs[RW_MB_SOFT_RESET]){
+        read_write_mb_regs[RW_MB_SOFT_RESET] = 0;
+        need_reset = 1;
+    }
     read_write_mb_regs[RW_MB_ADDR_KEY1] = 0;
     read_write_mb_regs[RW_MB_ADDR_KEY2] = 0;
     read_write_mb_regs[RW_MB_UART_KEY1] = 0;
@@ -1719,7 +1757,8 @@ static void handle_rx_regs(){
             count++;
         }
     }
-    read_only_mb_regs[RO_RX_MSG_COUNT] = count;
+    read_only_mb_regs[RO_RX_MSG_COUNT] = 
+                               CircularBufferSize(&rx_buffer_queue_context);
 }
 
 /*!
@@ -1942,6 +1981,7 @@ inline void application(void){
 #endif
 #ifdef MBRTU
     MBRTUStack();
+    reset_handler();
 #endif
 #ifndef MODULE
     nwkEnableRouting((MODE_GetValue()? false:true));

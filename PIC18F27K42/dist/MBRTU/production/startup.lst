@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.10 build 88905656 
-                                                                                                           Wed Jul 08 23:32:31 2020
+                                                                                                           Sat Jul 11 12:17:54 2020
 
 
      1                           	processor	18F27K42
@@ -351,7 +351,7 @@ Microchip MPLAB XC8 Assembler V2.10 build 88905656
    343  0000AE                     start:
    344                           	opt callstack 0
    345  0000AE  EE16 F23D          	lfsr	1,6717
-   346  0000B2  EFF1  F0BE         	goto	start_initialization	;jump to C runtime clear & initialization
+   346  0000B2  EFFB  F0BE         	goto	start_initialization	;jump to C runtime clear & initialization
    347                           
    348                           	psect	text
    349  000000                     intlevel0:
@@ -417,10 +417,10 @@ Microchip MPLAB XC8 Assembler V2.10 build 88905656
 
 
 Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
-Symbol Table                                                                                               Wed Jul 08 23:32:31 2020
+Symbol Table                                                                                               Sat Jul 11 12:17:54 2020
 
-                __S1 1A3D                 ___sp 1A3D                 _main DBA6                 start 00AE  
+                __S1 1A3D                 ___sp 1A3D                 _main DC52                 start 00AE  
               __HRAM 0000                __LRAM 0001         __mediumconst F92C               stackhi 001FFF  
              stacklo 001A3D           __accesstop 000060           ___inthi_sp 1C2A           ___intlo_sp 1E15  
-            __ramtop 2000  start_initialization 7DE2          __smallconst 0000             intlevel0 0000  
+            __ramtop 2000  start_initialization 7DF6          __smallconst 0000             intlevel0 0000  
            intlevel1 0000             intlevel2 0000             intlevel3 0000             reset_vec 0000  
