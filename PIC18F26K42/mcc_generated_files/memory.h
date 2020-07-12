@@ -13,12 +13,12 @@
   @Description
     This header file provides APIs for driver for MEMORY.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
         Device            :  PIC18F26K42
         Driver Version    :  2.11
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.20 and above
-        MPLAB             :  MPLAB X 5.40
+        Compiler          :  XC8 2.10 and above
+        MPLAB             :  MPLAB X 5.30
 *******************************************************************************/
 
 /*

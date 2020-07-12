@@ -1,9 +1,9 @@
+#include <stdlib.h>
 #include "mcc.h"
 #include "application.h"
 #include "Timers.h"
 #include "crc.h"
 #include "EEPROM.h"
-#include <stdlib.h>
 #include "sys.h"
 #include <stdbool.h>
 #include "led.h"
@@ -150,9 +150,11 @@ static bool appDataInd(NWK_DataInd_t *ind)
 static bool appManagementEp(NWK_DataInd_t *ind){
     //Check if there is Sink node command
     uint8_t* dataptr = ind->data;
-    uint8_t *ptr = (uint8_t*)strstr(dataptr,"SINK");
+    ind->size -= AES_BLOCKLEN;
+    app_aes_decrypt(dataptr, ind->size);
+    uint8_t *ptr = (uint8_t*)strstr(dataptr + AES_BLOCKLEN,"SINK");
     if(ptr){
-        exract_sink_addr(dataptr);
+        exract_sink_addr(ptr);
     }
     return true;
 }
@@ -536,7 +538,8 @@ static void cmdMac(){
  */
 static void cmdSetSink(*cmd){
 	char msgstr[16];
-	uint8_t buf_id, needed_size;    
+	uint8_t buf_id, needed_size;   
+    unsigned short new_sink = (currentAddr0 << 8) | currentAddr1;
     memset(msgstr, 0, sizeof(msgstr));
 	//Set this node as sink
 	sinkAddr0 = currentAddr0;
@@ -545,7 +548,7 @@ static void cmdSetSink(*cmd){
 	DATAEE_WriteByte(sinkAddrEE0,currentAddr0);
 	DATAEE_WriteByte(sinkAddrEE1,currentAddr1);
 	//Send a message on network end point to all the node as BCAST
-	sprintf(msgstr,"SINK=%02X%02X",currentAddr0,currentAddr1);
+	snprintf(msgstr, sizeof(msgstr), "SINK=%zx%zx", currentAddr0, currentAddr1);
     needed_size = needed_packet_length(strlen(msgstr));
     if(!get_free_tx_buffer(&buf_id)){
 #ifdef ATCOMM

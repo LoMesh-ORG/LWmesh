@@ -1,0 +1,20 @@
+build/MBRTU/debug/_ext/669684871/mbfunccoils.p1:  \
+../modbus/functions/mbfunccoils.c  \
+../modbus/port/port.h  \
+mcc_generated_files/mcc.h  \
+mcc_generated_files/device_config.h  \
+mcc_generated_files/pin_manager.h  \
+mcc_generated_files/interrupt_manager.h  \
+mcc_generated_files/dma1.h  \
+mcc_generated_files/tmr3.h  \
+mcc_generated_files/tmr1.h  \
+mcc_generated_files/crc.h  \
+mcc_generated_files/tmr0.h  \
+mcc_generated_files/memory.h  \
+mcc_generated_files/uart1.h  \
+mcc_generated_files/spi1.h  \
+../modbus/mb_inc/mb.h  \
+../modbus/mb_inc/mbport.h  \
+../modbus/mb_inc/mbproto.h  \
+../modbus/mb_inc/mbframe.h  \
+../modbus/mb_inc/mbconfig.h 

@@ -13,12 +13,12 @@
   @Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.0
         Device            :  PIC18F26K42
         Driver Version    :  2.00
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.20 and above or later
-        MPLAB             :  MPLAB X 5.40
+        Compiler          :  XC8 2.10 and above or later
+        MPLAB             :  MPLAB X 5.35
 */
 
 /*
@@ -54,9 +54,11 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     CRC_Initialize();
+    TMR3_Initialize();
     TMR0_Initialize();
     UART1_Initialize();
     SPI1_Initialize();
+    SystemArbiter_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
@@ -94,6 +96,13 @@ void PMD_Initialize(void)
 }
 
 
+void SystemArbiter_Initialize(void)
+{
+    // This function is dependant on the PR1WAY CONFIG bit
+    PRLOCK = 0x55;
+    PRLOCK = 0xAA;
+    PRLOCKbits.PRLOCKED = 1;
+}
 /**
  End of File
 */

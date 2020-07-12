@@ -24,9 +24,11 @@ void Timer0Handler(void){
     if(blen_sample_timer){
         blen_sample_timer--;
     }
+#ifdef MBRTU
     if(reset_timer){
         reset_timer--;
     }
+#endif
     halTimerIrqCount++;
 }
 

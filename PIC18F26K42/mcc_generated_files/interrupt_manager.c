@@ -15,12 +15,12 @@
     For individual peripheral handlers please see the peripheral driver for
     all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
         Device            :  PIC18F26K42
         Driver Version    :  2.12
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.20 and above or later
-        MPLAB 	          :  MPLAB X 5.40
+        Compiler          :  XC8 2.10 and above or later
+        MPLAB 	          :  MPLAB X 5.30
 */
 
 /*
@@ -59,9 +59,15 @@ void  INTERRUPT_Initialize (void)
     IVTLOCK = 0xAA;
     IVTLOCKbits.IVTLOCKED = 0x00; // unlock IVT
 
-    IVTBASEU = 0;
-    IVTBASEH = 0;
-    IVTBASEL = 8;
+    IVTADU = 0;
+#if DEBUGVECTOR
+    IVTADH = 0;
+#elif BOOTABLE
+    IVTADH = 0x40;
+#else
+    IVTADH = 00;
+#endif
+    IVTADL = 0x08;
 
     IVTLOCK = 0x55;
     IVTLOCK = 0xAA;
@@ -72,9 +78,15 @@ void  INTERRUPT_Initialize (void)
     IPR3bits.U1TXIP = 1;
     IPR3bits.U1RXIP = 1;
     IPR3bits.TMR0IP = 0;
+    IPR6bits.TMR3IP = 1;
+    IPR4bits.TMR1IP = 1;
 }
 
+#ifdef BOOTABLE
+void __interrupt(irq(default),base(16392)) Default_ISR()
+#else
 void __interrupt(irq(default),base(8)) Default_ISR()
+#endif
 {
 }
 

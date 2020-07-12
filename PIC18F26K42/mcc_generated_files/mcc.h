@@ -13,12 +13,12 @@
   @Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.0
         Device            :  PIC18F26K42
         Driver Version    :  2.00
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.20 and above or later
-        MPLAB             :  MPLAB X 5.40
+        Compiler          :  XC8 2.10 and above or later
+        MPLAB             :  MPLAB X 5.35
 */
 
 /*
@@ -53,9 +53,12 @@
 #include <stdbool.h>
 #include <conio.h>
 #include "interrupt_manager.h"
-#include "memory.h"
+#include "dma1.h"
+#include "tmr3.h"
+#include "tmr1.h"
 #include "crc.h"
 #include "tmr0.h"
+#include "memory.h"
 #include "uart1.h"
 #include "spi1.h"
 
@@ -100,6 +103,17 @@ void OSCILLATOR_Initialize(void);
  */
 void PMD_Initialize(void);
 
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Initializes the System Arbiter for DMA to the default priority.
+ * @Example
+    SystemArbiter_DMA_Initialize();
+ */
+void SystemArbiter_Initialize(void);
 
 #endif	/* MCC_H */
 /**
