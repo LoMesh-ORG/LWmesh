@@ -11,6 +11,9 @@
 #include "AES.h"
 
 #define swap_16(x) ((x << 8) | (x >> 8))
+
+const uint8_t ascii_lut[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
+                             '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 #ifndef MODULE
 extern void queue_serial_led_event(void);
 #endif
@@ -539,7 +542,8 @@ static void cmdMac(){
 static void cmdSetSink(*cmd){
 	char msgstr[16];
 	uint8_t buf_id, needed_size;   
-    unsigned short new_sink = (currentAddr0 << 8) | currentAddr1;
+    uint16_t new_sink = (currentAddr0 << 8) | currentAddr1;
+    char N3, N2, N1, N0;
     memset(msgstr, 0, sizeof(msgstr));
 	//Set this node as sink
 	sinkAddr0 = currentAddr0;
@@ -548,7 +552,20 @@ static void cmdSetSink(*cmd){
 	DATAEE_WriteByte(sinkAddrEE0,currentAddr0);
 	DATAEE_WriteByte(sinkAddrEE1,currentAddr1);
 	//Send a message on network end point to all the node as BCAST
-	snprintf(msgstr, sizeof(msgstr), "SINK=%zx%zx", currentAddr0, currentAddr1);
+    N3 = ascii_lut[(new_sink >> 12) & 0x0F];
+    N2 = ascii_lut[(new_sink >> 8) & 0x0F];
+    N1 = ascii_lut[(new_sink >> 4) & 0x0F];
+    N0 = ascii_lut[new_sink & 0x0F];
+//	snprintf(msgstr, sizeof(msgstr), "SINK=%c%c%c%c", N3, N2, N1, N0);
+    msgstr[0] = 'S';
+    msgstr[1] = 'I';
+    msgstr[2] = 'N';
+    msgstr[3] = 'K';
+    msgstr[4] = '=';
+    msgstr[5] = N3;
+    msgstr[6] = N2;
+    msgstr[7] = N1;
+    msgstr[8] = N0;
     needed_size = needed_packet_length(strlen(msgstr));
     if(!get_free_tx_buffer(&buf_id)){
 #ifdef ATCOMM
@@ -1974,7 +1991,7 @@ static void exract_sink_addr(uint8_t* dataptr){
     read_only_mb_regs[RO_SINK_ID] = (sinkAddr0 << 8) | (sinkAddr1);
 #endif
 #ifdef ATCOMM
-    printf("Sink node set:%02X%02X\r\n",DATAEE_ReadByte_Platform(sinkAddrEE0),DATAEE_ReadByte_Platform(sinkAddrEE1));
+    printf("SINK SET:%02X%02X\r\n",sinkAddr0, sinkAddr1);
 #endif                    
 }
 
