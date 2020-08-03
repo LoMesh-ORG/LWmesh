@@ -29,6 +29,9 @@
                 <sourceRootElem>../aes/aes_src</sourceRootElem>
                 <sourceRootElem>../wdt/wdt_inc</sourceRootElem>
                 <sourceRootElem>../wdt/wdt_src</sourceRootElem>
+                <sourceRootElem>../memory/eeprom/inc</sourceRootElem>
+                <sourceRootElem>../memory/eeprom/eeprom_inc</sourceRootElem>
+                <sourceRootElem>../memory/eeprom/eeprom_src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

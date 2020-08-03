@@ -174,6 +174,9 @@
     <Elem>../aes/aes_src</Elem>
     <Elem>../wdt/wdt_inc</Elem>
     <Elem>../wdt/wdt_src</Elem>
+    <Elem>../memory/eeprom/inc</Elem>
+    <Elem>../memory/eeprom/eeprom_inc</Elem>
+    <Elem>../memory/eeprom/eeprom_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -220,10 +223,10 @@
         <property key="asmlist" value="true"/>
         <property key="default-bitfield-type" value="true"/>
         <property key="default-char-type" value="true"/>
-        <property key="define-macros" value="ATCOMM;DEBUGVECTOR"/>
+        <property key="define-macros" value="ATCOMM;DEBUGVECTOR;FULLFEATURE"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -401,7 +404,7 @@
         <property key="define-macros" value="ATCOMM;BOOTABLE"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -579,7 +582,7 @@
         <property key="define-macros" value="MBRTU;DEBUGVECTOR"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -756,7 +759,7 @@
         <property key="define-macros" value="MBRTU;BOOTABLE"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>

@@ -13,6 +13,7 @@
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/main.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/led.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/wdt/wdt_src/wdt.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/mcc_generated_files/tmr3.c</file>
         </group>
     </open-files>
 </project-private>

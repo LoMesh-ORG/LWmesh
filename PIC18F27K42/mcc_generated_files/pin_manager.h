@@ -145,6 +145,46 @@
 #define LED_SetAnalogMode()      do { ANSELAbits.ANSELA3 = 1; } while(0)
 #define LED_SetDigitalMode()     do { ANSELAbits.ANSELA3 = 0; } while(0)
 
+// get/set SCL aliases
+#define SCL_TRIS                 TRISAbits.TRISA6
+#define SCL_LAT                  LATAbits.LATA6
+#define SCL_PORT                 PORTAbits.RA6
+#define SCL_WPU                  WPUAbits.WPUA6
+#define SCL_OD                   ODCONAbits.ODCA6
+#define SCL_ANS                  ANSELAbits.ANSELA6
+#define SCL_SetHigh()            do { LATAbits.LATA6 = 1; } while(0)
+#define SCL_SetLow()             do { LATAbits.LATA6 = 0; } while(0)
+#define SCL_Toggle()             do { LATAbits.LATA6 = ~LATAbits.LATA6; } while(0)
+#define SCL_GetValue()           PORTAbits.RA6
+#define SCL_SetDigitalInput()    do { TRISAbits.TRISA6 = 1; } while(0)
+#define SCL_SetDigitalOutput()   do { TRISAbits.TRISA6 = 0; } while(0)
+#define SCL_SetPullup()          do { WPUAbits.WPUA6 = 1; } while(0)
+#define SCL_ResetPullup()        do { WPUAbits.WPUA6 = 0; } while(0)
+#define SCL_SetPushPull()        do { ODCONAbits.ODCA6 = 0; } while(0)
+#define SCL_SetOpenDrain()       do { ODCONAbits.ODCA6 = 1; } while(0)
+#define SCL_SetAnalogMode()      do { ANSELAbits.ANSELA6 = 1; } while(0)
+#define SCL_SetDigitalMode()     do { ANSELAbits.ANSELA6 = 0; } while(0)
+
+// get/set SDA aliases
+#define SDA_TRIS                 TRISAbits.TRISA7
+#define SDA_LAT                  LATAbits.LATA7
+#define SDA_PORT                 PORTAbits.RA7
+#define SDA_WPU                  WPUAbits.WPUA7
+#define SDA_OD                   ODCONAbits.ODCA7
+#define SDA_ANS                  ANSELAbits.ANSELA7
+#define SDA_SetHigh()            do { LATAbits.LATA7 = 1; } while(0)
+#define SDA_SetLow()             do { LATAbits.LATA7 = 0; } while(0)
+#define SDA_Toggle()             do { LATAbits.LATA7 = ~LATAbits.LATA7; } while(0)
+#define SDA_GetValue()           PORTAbits.RA7
+#define SDA_SetDigitalInput()    do { TRISAbits.TRISA7 = 1; } while(0)
+#define SDA_SetDigitalOutput()   do { TRISAbits.TRISA7 = 0; } while(0)
+#define SDA_SetPullup()          do { WPUAbits.WPUA7 = 1; } while(0)
+#define SDA_ResetPullup()        do { WPUAbits.WPUA7 = 0; } while(0)
+#define SDA_SetPushPull()        do { ODCONAbits.ODCA7 = 0; } while(0)
+#define SDA_SetOpenDrain()       do { ODCONAbits.ODCA7 = 1; } while(0)
+#define SDA_SetAnalogMode()      do { ANSELAbits.ANSELA7 = 1; } while(0)
+#define SDA_SetDigitalMode()     do { ANSELAbits.ANSELA7 = 0; } while(0)
+
 // get/set RB0 procedures
 #define RB0_SetHigh()            do { LATBbits.LATB0 = 1; } while(0)
 #define RB0_SetLow()             do { LATBbits.LATB0 = 0; } while(0)

@@ -78,8 +78,8 @@ void TMR3_Initialize(void)
     //TMR3H 255; 
     TMR3H = 0xFF;
 
-    //TMR3L 253; 
-    TMR3L = 0xFD;
+    //TMR3L 231; 
+    TMR3L = 0xE7;
 
     // Clearing IF flag before enabling the interrupt.
     PIR6bits.TMR3IF = 0;
@@ -93,8 +93,8 @@ void TMR3_Initialize(void)
     // Set Default Interrupt Handler
     TMR3_SetInterruptHandler(TMR3_DefaultInterruptHandler);
 
-    // CKPS 1:8; NOT_SYNC synchronize; TMR3ON enabled; T3RD16 enabled; 
-    T3CON = 0x33;
+    // CKPS 1:1; NOT_SYNC synchronize; TMR3ON disabled; T3RD16 enabled; 
+    T3CON = 0x02;
 }
 
 void TMR3_StartTimer(void)
