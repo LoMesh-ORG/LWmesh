@@ -3,17 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/application.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/application.h</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/circular%20buffer.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1216/phy_src/phy.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1216/phy_inc/phy.h</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/hal/hal_src/Timers.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/memory/eeprom/eeprom_inc/I2C_EEPROM.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/memory/eeprom/eeprom_src/PIC16_I2C_BITBANG.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/memory/eeprom/eeprom_src/I2C_EEPROM.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkFrame.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/main.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/led.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/wdt/wdt_src/wdt.c</file>
-            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/mcc_generated_files/tmr3.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/application.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/sys/sys_src/sys.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/mcc_generated_files/uart1.c</file>
         </group>
     </open-files>
 </project-private>

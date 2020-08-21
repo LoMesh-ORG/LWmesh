@@ -13,7 +13,7 @@
   Description:
     This header file provides implementations for pin APIs for all pins selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.3
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.4
         Device            :  PIC18F27K42
         Driver Version    :  2.11
     The generated drivers are tested against the following:
@@ -57,7 +57,7 @@ void PIN_MANAGER_Initialize(void)
     /**
     LATx registers
     */
-    LATA = 0x08;
+    LATA = 0xC8;
     LATB = 0x00;
     LATC = 0x40;
 
@@ -73,7 +73,7 @@ void PIN_MANAGER_Initialize(void)
     */
     ANSELC = 0x21;
     ANSELB = 0xCD;
-    ANSELA = 0xF0;
+    ANSELA = 0x30;
 
     /**
     WPUx registers
@@ -94,9 +94,9 @@ void PIN_MANAGER_Initialize(void)
     /**
     ODx registers
     */
-    ODCONA = 0x00;
-    ODCONB = 0x00;
-    ODCONC = 0x08;
+    ODCONA = 0xC0;
+    ODCONB = 0x06;
+    ODCONC = 0x18;
 
     /**
     SLRCONx registers

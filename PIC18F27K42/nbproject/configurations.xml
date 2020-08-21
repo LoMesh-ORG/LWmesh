@@ -17,6 +17,10 @@
         <itemPath>../app/app_inc/led.h</itemPath>
         <itemPath>../app/app_inc/uart_default_control.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="eeprom_inc" displayName="eeprom_inc" projectFiles="true">
+        <itemPath>../memory/eeprom/eeprom_inc/I2C_EEPROM.h</itemPath>
+        <itemPath>../memory/eeprom/eeprom_inc/PIC16_I2C_BITBANG.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="hal_inc" displayName="hal_inc" projectFiles="true">
         <itemPath>../hal/hal_inc/Timers.h</itemPath>
       </logicalFolder>
@@ -107,6 +111,10 @@
         <itemPath>../app/app_src/led.c</itemPath>
         <itemPath>../modbus/mb.c</itemPath>
         <itemPath>../app/app_src/uart_default_control.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="eeprom_src" displayName="eeprom_src" projectFiles="true">
+        <itemPath>../memory/eeprom/eeprom_src/I2C_EEPROM.c</itemPath>
+        <itemPath>../memory/eeprom/eeprom_src/PIC16_I2C_BITBANG.c</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_src" displayName="hal_src" projectFiles="true">
         <itemPath>../hal/hal_src/Timers.c</itemPath>
@@ -289,7 +297,7 @@
         <property key="input-libraries" value="libm"/>
         <property key="keep-generated-startup.as" value="false"/>
         <property key="link-in-c-library" value="true"/>
-        <property key="link-in-c-library-gcc" value=""/>
+        <property key="link-in-c-library-gcc" value="-mc90lib"/>
         <property key="link-in-peripheral-library" value="false"/>
         <property key="managed-stack" value="false"/>
         <property key="opt-xc8-linker-file" value="false"/>
@@ -468,7 +476,7 @@
         <property key="input-libraries" value="libm"/>
         <property key="keep-generated-startup.as" value="false"/>
         <property key="link-in-c-library" value="true"/>
-        <property key="link-in-c-library-gcc" value=""/>
+        <property key="link-in-c-library-gcc" value="-mc90lib"/>
         <property key="link-in-peripheral-library" value="false"/>
         <property key="managed-stack" value="false"/>
         <property key="opt-xc8-linker-file" value="false"/>
@@ -823,7 +831,7 @@
         <property key="input-libraries" value="libm"/>
         <property key="keep-generated-startup.as" value="false"/>
         <property key="link-in-c-library" value="true"/>
-        <property key="link-in-c-library-gcc" value=""/>
+        <property key="link-in-c-library-gcc" value="-mc90lib"/>
         <property key="link-in-peripheral-library" value="false"/>
         <property key="managed-stack" value="false"/>
         <property key="opt-xc8-linker-file" value="false"/>

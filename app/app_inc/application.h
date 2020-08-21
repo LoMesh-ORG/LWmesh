@@ -56,6 +56,7 @@ uint16_t pan_id;
 #ifdef ATCOMM
 enum ATTESTCASES{
     WDTTEST = 1,
+    EETEST
 };
 #endif
 /*******************************************************************************
