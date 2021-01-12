@@ -1,5 +1,5 @@
 #include "led.h"
-#include "circular buffer.h"
+#include "circularbuffer.h"
 #include "mcc.h"
 #include "Timers.h"
 #define led_event_queue_depth       32
@@ -51,19 +51,20 @@ void ledInit(void)
 }
 
 int8_t queueLedEvent(uint8_t LEDState,uint16_t duration)
-{
+{   int retvar1;
     if(0 != CircularBufferSpace(&ledtasksbuf))
     {
         struct ledEvent temp;
         temp.LEDCondition = LEDState;
         temp.eventDuration = duration;
         CircularBufferPushBack(&ledtasksbuf,&temp);
-        return 0;
+        retvar1 = 0;
     }
     else
     {
-        return -1;
+        retvar1 = -1;
     }
+    return retvar1;
 }
 
 void handle_led_events(void)
@@ -76,12 +77,21 @@ void handle_led_events(void)
             struct ledEvent temp;
             CircularBufferPopFront(&ledtasksbuf,&temp);
             //Check if it was a zero time event
-            if(0 == temp.eventDuration){
+            int Eduration = (int)temp.eventDuration;
+            if(0 == Eduration){
                 //Turn LED on and exit
                 LED_SetLow();
-                return;
+                break;
             }
-            if(temp.LEDCondition){
+            bool LEDcond;
+            int LEDcondint = (int)temp.LEDCondition;
+            if (LEDcondint == 0){
+                LEDcond = false;
+            }
+            else{
+                LEDcond =  true;
+            }
+            if(LEDcond){
                 LED_SetLow();
             }
             else{
@@ -98,8 +108,8 @@ void handle_led_events(void)
 
 void queue_serial_led_event(void)
 {
-    queueLedEvent(0,400);
-    for(uint8_t i = 0; i < 2; i++)
+    int queueLedEvent(0,400);
+    for(int i = 0; i < 2; i++)
     {
         queueLedEvent(1,100);
         queueLedEvent(0,100);
@@ -111,7 +121,7 @@ void queue_serial_led_event(void)
 void queue_tx_led_event(void)
 {    
     queueLedEvent(0,400);
-    for(uint8_t i = 0; i < 2; i++)
+    for(int i = 0; i < 2; i++)
     {
         queueLedEvent(1,100);
         queueLedEvent(0,100);
@@ -124,7 +134,7 @@ void queue_tx_led_event(void)
 void queue_rx_led_event(void)
 {
     queueLedEvent(0,400);
-    for(uint8_t i = 0; i < 2; i++)
+    for(int i = 0; i < 2; i++)
     {
         queueLedEvent(1,300);
         queueLedEvent(0,300);
