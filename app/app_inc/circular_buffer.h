@@ -29,13 +29,13 @@
  *
  * \file        circularbuffer.h
  *
- * \brief       Circular buffer public interface.
+ * \brief       circular_buffer public interface.
  *
- * This circular buffer implementation uses a single empty cell to detect the
+ * This circular_buffer implementation uses a single empty cell to detect the
  * "full" case for supporting thread safety, meaning it support one producer and
- * one consumer without a lock. The circular buffer therefore hold as most
+ * one consumer without a lock. The circular_buffer therefore hold as most
  * ((buf_size / element_size) - 1) elements. For use of efficient algorithms the
- * maximum number of elements in the circular buffer must be a power of 2.
+ * maximum number of elements in the circular_buffer must be a power of 2.
  */
 
 #ifndef CIRCULARBUFFER_H_
@@ -71,9 +71,9 @@ typedef struct {
 /* **** Function Declarations **** */
 
 /*!
- * \breif Initializes the circular buffer context.
+ * \breif Initializes the circular_buffer context.
  *
- * The max number of elements in the circular buffer is
+ * The max number of elements in the circular_buffer is
  * (buf_size / element_size) - 1.
  *
  * Asserts:
@@ -83,7 +83,7 @@ typedef struct {
  *      'element_size' is not 0
  *      'buf_size / element_size' is not power of 2.
  *
- * \param[out]  *ctx            Pointer to the circular buffer context.
+ * \param[out]  *ctx            Pointer to the circular_buffer context.
  * \param[in]   buf             Pointer to a buffer.
  * \param[in]   buf_size        The buffer size.
  * \param[in]   element_size    The size of an element in the buffer.
@@ -92,12 +92,12 @@ void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
                         size_t element_size);
 
 /*!
- * \breif Removes all elements from the circular buffer.
+ * \breif Removes all elements from the circular_buffer.
  *
  * Asserts:
  *      'ctx' is not NULL.
  *
- * \param[out]  *ctx            Pointer to the circular buffer context.
+ * \param[out]  *ctx            Pointer to the circular_buffer context.
  */
 void CircularBufferClear(CircularBufferContext *ctx);
 
@@ -109,7 +109,7 @@ void CircularBufferClear(CircularBufferContext *ctx);
  *      'ctx' is not NULL.
  *      'val' is not NULL.
  *
- * \param[out]  *ctx            Pointer to the circular buffer context.
+ * \param[out]  *ctx            Pointer to the circular_buffer context.
  * \param[in]   val             Pointer to the source to be copied.
  * \return                      0 if success, -1 if the buffer is full.
  */
@@ -123,7 +123,7 @@ int8_t CircularBufferPushBack(CircularBufferContext *ctx, void *val);
  *      'ctx' is not NULL.
  *      'val' is not NULL.
  *
- * \param[out]  *ctx            Pointer to the circular buffer context.
+ * \param[out]  *ctx            Pointer to the circular_buffer context.
  * \param[out]  *val            Pointer to the destination where the data is to
  *                              be stored.
  * \return                      0 if success, -1 if the buffer is
@@ -140,7 +140,7 @@ int8_t CircularBufferPopFront(CircularBufferContext *ctx, void *val);
  * Asserts:
  *      'ctx' is not NULL.
  *
- * \param[in]   *ctx            Pointer to the circular buffer context.
+ * \param[in]   *ctx            Pointer to the circular_buffer context.
  * \param[in]   num             The number of the element to peek.
  * \param[out]  elem            Pointer to the 'num' element.
  * \return                      0 if success, -1 or NULL buffer is empty or the
@@ -155,7 +155,7 @@ int8_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
  * Asserts:
  *      'ctx' is not NULL.
  *
- * \param[in] *ctx              Pointer to the circular buffer context.
+ * \param[in] *ctx              Pointer to the circular_buffer context.
  * \return                      The number of added elements.
  */
 size_t CircularBufferSize(const CircularBufferContext *ctx);
@@ -166,7 +166,7 @@ size_t CircularBufferSize(const CircularBufferContext *ctx);
  * Asserts:
  *      'ctx' is not NULL.
  *
- * \param[in] *ctx              Pointer to the circular buffer context.
+ * \param[in] *ctx              Pointer to the circular_buffer context.
  * \return                      The number of free elements.
  */
 size_t CircularBufferSpace(const CircularBufferContext *ctx);
@@ -177,7 +177,7 @@ size_t CircularBufferSpace(const CircularBufferContext *ctx);
  * Asserts:
  *      'ctx' is not NULL.
  *
- * \param[in] *ctx              Pointer to the circular buffer context.
+ * \param[in] *ctx              Pointer to the circular_buffer context.
  * \return                      true if the buffer is empty otherwise false.
  */
 inline bool CircularBufferEmpty(const CircularBufferContext *ctx);
