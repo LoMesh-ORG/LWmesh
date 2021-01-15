@@ -31,7 +31,7 @@ Copyright 2020 Samuel Ramrajkar
 #include "EEPROM.h"
 #include "errors.h"
 #include "nwk.h"
-#include "circular buffer.h"
+#include "circular_buffer.h"
 
 
 #ifdef	__cplusplus

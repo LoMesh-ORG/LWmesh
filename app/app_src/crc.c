@@ -16,8 +16,8 @@ Copyright 2020 Samuel Ramrajkar
 #include "mcc.h"
 #include "crc.h"
 
-uint16_t crc16_app(uint8_t dptr, uint16_t len, uint16_t seed){
-    uint8_t ptr = dptr;
+uint16_t crc16_app(uint8_t* dptr, uint16_t len, uint16_t seed){
+    uint8_t* ptr = dptr;
     //uint8_t* ptr = (uint8_t*)dptr;
     uint16_t result;
     //Reset the CRC engine
