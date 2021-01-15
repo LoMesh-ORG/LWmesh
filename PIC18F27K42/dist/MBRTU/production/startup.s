@@ -14,8 +14,9 @@
 	; -DDEBUGVECTOR -P -I../app/app_inc -I../hal/hal_inc -I../nwk/nwk_inc \
 	; -I../phy/sx1216/phy_inc -I../sys/sys_inc -Imcc_generated_files \
 	; -I../modbus/mb_inc -I../modbus/port -I../modbus/rtu \
-	; -I../modbus/functions -I../aes/aes_inc -I../wdt/wdt_inc --warn=-3 \
-	; --asmlist --summary=-psect,-class,+mem,-hex,-file --output=+inhx032 \
+	; -I../modbus/functions -I../aes/aes_inc -I../wdt/wdt_inc \
+	; -I../memory/eeprom/eeprom_inc --warn=-3 --asmlist \
+	; --summary=-psect,-class,+mem,-hex,-file --output=+inhx032 \
 	; --runtime=+clear --runtime=+init --runtime=+keep --runtime=-download \
 	; --runtime=+config --std=c99 --output=+elf:multilocs \
 	; --stack=hybrid:auto:auto:auto --summary=+xml \
@@ -36,12 +37,13 @@
 	; build/MBRTU/production/_ext/2104501039/mbcrc.p1 \
 	; build/MBRTU/production/_ext/2104501039/mbrtu.p1 \
 	; build/MBRTU/production/_ext/423217399/application.p1 \
-	; build/MBRTU/production/_ext/423217399/circular buffer.p1 \
 	; build/MBRTU/production/_ext/423217399/crc.p1 \
 	; build/MBRTU/production/_ext/423217399/EEPROM.p1 \
 	; build/MBRTU/production/_ext/423217399/led.p1 \
 	; build/MBRTU/production/_ext/984464531/mb.p1 \
 	; build/MBRTU/production/_ext/423217399/uart_default_control.p1 \
+	; build/MBRTU/production/_ext/179975797/I2C_EEPROM.p1 \
+	; build/MBRTU/production/_ext/179975797/PIC16_I2C_BITBANG.p1 \
 	; build/MBRTU/production/_ext/1339929363/Timers.p1 \
 	; build/MBRTU/production/mcc_generated_files/spi1.p1 \
 	; build/MBRTU/production/mcc_generated_files/tmr0.p1 \
@@ -68,8 +70,9 @@
 	; build/MBRTU/production/_ext/2045976161/sysEncrypt.p1 \
 	; build/MBRTU/production/_ext/2045976161/sysTimer.p1 \
 	; build/MBRTU/production/_ext/127225941/wdt.p1 \
-	; build/MBRTU/production/main.p1 --callgraph=none \
-	; --errformat=%f:%l:%c: error: (%n) %s \
+	; build/MBRTU/production/main.p1 \
+	; build/MBRTU/production/_ext/423217399/circular_buffer.p1 \
+	; --callgraph=none --errformat=%f:%l:%c: error: (%n) %s \
 	; --warnformat=%f:%l:%c: warning: (%n) %s \
 	; --msgformat=%f:%l:%c: advisory: (%n) %s
 	;

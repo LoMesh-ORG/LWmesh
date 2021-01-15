@@ -10,12 +10,12 @@
       </logicalFolder>
       <logicalFolder name="app_inc" displayName="app_inc" projectFiles="true">
         <itemPath>../app/app_inc/application.h</itemPath>
-        <itemPath>../app/app_inc/circular buffer.h</itemPath>
         <itemPath>../app/app_inc/crc.h</itemPath>
         <itemPath>../app/app_inc/EEPROM.h</itemPath>
         <itemPath>../app/app_inc/errors.h</itemPath>
         <itemPath>../app/app_inc/led.h</itemPath>
         <itemPath>../app/app_inc/uart_default_control.h</itemPath>
+        <itemPath>../app/app_inc/circular_buffer.h</itemPath>
       </logicalFolder>
       <logicalFolder name="eeprom_inc" displayName="eeprom_inc" projectFiles="true">
         <itemPath>../memory/eeprom/eeprom_inc/I2C_EEPROM.h</itemPath>
@@ -105,12 +105,12 @@
           <itemPath>../modbus/rtu/mbrtu.c</itemPath>
         </logicalFolder>
         <itemPath>../app/app_src/application.c</itemPath>
-        <itemPath>../app/app_src/circular buffer.c</itemPath>
         <itemPath>../app/app_src/crc.c</itemPath>
         <itemPath>../app/app_src/EEPROM.c</itemPath>
         <itemPath>../app/app_src/led.c</itemPath>
         <itemPath>../modbus/mb.c</itemPath>
         <itemPath>../app/app_src/uart_default_control.c</itemPath>
+        <itemPath>../app/app_src/circular_buffer.c</itemPath>
       </logicalFolder>
       <logicalFolder name="eeprom_src" displayName="eeprom_src" projectFiles="true">
         <itemPath>../memory/eeprom/eeprom_src/I2C_EEPROM.c</itemPath>
@@ -202,6 +202,8 @@
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.2.72"/>
       </packs>
+      <ScriptingSettings>
+      </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -219,6 +221,7 @@
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep></makeCustomizationPostStep>
@@ -380,6 +383,8 @@
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.2.72"/>
       </packs>
+      <ScriptingSettings>
+      </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -397,6 +402,7 @@
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep></makeCustomizationPostStep>
@@ -558,6 +564,8 @@
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.2.72"/>
       </packs>
+      <ScriptingSettings>
+      </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -575,6 +583,7 @@
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep></makeCustomizationPostStep>
@@ -736,6 +745,8 @@
       <packs>
         <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.2.72"/>
       </packs>
+      <ScriptingSettings>
+      </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -753,6 +764,7 @@
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep></makeCustomizationPostStep>

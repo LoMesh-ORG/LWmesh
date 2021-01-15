@@ -28,14 +28,14 @@
  *
  * \file        circularbuffer.c
  *
- * \brief       A circular buffer implementation.
+ * \brief       A circular_buffer implementation.
  *
  * \}
  */
 
 /* **** Includes **** */
 
-#include "circularbuffer.h"
+#include "circular_buffer.h"
 #include <string.h>
 #include <assert.h>
 
@@ -101,7 +101,7 @@ int8_t CircularBufferPopFront(CircularBufferContext *ctx, void *val) {
 
         retvar3 = 0;
         }
-    return retvar3
+    return retvar3;
 }
 
 int8_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
@@ -124,7 +124,7 @@ int8_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
 
     retvar = 0;
 }
-    return retvar
+    return retvar;
    
 //fail:
 //    return -1;
