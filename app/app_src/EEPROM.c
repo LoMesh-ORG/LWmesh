@@ -17,6 +17,12 @@ Copyright 2020 Samuel Ramrajkar
 #include "EEPROM.h"
 #include "application.h"
 #include "phy.h"
+#ifdef SX1276
+#include "sx1276.h"
+#endif
+#ifdef SX1280
+#include "sx1280_drv.h"
+#endif
 
 uint8_t DATAEE_ReadByte_Platform(uint16_t addr){
     uint8_t copy1;

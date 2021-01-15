@@ -15,7 +15,12 @@ Copyright 2020 Samuel Ramrajkar
 */
 //Handlers for all the timer ISRs
 #include "Timers.h"
-#include "phy.h"
+#ifdef SX1276
+#include "sx1276.h"
+#endif
+#ifdef SX1280
+#include "sx1280_drv.h"
+#endif
 #include "application.h"
 #include "led.h"
 #include "uart_default_control.h"

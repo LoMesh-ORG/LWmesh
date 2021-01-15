@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="win32A" char_bit="8" short_bit="16" int_bit="32" long_bit="32" long_long_bit="64" pointer_bit="32"/>
+  <rawtokens>
+    <file index="0" name="../app/app_inc/circular buffer.h"/>
+    <tok fileIndex="0" linenr="1" column="1" str="/*x * MIT License (MIT)x *x * Copyright (c) 2019 Kristian Kinderlxxvx *x * Permission is hereby granted, free of charge, to any person obtaining a copyx * of this software and associated documentation files (the &quot;Software&quot;), to dealx * in the Software without restriction, including without limitation the rightsx * to use, copy, modify, merge, publish, distribute, sublicense, and/or sellx * copies of the Software, and to permit persons to whom the Software isx * furnished to do so, subject to the following conditions:x *x * The above copyright notice and this permission notice shall be included inx * all copies or substantial portions of the Software.x *x * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS ORx * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,x * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THEx * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERx * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,x * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THEx * SOFTWARE.x */"/>
+    <tok fileIndex="0" linenr="25" column="1" str="/*!x * \addtogroup CIRCULARBUFFERx * \ingroup MISCx * \{x *x * \file        circularbuffer.hx *x * \brief       Circular buffer public interface.x *x * This circular buffer implementation uses a single empty cell to detect thex * &quot;full&quot; case for supporting thread safety, meaning it support one producer andx * one consumer without a lock. The circular buffer therefore hold as mostx * ((buf_size / element_size) - 1) elements. For use of efficient algorithms thex * maximum number of elements in the circular buffer must be a power of 2.x */"/>
+    <tok fileIndex="0" linenr="41" column="1" str="#"/>
+    <tok fileIndex="0" linenr="41" column="2" str="ifndef"/>
+    <tok fileIndex="0" linenr="41" column="9" str="CIRCULARBUFFER_H_"/>
+    <tok fileIndex="0" linenr="42" column="1" str="#"/>
+    <tok fileIndex="0" linenr="42" column="2" str="define"/>
+    <tok fileIndex="0" linenr="42" column="9" str="CIRCULARBUFFER_H_"/>
+    <tok fileIndex="0" linenr="44" column="1" str="#"/>
+    <tok fileIndex="0" linenr="44" column="2" str="ifdef"/>
+    <tok fileIndex="0" linenr="44" column="8" str="__cplusplus"/>
+    <tok fileIndex="0" linenr="45" column="1" str="extern"/>
+    <tok fileIndex="0" linenr="45" column="8" str="&quot;C&quot;"/>
+    <tok fileIndex="0" linenr="45" column="12" str="{"/>
+    <tok fileIndex="0" linenr="46" column="1" str="#"/>
+    <tok fileIndex="0" linenr="46" column="2" str="endif"/>
+    <tok fileIndex="0" linenr="48" column="1" str="/* **** Includes **** */"/>
+    <tok fileIndex="0" linenr="49" column="1" str="#"/>
+    <tok fileIndex="0" linenr="49" column="2" str="include"/>
+    <tok fileIndex="0" linenr="49" column="10" str="&lt;xc.h&gt;"/>
+    <tok fileIndex="0" linenr="50" column="1" str="#"/>
+    <tok fileIndex="0" linenr="50" column="2" str="include"/>
+    <tok fileIndex="0" linenr="50" column="10" str="&lt;stdbool.h&gt;"/>
+    <tok fileIndex="0" linenr="51" column="1" str="#"/>
+    <tok fileIndex="0" linenr="51" column="2" str="include"/>
+    <tok fileIndex="0" linenr="51" column="10" str="&lt;stdint.h&gt;"/>
+    <tok fileIndex="0" linenr="52" column="1" str="#"/>
+    <tok fileIndex="0" linenr="52" column="2" str="include"/>
+    <tok fileIndex="0" linenr="52" column="10" str="&lt;string.h&gt;"/>
+    <tok fileIndex="0" linenr="54" column="1" str="/* **** Defines **** */"/>
+    <tok fileIndex="0" linenr="56" column="1" str="/* **** Typedefs **** */"/>
+    <tok fileIndex="0" linenr="57" column="5" str="typedef"/>
+    <tok fileIndex="0" linenr="57" column="13" str="unsigned"/>
+    <tok fileIndex="0" linenr="57" column="22" str="int"/>
+    <tok fileIndex="0" linenr="57" column="26" str="size_t"/>
+    <tok fileIndex="0" linenr="57" column="32" str=";"/>
+    <tok fileIndex="0" linenr="59" column="1" str="typedef"/>
+    <tok fileIndex="0" linenr="59" column="9" str="struct"/>
+    <tok fileIndex="0" linenr="59" column="16" str="{"/>
+    <tok fileIndex="0" linenr="60" column="5" str="uint8_t"/>
+    <tok fileIndex="0" linenr="60" column="13" str="*"/>
+    <tok fileIndex="0" linenr="60" column="14" str="buf"/>
+    <tok fileIndex="0" linenr="60" column="17" str=";"/>
+    <tok fileIndex="0" linenr="60" column="27" str="// Pointer to the buffer"/>
+    <tok fileIndex="0" linenr="61" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="61" column="12" str="write_pos"/>
+    <tok fileIndex="0" linenr="61" column="21" str=";"/>
+    <tok fileIndex="0" linenr="61" column="27" str="// Write position"/>
+    <tok fileIndex="0" linenr="62" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="62" column="12" str="read_pos"/>
+    <tok fileIndex="0" linenr="62" column="20" str=";"/>
+    <tok fileIndex="0" linenr="62" column="27" str="// Read position"/>
+    <tok fileIndex="0" linenr="63" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="63" column="12" str="element_size"/>
+    <tok fileIndex="0" linenr="63" column="24" str=";"/>
+    <tok fileIndex="0" linenr="63" column="27" str="// Size of a element in the buffer"/>
+    <tok fileIndex="0" linenr="64" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="64" column="12" str="max_size"/>
+    <tok fileIndex="0" linenr="64" column="20" str=";"/>
+    <tok fileIndex="0" linenr="64" column="27" str="// Max number of elements in the buffer"/>
+    <tok fileIndex="0" linenr="65" column="1" str="}"/>
+    <tok fileIndex="0" linenr="65" column="3" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="65" column="24" str=";"/>
+    <tok fileIndex="0" linenr="67" column="1" str="/* **** Extern Variables **** */"/>
+    <tok fileIndex="0" linenr="69" column="1" str="/* **** Function Declarations **** */"/>
+    <tok fileIndex="0" linenr="71" column="1" str="/*!x * \breif Initializes the circular buffer context.x *x * The max number of elements in the circular buffer isx * (buf_size / element_size) - 1.x *x * Asserts:x *      'ctx' is not NULL.x *      'buf' is not NULL.x *      'buf_size' is not 0x *      'element_size' is not 0x *      'buf_size / element_size' is not power of 2.x *x * \param[out]  *ctx            Pointer to the circular buffer context.x * \param[in]   buf             Pointer to a buffer.x * \param[in]   buf_size        The buffer size.x * \param[in]   element_size    The size of an element in the buffer.x */"/>
+    <tok fileIndex="0" linenr="89" column="1" str="void"/>
+    <tok fileIndex="0" linenr="89" column="6" str="CircularBufferInit"/>
+    <tok fileIndex="0" linenr="89" column="24" str="("/>
+    <tok fileIndex="0" linenr="89" column="25" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="89" column="47" str="*"/>
+    <tok fileIndex="0" linenr="89" column="48" str="ctx"/>
+    <tok fileIndex="0" linenr="89" column="51" str=","/>
+    <tok fileIndex="0" linenr="89" column="53" str="void"/>
+    <tok fileIndex="0" linenr="89" column="58" str="*"/>
+    <tok fileIndex="0" linenr="89" column="59" str="buf"/>
+    <tok fileIndex="0" linenr="89" column="62" str=","/>
+    <tok fileIndex="0" linenr="89" column="64" str="size_t"/>
+    <tok fileIndex="0" linenr="89" column="71" str="buf_size"/>
+    <tok fileIndex="0" linenr="89" column="79" str=","/>
+    <tok fileIndex="0" linenr="90" column="25" str="size_t"/>
+    <tok fileIndex="0" linenr="90" column="32" str="element_size"/>
+    <tok fileIndex="0" linenr="90" column="44" str=")"/>
+    <tok fileIndex="0" linenr="90" column="45" str=";"/>
+    <tok fileIndex="0" linenr="92" column="1" str="/*!x * \breif Removes all elements from the circular buffer.x *x * Asserts:x *      'ctx' is not NULL.x *x * \param[out]  *ctx            Pointer to the circular buffer context.x */"/>
+    <tok fileIndex="0" linenr="100" column="1" str="void"/>
+    <tok fileIndex="0" linenr="100" column="6" str="CircularBufferClear"/>
+    <tok fileIndex="0" linenr="100" column="25" str="("/>
+    <tok fileIndex="0" linenr="100" column="26" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="100" column="48" str="*"/>
+    <tok fileIndex="0" linenr="100" column="49" str="ctx"/>
+    <tok fileIndex="0" linenr="100" column="52" str=")"/>
+    <tok fileIndex="0" linenr="100" column="53" str=";"/>
+    <tok fileIndex="0" linenr="102" column="1" str="/*!x * \breif Adds an new element to the end of the buffer. The &quot;val&quot; content isx * copied to the element.x *x * Asserts:x *      'ctx' is not NULL.x *      'val' is not NULL.x *x * \param[out]  *ctx            Pointer to the circular buffer context.x * \param[in]   val             Pointer to the source to be copied.x * \return                      0 if success, -1 if the buffer is full.x */"/>
+    <tok fileIndex="0" linenr="114" column="1" str="int8_t"/>
+    <tok fileIndex="0" linenr="114" column="8" str="CircularBufferPushBack"/>
+    <tok fileIndex="0" linenr="114" column="30" str="("/>
+    <tok fileIndex="0" linenr="114" column="31" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="114" column="53" str="*"/>
+    <tok fileIndex="0" linenr="114" column="54" str="ctx"/>
+    <tok fileIndex="0" linenr="114" column="57" str=","/>
+    <tok fileIndex="0" linenr="114" column="59" str="void"/>
+    <tok fileIndex="0" linenr="114" column="64" str="*"/>
+    <tok fileIndex="0" linenr="114" column="65" str="val"/>
+    <tok fileIndex="0" linenr="114" column="68" str=")"/>
+    <tok fileIndex="0" linenr="114" column="69" str=";"/>
+    <tok fileIndex="0" linenr="116" column="1" str="/*!x * \breif Removes the first element from the buffer. Copies the element contentx * to the &quot;val&quot; destination.x *x * Asserts:x *      'ctx' is not NULL.x *      'val' is not NULL.x *x * \param[out]  *ctx            Pointer to the circular buffer context.x * \param[out]  *val            Pointer to the destination where the data is tox *                              be stored.x * \return                      0 if success, -1 if the buffer isx *                              empty.x */"/>
+    <tok fileIndex="0" linenr="130" column="1" str="int8_t"/>
+    <tok fileIndex="0" linenr="130" column="8" str="CircularBufferPopFront"/>
+    <tok fileIndex="0" linenr="130" column="30" str="("/>
+    <tok fileIndex="0" linenr="130" column="31" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="130" column="53" str="*"/>
+    <tok fileIndex="0" linenr="130" column="54" str="ctx"/>
+    <tok fileIndex="0" linenr="130" column="57" str=","/>
+    <tok fileIndex="0" linenr="130" column="59" str="void"/>
+    <tok fileIndex="0" linenr="130" column="64" str="*"/>
+    <tok fileIndex="0" linenr="130" column="65" str="val"/>
+    <tok fileIndex="0" linenr="130" column="68" str=")"/>
+    <tok fileIndex="0" linenr="130" column="69" str=";"/>
+    <tok fileIndex="0" linenr="132" column="1" str="/*!x * \breif Peeks the &quot;num&quot; element from the buffer.x *x * The &quot;num&quot; argument shall be less than the number of elements added to thex * buffer.x *x * Asserts:x *      'ctx' is not NULL.x *x * \param[in]   *ctx            Pointer to the circular buffer context.x * \param[in]   num             The number of the element to peek.x * \param[out]  elem            Pointer to the 'num' element.x * \return                      0 if success, -1 or NULL buffer is empty or thex *                              'num' is out of bounds.x */"/>
+    <tok fileIndex="0" linenr="147" column="1" str="int8_t"/>
+    <tok fileIndex="0" linenr="147" column="8" str="CircularBufferPeek"/>
+    <tok fileIndex="0" linenr="147" column="26" str="("/>
+    <tok fileIndex="0" linenr="147" column="27" str="const"/>
+    <tok fileIndex="0" linenr="147" column="33" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="147" column="55" str="*"/>
+    <tok fileIndex="0" linenr="147" column="56" str="ctx"/>
+    <tok fileIndex="0" linenr="147" column="59" str=","/>
+    <tok fileIndex="0" linenr="147" column="61" str="size_t"/>
+    <tok fileIndex="0" linenr="147" column="68" str="num"/>
+    <tok fileIndex="0" linenr="147" column="71" str=","/>
+    <tok fileIndex="0" linenr="148" column="28" str="void"/>
+    <tok fileIndex="0" linenr="148" column="33" str="*"/>
+    <tok fileIndex="0" linenr="148" column="34" str="*"/>
+    <tok fileIndex="0" linenr="148" column="35" str="elem"/>
+    <tok fileIndex="0" linenr="148" column="39" str=")"/>
+    <tok fileIndex="0" linenr="148" column="40" str=";"/>
+    <tok fileIndex="0" linenr="150" column="1" str="/*!x * \breif Gets the number of added elements in the buffer.x *x * Asserts:x *      'ctx' is not NULL.x *x * \param[in] *ctx              Pointer to the circular buffer context.x * \return                      The number of added elements.x */"/>
+    <tok fileIndex="0" linenr="159" column="1" str="size_t"/>
+    <tok fileIndex="0" linenr="159" column="8" str="CircularBufferSize"/>
+    <tok fileIndex="0" linenr="159" column="26" str="("/>
+    <tok fileIndex="0" linenr="159" column="27" str="const"/>
+    <tok fileIndex="0" linenr="159" column="33" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="159" column="55" str="*"/>
+    <tok fileIndex="0" linenr="159" column="56" str="ctx"/>
+    <tok fileIndex="0" linenr="159" column="59" str=")"/>
+    <tok fileIndex="0" linenr="159" column="60" str=";"/>
+    <tok fileIndex="0" linenr="161" column="1" str="/*!x * \breif Gets the number of free elements in the buffer.x *x * Asserts:x *      'ctx' is not NULL.x *x * \param[in] *ctx              Pointer to the circular buffer context.x * \return                      The number of free elements.x */"/>
+    <tok fileIndex="0" linenr="170" column="1" str="size_t"/>
+    <tok fileIndex="0" linenr="170" column="8" str="CircularBufferSpace"/>
+    <tok fileIndex="0" linenr="170" column="27" str="("/>
+    <tok fileIndex="0" linenr="170" column="28" str="const"/>
+    <tok fileIndex="0" linenr="170" column="34" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="170" column="56" str="*"/>
+    <tok fileIndex="0" linenr="170" column="57" str="ctx"/>
+    <tok fileIndex="0" linenr="170" column="60" str=")"/>
+    <tok fileIndex="0" linenr="170" column="61" str=";"/>
+    <tok fileIndex="0" linenr="172" column="1" str="/*!x * \breif Checks if the buffer is empty.x *x * Asserts:x *      'ctx' is not NULL.x *x * \param[in] *ctx              Pointer to the circular buffer context.x * \return                      true if the buffer is empty otherwise false.x */"/>
+    <tok fileIndex="0" linenr="181" column="1" str="inline"/>
+    <tok fileIndex="0" linenr="181" column="8" str="bool"/>
+    <tok fileIndex="0" linenr="181" column="13" str="CircularBufferEmpty"/>
+    <tok fileIndex="0" linenr="181" column="32" str="("/>
+    <tok fileIndex="0" linenr="181" column="33" str="const"/>
+    <tok fileIndex="0" linenr="181" column="39" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="181" column="61" str="*"/>
+    <tok fileIndex="0" linenr="181" column="62" str="ctx"/>
+    <tok fileIndex="0" linenr="181" column="65" str=")"/>
+    <tok fileIndex="0" linenr="181" column="66" str=";"/>
+    <tok fileIndex="0" linenr="183" column="1" str="#"/>
+    <tok fileIndex="0" linenr="183" column="2" str="ifdef"/>
+    <tok fileIndex="0" linenr="183" column="8" str="__cplusplus"/>
+    <tok fileIndex="0" linenr="184" column="1" str="}"/>
+    <tok fileIndex="0" linenr="185" column="1" str="#"/>
+    <tok fileIndex="0" linenr="185" column="2" str="endif"/>
+    <tok fileIndex="0" linenr="187" column="1" str="#"/>
+    <tok fileIndex="0" linenr="187" column="2" str="endif"/>
+    <tok fileIndex="0" linenr="187" column="8" str="/* CIRCULARBUFFER_H_ */"/>
+    <tok fileIndex="0" linenr="189" column="1" str="/*! \} */"/>
+  </rawtokens>
+  <suppressions>
+  </suppressions>
+<dump cfg="">
+  <standards>
+    <c version="c11"/>
+    <cpp version="c++20"/>
+  </standards>
+  <directivelist>
+    <directive file="../app/app_inc/circular buffer.h" linenr="41" str="#ifndef CIRCULARBUFFER_H_"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="42" str="#define CIRCULARBUFFER_H_"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="44" str="#ifdef __cplusplus"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="46" str="#endif"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="49" str="#include &lt;xc.h&gt;"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="50" str="#include &lt;stdbool.h&gt;"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="51" str="#include &lt;stdint.h&gt;"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="52" str="#include &lt;string.h&gt;"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="183" str="#ifdef __cplusplus"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="185" str="#endif"/>
+    <directive file="../app/app_inc/circular buffer.h" linenr="187" str="#endif"/>
+  </directivelist>
+  <tokenlist>
+    <token id="01852358" file="../app/app_inc/circular buffer.h" linenr="59" column="9" str="struct" scope="01893220" type="name"/>
+    <token id="02D35F38" file="../app/app_inc/circular buffer.h" linenr="59" column="0" str="CircularBufferContext" scope="01893220" type="name"/>
+    <token id="018526D8" file="../app/app_inc/circular buffer.h" linenr="59" column="16" str="{" scope="01893220" link="019E81C0"/>
+    <token id="01852198" file="../app/app_inc/circular buffer.h" linenr="60" column="5" str="uint8_t" scope="01893220" type="name" astParent="01851F58"/>
+    <token id="01851F58" file="../app/app_inc/circular buffer.h" linenr="60" column="13" str="*" scope="01893220" type="op" isArithmeticalOp="True" astOperand1="01852198" astOperand2="01851F98"/>
+    <token id="01851F98" file="../app/app_inc/circular buffer.h" linenr="60" column="14" str="buf" scope="01893220" type="name" varId="1" astParent="01851F58"/>
+    <token id="019E82C0" file="../app/app_inc/circular buffer.h" linenr="60" column="17" str=";" scope="01893220"/>
+    <token id="019E8000" file="../app/app_inc/circular buffer.h" linenr="61" column="5" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="019E8180" file="../app/app_inc/circular buffer.h" linenr="61" column="12" str="write_pos" scope="01893220" type="name" varId="2"/>
+    <token id="019E8540" file="../app/app_inc/circular buffer.h" linenr="61" column="21" str=";" scope="01893220"/>
+    <token id="019E8200" file="../app/app_inc/circular buffer.h" linenr="62" column="5" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="019E8100" file="../app/app_inc/circular buffer.h" linenr="62" column="12" str="read_pos" scope="01893220" type="name" varId="3"/>
+    <token id="019E7F40" file="../app/app_inc/circular buffer.h" linenr="62" column="20" str=";" scope="01893220"/>
+    <token id="019E8280" file="../app/app_inc/circular buffer.h" linenr="63" column="5" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="019E8400" file="../app/app_inc/circular buffer.h" linenr="63" column="12" str="element_size" scope="01893220" type="name" varId="4"/>
+    <token id="019E8040" file="../app/app_inc/circular buffer.h" linenr="63" column="24" str=";" scope="01893220"/>
+    <token id="019E8480" file="../app/app_inc/circular buffer.h" linenr="64" column="5" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="019E8080" file="../app/app_inc/circular buffer.h" linenr="64" column="12" str="max_size" scope="01893220" type="name" varId="5"/>
+    <token id="019E7F80" file="../app/app_inc/circular buffer.h" linenr="64" column="20" str=";" scope="01893220"/>
+    <token id="019E81C0" file="../app/app_inc/circular buffer.h" linenr="65" column="1" str="}" scope="01893220" link="018526D8"/>
+    <token id="02D35BB8" file="../app/app_inc/circular buffer.h" linenr="65" column="0" str=";" scope="01893220"/>
+    <token id="019E7E00" file="../app/app_inc/circular buffer.h" linenr="89" column="1" str="void" scope="01893220" type="name"/>
+    <token id="019E7FC0" file="../app/app_inc/circular buffer.h" linenr="89" column="6" str="CircularBufferInit" scope="01893220" type="name" function="02C7EBB8" astParent="019E8580"/>
+    <token id="019E8580" file="../app/app_inc/circular buffer.h" linenr="89" column="24" str="(" scope="01893220" link="02B52500" astOperand1="019E7FC0" astOperand2="019E8440" valueType-type="void"/>
+    <token id="019E7E80" file="../app/app_inc/circular buffer.h" linenr="89" column="25" str="struct" scope="01893220" type="name"/>
+    <token id="02D35E78" file="../app/app_inc/circular buffer.h" linenr="89" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="019E80C0"/>
+    <token id="019E80C0" file="../app/app_inc/circular buffer.h" linenr="89" column="47" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="019E7E40" astOperand1="02D35E78" astOperand2="019E8240"/>
+    <token id="019E8240" file="../app/app_inc/circular buffer.h" linenr="89" column="48" str="ctx" scope="01893220" type="name" varId="6" variable="01852420" astParent="019E80C0" valueType-type="record" valueType-pointer="1"/>
+    <token id="019E7E40" file="../app/app_inc/circular buffer.h" linenr="89" column="51" str="," scope="01893220" astParent="019E8380" astOperand1="019E80C0" astOperand2="019E8500"/>
+    <token id="019E8140" file="../app/app_inc/circular buffer.h" linenr="89" column="53" str="void" scope="01893220" type="name" astParent="019E8500"/>
+    <token id="019E8500" file="../app/app_inc/circular buffer.h" linenr="89" column="58" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="019E7E40" astOperand1="019E8140" astOperand2="019E8340"/>
+    <token id="019E8340" file="../app/app_inc/circular buffer.h" linenr="89" column="59" str="buf" scope="01893220" type="name" varId="7" variable="019E8308" astParent="019E8500" valueType-type="void" valueType-pointer="1"/>
+    <token id="019E8380" file="../app/app_inc/circular buffer.h" linenr="89" column="62" str="," scope="01893220" astParent="019E8440" astOperand1="019E7E40" astOperand2="019E7EC0"/>
+    <token id="019E83C0" file="../app/app_inc/circular buffer.h" linenr="89" column="64" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="019E7EC0" file="../app/app_inc/circular buffer.h" linenr="89" column="71" str="buf_size" scope="01893220" type="name" varId="8" variable="019E84C8" astParent="019E8380" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="019E8440" file="../app/app_inc/circular buffer.h" linenr="89" column="79" str="," scope="01893220" astParent="019E8580" astOperand1="019E8380" astOperand2="02B52200"/>
+    <token id="019E7F00" file="../app/app_inc/circular buffer.h" linenr="90" column="25" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02B52200" file="../app/app_inc/circular buffer.h" linenr="90" column="32" str="element_size" scope="01893220" type="name" varId="9" variable="02D35900" astParent="019E8440" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02B52500" file="../app/app_inc/circular buffer.h" linenr="90" column="44" str=")" scope="01893220" link="019E8580"/>
+    <token id="02B526C0" file="../app/app_inc/circular buffer.h" linenr="90" column="45" str=";" scope="01893220"/>
+    <token id="02B52240" file="../app/app_inc/circular buffer.h" linenr="100" column="1" str="void" scope="01893220" type="name"/>
+    <token id="02B520C0" file="../app/app_inc/circular buffer.h" linenr="100" column="6" str="CircularBufferClear" scope="01893220" type="name" function="02C81290" astParent="02B52080"/>
+    <token id="02B52080" file="../app/app_inc/circular buffer.h" linenr="100" column="25" str="(" scope="01893220" link="02B521C0" astOperand1="02B520C0" astOperand2="02B522C0" valueType-type="void"/>
+    <token id="02B52100" file="../app/app_inc/circular buffer.h" linenr="100" column="26" str="struct" scope="01893220" type="name"/>
+    <token id="02D35FB8" file="../app/app_inc/circular buffer.h" linenr="100" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="02B522C0"/>
+    <token id="02B522C0" file="../app/app_inc/circular buffer.h" linenr="100" column="48" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02B52080" astOperand1="02D35FB8" astOperand2="02B52300"/>
+    <token id="02B52300" file="../app/app_inc/circular buffer.h" linenr="100" column="49" str="ctx" scope="01893220" type="name" varId="10" variable="02BB00A0" astParent="02B522C0" valueType-type="record" valueType-pointer="1"/>
+    <token id="02B521C0" file="../app/app_inc/circular buffer.h" linenr="100" column="52" str=")" scope="01893220" link="02B52080"/>
+    <token id="02B52140" file="../app/app_inc/circular buffer.h" linenr="100" column="53" str=";" scope="01893220"/>
+    <token id="02B52580" file="../app/app_inc/circular buffer.h" linenr="114" column="1" str="int8_t" scope="01893220" type="name"/>
+    <token id="02B52180" file="../app/app_inc/circular buffer.h" linenr="114" column="8" str="CircularBufferPushBack" scope="01893220" type="name" function="02C81028" astParent="02B525C0"/>
+    <token id="02B525C0" file="../app/app_inc/circular buffer.h" linenr="114" column="30" str="(" scope="01893220" link="02B52640" astOperand1="02B52180" astOperand2="02B52340" valueType-type="char" valueType-sign="signed"/>
+    <token id="02B527C0" file="../app/app_inc/circular buffer.h" linenr="114" column="31" str="struct" scope="01893220" type="name"/>
+    <token id="02D35BF8" file="../app/app_inc/circular buffer.h" linenr="114" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="02B52540"/>
+    <token id="02B52540" file="../app/app_inc/circular buffer.h" linenr="114" column="53" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02B52340" astOperand1="02D35BF8" astOperand2="02B523C0"/>
+    <token id="02B523C0" file="../app/app_inc/circular buffer.h" linenr="114" column="54" str="ctx" scope="01893220" type="name" varId="11" variable="02BB06A0" astParent="02B52540" valueType-type="record" valueType-pointer="1"/>
+    <token id="02B52340" file="../app/app_inc/circular buffer.h" linenr="114" column="57" str="," scope="01893220" astParent="02B525C0" astOperand1="02B52540" astOperand2="02B52700"/>
+    <token id="02B52600" file="../app/app_inc/circular buffer.h" linenr="114" column="59" str="void" scope="01893220" type="name" astParent="02B52700"/>
+    <token id="02B52700" file="../app/app_inc/circular buffer.h" linenr="114" column="64" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02B52340" astOperand1="02B52600" astOperand2="02B52400"/>
+    <token id="02B52400" file="../app/app_inc/circular buffer.h" linenr="114" column="65" str="val" scope="01893220" type="name" varId="12" variable="02BB0660" astParent="02B52700" valueType-type="void" valueType-pointer="1"/>
+    <token id="02B52640" file="../app/app_inc/circular buffer.h" linenr="114" column="68" str=")" scope="01893220" link="02B525C0"/>
+    <token id="02B52680" file="../app/app_inc/circular buffer.h" linenr="114" column="69" str=";" scope="01893220"/>
+    <token id="02B52740" file="../app/app_inc/circular buffer.h" linenr="130" column="1" str="int8_t" scope="01893220" type="name"/>
+    <token id="02B52780" file="../app/app_inc/circular buffer.h" linenr="130" column="8" str="CircularBufferPopFront" scope="01893220" type="name" function="02C810D8" astParent="02B52280"/>
+    <token id="02B52280" file="../app/app_inc/circular buffer.h" linenr="130" column="30" str="(" scope="01893220" link="02D35378" astOperand1="02B52780" astOperand2="02B52480" valueType-type="char" valueType-sign="signed"/>
+    <token id="02B52380" file="../app/app_inc/circular buffer.h" linenr="130" column="31" str="struct" scope="01893220" type="name"/>
+    <token id="02D35838" file="../app/app_inc/circular buffer.h" linenr="130" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="02B52440"/>
+    <token id="02B52440" file="../app/app_inc/circular buffer.h" linenr="130" column="53" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02B52480" astOperand1="02D35838" astOperand2="02B52040"/>
+    <token id="02B52040" file="../app/app_inc/circular buffer.h" linenr="130" column="54" str="ctx" scope="01893220" type="name" varId="13" variable="02BAFFE0" astParent="02B52440" valueType-type="record" valueType-pointer="1"/>
+    <token id="02B52480" file="../app/app_inc/circular buffer.h" linenr="130" column="57" str="," scope="01893220" astParent="02B52280" astOperand1="02B52440" astOperand2="02D35438"/>
+    <token id="02B524C0" file="../app/app_inc/circular buffer.h" linenr="130" column="59" str="void" scope="01893220" type="name" astParent="02D35438"/>
+    <token id="02D35438" file="../app/app_inc/circular buffer.h" linenr="130" column="64" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02B52480" astOperand1="02B524C0" astOperand2="02D353F8"/>
+    <token id="02D353F8" file="../app/app_inc/circular buffer.h" linenr="130" column="65" str="val" scope="01893220" type="name" varId="14" variable="02BB02A0" astParent="02D35438" valueType-type="void" valueType-pointer="1"/>
+    <token id="02D35378" file="../app/app_inc/circular buffer.h" linenr="130" column="68" str=")" scope="01893220" link="02B52280"/>
+    <token id="02D35778" file="../app/app_inc/circular buffer.h" linenr="130" column="69" str=";" scope="01893220"/>
+    <token id="02D35478" file="../app/app_inc/circular buffer.h" linenr="147" column="1" str="int8_t" scope="01893220" type="name"/>
+    <token id="02D356B8" file="../app/app_inc/circular buffer.h" linenr="147" column="8" str="CircularBufferPeek" scope="01893220" type="name" function="02C81188" astParent="02D354B8"/>
+    <token id="02D354B8" file="../app/app_inc/circular buffer.h" linenr="147" column="26" str="(" scope="01893220" link="02D35738" astOperand1="02D356B8" astOperand2="02D356F8" valueType-type="char" valueType-sign="signed"/>
+    <token id="02D357B8" file="../app/app_inc/circular buffer.h" linenr="147" column="27" str="const" scope="01893220" type="name"/>
+    <token id="02D357F8" file="../app/app_inc/circular buffer.h" linenr="147" column="33" str="struct" scope="01893220" type="name"/>
+    <token id="02D35C38" file="../app/app_inc/circular buffer.h" linenr="147" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="02D351B8"/>
+    <token id="02D351B8" file="../app/app_inc/circular buffer.h" linenr="147" column="55" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02D35578" astOperand1="02D35C38" astOperand2="02D350F8"/>
+    <token id="02D350F8" file="../app/app_inc/circular buffer.h" linenr="147" column="56" str="ctx" scope="01893220" type="name" varId="15" variable="02BB00E0" astParent="02D351B8" valueType-type="record" valueType-pointer="1" valueType-constness="1"/>
+    <token id="02D35578" file="../app/app_inc/circular buffer.h" linenr="147" column="59" str="," scope="01893220" astParent="02D356F8" astOperand1="02D351B8" astOperand2="02D354F8"/>
+    <token id="02D35038" file="../app/app_inc/circular buffer.h" linenr="147" column="61" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02D354F8" file="../app/app_inc/circular buffer.h" linenr="147" column="68" str="num" scope="01893220" type="name" varId="16" variable="02BB06E0" astParent="02D35578" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02D356F8" file="../app/app_inc/circular buffer.h" linenr="147" column="71" str="," scope="01893220" astParent="02D354B8" astOperand1="02D35578" astOperand2="02D35078"/>
+    <token id="02D353B8" file="../app/app_inc/circular buffer.h" linenr="148" column="28" str="void" scope="01893220" type="name" astParent="02D35078"/>
+    <token id="02D35078" file="../app/app_inc/circular buffer.h" linenr="148" column="33" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02D356F8" astOperand1="02D353B8" astOperand2="02D35538"/>
+    <token id="02D35538" file="../app/app_inc/circular buffer.h" linenr="148" column="34" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02D35078" astOperand1="02D350B8" valueType-type="void" valueType-pointer="1"/>
+    <token id="02D350B8" file="../app/app_inc/circular buffer.h" linenr="148" column="35" str="elem" scope="01893220" type="name" varId="17" variable="02BB04A0" astParent="02D35538" valueType-type="void" valueType-pointer="2"/>
+    <token id="02D35738" file="../app/app_inc/circular buffer.h" linenr="148" column="39" str=")" scope="01893220" link="02D354B8"/>
+    <token id="02D35178" file="../app/app_inc/circular buffer.h" linenr="148" column="40" str=";" scope="01893220"/>
+    <token id="02D35138" file="../app/app_inc/circular buffer.h" linenr="159" column="1" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02D351F8" file="../app/app_inc/circular buffer.h" linenr="159" column="8" str="CircularBufferSize" scope="01893220" type="name" function="02C811E0" astParent="02D35238"/>
+    <token id="02D35238" file="../app/app_inc/circular buffer.h" linenr="159" column="26" str="(" scope="01893220" link="02D352F8" astOperand1="02D351F8" astOperand2="02D35338" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02D35278" file="../app/app_inc/circular buffer.h" linenr="159" column="27" str="const" scope="01893220" type="name"/>
+    <token id="02D352B8" file="../app/app_inc/circular buffer.h" linenr="159" column="33" str="struct" scope="01893220" type="name"/>
+    <token id="02D35878" file="../app/app_inc/circular buffer.h" linenr="159" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="02D35338"/>
+    <token id="02D35338" file="../app/app_inc/circular buffer.h" linenr="159" column="55" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02D35238" astOperand1="02D35878" astOperand2="02D355B8"/>
+    <token id="02D355B8" file="../app/app_inc/circular buffer.h" linenr="159" column="56" str="ctx" scope="01893220" type="name" varId="18" variable="02BB01E0" astParent="02D35338" valueType-type="record" valueType-pointer="1" valueType-constness="1"/>
+    <token id="02D352F8" file="../app/app_inc/circular buffer.h" linenr="159" column="59" str=")" scope="01893220" link="02D35238"/>
+    <token id="02D355F8" file="../app/app_inc/circular buffer.h" linenr="159" column="60" str=";" scope="01893220"/>
+    <token id="02D35638" file="../app/app_inc/circular buffer.h" linenr="170" column="1" str="long" scope="01893220" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02D35678" file="../app/app_inc/circular buffer.h" linenr="170" column="8" str="CircularBufferSpace" scope="01893220" type="name" function="02C81A20" astParent="02D35A38"/>
+    <token id="02D35A38" file="../app/app_inc/circular buffer.h" linenr="170" column="27" str="(" scope="01893220" link="02D35A78" astOperand1="02D35678" astOperand2="02D35EB8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02D359F8" file="../app/app_inc/circular buffer.h" linenr="170" column="28" str="const" scope="01893220" type="name"/>
+    <token id="02D35C78" file="../app/app_inc/circular buffer.h" linenr="170" column="34" str="struct" scope="01893220" type="name"/>
+    <token id="02D358B8" file="../app/app_inc/circular buffer.h" linenr="170" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="02D35EB8"/>
+    <token id="02D35EB8" file="../app/app_inc/circular buffer.h" linenr="170" column="56" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02D35A38" astOperand1="02D358B8" astOperand2="02D359B8"/>
+    <token id="02D359B8" file="../app/app_inc/circular buffer.h" linenr="170" column="57" str="ctx" scope="01893220" type="name" varId="19" variable="02BB03A0" astParent="02D35EB8" valueType-type="record" valueType-pointer="1" valueType-constness="1"/>
+    <token id="02D35A78" file="../app/app_inc/circular buffer.h" linenr="170" column="60" str=")" scope="01893220" link="02D35A38"/>
+    <token id="02D35CF8" file="../app/app_inc/circular buffer.h" linenr="170" column="61" str=";" scope="01893220"/>
+    <token id="02D35D78" file="../app/app_inc/circular buffer.h" linenr="181" column="8" str="bool" scope="01893220" type="name"/>
+    <token id="02D35AF8" file="../app/app_inc/circular buffer.h" linenr="181" column="13" str="CircularBufferEmpty" scope="01893220" type="name" function="02C81918" astParent="02D35B38"/>
+    <token id="02D35B38" file="../app/app_inc/circular buffer.h" linenr="181" column="32" str="(" scope="01893220" link="02D35978" astOperand1="02D35AF8" astOperand2="02D35DF8" valueType-type="bool"/>
+    <token id="02D35F78" file="../app/app_inc/circular buffer.h" linenr="181" column="33" str="const" scope="01893220" type="name"/>
+    <token id="02D35DB8" file="../app/app_inc/circular buffer.h" linenr="181" column="39" str="struct" scope="01893220" type="name"/>
+    <token id="02D35CB8" file="../app/app_inc/circular buffer.h" linenr="181" column="0" str="CircularBufferContext" scope="01893220" type="name" astParent="02D35DF8"/>
+    <token id="02D35DF8" file="../app/app_inc/circular buffer.h" linenr="181" column="61" str="*" scope="01893220" type="op" isArithmeticalOp="True" astParent="02D35B38" astOperand1="02D35CB8" astOperand2="02D35EF8"/>
+    <token id="02D35EF8" file="../app/app_inc/circular buffer.h" linenr="181" column="62" str="ctx" scope="01893220" type="name" varId="20" variable="02BB0420" astParent="02D35DF8" valueType-type="record" valueType-pointer="1" valueType-constness="1"/>
+    <token id="02D35978" file="../app/app_inc/circular buffer.h" linenr="181" column="65" str=")" scope="01893220" link="02D35B38"/>
+    <token id="02D35B78" file="../app/app_inc/circular buffer.h" linenr="181" column="66" str=";" scope="01893220"/>
+  </tokenlist>
+  <scopes>
+    <scope id="01893220" type="Global">
+      <functionList>
+        <function id="02C7EBB8" tokenDef="019E7FC0" name="CircularBufferInit" type="Function">
+          <arg nr="1" variable="01852420"/>
+          <arg nr="2" variable="019E8308"/>
+          <arg nr="3" variable="019E84C8"/>
+          <arg nr="4" variable="02D35900"/>
+        </function>
+        <function id="02C81290" tokenDef="02B520C0" name="CircularBufferClear" type="Function">
+          <arg nr="1" variable="02BB00A0"/>
+        </function>
+        <function id="02C81028" tokenDef="02B52180" name="CircularBufferPushBack" type="Function">
+          <arg nr="1" variable="02BB06A0"/>
+          <arg nr="2" variable="02BB0660"/>
+        </function>
+        <function id="02C810D8" tokenDef="02B52780" name="CircularBufferPopFront" type="Function">
+          <arg nr="1" variable="02BAFFE0"/>
+          <arg nr="2" variable="02BB02A0"/>
+        </function>
+        <function id="02C81188" tokenDef="02D356B8" name="CircularBufferPeek" type="Function">
+          <arg nr="1" variable="02BB00E0"/>
+          <arg nr="2" variable="02BB06E0"/>
+          <arg nr="3" variable="02BB04A0"/>
+        </function>
+        <function id="02C811E0" tokenDef="02D351F8" name="CircularBufferSize" type="Function">
+          <arg nr="1" variable="02BB01E0"/>
+        </function>
+        <function id="02C81A20" tokenDef="02D35678" name="CircularBufferSpace" type="Function">
+          <arg nr="1" variable="02BB03A0"/>
+        </function>
+        <function id="02C81918" tokenDef="02D35AF8" name="CircularBufferEmpty" type="Function">
+          <arg nr="1" variable="02BB0420"/>
+        </function>
+      </functionList>
+    </scope>
+  </scopes>
+  <variables>
+    <var id="01852420" nameToken="019E8240" typeStartToken="02D35E78" typeEndToken="019E80C0" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="019E8308" nameToken="019E8340" typeStartToken="019E8140" typeEndToken="019E8500" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="019E84C8" nameToken="019E7EC0" typeStartToken="019E83C0" typeEndToken="019E83C0" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02BAFFE0" nameToken="02B52040" typeStartToken="02D35838" typeEndToken="02B52440" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB00A0" nameToken="02B52300" typeStartToken="02D35FB8" typeEndToken="02B522C0" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB00E0" nameToken="02D350F8" typeStartToken="02D35C38" typeEndToken="02D351B8" access="Argument" scope="00000000" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB01E0" nameToken="02D355B8" typeStartToken="02D35878" typeEndToken="02D35338" access="Argument" scope="00000000" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB02A0" nameToken="02D353F8" typeStartToken="02B524C0" typeEndToken="02D35438" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB03A0" nameToken="02D359B8" typeStartToken="02D358B8" typeEndToken="02D35EB8" access="Argument" scope="00000000" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB0420" nameToken="02D35EF8" typeStartToken="02D35CB8" typeEndToken="02D35DF8" access="Argument" scope="00000000" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB04A0" nameToken="02D350B8" typeStartToken="02D353B8" typeEndToken="02D35538" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB0660" nameToken="02B52400" typeStartToken="02B52600" typeEndToken="02B52700" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB06A0" nameToken="02B523C0" typeStartToken="02D35BF8" typeEndToken="02B52540" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02BB06E0" nameToken="02D354F8" typeStartToken="02D35038" typeEndToken="02D35038" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02D35900" nameToken="02B52200" typeStartToken="019E7F00" typeEndToken="019E7F00" access="Argument" scope="00000000" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+  </variables>
+  <valueflow>
+  </valueflow>
+</dump>
+</dumps>

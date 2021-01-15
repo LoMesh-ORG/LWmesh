@@ -1,0 +1,999 @@
+<?xml version="1.0"?>
+<dumps>
+  <platform name="win32A" char_bit="8" short_bit="16" int_bit="32" long_bit="32" long_long_bit="64" pointer_bit="32"/>
+  <rawtokens>
+    <file index="0" name="../app/app_src/circular buffer.c"/>
+    <tok fileIndex="0" linenr="1" column="1" str="/*x * MIT License (MIT)x *x * Copyright (c) 2019 Kristian Kinderlxxvx *x * Permission is hereby granted, free of charge, to any person obtaining a copyx * of this software and associated documentation files (the &quot;Software&quot;), to dealx * in the Software without restriction, including without limitation the rightsx * to use, copy, modify, merge, publish, distribute, sublicense, and/or sellx * copies of the Software, and to permit persons to whom the Software isx * furnished to do so, subject to the following conditions:x *x * The above copyright notice and this permission notice shall be included inx * all copies or substantial portions of the Software.x *x * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS ORx * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,x * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THEx * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERx * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,x * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THEx * SOFTWARE.x */"/>
+    <tok fileIndex="0" linenr="25" column="1" str="/*!x * \addtogroup CIRCULARBUFFERx * \{x *x * \file        circularbuffer.cx *x * \brief       A circular buffer implementation.x *x * \}x */"/>
+    <tok fileIndex="0" linenr="36" column="1" str="/* **** Includes **** */"/>
+    <tok fileIndex="0" linenr="38" column="1" str="#"/>
+    <tok fileIndex="0" linenr="38" column="2" str="include"/>
+    <tok fileIndex="0" linenr="38" column="10" str="&quot;circular buffer.h&quot;"/>
+    <tok fileIndex="0" linenr="39" column="1" str="#"/>
+    <tok fileIndex="0" linenr="39" column="2" str="include"/>
+    <tok fileIndex="0" linenr="39" column="10" str="&lt;string.h&gt;"/>
+    <tok fileIndex="0" linenr="40" column="1" str="#"/>
+    <tok fileIndex="0" linenr="40" column="2" str="include"/>
+    <tok fileIndex="0" linenr="40" column="10" str="&lt;assert.h&gt;"/>
+    <tok fileIndex="0" linenr="42" column="1" str="/* **** Defines **** */"/>
+    <tok fileIndex="0" linenr="44" column="1" str="/* **** Typedefs **** */"/>
+    <tok fileIndex="0" linenr="46" column="1" str="/* **** Static Function Declarations **** */"/>
+    <tok fileIndex="0" linenr="48" column="1" str="/* **** Static Variables **** */"/>
+    <tok fileIndex="0" linenr="50" column="1" str="/* **** Global Variables **** */"/>
+    <tok fileIndex="0" linenr="52" column="1" str="/* **** Static Function Definitions **** */"/>
+    <tok fileIndex="0" linenr="54" column="1" str="/* **** Function Definitions **** */"/>
+    <tok fileIndex="0" linenr="56" column="1" str="void"/>
+    <tok fileIndex="0" linenr="56" column="6" str="CircularBufferInit"/>
+    <tok fileIndex="0" linenr="56" column="24" str="("/>
+    <tok fileIndex="0" linenr="56" column="25" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="56" column="47" str="*"/>
+    <tok fileIndex="0" linenr="56" column="48" str="ctx"/>
+    <tok fileIndex="0" linenr="56" column="51" str=","/>
+    <tok fileIndex="0" linenr="56" column="53" str="void"/>
+    <tok fileIndex="0" linenr="56" column="58" str="*"/>
+    <tok fileIndex="0" linenr="56" column="59" str="buf"/>
+    <tok fileIndex="0" linenr="56" column="62" str=","/>
+    <tok fileIndex="0" linenr="56" column="64" str="size_t"/>
+    <tok fileIndex="0" linenr="56" column="71" str="buf_size"/>
+    <tok fileIndex="0" linenr="56" column="79" str=","/>
+    <tok fileIndex="0" linenr="57" column="25" str="size_t"/>
+    <tok fileIndex="0" linenr="57" column="32" str="element_size"/>
+    <tok fileIndex="0" linenr="57" column="44" str=")"/>
+    <tok fileIndex="0" linenr="57" column="46" str="{"/>
+    <tok fileIndex="0" linenr="58" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="58" column="12" str="size"/>
+    <tok fileIndex="0" linenr="58" column="17" str="="/>
+    <tok fileIndex="0" linenr="58" column="19" str="buf_size"/>
+    <tok fileIndex="0" linenr="58" column="28" str="/"/>
+    <tok fileIndex="0" linenr="58" column="30" str="element_size"/>
+    <tok fileIndex="0" linenr="58" column="42" str=";"/>
+    <tok fileIndex="0" linenr="59" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="59" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="59" column="10" str="buf"/>
+    <tok fileIndex="0" linenr="59" column="14" str="="/>
+    <tok fileIndex="0" linenr="59" column="16" str="buf"/>
+    <tok fileIndex="0" linenr="59" column="19" str=";"/>
+    <tok fileIndex="0" linenr="60" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="60" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="60" column="10" str="write_pos"/>
+    <tok fileIndex="0" linenr="60" column="20" str="="/>
+    <tok fileIndex="0" linenr="60" column="22" str="0u"/>
+    <tok fileIndex="0" linenr="60" column="24" str=";"/>
+    <tok fileIndex="0" linenr="61" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="61" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="61" column="10" str="read_pos"/>
+    <tok fileIndex="0" linenr="61" column="19" str="="/>
+    <tok fileIndex="0" linenr="61" column="21" str="0u"/>
+    <tok fileIndex="0" linenr="61" column="23" str=";"/>
+    <tok fileIndex="0" linenr="62" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="62" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="62" column="10" str="element_size"/>
+    <tok fileIndex="0" linenr="62" column="23" str="="/>
+    <tok fileIndex="0" linenr="62" column="25" str="element_size"/>
+    <tok fileIndex="0" linenr="62" column="37" str=";"/>
+    <tok fileIndex="0" linenr="63" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="63" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="63" column="10" str="max_size"/>
+    <tok fileIndex="0" linenr="63" column="19" str="="/>
+    <tok fileIndex="0" linenr="63" column="21" str="size"/>
+    <tok fileIndex="0" linenr="63" column="26" str="-"/>
+    <tok fileIndex="0" linenr="63" column="28" str="1"/>
+    <tok fileIndex="0" linenr="63" column="29" str=";"/>
+    <tok fileIndex="0" linenr="64" column="1" str="}"/>
+    <tok fileIndex="0" linenr="66" column="1" str="void"/>
+    <tok fileIndex="0" linenr="66" column="6" str="CircularBufferClear"/>
+    <tok fileIndex="0" linenr="66" column="25" str="("/>
+    <tok fileIndex="0" linenr="66" column="26" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="66" column="48" str="*"/>
+    <tok fileIndex="0" linenr="66" column="49" str="ctx"/>
+    <tok fileIndex="0" linenr="66" column="52" str=")"/>
+    <tok fileIndex="0" linenr="66" column="54" str="{"/>
+    <tok fileIndex="0" linenr="67" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="67" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="67" column="10" str="write_pos"/>
+    <tok fileIndex="0" linenr="67" column="20" str="="/>
+    <tok fileIndex="0" linenr="67" column="22" str="0u"/>
+    <tok fileIndex="0" linenr="67" column="24" str=";"/>
+    <tok fileIndex="0" linenr="68" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="68" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="68" column="10" str="read_pos"/>
+    <tok fileIndex="0" linenr="68" column="19" str="="/>
+    <tok fileIndex="0" linenr="68" column="21" str="0u"/>
+    <tok fileIndex="0" linenr="68" column="23" str=";"/>
+    <tok fileIndex="0" linenr="69" column="1" str="}"/>
+    <tok fileIndex="0" linenr="71" column="1" str="int8_t"/>
+    <tok fileIndex="0" linenr="71" column="8" str="CircularBufferPushBack"/>
+    <tok fileIndex="0" linenr="71" column="30" str="("/>
+    <tok fileIndex="0" linenr="71" column="31" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="71" column="53" str="*"/>
+    <tok fileIndex="0" linenr="71" column="54" str="ctx"/>
+    <tok fileIndex="0" linenr="71" column="57" str=","/>
+    <tok fileIndex="0" linenr="71" column="59" str="void"/>
+    <tok fileIndex="0" linenr="71" column="64" str="*"/>
+    <tok fileIndex="0" linenr="71" column="65" str="val"/>
+    <tok fileIndex="0" linenr="71" column="68" str=")"/>
+    <tok fileIndex="0" linenr="71" column="70" str="{"/>
+    <tok fileIndex="0" linenr="72" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="72" column="12" str="write_pos"/>
+    <tok fileIndex="0" linenr="72" column="22" str="="/>
+    <tok fileIndex="0" linenr="72" column="24" str="("/>
+    <tok fileIndex="0" linenr="72" column="25" str="ctx"/>
+    <tok fileIndex="0" linenr="72" column="28" str="-&gt;"/>
+    <tok fileIndex="0" linenr="72" column="30" str="write_pos"/>
+    <tok fileIndex="0" linenr="72" column="40" str="+"/>
+    <tok fileIndex="0" linenr="72" column="42" str="1"/>
+    <tok fileIndex="0" linenr="72" column="43" str=")"/>
+    <tok fileIndex="0" linenr="72" column="45" str="&amp;"/>
+    <tok fileIndex="0" linenr="72" column="47" str="ctx"/>
+    <tok fileIndex="0" linenr="72" column="50" str="-&gt;"/>
+    <tok fileIndex="0" linenr="72" column="52" str="max_size"/>
+    <tok fileIndex="0" linenr="72" column="60" str=";"/>
+    <tok fileIndex="0" linenr="74" column="5" str="// Check if full"/>
+    <tok fileIndex="0" linenr="75" column="5" str="if"/>
+    <tok fileIndex="0" linenr="75" column="8" str="("/>
+    <tok fileIndex="0" linenr="75" column="9" str="write_pos"/>
+    <tok fileIndex="0" linenr="75" column="19" str="=="/>
+    <tok fileIndex="0" linenr="75" column="22" str="ctx"/>
+    <tok fileIndex="0" linenr="75" column="25" str="-&gt;"/>
+    <tok fileIndex="0" linenr="75" column="27" str="read_pos"/>
+    <tok fileIndex="0" linenr="75" column="35" str=")"/>
+    <tok fileIndex="0" linenr="75" column="37" str="{"/>
+    <tok fileIndex="0" linenr="76" column="1" str="//    if (0 == CircularBufferSpace(&amp;ctx)) {"/>
+    <tok fileIndex="0" linenr="77" column="9" str="return"/>
+    <tok fileIndex="0" linenr="77" column="16" str="-"/>
+    <tok fileIndex="0" linenr="77" column="17" str="1"/>
+    <tok fileIndex="0" linenr="77" column="18" str=";"/>
+    <tok fileIndex="0" linenr="78" column="5" str="}"/>
+    <tok fileIndex="0" linenr="80" column="5" str="memcpy"/>
+    <tok fileIndex="0" linenr="80" column="11" str="("/>
+    <tok fileIndex="0" linenr="80" column="12" str="&amp;"/>
+    <tok fileIndex="0" linenr="80" column="13" str="ctx"/>
+    <tok fileIndex="0" linenr="80" column="16" str="-&gt;"/>
+    <tok fileIndex="0" linenr="80" column="18" str="buf"/>
+    <tok fileIndex="0" linenr="80" column="21" str="["/>
+    <tok fileIndex="0" linenr="80" column="22" str="ctx"/>
+    <tok fileIndex="0" linenr="80" column="25" str="-&gt;"/>
+    <tok fileIndex="0" linenr="80" column="27" str="write_pos"/>
+    <tok fileIndex="0" linenr="80" column="37" str="*"/>
+    <tok fileIndex="0" linenr="80" column="39" str="ctx"/>
+    <tok fileIndex="0" linenr="80" column="42" str="-&gt;"/>
+    <tok fileIndex="0" linenr="80" column="44" str="element_size"/>
+    <tok fileIndex="0" linenr="80" column="56" str="]"/>
+    <tok fileIndex="0" linenr="80" column="57" str=","/>
+    <tok fileIndex="0" linenr="80" column="59" str="val"/>
+    <tok fileIndex="0" linenr="80" column="62" str=","/>
+    <tok fileIndex="0" linenr="81" column="12" str="ctx"/>
+    <tok fileIndex="0" linenr="81" column="15" str="-&gt;"/>
+    <tok fileIndex="0" linenr="81" column="17" str="element_size"/>
+    <tok fileIndex="0" linenr="81" column="29" str=")"/>
+    <tok fileIndex="0" linenr="81" column="30" str=";"/>
+    <tok fileIndex="0" linenr="82" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="82" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="82" column="10" str="write_pos"/>
+    <tok fileIndex="0" linenr="82" column="20" str="="/>
+    <tok fileIndex="0" linenr="82" column="22" str="write_pos"/>
+    <tok fileIndex="0" linenr="82" column="31" str=";"/>
+    <tok fileIndex="0" linenr="84" column="5" str="return"/>
+    <tok fileIndex="0" linenr="84" column="12" str="0"/>
+    <tok fileIndex="0" linenr="84" column="13" str=";"/>
+    <tok fileIndex="0" linenr="85" column="1" str="}"/>
+    <tok fileIndex="0" linenr="87" column="1" str="int8_t"/>
+    <tok fileIndex="0" linenr="87" column="8" str="CircularBufferPopFront"/>
+    <tok fileIndex="0" linenr="87" column="30" str="("/>
+    <tok fileIndex="0" linenr="87" column="31" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="87" column="53" str="*"/>
+    <tok fileIndex="0" linenr="87" column="54" str="ctx"/>
+    <tok fileIndex="0" linenr="87" column="57" str=","/>
+    <tok fileIndex="0" linenr="87" column="59" str="void"/>
+    <tok fileIndex="0" linenr="87" column="64" str="*"/>
+    <tok fileIndex="0" linenr="87" column="65" str="val"/>
+    <tok fileIndex="0" linenr="87" column="68" str=")"/>
+    <tok fileIndex="0" linenr="87" column="70" str="{"/>
+    <tok fileIndex="0" linenr="88" column="5" str="// Check if empty"/>
+    <tok fileIndex="0" linenr="89" column="5" str="if"/>
+    <tok fileIndex="0" linenr="89" column="8" str="("/>
+    <tok fileIndex="0" linenr="89" column="9" str="ctx"/>
+    <tok fileIndex="0" linenr="89" column="12" str="-&gt;"/>
+    <tok fileIndex="0" linenr="89" column="14" str="read_pos"/>
+    <tok fileIndex="0" linenr="89" column="23" str="=="/>
+    <tok fileIndex="0" linenr="89" column="26" str="ctx"/>
+    <tok fileIndex="0" linenr="89" column="29" str="-&gt;"/>
+    <tok fileIndex="0" linenr="89" column="31" str="write_pos"/>
+    <tok fileIndex="0" linenr="89" column="40" str=")"/>
+    <tok fileIndex="0" linenr="89" column="42" str="{"/>
+    <tok fileIndex="0" linenr="90" column="9" str="return"/>
+    <tok fileIndex="0" linenr="90" column="16" str="-"/>
+    <tok fileIndex="0" linenr="90" column="17" str="1"/>
+    <tok fileIndex="0" linenr="90" column="18" str=";"/>
+    <tok fileIndex="0" linenr="91" column="5" str="}"/>
+    <tok fileIndex="0" linenr="93" column="5" str="memcpy"/>
+    <tok fileIndex="0" linenr="93" column="11" str="("/>
+    <tok fileIndex="0" linenr="93" column="12" str="val"/>
+    <tok fileIndex="0" linenr="93" column="15" str=","/>
+    <tok fileIndex="0" linenr="93" column="17" str="&amp;"/>
+    <tok fileIndex="0" linenr="93" column="18" str="ctx"/>
+    <tok fileIndex="0" linenr="93" column="21" str="-&gt;"/>
+    <tok fileIndex="0" linenr="93" column="23" str="buf"/>
+    <tok fileIndex="0" linenr="93" column="26" str="["/>
+    <tok fileIndex="0" linenr="93" column="27" str="ctx"/>
+    <tok fileIndex="0" linenr="93" column="30" str="-&gt;"/>
+    <tok fileIndex="0" linenr="93" column="32" str="read_pos"/>
+    <tok fileIndex="0" linenr="93" column="41" str="*"/>
+    <tok fileIndex="0" linenr="93" column="43" str="ctx"/>
+    <tok fileIndex="0" linenr="93" column="46" str="-&gt;"/>
+    <tok fileIndex="0" linenr="93" column="48" str="element_size"/>
+    <tok fileIndex="0" linenr="93" column="60" str="]"/>
+    <tok fileIndex="0" linenr="93" column="61" str=","/>
+    <tok fileIndex="0" linenr="94" column="12" str="ctx"/>
+    <tok fileIndex="0" linenr="94" column="15" str="-&gt;"/>
+    <tok fileIndex="0" linenr="94" column="17" str="element_size"/>
+    <tok fileIndex="0" linenr="94" column="29" str=")"/>
+    <tok fileIndex="0" linenr="94" column="30" str=";"/>
+    <tok fileIndex="0" linenr="96" column="5" str="ctx"/>
+    <tok fileIndex="0" linenr="96" column="8" str="-&gt;"/>
+    <tok fileIndex="0" linenr="96" column="10" str="read_pos"/>
+    <tok fileIndex="0" linenr="96" column="19" str="="/>
+    <tok fileIndex="0" linenr="96" column="21" str="("/>
+    <tok fileIndex="0" linenr="96" column="22" str="ctx"/>
+    <tok fileIndex="0" linenr="96" column="25" str="-&gt;"/>
+    <tok fileIndex="0" linenr="96" column="27" str="read_pos"/>
+    <tok fileIndex="0" linenr="96" column="36" str="+"/>
+    <tok fileIndex="0" linenr="96" column="38" str="1"/>
+    <tok fileIndex="0" linenr="96" column="39" str=")"/>
+    <tok fileIndex="0" linenr="96" column="41" str="&amp;"/>
+    <tok fileIndex="0" linenr="96" column="43" str="ctx"/>
+    <tok fileIndex="0" linenr="96" column="46" str="-&gt;"/>
+    <tok fileIndex="0" linenr="96" column="48" str="max_size"/>
+    <tok fileIndex="0" linenr="96" column="56" str=";"/>
+    <tok fileIndex="0" linenr="98" column="5" str="return"/>
+    <tok fileIndex="0" linenr="98" column="12" str="0"/>
+    <tok fileIndex="0" linenr="98" column="13" str=";"/>
+    <tok fileIndex="0" linenr="99" column="1" str="}"/>
+    <tok fileIndex="0" linenr="101" column="1" str="int8_t"/>
+    <tok fileIndex="0" linenr="101" column="8" str="CircularBufferPeek"/>
+    <tok fileIndex="0" linenr="101" column="26" str="("/>
+    <tok fileIndex="0" linenr="101" column="27" str="const"/>
+    <tok fileIndex="0" linenr="101" column="33" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="101" column="55" str="*"/>
+    <tok fileIndex="0" linenr="101" column="56" str="ctx"/>
+    <tok fileIndex="0" linenr="101" column="59" str=","/>
+    <tok fileIndex="0" linenr="101" column="61" str="size_t"/>
+    <tok fileIndex="0" linenr="101" column="68" str="num"/>
+    <tok fileIndex="0" linenr="101" column="71" str=","/>
+    <tok fileIndex="0" linenr="102" column="28" str="void"/>
+    <tok fileIndex="0" linenr="102" column="33" str="*"/>
+    <tok fileIndex="0" linenr="102" column="34" str="*"/>
+    <tok fileIndex="0" linenr="102" column="35" str="elem"/>
+    <tok fileIndex="0" linenr="102" column="39" str=")"/>
+    <tok fileIndex="0" linenr="102" column="41" str="{"/>
+    <tok fileIndex="0" linenr="103" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="103" column="12" str="write_pos"/>
+    <tok fileIndex="0" linenr="103" column="22" str="="/>
+    <tok fileIndex="0" linenr="103" column="24" str="ctx"/>
+    <tok fileIndex="0" linenr="103" column="27" str="-&gt;"/>
+    <tok fileIndex="0" linenr="103" column="29" str="write_pos"/>
+    <tok fileIndex="0" linenr="103" column="38" str=";"/>
+    <tok fileIndex="0" linenr="104" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="104" column="12" str="read_pos"/>
+    <tok fileIndex="0" linenr="104" column="21" str="="/>
+    <tok fileIndex="0" linenr="104" column="23" str="ctx"/>
+    <tok fileIndex="0" linenr="104" column="26" str="-&gt;"/>
+    <tok fileIndex="0" linenr="104" column="28" str="read_pos"/>
+    <tok fileIndex="0" linenr="104" column="36" str=";"/>
+    <tok fileIndex="0" linenr="105" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="105" column="12" str="size"/>
+    <tok fileIndex="0" linenr="105" column="17" str="="/>
+    <tok fileIndex="0" linenr="105" column="19" str="("/>
+    <tok fileIndex="0" linenr="105" column="20" str="("/>
+    <tok fileIndex="0" linenr="105" column="21" str="write_pos"/>
+    <tok fileIndex="0" linenr="105" column="31" str="-"/>
+    <tok fileIndex="0" linenr="105" column="33" str="read_pos"/>
+    <tok fileIndex="0" linenr="105" column="41" str=")"/>
+    <tok fileIndex="0" linenr="105" column="43" str="&amp;"/>
+    <tok fileIndex="0" linenr="105" column="45" str="ctx"/>
+    <tok fileIndex="0" linenr="105" column="48" str="-&gt;"/>
+    <tok fileIndex="0" linenr="105" column="50" str="max_size"/>
+    <tok fileIndex="0" linenr="105" column="58" str=")"/>
+    <tok fileIndex="0" linenr="105" column="59" str=";"/>
+    <tok fileIndex="0" linenr="107" column="5" str="// Check that the buffer isn't empty and"/>
+    <tok fileIndex="0" linenr="108" column="5" str="// that num is less than number of added elements"/>
+    <tok fileIndex="0" linenr="109" column="5" str="if"/>
+    <tok fileIndex="0" linenr="109" column="8" str="("/>
+    <tok fileIndex="0" linenr="109" column="9" str="("/>
+    <tok fileIndex="0" linenr="109" column="10" str="size"/>
+    <tok fileIndex="0" linenr="109" column="15" str="=="/>
+    <tok fileIndex="0" linenr="109" column="18" str="0"/>
+    <tok fileIndex="0" linenr="109" column="19" str=")"/>
+    <tok fileIndex="0" linenr="109" column="21" str="||"/>
+    <tok fileIndex="0" linenr="109" column="24" str="("/>
+    <tok fileIndex="0" linenr="109" column="25" str="size"/>
+    <tok fileIndex="0" linenr="109" column="30" str="&lt;="/>
+    <tok fileIndex="0" linenr="109" column="33" str="num"/>
+    <tok fileIndex="0" linenr="109" column="36" str=")"/>
+    <tok fileIndex="0" linenr="109" column="37" str=")"/>
+    <tok fileIndex="0" linenr="109" column="39" str="{"/>
+    <tok fileIndex="0" linenr="110" column="9" str="goto"/>
+    <tok fileIndex="0" linenr="110" column="14" str="fail"/>
+    <tok fileIndex="0" linenr="110" column="18" str=";"/>
+    <tok fileIndex="0" linenr="111" column="5" str="}"/>
+    <tok fileIndex="0" linenr="113" column="5" str="size_t"/>
+    <tok fileIndex="0" linenr="113" column="12" str="element_pos"/>
+    <tok fileIndex="0" linenr="113" column="24" str="="/>
+    <tok fileIndex="0" linenr="113" column="26" str="("/>
+    <tok fileIndex="0" linenr="113" column="27" str="("/>
+    <tok fileIndex="0" linenr="113" column="28" str="read_pos"/>
+    <tok fileIndex="0" linenr="113" column="37" str="+"/>
+    <tok fileIndex="0" linenr="113" column="39" str="num"/>
+    <tok fileIndex="0" linenr="113" column="42" str=")"/>
+    <tok fileIndex="0" linenr="113" column="44" str="&amp;"/>
+    <tok fileIndex="0" linenr="113" column="46" str="ctx"/>
+    <tok fileIndex="0" linenr="113" column="49" str="-&gt;"/>
+    <tok fileIndex="0" linenr="113" column="51" str="max_size"/>
+    <tok fileIndex="0" linenr="113" column="59" str=")"/>
+    <tok fileIndex="0" linenr="113" column="60" str=";"/>
+    <tok fileIndex="0" linenr="114" column="5" str="*"/>
+    <tok fileIndex="0" linenr="114" column="6" str="elem"/>
+    <tok fileIndex="0" linenr="114" column="11" str="="/>
+    <tok fileIndex="0" linenr="114" column="13" str="&amp;"/>
+    <tok fileIndex="0" linenr="114" column="14" str="ctx"/>
+    <tok fileIndex="0" linenr="114" column="17" str="-&gt;"/>
+    <tok fileIndex="0" linenr="114" column="19" str="buf"/>
+    <tok fileIndex="0" linenr="114" column="22" str="["/>
+    <tok fileIndex="0" linenr="114" column="23" str="element_pos"/>
+    <tok fileIndex="0" linenr="114" column="35" str="*"/>
+    <tok fileIndex="0" linenr="114" column="37" str="ctx"/>
+    <tok fileIndex="0" linenr="114" column="40" str="-&gt;"/>
+    <tok fileIndex="0" linenr="114" column="42" str="element_size"/>
+    <tok fileIndex="0" linenr="114" column="54" str="]"/>
+    <tok fileIndex="0" linenr="114" column="55" str=";"/>
+    <tok fileIndex="0" linenr="116" column="5" str="return"/>
+    <tok fileIndex="0" linenr="116" column="12" str="0"/>
+    <tok fileIndex="0" linenr="116" column="13" str=";"/>
+    <tok fileIndex="0" linenr="118" column="1" str="fail"/>
+    <tok fileIndex="0" linenr="118" column="5" str=":"/>
+    <tok fileIndex="0" linenr="119" column="5" str="return"/>
+    <tok fileIndex="0" linenr="119" column="12" str="-"/>
+    <tok fileIndex="0" linenr="119" column="13" str="1"/>
+    <tok fileIndex="0" linenr="119" column="14" str=";"/>
+    <tok fileIndex="0" linenr="120" column="1" str="}"/>
+    <tok fileIndex="0" linenr="122" column="1" str="size_t"/>
+    <tok fileIndex="0" linenr="122" column="8" str="CircularBufferSize"/>
+    <tok fileIndex="0" linenr="122" column="26" str="("/>
+    <tok fileIndex="0" linenr="122" column="27" str="const"/>
+    <tok fileIndex="0" linenr="122" column="33" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="122" column="55" str="*"/>
+    <tok fileIndex="0" linenr="122" column="56" str="ctx"/>
+    <tok fileIndex="0" linenr="122" column="59" str=")"/>
+    <tok fileIndex="0" linenr="122" column="61" str="{"/>
+    <tok fileIndex="0" linenr="123" column="5" str="return"/>
+    <tok fileIndex="0" linenr="123" column="12" str="("/>
+    <tok fileIndex="0" linenr="123" column="13" str="("/>
+    <tok fileIndex="0" linenr="123" column="14" str="ctx"/>
+    <tok fileIndex="0" linenr="123" column="17" str="-&gt;"/>
+    <tok fileIndex="0" linenr="123" column="19" str="write_pos"/>
+    <tok fileIndex="0" linenr="123" column="29" str="-"/>
+    <tok fileIndex="0" linenr="123" column="31" str="ctx"/>
+    <tok fileIndex="0" linenr="123" column="34" str="-&gt;"/>
+    <tok fileIndex="0" linenr="123" column="36" str="read_pos"/>
+    <tok fileIndex="0" linenr="123" column="44" str=")"/>
+    <tok fileIndex="0" linenr="123" column="46" str="&amp;"/>
+    <tok fileIndex="0" linenr="123" column="48" str="ctx"/>
+    <tok fileIndex="0" linenr="123" column="51" str="-&gt;"/>
+    <tok fileIndex="0" linenr="123" column="53" str="max_size"/>
+    <tok fileIndex="0" linenr="123" column="61" str=")"/>
+    <tok fileIndex="0" linenr="123" column="62" str=";"/>
+    <tok fileIndex="0" linenr="124" column="1" str="}"/>
+    <tok fileIndex="0" linenr="126" column="1" str="size_t"/>
+    <tok fileIndex="0" linenr="126" column="8" str="CircularBufferSpace"/>
+    <tok fileIndex="0" linenr="126" column="27" str="("/>
+    <tok fileIndex="0" linenr="126" column="28" str="const"/>
+    <tok fileIndex="0" linenr="126" column="34" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="126" column="56" str="*"/>
+    <tok fileIndex="0" linenr="126" column="57" str="ctx"/>
+    <tok fileIndex="0" linenr="126" column="60" str=")"/>
+    <tok fileIndex="0" linenr="126" column="62" str="{"/>
+    <tok fileIndex="0" linenr="128" column="5" str="return"/>
+    <tok fileIndex="0" linenr="128" column="12" str="("/>
+    <tok fileIndex="0" linenr="128" column="13" str="ctx"/>
+    <tok fileIndex="0" linenr="128" column="16" str="-&gt;"/>
+    <tok fileIndex="0" linenr="128" column="18" str="max_size"/>
+    <tok fileIndex="0" linenr="128" column="27" str="-"/>
+    <tok fileIndex="0" linenr="128" column="29" str="CircularBufferSize"/>
+    <tok fileIndex="0" linenr="128" column="47" str="("/>
+    <tok fileIndex="0" linenr="128" column="48" str="ctx"/>
+    <tok fileIndex="0" linenr="128" column="51" str=")"/>
+    <tok fileIndex="0" linenr="128" column="52" str=")"/>
+    <tok fileIndex="0" linenr="128" column="53" str=";"/>
+    <tok fileIndex="0" linenr="129" column="1" str="}"/>
+    <tok fileIndex="0" linenr="131" column="1" str="inline"/>
+    <tok fileIndex="0" linenr="131" column="8" str="bool"/>
+    <tok fileIndex="0" linenr="131" column="13" str="CircularBufferEmpty"/>
+    <tok fileIndex="0" linenr="131" column="32" str="("/>
+    <tok fileIndex="0" linenr="131" column="33" str="const"/>
+    <tok fileIndex="0" linenr="131" column="39" str="CircularBufferContext"/>
+    <tok fileIndex="0" linenr="131" column="61" str="*"/>
+    <tok fileIndex="0" linenr="131" column="62" str="ctx"/>
+    <tok fileIndex="0" linenr="131" column="65" str=")"/>
+    <tok fileIndex="0" linenr="131" column="67" str="{"/>
+    <tok fileIndex="0" linenr="132" column="5" str="return"/>
+    <tok fileIndex="0" linenr="132" column="12" str="("/>
+    <tok fileIndex="0" linenr="132" column="13" str="ctx"/>
+    <tok fileIndex="0" linenr="132" column="16" str="-&gt;"/>
+    <tok fileIndex="0" linenr="132" column="18" str="read_pos"/>
+    <tok fileIndex="0" linenr="132" column="27" str="=="/>
+    <tok fileIndex="0" linenr="132" column="30" str="ctx"/>
+    <tok fileIndex="0" linenr="132" column="33" str="-&gt;"/>
+    <tok fileIndex="0" linenr="132" column="35" str="write_pos"/>
+    <tok fileIndex="0" linenr="132" column="44" str=")"/>
+    <tok fileIndex="0" linenr="132" column="45" str=";"/>
+    <tok fileIndex="0" linenr="133" column="1" str="}"/>
+  </rawtokens>
+  <suppressions>
+  </suppressions>
+<dump cfg="">
+  <standards>
+    <c version="c11"/>
+    <cpp version="c++20"/>
+  </standards>
+  <directivelist>
+    <directive file="../app/app_src/circular buffer.c" linenr="38" str="#include &quot;circular buffer.h&quot;"/>
+    <directive file="../app/app_src/circular buffer.c" linenr="39" str="#include &lt;string.h&gt;"/>
+    <directive file="../app/app_src/circular buffer.c" linenr="40" str="#include &lt;assert.h&gt;"/>
+  </directivelist>
+  <tokenlist>
+    <token id="01852418" file="../app/app_src/circular buffer.c" linenr="56" column="1" str="void" scope="018920E8" type="name"/>
+    <token id="01852698" file="../app/app_src/circular buffer.c" linenr="56" column="6" str="CircularBufferInit" scope="018920E8" type="name" function="01951628" astParent="01852658"/>
+    <token id="01852658" file="../app/app_src/circular buffer.c" linenr="56" column="24" str="(" scope="018920E8" link="01893190" astOperand1="01852698" astOperand2="01893710" valueType-type="void"/>
+    <token id="01851F98" file="../app/app_src/circular buffer.c" linenr="56" column="25" str="CircularBufferContext" scope="018920E8" type="name" astParent="01852158"/>
+    <token id="01852158" file="../app/app_src/circular buffer.c" linenr="56" column="47" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="018526D8" astOperand1="01851F98" astOperand2="01852198"/>
+    <token id="01852198" file="../app/app_src/circular buffer.c" linenr="56" column="48" str="ctx" scope="018920E8" type="name" varId="1" variable="02E41BF0" astParent="01852158"/>
+    <token id="018526D8" file="../app/app_src/circular buffer.c" linenr="56" column="51" str="," scope="018920E8" astParent="01851F58" astOperand1="01852158" astOperand2="01852558"/>
+    <token id="01852358" file="../app/app_src/circular buffer.c" linenr="56" column="53" str="void" scope="018920E8" type="name" astParent="01852558"/>
+    <token id="01852558" file="../app/app_src/circular buffer.c" linenr="56" column="58" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="018526D8" astOperand1="01852358" astOperand2="01852718"/>
+    <token id="01852718" file="../app/app_src/circular buffer.c" linenr="56" column="59" str="buf" scope="018920E8" type="name" varId="2" variable="02E41C30" astParent="01852558" valueType-type="void" valueType-pointer="1"/>
+    <token id="01851F58" file="../app/app_src/circular buffer.c" linenr="56" column="62" str="," scope="018920E8" astParent="01893710" astOperand1="018526D8" astOperand2="01893750"/>
+    <token id="01893390" file="../app/app_src/circular buffer.c" linenr="56" column="64" str="long" scope="018920E8" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="01893750" file="../app/app_src/circular buffer.c" linenr="56" column="71" str="buf_size" scope="018920E8" type="name" varId="3" variable="02E417B0" astParent="01851F58" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="01893710" file="../app/app_src/circular buffer.c" linenr="56" column="79" str="," scope="018920E8" astParent="01852658" astOperand1="01851F58" astOperand2="01893250"/>
+    <token id="01893150" file="../app/app_src/circular buffer.c" linenr="57" column="25" str="long" scope="018920E8" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="01893250" file="../app/app_src/circular buffer.c" linenr="57" column="32" str="element_size" scope="018920E8" type="name" varId="4" variable="02E41730" astParent="01893710" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="01893190" file="../app/app_src/circular buffer.c" linenr="57" column="44" str=")" scope="018920E8" link="01852658"/>
+    <token id="01893050" file="../app/app_src/circular buffer.c" linenr="57" column="46" str="{" scope="018928A0" link="02B52080"/>
+    <token id="01893790" file="../app/app_src/circular buffer.c" linenr="58" column="5" str="long" scope="018928A0" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="018936D0" file="../app/app_src/circular buffer.c" linenr="58" column="12" str="size" scope="018928A0" type="name" varId="5" variable="02E41930" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="01893110" file="../app/app_src/circular buffer.c" linenr="58" column="17" str=";" scope="018928A0"/>
+    <token id="02E40F68" file="../app/app_src/circular buffer.c" linenr="58" column="12" str="size" scope="018928A0" type="name" varId="5" variable="02E41930" astParent="02E413A8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E413A8" file="../app/app_src/circular buffer.c" linenr="58" column="17" str="=" scope="018928A0" type="op" isAssignmentOp="True" astOperand1="02E40F68" astOperand2="018931D0" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="01893090" file="../app/app_src/circular buffer.c" linenr="58" column="19" str="buf_size" scope="018928A0" type="name" varId="3" variable="02E417B0" astParent="018931D0" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="018931D0" file="../app/app_src/circular buffer.c" linenr="58" column="28" str="/" scope="018928A0" type="op" isArithmeticalOp="True" astParent="02E413A8" astOperand1="01893090" astOperand2="018930D0" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="018930D0" file="../app/app_src/circular buffer.c" linenr="58" column="30" str="element_size" scope="018928A0" type="name" varId="4" variable="02E41730" astParent="018931D0" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="01893290" file="../app/app_src/circular buffer.c" linenr="58" column="42" str=";" scope="018928A0"/>
+    <token id="01893450" file="../app/app_src/circular buffer.c" linenr="59" column="5" str="ctx" scope="018928A0" type="name" varId="1" variable="02E41BF0" astParent="01893650"/>
+    <token id="01893650" file="../app/app_src/circular buffer.c" linenr="59" column="8" str="." scope="018928A0" astParent="01893210" astOperand1="01893450" astOperand2="018932D0" originalName="->"/>
+    <token id="018932D0" file="../app/app_src/circular buffer.c" linenr="59" column="10" str="buf" scope="018928A0" type="name" varId="6" astParent="01893650"/>
+    <token id="01893210" file="../app/app_src/circular buffer.c" linenr="59" column="14" str="=" scope="018928A0" type="op" isAssignmentOp="True" astOperand1="01893650" astOperand2="01893610"/>
+    <token id="01893610" file="../app/app_src/circular buffer.c" linenr="59" column="16" str="buf" scope="018928A0" type="name" varId="2" variable="02E41C30" astParent="01893210" valueType-type="void" valueType-pointer="1"/>
+    <token id="018937D0" file="../app/app_src/circular buffer.c" linenr="59" column="19" str=";" scope="018928A0"/>
+    <token id="01893310" file="../app/app_src/circular buffer.c" linenr="60" column="5" str="ctx" scope="018928A0" type="name" varId="1" variable="02E41BF0" astParent="01893350"/>
+    <token id="01893350" file="../app/app_src/circular buffer.c" linenr="60" column="8" str="." scope="018928A0" astParent="01893690" astOperand1="01893310" astOperand2="018933D0" originalName="->"/>
+    <token id="018933D0" file="../app/app_src/circular buffer.c" linenr="60" column="10" str="write_pos" scope="018928A0" type="name" varId="7" astParent="01893350"/>
+    <token id="01893690" file="../app/app_src/circular buffer.c" linenr="60" column="20" str="=" scope="018928A0" type="op" isAssignmentOp="True" astOperand1="01893350" astOperand2="01893410"/>
+    <token id="01893410" file="../app/app_src/circular buffer.c" linenr="60" column="22" str="0u" scope="018928A0" type="number" isInt="True" values="0190B890" astParent="01893690" valueType-type="int" valueType-sign="unsigned"/>
+    <token id="01893590" file="../app/app_src/circular buffer.c" linenr="60" column="24" str=";" scope="018928A0"/>
+    <token id="01893490" file="../app/app_src/circular buffer.c" linenr="61" column="5" str="ctx" scope="018928A0" type="name" varId="1" variable="02E41BF0" astParent="018934D0"/>
+    <token id="018934D0" file="../app/app_src/circular buffer.c" linenr="61" column="8" str="." scope="018928A0" astParent="01893550" astOperand1="01893490" astOperand2="01893510" originalName="->"/>
+    <token id="01893510" file="../app/app_src/circular buffer.c" linenr="61" column="10" str="read_pos" scope="018928A0" type="name" varId="8" astParent="018934D0"/>
+    <token id="01893550" file="../app/app_src/circular buffer.c" linenr="61" column="19" str="=" scope="018928A0" type="op" isAssignmentOp="True" astOperand1="018934D0" astOperand2="018935D0"/>
+    <token id="018935D0" file="../app/app_src/circular buffer.c" linenr="61" column="21" str="0u" scope="018928A0" type="number" isInt="True" values="0190B8A0" astParent="01893550" valueType-type="int" valueType-sign="unsigned"/>
+    <token id="02B520C0" file="../app/app_src/circular buffer.c" linenr="61" column="23" str=";" scope="018928A0"/>
+    <token id="02B52640" file="../app/app_src/circular buffer.c" linenr="62" column="5" str="ctx" scope="018928A0" type="name" varId="1" variable="02E41BF0" astParent="02B52140"/>
+    <token id="02B52140" file="../app/app_src/circular buffer.c" linenr="62" column="8" str="." scope="018928A0" astParent="02B52680" astOperand1="02B52640" astOperand2="02B52600" originalName="->"/>
+    <token id="02B52600" file="../app/app_src/circular buffer.c" linenr="62" column="10" str="element_size" scope="018928A0" type="name" varId="9" astParent="02B52140"/>
+    <token id="02B52680" file="../app/app_src/circular buffer.c" linenr="62" column="23" str="=" scope="018928A0" type="op" isAssignmentOp="True" astOperand1="02B52140" astOperand2="02B52340"/>
+    <token id="02B52340" file="../app/app_src/circular buffer.c" linenr="62" column="25" str="element_size" scope="018928A0" type="name" varId="4" variable="02E41730" astParent="02B52680" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02B52200" file="../app/app_src/circular buffer.c" linenr="62" column="37" str=";" scope="018928A0"/>
+    <token id="02B524C0" file="../app/app_src/circular buffer.c" linenr="63" column="5" str="ctx" scope="018928A0" type="name" varId="1" variable="02E41BF0" astParent="02B52040"/>
+    <token id="02B52040" file="../app/app_src/circular buffer.c" linenr="63" column="8" str="." scope="018928A0" astParent="02B522C0" astOperand1="02B524C0" astOperand2="02B52780" originalName="->"/>
+    <token id="02B52780" file="../app/app_src/circular buffer.c" linenr="63" column="10" str="max_size" scope="018928A0" type="name" varId="10" astParent="02B52040"/>
+    <token id="02B522C0" file="../app/app_src/circular buffer.c" linenr="63" column="19" str="=" scope="018928A0" type="op" isAssignmentOp="True" astOperand1="02B52040" astOperand2="02B52740"/>
+    <token id="02B52100" file="../app/app_src/circular buffer.c" linenr="63" column="21" str="size" scope="018928A0" type="name" varId="5" variable="02E41930" astParent="02B52740" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02B52740" file="../app/app_src/circular buffer.c" linenr="63" column="26" str="-" scope="018928A0" type="op" isArithmeticalOp="True" astParent="02B522C0" astOperand1="02B52100" astOperand2="02B52480" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02B52480" file="../app/app_src/circular buffer.c" linenr="63" column="28" str="1" scope="018928A0" type="number" isInt="True" values="0190B790" astParent="02B52740" valueType-type="int" valueType-sign="signed"/>
+    <token id="02B52180" file="../app/app_src/circular buffer.c" linenr="63" column="29" str=";" scope="018928A0"/>
+    <token id="02B52080" file="../app/app_src/circular buffer.c" linenr="64" column="1" str="}" scope="018928A0" link="01893050"/>
+    <token id="02B52300" file="../app/app_src/circular buffer.c" linenr="66" column="1" str="void" scope="018920E8" type="name"/>
+    <token id="02B52500" file="../app/app_src/circular buffer.c" linenr="66" column="6" str="CircularBufferClear" scope="018920E8" type="name" function="019533B8" astParent="02B52400"/>
+    <token id="02B52400" file="../app/app_src/circular buffer.c" linenr="66" column="25" str="(" scope="018920E8" link="02B526C0" astOperand1="02B52500" astOperand2="02B52240" valueType-type="void"/>
+    <token id="02B521C0" file="../app/app_src/circular buffer.c" linenr="66" column="26" str="CircularBufferContext" scope="018920E8" type="name" astParent="02B52240"/>
+    <token id="02B52240" file="../app/app_src/circular buffer.c" linenr="66" column="48" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02B52400" astOperand1="02B521C0" astOperand2="02B52280"/>
+    <token id="02B52280" file="../app/app_src/circular buffer.c" linenr="66" column="49" str="ctx" scope="018920E8" type="name" varId="11" variable="02E41830" astParent="02B52240"/>
+    <token id="02B526C0" file="../app/app_src/circular buffer.c" linenr="66" column="52" str=")" scope="018920E8" link="02B52400"/>
+    <token id="02B52380" file="../app/app_src/circular buffer.c" linenr="66" column="54" str="{" scope="01892640" link="02B3EE90"/>
+    <token id="02B52440" file="../app/app_src/circular buffer.c" linenr="67" column="5" str="ctx" scope="01892640" type="name" varId="11" variable="02E41830" astParent="02B523C0"/>
+    <token id="02B523C0" file="../app/app_src/circular buffer.c" linenr="67" column="8" str="." scope="01892640" astParent="02B52580" astOperand1="02B52440" astOperand2="02B52540" originalName="->"/>
+    <token id="02B52540" file="../app/app_src/circular buffer.c" linenr="67" column="10" str="write_pos" scope="01892640" type="name" varId="12" astParent="02B523C0"/>
+    <token id="02B52580" file="../app/app_src/circular buffer.c" linenr="67" column="20" str="=" scope="01892640" type="op" isAssignmentOp="True" astOperand1="02B523C0" astOperand2="02B52700"/>
+    <token id="02B52700" file="../app/app_src/circular buffer.c" linenr="67" column="22" str="0u" scope="01892640" type="number" isInt="True" values="0190B8F0" astParent="02B52580" valueType-type="int" valueType-sign="unsigned"/>
+    <token id="02B527C0" file="../app/app_src/circular buffer.c" linenr="67" column="24" str=";" scope="01892640"/>
+    <token id="02B525C0" file="../app/app_src/circular buffer.c" linenr="68" column="5" str="ctx" scope="01892640" type="name" varId="11" variable="02E41830" astParent="02B3EA50"/>
+    <token id="02B3EA50" file="../app/app_src/circular buffer.c" linenr="68" column="8" str="." scope="01892640" astParent="02B3E990" astOperand1="02B525C0" astOperand2="02B3EF50" originalName="->"/>
+    <token id="02B3EF50" file="../app/app_src/circular buffer.c" linenr="68" column="10" str="read_pos" scope="01892640" type="name" varId="13" astParent="02B3EA50"/>
+    <token id="02B3E990" file="../app/app_src/circular buffer.c" linenr="68" column="19" str="=" scope="01892640" type="op" isAssignmentOp="True" astOperand1="02B3EA50" astOperand2="02B3ECD0"/>
+    <token id="02B3ECD0" file="../app/app_src/circular buffer.c" linenr="68" column="21" str="0u" scope="01892640" type="number" isInt="True" values="0190B7A0" astParent="02B3E990" valueType-type="int" valueType-sign="unsigned"/>
+    <token id="02B3EB50" file="../app/app_src/circular buffer.c" linenr="68" column="23" str=";" scope="01892640"/>
+    <token id="02B3EE90" file="../app/app_src/circular buffer.c" linenr="69" column="1" str="}" scope="01892640" link="02B52380"/>
+    <token id="02B3EE50" file="../app/app_src/circular buffer.c" linenr="71" column="1" str="int8_t" scope="018920E8" type="name"/>
+    <token id="02B3EED0" file="../app/app_src/circular buffer.c" linenr="71" column="8" str="CircularBufferPushBack" scope="018920E8" type="name" function="019536D0" astParent="02B3EF10"/>
+    <token id="02B3EF10" file="../app/app_src/circular buffer.c" linenr="71" column="30" str="(" scope="018920E8" link="02B3EC50" astOperand1="02B3EED0" astOperand2="02B3EB10" valueType-type="char" valueType-sign="signed"/>
+    <token id="02B3EC90" file="../app/app_src/circular buffer.c" linenr="71" column="31" str="CircularBufferContext" scope="018920E8" type="name" astParent="02B3EF90"/>
+    <token id="02B3EF90" file="../app/app_src/circular buffer.c" linenr="71" column="53" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02B3EB10" astOperand1="02B3EC90" astOperand2="02B3ED90"/>
+    <token id="02B3ED90" file="../app/app_src/circular buffer.c" linenr="71" column="54" str="ctx" scope="018920E8" type="name" varId="14" variable="02E41870" astParent="02B3EF90"/>
+    <token id="02B3EB10" file="../app/app_src/circular buffer.c" linenr="71" column="57" str="," scope="018920E8" astParent="02B3EF10" astOperand1="02B3EF90" astOperand2="02B3EAD0"/>
+    <token id="02B3EDD0" file="../app/app_src/circular buffer.c" linenr="71" column="59" str="void" scope="018920E8" type="name" astParent="02B3EAD0"/>
+    <token id="02B3EAD0" file="../app/app_src/circular buffer.c" linenr="71" column="64" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02B3EB10" astOperand1="02B3EDD0" astOperand2="02B3E850"/>
+    <token id="02B3E850" file="../app/app_src/circular buffer.c" linenr="71" column="65" str="val" scope="018920E8" type="name" varId="15" variable="02E418B0" astParent="02B3EAD0" valueType-type="void" valueType-pointer="1"/>
+    <token id="02B3EC50" file="../app/app_src/circular buffer.c" linenr="71" column="68" str=")" scope="018920E8" link="02B3EF10"/>
+    <token id="02B3E890" file="../app/app_src/circular buffer.c" linenr="71" column="70" str="{" scope="01892348" link="02E3EED0"/>
+    <token id="02B3E9D0" file="../app/app_src/circular buffer.c" linenr="72" column="5" str="long" scope="01892348" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02B3EA90" file="../app/app_src/circular buffer.c" linenr="72" column="12" str="write_pos" scope="01892348" type="name" varId="16" variable="02E41B30" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02B3EE10" file="../app/app_src/circular buffer.c" linenr="72" column="22" str=";" scope="01892348"/>
+    <token id="02E411A8" file="../app/app_src/circular buffer.c" linenr="72" column="12" str="write_pos" scope="01892348" type="name" varId="16" variable="02E41B30" astParent="02E40DA8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E40DA8" file="../app/app_src/circular buffer.c" linenr="72" column="22" str="=" scope="01892348" type="op" isAssignmentOp="True" astOperand1="02E411A8" astOperand2="02B3EC10" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02B3EBD0" file="../app/app_src/circular buffer.c" linenr="72" column="24" str="(" scope="01892348" link="02B3EB90"/>
+    <token id="02B3EFD0" file="../app/app_src/circular buffer.c" linenr="72" column="25" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02B3ED10"/>
+    <token id="02B3ED10" file="../app/app_src/circular buffer.c" linenr="72" column="28" str="." scope="01892348" astParent="02B3EA10" astOperand1="02B3EFD0" astOperand2="02B3E8D0" originalName="->"/>
+    <token id="02B3E8D0" file="../app/app_src/circular buffer.c" linenr="72" column="30" str="write_pos" scope="01892348" type="name" varId="17" astParent="02B3ED10"/>
+    <token id="02B3EA10" file="../app/app_src/circular buffer.c" linenr="72" column="40" str="+" scope="01892348" type="op" isArithmeticalOp="True" astParent="02B3EC10" astOperand1="02B3ED10" astOperand2="02B3E910"/>
+    <token id="02B3E910" file="../app/app_src/circular buffer.c" linenr="72" column="42" str="1" scope="01892348" type="number" isInt="True" values="0190B7B0" astParent="02B3EA10" valueType-type="int" valueType-sign="signed"/>
+    <token id="02B3EB90" file="../app/app_src/circular buffer.c" linenr="72" column="43" str=")" scope="01892348" link="02B3EBD0"/>
+    <token id="02B3EC10" file="../app/app_src/circular buffer.c" linenr="72" column="45" str="&amp;" scope="01892348" type="op" astParent="02E40DA8" astOperand1="02B3EA10" astOperand2="02B3E950"/>
+    <token id="02B3ED50" file="../app/app_src/circular buffer.c" linenr="72" column="47" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02B3E950"/>
+    <token id="02B3E950" file="../app/app_src/circular buffer.c" linenr="72" column="50" str="." scope="01892348" astParent="02B3EC10" astOperand1="02B3ED50" astOperand2="02B3E190" originalName="->"/>
+    <token id="02B3E190" file="../app/app_src/circular buffer.c" linenr="72" column="52" str="max_size" scope="01892348" type="name" varId="18" astParent="02B3E950"/>
+    <token id="02B3E310" file="../app/app_src/circular buffer.c" linenr="72" column="60" str=";" scope="01892348"/>
+    <token id="02B3E590" file="../app/app_src/circular buffer.c" linenr="75" column="5" str="if" scope="01892348" type="name" astParent="02B3E5D0"/>
+    <token id="02B3E5D0" file="../app/app_src/circular buffer.c" linenr="75" column="8" str="(" scope="01892348" link="02B3E6D0" astOperand1="02B3E590" astOperand2="02B3E3D0"/>
+    <token id="02B3E4D0" file="../app/app_src/circular buffer.c" linenr="75" column="9" str="write_pos" scope="01892348" type="name" varId="16" variable="02E41B30" astParent="02B3E3D0" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02B3E3D0" file="../app/app_src/circular buffer.c" linenr="75" column="19" str="==" scope="01892348" type="op" isComparisonOp="True" astParent="02B3E5D0" astOperand1="02B3E4D0" astOperand2="02B3E610" valueType-type="bool"/>
+    <token id="02B3E550" file="../app/app_src/circular buffer.c" linenr="75" column="22" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02B3E610"/>
+    <token id="02B3E610" file="../app/app_src/circular buffer.c" linenr="75" column="25" str="." scope="01892348" astParent="02B3E3D0" astOperand1="02B3E550" astOperand2="02B3E410" originalName="->"/>
+    <token id="02B3E410" file="../app/app_src/circular buffer.c" linenr="75" column="27" str="read_pos" scope="01892348" type="name" varId="19" astParent="02B3E610"/>
+    <token id="02B3E6D0" file="../app/app_src/circular buffer.c" linenr="75" column="35" str=")" scope="01892348" link="02B3E5D0"/>
+    <token id="02B3E490" file="../app/app_src/circular buffer.c" linenr="75" column="37" str="{" scope="018923E0" link="02B3E210"/>
+    <token id="02B3E250" file="../app/app_src/circular buffer.c" linenr="77" column="9" str="return" scope="018923E0" type="name" astOperand1="02B3E510" valueType-type="char" valueType-sign="signed"/>
+    <token id="02B3E510" file="../app/app_src/circular buffer.c" linenr="77" column="17" str="-1" scope="018923E0" type="number" isInt="True" values="0190B7F0" astParent="02B3E250" valueType-type="int" valueType-sign="signed"/>
+    <token id="02B3E290" file="../app/app_src/circular buffer.c" linenr="77" column="18" str=";" scope="018923E0"/>
+    <token id="02B3E210" file="../app/app_src/circular buffer.c" linenr="78" column="5" str="}" scope="018923E0" link="02B3E490"/>
+    <token id="02B3E790" file="../app/app_src/circular buffer.c" linenr="80" column="5" str="memcpy" scope="01892348" type="name" astParent="02B3E1D0"/>
+    <token id="02B3E1D0" file="../app/app_src/circular buffer.c" linenr="80" column="11" str="(" scope="01892348" link="02E3EE10" astOperand1="02B3E790" astOperand2="02E3EC50"/>
+    <token id="02B3E690" file="../app/app_src/circular buffer.c" linenr="80" column="12" str="&amp;" scope="01892348" type="op" values="02D932E8" astParent="02B3E2D0" astOperand1="02B3E7D0"/>
+    <token id="02B3E150" file="../app/app_src/circular buffer.c" linenr="80" column="13" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02B3E710"/>
+    <token id="02B3E710" file="../app/app_src/circular buffer.c" linenr="80" column="16" str="." scope="01892348" astParent="02B3E7D0" astOperand1="02B3E150" astOperand2="02B3E750" originalName="->"/>
+    <token id="02B3E750" file="../app/app_src/circular buffer.c" linenr="80" column="18" str="buf" scope="01892348" type="name" varId="20" astParent="02B3E710"/>
+    <token id="02B3E7D0" file="../app/app_src/circular buffer.c" linenr="80" column="21" str="[" scope="01892348" link="02B3E110" astParent="02B3E690" astOperand1="02B3E710" astOperand2="02B3E810"/>
+    <token id="02B3E350" file="../app/app_src/circular buffer.c" linenr="80" column="22" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02B3E390"/>
+    <token id="02B3E390" file="../app/app_src/circular buffer.c" linenr="80" column="25" str="." scope="01892348" astParent="02B3E810" astOperand1="02B3E350" astOperand2="02B3E450" originalName="->"/>
+    <token id="02B3E450" file="../app/app_src/circular buffer.c" linenr="80" column="27" str="write_pos" scope="01892348" type="name" varId="17" astParent="02B3E390"/>
+    <token id="02B3E810" file="../app/app_src/circular buffer.c" linenr="80" column="37" str="*" scope="01892348" type="op" isArithmeticalOp="True" astParent="02B3E7D0" astOperand1="02B3E390" astOperand2="02B3E090"/>
+    <token id="02B3E050" file="../app/app_src/circular buffer.c" linenr="80" column="39" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02B3E090"/>
+    <token id="02B3E090" file="../app/app_src/circular buffer.c" linenr="80" column="42" str="." scope="01892348" astParent="02B3E810" astOperand1="02B3E050" astOperand2="02B3E0D0" originalName="->"/>
+    <token id="02B3E0D0" file="../app/app_src/circular buffer.c" linenr="80" column="44" str="element_size" scope="01892348" type="name" varId="21" astParent="02B3E090"/>
+    <token id="02B3E110" file="../app/app_src/circular buffer.c" linenr="80" column="56" str="]" scope="01892348" link="02B3E7D0"/>
+    <token id="02B3E2D0" file="../app/app_src/circular buffer.c" linenr="80" column="57" str="," scope="01892348" astParent="02E3EC50" astOperand1="02B3E690" astOperand2="02E3F210"/>
+    <token id="02E3F210" file="../app/app_src/circular buffer.c" linenr="80" column="59" str="val" scope="01892348" type="name" varId="15" variable="02E418B0" astParent="02B3E2D0" valueType-type="void" valueType-pointer="1"/>
+    <token id="02E3EC50" file="../app/app_src/circular buffer.c" linenr="80" column="62" str="," scope="01892348" astParent="02B3E1D0" astOperand1="02B3E2D0" astOperand2="02E3EE50"/>
+    <token id="02E3ECD0" file="../app/app_src/circular buffer.c" linenr="81" column="12" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02E3EE50"/>
+    <token id="02E3EE50" file="../app/app_src/circular buffer.c" linenr="81" column="15" str="." scope="01892348" astParent="02E3EC50" astOperand1="02E3ECD0" astOperand2="02E3ED90" originalName="->"/>
+    <token id="02E3ED90" file="../app/app_src/circular buffer.c" linenr="81" column="17" str="element_size" scope="01892348" type="name" varId="21" astParent="02E3EE50"/>
+    <token id="02E3EE10" file="../app/app_src/circular buffer.c" linenr="81" column="29" str=")" scope="01892348" link="02B3E1D0"/>
+    <token id="02E3F090" file="../app/app_src/circular buffer.c" linenr="81" column="30" str=";" scope="01892348"/>
+    <token id="02E3EDD0" file="../app/app_src/circular buffer.c" linenr="82" column="5" str="ctx" scope="01892348" type="name" varId="14" variable="02E41870" astParent="02E3F2D0"/>
+    <token id="02E3F2D0" file="../app/app_src/circular buffer.c" linenr="82" column="8" str="." scope="01892348" astParent="02E3EC90" astOperand1="02E3EDD0" astOperand2="02E3EF10" originalName="->"/>
+    <token id="02E3EF10" file="../app/app_src/circular buffer.c" linenr="82" column="10" str="write_pos" scope="01892348" type="name" varId="17" astParent="02E3F2D0"/>
+    <token id="02E3EC90" file="../app/app_src/circular buffer.c" linenr="82" column="20" str="=" scope="01892348" type="op" isAssignmentOp="True" astOperand1="02E3F2D0" astOperand2="02E3ED10"/>
+    <token id="02E3ED10" file="../app/app_src/circular buffer.c" linenr="82" column="22" str="write_pos" scope="01892348" type="name" varId="16" variable="02E41B30" astParent="02E3EC90" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E3EE90" file="../app/app_src/circular buffer.c" linenr="82" column="31" str=";" scope="01892348"/>
+    <token id="02E3F310" file="../app/app_src/circular buffer.c" linenr="84" column="5" str="return" scope="01892348" type="name" astOperand1="02E3ED50" valueType-type="char" valueType-sign="signed"/>
+    <token id="02E3ED50" file="../app/app_src/circular buffer.c" linenr="84" column="12" str="0" scope="01892348" type="number" isInt="True" values="0190B810" astParent="02E3F310" valueType-type="int" valueType-sign="signed"/>
+    <token id="02E3EF90" file="../app/app_src/circular buffer.c" linenr="84" column="13" str=";" scope="01892348"/>
+    <token id="02E3EED0" file="../app/app_src/circular buffer.c" linenr="85" column="1" str="}" scope="01892348" link="02B3E890"/>
+    <token id="02E3F290" file="../app/app_src/circular buffer.c" linenr="87" column="1" str="int8_t" scope="018920E8" type="name"/>
+    <token id="02E3EF50" file="../app/app_src/circular buffer.c" linenr="87" column="8" str="CircularBufferPopFront" scope="018920E8" type="name" function="01953C50" astParent="02E3F350"/>
+    <token id="02E3F350" file="../app/app_src/circular buffer.c" linenr="87" column="30" str="(" scope="018920E8" link="02E3F1D0" astOperand1="02E3EF50" astOperand2="02E3F110" valueType-type="char" valueType-sign="signed"/>
+    <token id="02E3F050" file="../app/app_src/circular buffer.c" linenr="87" column="31" str="CircularBufferContext" scope="018920E8" type="name" astParent="02E3EFD0"/>
+    <token id="02E3EFD0" file="../app/app_src/circular buffer.c" linenr="87" column="53" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02E3F110" astOperand1="02E3F050" astOperand2="02E3F150"/>
+    <token id="02E3F150" file="../app/app_src/circular buffer.c" linenr="87" column="54" str="ctx" scope="018920E8" type="name" varId="22" variable="02E419B0" astParent="02E3EFD0"/>
+    <token id="02E3F110" file="../app/app_src/circular buffer.c" linenr="87" column="57" str="," scope="018920E8" astParent="02E3F350" astOperand1="02E3EFD0" astOperand2="02E3F0D0"/>
+    <token id="02E3F010" file="../app/app_src/circular buffer.c" linenr="87" column="59" str="void" scope="018920E8" type="name" astParent="02E3F0D0"/>
+    <token id="02E3F0D0" file="../app/app_src/circular buffer.c" linenr="87" column="64" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02E3F110" astOperand1="02E3F010" astOperand2="02E3F190"/>
+    <token id="02E3F190" file="../app/app_src/circular buffer.c" linenr="87" column="65" str="val" scope="018920E8" type="name" varId="23" variable="02E419F0" astParent="02E3F0D0" valueType-type="void" valueType-pointer="1"/>
+    <token id="02E3F1D0" file="../app/app_src/circular buffer.c" linenr="87" column="68" str=")" scope="018920E8" link="02E3F350"/>
+    <token id="02E3F250" file="../app/app_src/circular buffer.c" linenr="87" column="70" str="{" scope="018926D8" link="02BB07D8"/>
+    <token id="02E3F390" file="../app/app_src/circular buffer.c" linenr="89" column="5" str="if" scope="018926D8" type="name" astParent="02E3F3D0"/>
+    <token id="02E3F3D0" file="../app/app_src/circular buffer.c" linenr="89" column="8" str="(" scope="018926D8" link="02E3E690" astOperand1="02E3F390" astOperand2="02E3EB10"/>
+    <token id="02E3E590" file="../app/app_src/circular buffer.c" linenr="89" column="9" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02E3E890"/>
+    <token id="02E3E890" file="../app/app_src/circular buffer.c" linenr="89" column="12" str="." scope="018926D8" astParent="02E3EB10" astOperand1="02E3E590" astOperand2="02E3E750" originalName="->"/>
+    <token id="02E3E750" file="../app/app_src/circular buffer.c" linenr="89" column="14" str="read_pos" scope="018926D8" type="name" varId="24" astParent="02E3E890"/>
+    <token id="02E3EB10" file="../app/app_src/circular buffer.c" linenr="89" column="23" str="==" scope="018926D8" type="op" isComparisonOp="True" astParent="02E3F3D0" astOperand1="02E3E890" astOperand2="02E3E990" valueType-type="bool"/>
+    <token id="02E3E5D0" file="../app/app_src/circular buffer.c" linenr="89" column="26" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02E3E990"/>
+    <token id="02E3E990" file="../app/app_src/circular buffer.c" linenr="89" column="29" str="." scope="018926D8" astParent="02E3EB10" astOperand1="02E3E5D0" astOperand2="02E3E650" originalName="->"/>
+    <token id="02E3E650" file="../app/app_src/circular buffer.c" linenr="89" column="31" str="write_pos" scope="018926D8" type="name" varId="25" astParent="02E3E990"/>
+    <token id="02E3E690" file="../app/app_src/circular buffer.c" linenr="89" column="40" str=")" scope="018926D8" link="02E3F3D0"/>
+    <token id="02E3EB90" file="../app/app_src/circular buffer.c" linenr="89" column="42" str="{" scope="01892050" link="02E3E710"/>
+    <token id="02E3EA50" file="../app/app_src/circular buffer.c" linenr="90" column="9" str="return" scope="01892050" type="name" astOperand1="02E3E6D0" valueType-type="char" valueType-sign="signed"/>
+    <token id="02E3E6D0" file="../app/app_src/circular buffer.c" linenr="90" column="17" str="-1" scope="01892050" type="number" isInt="True" values="0190B820" astParent="02E3EA50" valueType-type="int" valueType-sign="signed"/>
+    <token id="02E3EBD0" file="../app/app_src/circular buffer.c" linenr="90" column="18" str=";" scope="01892050"/>
+    <token id="02E3E710" file="../app/app_src/circular buffer.c" linenr="91" column="5" str="}" scope="01892050" link="02E3EB90"/>
+    <token id="02E3E910" file="../app/app_src/circular buffer.c" linenr="93" column="5" str="memcpy" scope="018926D8" type="name" astParent="02E3E790"/>
+    <token id="02E3E790" file="../app/app_src/circular buffer.c" linenr="93" column="11" str="(" scope="018926D8" link="02BB0998" astOperand1="02E3E910" astOperand2="02E3E950"/>
+    <token id="02E3EAD0" file="../app/app_src/circular buffer.c" linenr="93" column="12" str="val" scope="018926D8" type="name" varId="23" variable="02E419F0" astParent="02E3EA90" valueType-type="void" valueType-pointer="1"/>
+    <token id="02E3EA90" file="../app/app_src/circular buffer.c" linenr="93" column="15" str="," scope="018926D8" astParent="02E3E950" astOperand1="02E3EAD0" astOperand2="02E3EC10"/>
+    <token id="02E3EC10" file="../app/app_src/circular buffer.c" linenr="93" column="17" str="&amp;" scope="018926D8" type="op" values="02D93288" astParent="02E3EA90" astOperand1="02E3E490"/>
+    <token id="02E3E450" file="../app/app_src/circular buffer.c" linenr="93" column="18" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02E3EB50"/>
+    <token id="02E3EB50" file="../app/app_src/circular buffer.c" linenr="93" column="21" str="." scope="018926D8" astParent="02E3E490" astOperand1="02E3E450" astOperand2="02E3E4D0" originalName="->"/>
+    <token id="02E3E4D0" file="../app/app_src/circular buffer.c" linenr="93" column="23" str="buf" scope="018926D8" type="name" varId="26" astParent="02E3EB50"/>
+    <token id="02E3E490" file="../app/app_src/circular buffer.c" linenr="93" column="26" str="[" scope="018926D8" link="02E3E8D0" astParent="02E3EC10" astOperand1="02E3EB50" astOperand2="02E3EA10"/>
+    <token id="02E3E510" file="../app/app_src/circular buffer.c" linenr="93" column="27" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02E3E9D0"/>
+    <token id="02E3E9D0" file="../app/app_src/circular buffer.c" linenr="93" column="30" str="." scope="018926D8" astParent="02E3EA10" astOperand1="02E3E510" astOperand2="02E3E7D0" originalName="->"/>
+    <token id="02E3E7D0" file="../app/app_src/circular buffer.c" linenr="93" column="32" str="read_pos" scope="018926D8" type="name" varId="24" astParent="02E3E9D0"/>
+    <token id="02E3EA10" file="../app/app_src/circular buffer.c" linenr="93" column="41" str="*" scope="018926D8" type="op" isArithmeticalOp="True" astParent="02E3E490" astOperand1="02E3E9D0" astOperand2="02E3E550"/>
+    <token id="02E3E810" file="../app/app_src/circular buffer.c" linenr="93" column="43" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02E3E550"/>
+    <token id="02E3E550" file="../app/app_src/circular buffer.c" linenr="93" column="46" str="." scope="018926D8" astParent="02E3EA10" astOperand1="02E3E810" astOperand2="02E3E850" originalName="->"/>
+    <token id="02E3E850" file="../app/app_src/circular buffer.c" linenr="93" column="48" str="element_size" scope="018926D8" type="name" varId="27" astParent="02E3E550"/>
+    <token id="02E3E8D0" file="../app/app_src/circular buffer.c" linenr="93" column="60" str="]" scope="018926D8" link="02E3E490"/>
+    <token id="02E3E950" file="../app/app_src/circular buffer.c" linenr="93" column="61" str="," scope="018926D8" astParent="02E3E790" astOperand1="02E3EA90" astOperand2="02BB0A18"/>
+    <token id="02BB0798" file="../app/app_src/circular buffer.c" linenr="94" column="12" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02BB0A18"/>
+    <token id="02BB0A18" file="../app/app_src/circular buffer.c" linenr="94" column="15" str="." scope="018926D8" astParent="02E3E950" astOperand1="02BB0798" astOperand2="02BB0A98" originalName="->"/>
+    <token id="02BB0A98" file="../app/app_src/circular buffer.c" linenr="94" column="17" str="element_size" scope="018926D8" type="name" varId="27" astParent="02BB0A18"/>
+    <token id="02BB0998" file="../app/app_src/circular buffer.c" linenr="94" column="29" str=")" scope="018926D8" link="02E3E790"/>
+    <token id="02BB0C58" file="../app/app_src/circular buffer.c" linenr="94" column="30" str=";" scope="018926D8"/>
+    <token id="02BB0B58" file="../app/app_src/circular buffer.c" linenr="96" column="5" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02BB0BD8"/>
+    <token id="02BB0BD8" file="../app/app_src/circular buffer.c" linenr="96" column="8" str="." scope="018926D8" astParent="02BB0AD8" astOperand1="02BB0B58" astOperand2="02BB0E58" originalName="->"/>
+    <token id="02BB0E58" file="../app/app_src/circular buffer.c" linenr="96" column="10" str="read_pos" scope="018926D8" type="name" varId="24" astParent="02BB0BD8"/>
+    <token id="02BB0AD8" file="../app/app_src/circular buffer.c" linenr="96" column="19" str="=" scope="018926D8" type="op" isAssignmentOp="True" astOperand1="02BB0BD8" astOperand2="02BB0C18"/>
+    <token id="02BB0A58" file="../app/app_src/circular buffer.c" linenr="96" column="21" str="(" scope="018926D8" link="02BB0818"/>
+    <token id="02BB0C98" file="../app/app_src/circular buffer.c" linenr="96" column="22" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02BB0B18"/>
+    <token id="02BB0B18" file="../app/app_src/circular buffer.c" linenr="96" column="25" str="." scope="018926D8" astParent="02BB09D8" astOperand1="02BB0C98" astOperand2="02BB0B98" originalName="->"/>
+    <token id="02BB0B98" file="../app/app_src/circular buffer.c" linenr="96" column="27" str="read_pos" scope="018926D8" type="name" varId="24" astParent="02BB0B18"/>
+    <token id="02BB09D8" file="../app/app_src/circular buffer.c" linenr="96" column="36" str="+" scope="018926D8" type="op" isArithmeticalOp="True" astParent="02BB0C18" astOperand1="02BB0B18" astOperand2="02BB0898"/>
+    <token id="02BB0898" file="../app/app_src/circular buffer.c" linenr="96" column="38" str="1" scope="018926D8" type="number" isInt="True" values="0190B8B0" astParent="02BB09D8" valueType-type="int" valueType-sign="signed"/>
+    <token id="02BB0818" file="../app/app_src/circular buffer.c" linenr="96" column="39" str=")" scope="018926D8" link="02BB0A58"/>
+    <token id="02BB0C18" file="../app/app_src/circular buffer.c" linenr="96" column="41" str="&amp;" scope="018926D8" type="op" astParent="02BB0AD8" astOperand1="02BB09D8" astOperand2="02BB0918"/>
+    <token id="02BB0E98" file="../app/app_src/circular buffer.c" linenr="96" column="43" str="ctx" scope="018926D8" type="name" varId="22" variable="02E419B0" astParent="02BB0918"/>
+    <token id="02BB0918" file="../app/app_src/circular buffer.c" linenr="96" column="46" str="." scope="018926D8" astParent="02BB0C18" astOperand1="02BB0E98" astOperand2="02BB0ED8" originalName="->"/>
+    <token id="02BB0ED8" file="../app/app_src/circular buffer.c" linenr="96" column="48" str="max_size" scope="018926D8" type="name" varId="28" astParent="02BB0918"/>
+    <token id="02BB0CD8" file="../app/app_src/circular buffer.c" linenr="96" column="56" str=";" scope="018926D8"/>
+    <token id="02BB0F18" file="../app/app_src/circular buffer.c" linenr="98" column="5" str="return" scope="018926D8" type="name" astOperand1="02BB08D8" valueType-type="char" valueType-sign="signed"/>
+    <token id="02BB08D8" file="../app/app_src/circular buffer.c" linenr="98" column="12" str="0" scope="018926D8" type="number" isInt="True" values="0190B840" astParent="02BB0F18" valueType-type="int" valueType-sign="signed"/>
+    <token id="02BB0958" file="../app/app_src/circular buffer.c" linenr="98" column="13" str=";" scope="018926D8"/>
+    <token id="02BB07D8" file="../app/app_src/circular buffer.c" linenr="99" column="1" str="}" scope="018926D8" link="02E3F250"/>
+    <token id="02BB0858" file="../app/app_src/circular buffer.c" linenr="101" column="1" str="int8_t" scope="018920E8" type="name"/>
+    <token id="02BB0DD8" file="../app/app_src/circular buffer.c" linenr="101" column="8" str="CircularBufferPeek" scope="018920E8" type="name" function="019542D8" astParent="02BB0D18"/>
+    <token id="02BB0D18" file="../app/app_src/circular buffer.c" linenr="101" column="26" str="(" scope="018920E8" link="02BB0318" astOperand1="02BB0DD8" astOperand2="02BB0398" valueType-type="char" valueType-sign="signed"/>
+    <token id="02BB0D58" file="../app/app_src/circular buffer.c" linenr="101" column="27" str="const" scope="018920E8" type="name"/>
+    <token id="02BB0D98" file="../app/app_src/circular buffer.c" linenr="101" column="33" str="CircularBufferContext" scope="018920E8" type="name" astParent="02BB0E18"/>
+    <token id="02BB0E18" file="../app/app_src/circular buffer.c" linenr="101" column="55" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02BB0058" astOperand1="02BB0D98" astOperand2="02BB01D8"/>
+    <token id="02BB01D8" file="../app/app_src/circular buffer.c" linenr="101" column="56" str="ctx" scope="018920E8" type="name" varId="29" variable="02E416B0" astParent="02BB0E18"/>
+    <token id="02BB0058" file="../app/app_src/circular buffer.c" linenr="101" column="59" str="," scope="018920E8" astParent="02BB0398" astOperand1="02BB0E18" astOperand2="02BB06D8"/>
+    <token id="02BB0018" file="../app/app_src/circular buffer.c" linenr="101" column="61" str="long" scope="018920E8" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02BB06D8" file="../app/app_src/circular buffer.c" linenr="101" column="68" str="num" scope="018920E8" type="name" varId="30" variable="02E414B0" astParent="02BB0058" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BB0398" file="../app/app_src/circular buffer.c" linenr="101" column="71" str="," scope="018920E8" astParent="02BB0D18" astOperand1="02BB0058" astOperand2="02BB04D8"/>
+    <token id="02BB0118" file="../app/app_src/circular buffer.c" linenr="102" column="28" str="void" scope="018920E8" type="name" astParent="02BB04D8"/>
+    <token id="02BB04D8" file="../app/app_src/circular buffer.c" linenr="102" column="33" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02BB0398" astOperand1="02BB0118" astOperand2="02BB0458"/>
+    <token id="02BB0458" file="../app/app_src/circular buffer.c" linenr="102" column="34" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02BB04D8" astOperand1="02BB0298" valueType-type="void" valueType-pointer="1"/>
+    <token id="02BB0298" file="../app/app_src/circular buffer.c" linenr="102" column="35" str="elem" scope="018920E8" type="name" varId="31" variable="02E41570" astParent="02BB0458" valueType-type="void" valueType-pointer="2"/>
+    <token id="02BB0318" file="../app/app_src/circular buffer.c" linenr="102" column="39" str=")" scope="018920E8" link="02BB0D18"/>
+    <token id="02BB0158" file="../app/app_src/circular buffer.c" linenr="102" column="41" str="{" scope="01892770" link="02E47378"/>
+    <token id="02BB0098" file="../app/app_src/circular buffer.c" linenr="103" column="5" str="long" scope="01892770" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02BAFFD8" file="../app/app_src/circular buffer.c" linenr="103" column="12" str="write_pos" scope="01892770" type="name" varId="32" variable="02E41670" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BB0418" file="../app/app_src/circular buffer.c" linenr="103" column="22" str=";" scope="01892770"/>
+    <token id="02E40DE8" file="../app/app_src/circular buffer.c" linenr="103" column="12" str="write_pos" scope="01892770" type="name" varId="32" variable="02E41670" astParent="02E410A8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E410A8" file="../app/app_src/circular buffer.c" linenr="103" column="22" str="=" scope="01892770" type="op" isAssignmentOp="True" astOperand1="02E40DE8" astOperand2="02BB00D8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BB0698" file="../app/app_src/circular buffer.c" linenr="103" column="24" str="ctx" scope="01892770" type="name" varId="29" variable="02E416B0" astParent="02BB00D8"/>
+    <token id="02BB00D8" file="../app/app_src/circular buffer.c" linenr="103" column="27" str="." scope="01892770" astParent="02E410A8" astOperand1="02BB0698" astOperand2="02BB0718" originalName="->"/>
+    <token id="02BB0718" file="../app/app_src/circular buffer.c" linenr="103" column="29" str="write_pos" scope="01892770" type="name" varId="33" astParent="02BB00D8"/>
+    <token id="02BB0498" file="../app/app_src/circular buffer.c" linenr="103" column="38" str=";" scope="01892770"/>
+    <token id="02BB0758" file="../app/app_src/circular buffer.c" linenr="104" column="5" str="long" scope="01892770" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02BB0198" file="../app/app_src/circular buffer.c" linenr="104" column="12" str="read_pos" scope="01892770" type="name" varId="34" variable="02E41470" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BB0218" file="../app/app_src/circular buffer.c" linenr="104" column="21" str=";" scope="01892770"/>
+    <token id="02E41268" file="../app/app_src/circular buffer.c" linenr="104" column="12" str="read_pos" scope="01892770" type="name" varId="34" variable="02E41470" astParent="02E40FA8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E40FA8" file="../app/app_src/circular buffer.c" linenr="104" column="21" str="=" scope="01892770" type="op" isAssignmentOp="True" astOperand1="02E41268" astOperand2="02BB05D8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BB0658" file="../app/app_src/circular buffer.c" linenr="104" column="23" str="ctx" scope="01892770" type="name" varId="29" variable="02E416B0" astParent="02BB05D8"/>
+    <token id="02BB05D8" file="../app/app_src/circular buffer.c" linenr="104" column="26" str="." scope="01892770" astParent="02E40FA8" astOperand1="02BB0658" astOperand2="02BB02D8" originalName="->"/>
+    <token id="02BB02D8" file="../app/app_src/circular buffer.c" linenr="104" column="28" str="read_pos" scope="01892770" type="name" varId="35" astParent="02BB05D8"/>
+    <token id="02BB0518" file="../app/app_src/circular buffer.c" linenr="104" column="36" str=";" scope="01892770"/>
+    <token id="02BB0558" file="../app/app_src/circular buffer.c" linenr="105" column="5" str="long" scope="01892770" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02BB0258" file="../app/app_src/circular buffer.c" linenr="105" column="12" str="size" scope="01892770" type="name" varId="36" variable="02E41BB0" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BB0358" file="../app/app_src/circular buffer.c" linenr="105" column="17" str=";" scope="01892770"/>
+    <token id="02E41128" file="../app/app_src/circular buffer.c" linenr="105" column="12" str="size" scope="01892770" type="name" varId="36" variable="02E41BB0" astParent="02E40E28" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E40E28" file="../app/app_src/circular buffer.c" linenr="105" column="17" str="=" scope="01892770" type="op" isAssignmentOp="True" astOperand1="02E41128" astOperand2="02BFC908" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BAFF98" file="../app/app_src/circular buffer.c" linenr="105" column="20" str="(" scope="01892770" link="02BFCC88"/>
+    <token id="02BB03D8" file="../app/app_src/circular buffer.c" linenr="105" column="21" str="write_pos" scope="01892770" type="name" varId="32" variable="02E41670" astParent="02BB0598" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BB0598" file="../app/app_src/circular buffer.c" linenr="105" column="31" str="-" scope="01892770" type="op" isArithmeticalOp="True" astParent="02BFC908" astOperand1="02BB03D8" astOperand2="02BFCAC8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFCAC8" file="../app/app_src/circular buffer.c" linenr="105" column="33" str="read_pos" scope="01892770" type="name" varId="34" variable="02E41470" astParent="02BB0598" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFCC88" file="../app/app_src/circular buffer.c" linenr="105" column="41" str=")" scope="01892770" link="02BAFF98"/>
+    <token id="02BFC908" file="../app/app_src/circular buffer.c" linenr="105" column="43" str="&amp;" scope="01892770" type="op" values="02D93318" astParent="02E40E28" astOperand1="02BB0598" astOperand2="02BFCA88"/>
+    <token id="02BFCE88" file="../app/app_src/circular buffer.c" linenr="105" column="45" str="ctx" scope="01892770" type="name" varId="29" variable="02E416B0" astParent="02BFCA88"/>
+    <token id="02BFCA88" file="../app/app_src/circular buffer.c" linenr="105" column="48" str="." scope="01892770" astParent="02BFC908" astOperand1="02BFCE88" astOperand2="02BFD008" originalName="->"/>
+    <token id="02BFD008" file="../app/app_src/circular buffer.c" linenr="105" column="50" str="max_size" scope="01892770" type="name" varId="37" astParent="02BFCA88"/>
+    <token id="02BFCBC8" file="../app/app_src/circular buffer.c" linenr="105" column="59" str=";" scope="01892770"/>
+    <token id="02BFCF48" file="../app/app_src/circular buffer.c" linenr="109" column="5" str="if" scope="01892770" type="name" astParent="02BFC948"/>
+    <token id="02BFC948" file="../app/app_src/circular buffer.c" linenr="109" column="8" str="(" scope="01892770" link="02BFCCC8" astOperand1="02BFCF48" astOperand2="02BFC8C8"/>
+    <token id="02BFCA48" file="../app/app_src/circular buffer.c" linenr="109" column="9" str="(" scope="01892770" link="02BFCEC8"/>
+    <token id="02BFC988" file="../app/app_src/circular buffer.c" linenr="109" column="10" str="size" scope="01892770" type="name" varId="36" variable="02E41BB0" values="02D93348" astParent="02BFC848" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFC848" file="../app/app_src/circular buffer.c" linenr="109" column="15" str="==" scope="01892770" type="op" isComparisonOp="True" values="02D93328" astParent="02BFC8C8" astOperand1="02BFC988" astOperand2="02BFCFC8" valueType-type="bool"/>
+    <token id="02BFCFC8" file="../app/app_src/circular buffer.c" linenr="109" column="18" str="0" scope="01892770" type="number" isInt="True" values="0190B8D0" astParent="02BFC848" valueType-type="int" valueType-sign="signed"/>
+    <token id="02BFCEC8" file="../app/app_src/circular buffer.c" linenr="109" column="19" str=")" scope="01892770" link="02BFCA48"/>
+    <token id="02BFC8C8" file="../app/app_src/circular buffer.c" linenr="109" column="21" str="||" scope="01892770" type="op" isLogicalOp="True" astParent="02BFC948" astOperand1="02BFC848" astOperand2="02BFCA08" valueType-type="bool"/>
+    <token id="02BFC888" file="../app/app_src/circular buffer.c" linenr="109" column="24" str="(" scope="01892770" link="02BFCB48"/>
+    <token id="02BFC9C8" file="../app/app_src/circular buffer.c" linenr="109" column="25" str="size" scope="01892770" type="name" varId="36" variable="02E41BB0" astParent="02BFCA08" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFCA08" file="../app/app_src/circular buffer.c" linenr="109" column="30" str="&lt;=" scope="01892770" type="op" isComparisonOp="True" astParent="02BFC8C8" astOperand1="02BFC9C8" astOperand2="02BFCB08" valueType-type="bool"/>
+    <token id="02BFCB08" file="../app/app_src/circular buffer.c" linenr="109" column="33" str="num" scope="01892770" type="name" varId="30" variable="02E414B0" astParent="02BFCA08" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFCB48" file="../app/app_src/circular buffer.c" linenr="109" column="36" str=")" scope="01892770" link="02BFC888"/>
+    <token id="02BFCCC8" file="../app/app_src/circular buffer.c" linenr="109" column="37" str=")" scope="01892770" link="02BFC948"/>
+    <token id="02BFCB88" file="../app/app_src/circular buffer.c" linenr="109" column="39" str="{" scope="01892B00" link="02BFCD48"/>
+    <token id="02BFCC08" file="../app/app_src/circular buffer.c" linenr="110" column="9" str="goto" scope="01892B00" type="name"/>
+    <token id="02BFCC48" file="../app/app_src/circular buffer.c" linenr="110" column="14" str="fail" scope="01892B00" type="name"/>
+    <token id="02BFCD08" file="../app/app_src/circular buffer.c" linenr="110" column="18" str=";" scope="01892B00"/>
+    <token id="02BFCD48" file="../app/app_src/circular buffer.c" linenr="111" column="5" str="}" scope="01892B00" link="02BFCB88"/>
+    <token id="02BFCE48" file="../app/app_src/circular buffer.c" linenr="113" column="5" str="long" scope="01892770" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02BFCD88" file="../app/app_src/circular buffer.c" linenr="113" column="12" str="element_pos" scope="01892770" type="name" varId="38" variable="02E41AF0" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFCDC8" file="../app/app_src/circular buffer.c" linenr="113" column="24" str=";" scope="01892770"/>
+    <token id="02E40E68" file="../app/app_src/circular buffer.c" linenr="113" column="12" str="element_pos" scope="01892770" type="name" varId="38" variable="02E41AF0" astParent="02E40EA8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E40EA8" file="../app/app_src/circular buffer.c" linenr="113" column="24" str="=" scope="01892770" type="op" isAssignmentOp="True" astOperand1="02E40E68" astOperand2="02BFD2C8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFCE08" file="../app/app_src/circular buffer.c" linenr="113" column="27" str="(" scope="01892770" link="02BFD688"/>
+    <token id="02BFD1C8" file="../app/app_src/circular buffer.c" linenr="113" column="28" str="read_pos" scope="01892770" type="name" varId="34" variable="02E41470" astParent="02BFD448" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFD448" file="../app/app_src/circular buffer.c" linenr="113" column="37" str="+" scope="01892770" type="op" isArithmeticalOp="True" astParent="02BFD2C8" astOperand1="02BFD1C8" astOperand2="02BFD188" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFD188" file="../app/app_src/circular buffer.c" linenr="113" column="39" str="num" scope="01892770" type="name" varId="30" variable="02E414B0" astParent="02BFD448" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFD688" file="../app/app_src/circular buffer.c" linenr="113" column="42" str=")" scope="01892770" link="02BFCE08"/>
+    <token id="02BFD2C8" file="../app/app_src/circular buffer.c" linenr="113" column="44" str="&amp;" scope="01892770" type="op" astParent="02E40EA8" astOperand1="02BFD448" astOperand2="02BFD048"/>
+    <token id="02BFD7C8" file="../app/app_src/circular buffer.c" linenr="113" column="46" str="ctx" scope="01892770" type="name" varId="29" variable="02E416B0" astParent="02BFD048"/>
+    <token id="02BFD048" file="../app/app_src/circular buffer.c" linenr="113" column="49" str="." scope="01892770" astParent="02BFD2C8" astOperand1="02BFD7C8" astOperand2="02BFD208" originalName="->"/>
+    <token id="02BFD208" file="../app/app_src/circular buffer.c" linenr="113" column="51" str="max_size" scope="01892770" type="name" varId="37" astParent="02BFD048"/>
+    <token id="02BFD608" file="../app/app_src/circular buffer.c" linenr="113" column="60" str=";" scope="01892770"/>
+    <token id="02BFD148" file="../app/app_src/circular buffer.c" linenr="114" column="5" str="*" scope="01892770" type="op" isArithmeticalOp="True" astParent="02BFD3C8" astOperand1="02BFD5C8" valueType-type="void" valueType-pointer="1"/>
+    <token id="02BFD5C8" file="../app/app_src/circular buffer.c" linenr="114" column="6" str="elem" scope="01892770" type="name" varId="31" variable="02E41570" astParent="02BFD148" valueType-type="void" valueType-pointer="2"/>
+    <token id="02BFD3C8" file="../app/app_src/circular buffer.c" linenr="114" column="11" str="=" scope="01892770" type="op" isAssignmentOp="True" astOperand1="02BFD148" astOperand2="02BFD088" valueType-type="void" valueType-pointer="1"/>
+    <token id="02BFD088" file="../app/app_src/circular buffer.c" linenr="114" column="13" str="&amp;" scope="01892770" type="op" values="02D932C8" astParent="02BFD3C8" astOperand1="02BFD248"/>
+    <token id="02BFD788" file="../app/app_src/circular buffer.c" linenr="114" column="14" str="ctx" scope="01892770" type="name" varId="29" variable="02E416B0" astParent="02BFD408"/>
+    <token id="02BFD408" file="../app/app_src/circular buffer.c" linenr="114" column="17" str="." scope="01892770" astParent="02BFD248" astOperand1="02BFD788" astOperand2="02BFD108" originalName="->"/>
+    <token id="02BFD108" file="../app/app_src/circular buffer.c" linenr="114" column="19" str="buf" scope="01892770" type="name" varId="39" astParent="02BFD408"/>
+    <token id="02BFD248" file="../app/app_src/circular buffer.c" linenr="114" column="22" str="[" scope="01892770" link="02BFD388" astParent="02BFD088" astOperand1="02BFD408" astOperand2="02BFD288"/>
+    <token id="02BFD6C8" file="../app/app_src/circular buffer.c" linenr="114" column="23" str="element_pos" scope="01892770" type="name" varId="38" variable="02E41AF0" astParent="02BFD288" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02BFD288" file="../app/app_src/circular buffer.c" linenr="114" column="35" str="*" scope="01892770" type="op" isArithmeticalOp="True" astParent="02BFD248" astOperand1="02BFD6C8" astOperand2="02BFD4C8"/>
+    <token id="02BFD308" file="../app/app_src/circular buffer.c" linenr="114" column="37" str="ctx" scope="01892770" type="name" varId="29" variable="02E416B0" astParent="02BFD4C8"/>
+    <token id="02BFD4C8" file="../app/app_src/circular buffer.c" linenr="114" column="40" str="." scope="01892770" astParent="02BFD288" astOperand1="02BFD308" astOperand2="02BFD708" originalName="->"/>
+    <token id="02BFD708" file="../app/app_src/circular buffer.c" linenr="114" column="42" str="element_size" scope="01892770" type="name" varId="40" astParent="02BFD4C8"/>
+    <token id="02BFD388" file="../app/app_src/circular buffer.c" linenr="114" column="54" str="]" scope="01892770" link="02BFD248"/>
+    <token id="02BFD0C8" file="../app/app_src/circular buffer.c" linenr="114" column="55" str=";" scope="01892770"/>
+    <token id="02BFD348" file="../app/app_src/circular buffer.c" linenr="116" column="5" str="return" scope="01892770" type="name" astOperand1="02BFD488" valueType-type="char" valueType-sign="signed"/>
+    <token id="02BFD488" file="../app/app_src/circular buffer.c" linenr="116" column="12" str="0" scope="01892770" type="number" isInt="True" values="02D93398" astParent="02BFD348" valueType-type="int" valueType-sign="signed"/>
+    <token id="02BFD508" file="../app/app_src/circular buffer.c" linenr="116" column="13" str=";" scope="01892770"/>
+    <token id="02BFD648" file="../app/app_src/circular buffer.c" linenr="118" column="1" str="fail" scope="01892770" type="name"/>
+    <token id="02BFD548" file="../app/app_src/circular buffer.c" linenr="118" column="5" str=":" scope="01892770"/>
+    <token id="02E40D68" file="../app/app_src/circular buffer.c" linenr="118" column="0" str=";" scope="01892770"/>
+    <token id="02BFD588" file="../app/app_src/circular buffer.c" linenr="119" column="5" str="return" scope="01892770" type="name" astOperand1="02E47038" valueType-type="char" valueType-sign="signed"/>
+    <token id="02E47038" file="../app/app_src/circular buffer.c" linenr="119" column="13" str="-1" scope="01892770" type="number" isInt="True" values="02D932F8" astParent="02BFD588" valueType-type="int" valueType-sign="signed"/>
+    <token id="02E47338" file="../app/app_src/circular buffer.c" linenr="119" column="14" str=";" scope="01892770"/>
+    <token id="02E47378" file="../app/app_src/circular buffer.c" linenr="120" column="1" str="}" scope="01892770" link="02BB0158"/>
+    <token id="02E46D78" file="../app/app_src/circular buffer.c" linenr="122" column="1" str="long" scope="018920E8" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02E47238" file="../app/app_src/circular buffer.c" linenr="122" column="8" str="CircularBufferSize" scope="018920E8" type="name" function="01954178" astParent="02E473B8"/>
+    <token id="02E473B8" file="../app/app_src/circular buffer.c" linenr="122" column="26" str="(" scope="018920E8" link="02E47138" astOperand1="02E47238" astOperand2="02E46FB8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E47078" file="../app/app_src/circular buffer.c" linenr="122" column="27" str="const" scope="018920E8" type="name"/>
+    <token id="02E46DB8" file="../app/app_src/circular buffer.c" linenr="122" column="33" str="CircularBufferContext" scope="018920E8" type="name" astParent="02E46FB8"/>
+    <token id="02E46FB8" file="../app/app_src/circular buffer.c" linenr="122" column="55" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02E473B8" astOperand1="02E46DB8" astOperand2="02E46FF8"/>
+    <token id="02E46FF8" file="../app/app_src/circular buffer.c" linenr="122" column="56" str="ctx" scope="018920E8" type="name" varId="41" variable="02E416F0" astParent="02E46FB8"/>
+    <token id="02E47138" file="../app/app_src/circular buffer.c" linenr="122" column="59" str=")" scope="018920E8" link="02E473B8"/>
+    <token id="02E470B8" file="../app/app_src/circular buffer.c" linenr="122" column="61" str="{" scope="01892C30" link="02E46EB8"/>
+    <token id="02E472B8" file="../app/app_src/circular buffer.c" linenr="123" column="5" str="return" scope="01892C30" type="name" astOperand1="02E471B8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E470F8" file="../app/app_src/circular buffer.c" linenr="123" column="12" str="(" scope="01892C30" link="02E46F38"/>
+    <token id="02E46D38" file="../app/app_src/circular buffer.c" linenr="123" column="13" str="(" scope="01892C30" link="02E46EF8"/>
+    <token id="02E47178" file="../app/app_src/circular buffer.c" linenr="123" column="14" str="ctx" scope="01892C30" type="name" varId="41" variable="02E416F0" astParent="02E471F8"/>
+    <token id="02E471F8" file="../app/app_src/circular buffer.c" linenr="123" column="17" str="." scope="01892C30" astParent="02E46E78" astOperand1="02E47178" astOperand2="02E472F8" originalName="->"/>
+    <token id="02E472F8" file="../app/app_src/circular buffer.c" linenr="123" column="19" str="write_pos" scope="01892C30" type="name" varId="42" astParent="02E471F8"/>
+    <token id="02E46E78" file="../app/app_src/circular buffer.c" linenr="123" column="29" str="-" scope="01892C30" type="op" isArithmeticalOp="True" astParent="02E471B8" astOperand1="02E471F8" astOperand2="02E473F8"/>
+    <token id="02E46DF8" file="../app/app_src/circular buffer.c" linenr="123" column="31" str="ctx" scope="01892C30" type="name" varId="41" variable="02E416F0" astParent="02E473F8"/>
+    <token id="02E473F8" file="../app/app_src/circular buffer.c" linenr="123" column="34" str="." scope="01892C30" astParent="02E46E78" astOperand1="02E46DF8" astOperand2="02E47278" originalName="->"/>
+    <token id="02E47278" file="../app/app_src/circular buffer.c" linenr="123" column="36" str="read_pos" scope="01892C30" type="name" varId="43" astParent="02E473F8"/>
+    <token id="02E46EF8" file="../app/app_src/circular buffer.c" linenr="123" column="44" str=")" scope="01892C30" link="02E46D38"/>
+    <token id="02E471B8" file="../app/app_src/circular buffer.c" linenr="123" column="46" str="&amp;" scope="01892C30" type="op" astParent="02E472B8" astOperand1="02E46E78" astOperand2="02E46C78"/>
+    <token id="02E46E38" file="../app/app_src/circular buffer.c" linenr="123" column="48" str="ctx" scope="01892C30" type="name" varId="41" variable="02E416F0" astParent="02E46C78"/>
+    <token id="02E46C78" file="../app/app_src/circular buffer.c" linenr="123" column="51" str="." scope="01892C30" astParent="02E471B8" astOperand1="02E46E38" astOperand2="02E46CB8" originalName="->"/>
+    <token id="02E46CB8" file="../app/app_src/circular buffer.c" linenr="123" column="53" str="max_size" scope="01892C30" type="name" varId="44" astParent="02E46C78"/>
+    <token id="02E46F38" file="../app/app_src/circular buffer.c" linenr="123" column="61" str=")" scope="01892C30" link="02E470F8"/>
+    <token id="02E46CF8" file="../app/app_src/circular buffer.c" linenr="123" column="62" str=";" scope="01892C30"/>
+    <token id="02E46EB8" file="../app/app_src/circular buffer.c" linenr="124" column="1" str="}" scope="01892C30" link="02E470B8"/>
+    <token id="02E46938" file="../app/app_src/circular buffer.c" linenr="126" column="1" str="long" scope="018920E8" type="name" isUnsigned="true" originalName="size_t"/>
+    <token id="02E46578" file="../app/app_src/circular buffer.c" linenr="126" column="8" str="CircularBufferSpace" scope="018920E8" type="name" function="019541D0" astParent="02E46B38"/>
+    <token id="02E46B38" file="../app/app_src/circular buffer.c" linenr="126" column="27" str="(" scope="018920E8" link="02E467F8" astOperand1="02E46578" astOperand2="02E468F8" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E46778" file="../app/app_src/circular buffer.c" linenr="126" column="28" str="const" scope="018920E8" type="name"/>
+    <token id="02E46BB8" file="../app/app_src/circular buffer.c" linenr="126" column="34" str="CircularBufferContext" scope="018920E8" type="name" astParent="02E468F8"/>
+    <token id="02E468F8" file="../app/app_src/circular buffer.c" linenr="126" column="56" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02E46B38" astOperand1="02E46BB8" astOperand2="02E467B8"/>
+    <token id="02E467B8" file="../app/app_src/circular buffer.c" linenr="126" column="57" str="ctx" scope="018920E8" type="name" varId="45" variable="02E41FB0" astParent="02E468F8"/>
+    <token id="02E467F8" file="../app/app_src/circular buffer.c" linenr="126" column="60" str=")" scope="018920E8" link="02E46B38"/>
+    <token id="02E46978" file="../app/app_src/circular buffer.c" linenr="126" column="62" str="{" scope="01892DF8" link="02E46638"/>
+    <token id="02E46838" file="../app/app_src/circular buffer.c" linenr="128" column="5" str="return" scope="01892DF8" type="name" astOperand1="02E46A38" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E46AF8" file="../app/app_src/circular buffer.c" linenr="128" column="12" str="(" scope="01892DF8" link="02E46738"/>
+    <token id="02E469B8" file="../app/app_src/circular buffer.c" linenr="128" column="13" str="ctx" scope="01892DF8" type="name" varId="45" variable="02E41FB0" astParent="02E46538"/>
+    <token id="02E46538" file="../app/app_src/circular buffer.c" linenr="128" column="16" str="." scope="01892DF8" astParent="02E46A38" astOperand1="02E469B8" astOperand2="02E469F8" originalName="->"/>
+    <token id="02E469F8" file="../app/app_src/circular buffer.c" linenr="128" column="18" str="max_size" scope="01892DF8" type="name" varId="46" astParent="02E46538"/>
+    <token id="02E46A38" file="../app/app_src/circular buffer.c" linenr="128" column="27" str="-" scope="01892DF8" type="op" isArithmeticalOp="True" astParent="02E46838" astOperand1="02E46538" astOperand2="02E465F8"/>
+    <token id="02E46A78" file="../app/app_src/circular buffer.c" linenr="128" column="29" str="CircularBufferSize" scope="01892DF8" type="name" function="01954178" astParent="02E465F8"/>
+    <token id="02E465F8" file="../app/app_src/circular buffer.c" linenr="128" column="47" str="(" scope="01892DF8" link="02E46AB8" astParent="02E46A38" astOperand1="02E46A78" astOperand2="02E46B78" valueType-type="long" valueType-sign="unsigned" valueType-originalTypeName="size_t"/>
+    <token id="02E46B78" file="../app/app_src/circular buffer.c" linenr="128" column="48" str="ctx" scope="01892DF8" type="name" varId="45" variable="02E41FB0" astParent="02E465F8"/>
+    <token id="02E46AB8" file="../app/app_src/circular buffer.c" linenr="128" column="51" str=")" scope="01892DF8" link="02E465F8"/>
+    <token id="02E46738" file="../app/app_src/circular buffer.c" linenr="128" column="52" str=")" scope="01892DF8" link="02E46AF8"/>
+    <token id="02E46878" file="../app/app_src/circular buffer.c" linenr="128" column="53" str=";" scope="01892DF8"/>
+    <token id="02E46638" file="../app/app_src/circular buffer.c" linenr="129" column="1" str="}" scope="01892DF8" link="02E46978"/>
+    <token id="02E46BF8" file="../app/app_src/circular buffer.c" linenr="131" column="8" str="bool" scope="018920E8" type="name"/>
+    <token id="02E468B8" file="../app/app_src/circular buffer.c" linenr="131" column="13" str="CircularBufferEmpty" scope="018920E8" type="name" function="01953E08" astParent="02E46678"/>
+    <token id="02E46678" file="../app/app_src/circular buffer.c" linenr="131" column="32" str="(" scope="018920E8" link="02E466B8" astOperand1="02E468B8" astOperand2="02E464B8" valueType-type="bool"/>
+    <token id="02E46C38" file="../app/app_src/circular buffer.c" linenr="131" column="33" str="const" scope="018920E8" type="name"/>
+    <token id="02E465B8" file="../app/app_src/circular buffer.c" linenr="131" column="39" str="CircularBufferContext" scope="018920E8" type="name" astParent="02E464B8"/>
+    <token id="02E464B8" file="../app/app_src/circular buffer.c" linenr="131" column="61" str="*" scope="018920E8" type="op" isArithmeticalOp="True" astParent="02E46678" astOperand1="02E465B8" astOperand2="02E464F8"/>
+    <token id="02E464F8" file="../app/app_src/circular buffer.c" linenr="131" column="62" str="ctx" scope="018920E8" type="name" varId="47" variable="02E422F0" astParent="02E464B8"/>
+    <token id="02E466B8" file="../app/app_src/circular buffer.c" linenr="131" column="65" str=")" scope="018920E8" link="02E46678"/>
+    <token id="02E466F8" file="../app/app_src/circular buffer.c" linenr="131" column="67" str="{" scope="01892E90" link="02E40D28"/>
+    <token id="02E40C68" file="../app/app_src/circular buffer.c" linenr="132" column="5" str="return" scope="01892E90" type="name" astOperand1="02E40FE8" valueType-type="bool"/>
+    <token id="02E40F28" file="../app/app_src/circular buffer.c" linenr="132" column="12" str="(" scope="01892E90" link="02E412E8"/>
+    <token id="02E40CE8" file="../app/app_src/circular buffer.c" linenr="132" column="13" str="ctx" scope="01892E90" type="name" varId="47" variable="02E422F0" astParent="02E411E8"/>
+    <token id="02E411E8" file="../app/app_src/circular buffer.c" linenr="132" column="16" str="." scope="01892E90" astParent="02E40FE8" astOperand1="02E40CE8" astOperand2="02E410E8" originalName="->"/>
+    <token id="02E410E8" file="../app/app_src/circular buffer.c" linenr="132" column="18" str="read_pos" scope="01892E90" type="name" varId="48" astParent="02E411E8"/>
+    <token id="02E40FE8" file="../app/app_src/circular buffer.c" linenr="132" column="27" str="==" scope="01892E90" type="op" isComparisonOp="True" astParent="02E40C68" astOperand1="02E411E8" astOperand2="02E41228" valueType-type="bool"/>
+    <token id="02E41168" file="../app/app_src/circular buffer.c" linenr="132" column="30" str="ctx" scope="01892E90" type="name" varId="47" variable="02E422F0" astParent="02E41228"/>
+    <token id="02E41228" file="../app/app_src/circular buffer.c" linenr="132" column="33" str="." scope="01892E90" astParent="02E40FE8" astOperand1="02E41168" astOperand2="02E41028" originalName="->"/>
+    <token id="02E41028" file="../app/app_src/circular buffer.c" linenr="132" column="35" str="write_pos" scope="01892E90" type="name" varId="49" astParent="02E41228"/>
+    <token id="02E412E8" file="../app/app_src/circular buffer.c" linenr="132" column="44" str=")" scope="01892E90" link="02E40F28"/>
+    <token id="02E41068" file="../app/app_src/circular buffer.c" linenr="132" column="45" str=";" scope="01892E90"/>
+    <token id="02E40D28" file="../app/app_src/circular buffer.c" linenr="133" column="1" str="}" scope="01892E90" link="02E466F8"/>
+  </tokenlist>
+  <scopes>
+    <scope id="018920E8" type="Global">
+      <functionList>
+        <function id="01951628" tokenDef="01852698" name="CircularBufferInit" type="Function">
+          <arg nr="1" variable="02E41BF0"/>
+          <arg nr="2" variable="02E41C30"/>
+          <arg nr="3" variable="02E417B0"/>
+          <arg nr="4" variable="02E41730"/>
+        </function>
+        <function id="019533B8" tokenDef="02B52500" name="CircularBufferClear" type="Function">
+          <arg nr="1" variable="02E41830"/>
+        </function>
+        <function id="019536D0" tokenDef="02B3EED0" name="CircularBufferPushBack" type="Function">
+          <arg nr="1" variable="02E41870"/>
+          <arg nr="2" variable="02E418B0"/>
+        </function>
+        <function id="01953C50" tokenDef="02E3EF50" name="CircularBufferPopFront" type="Function">
+          <arg nr="1" variable="02E419B0"/>
+          <arg nr="2" variable="02E419F0"/>
+        </function>
+        <function id="019542D8" tokenDef="02BB0DD8" name="CircularBufferPeek" type="Function">
+          <arg nr="1" variable="02E416B0"/>
+          <arg nr="2" variable="02E414B0"/>
+          <arg nr="3" variable="02E41570"/>
+        </function>
+        <function id="01954178" tokenDef="02E47238" name="CircularBufferSize" type="Function">
+          <arg nr="1" variable="02E416F0"/>
+        </function>
+        <function id="019541D0" tokenDef="02E46578" name="CircularBufferSpace" type="Function">
+          <arg nr="1" variable="02E41FB0"/>
+        </function>
+        <function id="01953E08" tokenDef="02E468B8" name="CircularBufferEmpty" type="Function">
+          <arg nr="1" variable="02E422F0"/>
+        </function>
+      </functionList>
+    </scope>
+    <scope id="018928A0" type="Function" className="CircularBufferInit" bodyStart="01893050" bodyEnd="02B52080" nestedIn="018920E8" function="01951628">
+      <varlist>
+        <var id="02E41930"/>
+      </varlist>
+    </scope>
+    <scope id="01892640" type="Function" className="CircularBufferClear" bodyStart="02B52380" bodyEnd="02B3EE90" nestedIn="018920E8" function="019533B8"/>
+    <scope id="01892348" type="Function" className="CircularBufferPushBack" bodyStart="02B3E890" bodyEnd="02E3EED0" nestedIn="018920E8" function="019536D0">
+      <varlist>
+        <var id="02E41B30"/>
+      </varlist>
+    </scope>
+    <scope id="018923E0" type="If" bodyStart="02B3E490" bodyEnd="02B3E210" nestedIn="01892348"/>
+    <scope id="018926D8" type="Function" className="CircularBufferPopFront" bodyStart="02E3F250" bodyEnd="02BB07D8" nestedIn="018920E8" function="01953C50"/>
+    <scope id="01892050" type="If" bodyStart="02E3EB90" bodyEnd="02E3E710" nestedIn="018926D8"/>
+    <scope id="01892770" type="Function" className="CircularBufferPeek" bodyStart="02BB0158" bodyEnd="02E47378" nestedIn="018920E8" function="019542D8">
+      <varlist>
+        <var id="02E41670"/>
+        <var id="02E41470"/>
+        <var id="02E41BB0"/>
+        <var id="02E41AF0"/>
+      </varlist>
+    </scope>
+    <scope id="01892B00" type="If" bodyStart="02BFCB88" bodyEnd="02BFCD48" nestedIn="01892770"/>
+    <scope id="01892C30" type="Function" className="CircularBufferSize" bodyStart="02E470B8" bodyEnd="02E46EB8" nestedIn="018920E8" function="01954178"/>
+    <scope id="01892DF8" type="Function" className="CircularBufferSpace" bodyStart="02E46978" bodyEnd="02E46638" nestedIn="018920E8" function="019541D0"/>
+    <scope id="01892E90" type="Function" className="CircularBufferEmpty" bodyStart="02E466F8" bodyEnd="02E40D28" nestedIn="018920E8" function="01953E08"/>
+  </scopes>
+  <variables>
+    <var id="02E41470" nameToken="02BB0198" typeStartToken="02BB0758" typeEndToken="02BB0758" access="Local" scope="01892770" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E414B0" nameToken="02BB06D8" typeStartToken="02BB0018" typeEndToken="02BB0018" access="Argument" scope="01892770" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E41570" nameToken="02BB0298" typeStartToken="02BB0118" typeEndToken="02BB0458" access="Argument" scope="01892770" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E41670" nameToken="02BAFFD8" typeStartToken="02BB0098" typeEndToken="02BB0098" access="Local" scope="01892770" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E416B0" nameToken="02BB01D8" typeStartToken="02BB0D98" typeEndToken="02BB0E18" access="Argument" scope="01892770" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E416F0" nameToken="02E46FF8" typeStartToken="02E46DB8" typeEndToken="02E46FB8" access="Argument" scope="01892C30" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E41730" nameToken="01893250" typeStartToken="01893150" typeEndToken="01893150" access="Argument" scope="018928A0" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E417B0" nameToken="01893750" typeStartToken="01893390" typeEndToken="01893390" access="Argument" scope="018928A0" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E41830" nameToken="02B52280" typeStartToken="02B521C0" typeEndToken="02B52240" access="Argument" scope="01892640" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E41870" nameToken="02B3ED90" typeStartToken="02B3EC90" typeEndToken="02B3EF90" access="Argument" scope="01892348" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E418B0" nameToken="02B3E850" typeStartToken="02B3EDD0" typeEndToken="02B3EAD0" access="Argument" scope="01892348" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E41930" nameToken="018936D0" typeStartToken="01893790" typeEndToken="01893790" access="Local" scope="018928A0" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E419B0" nameToken="02E3F150" typeStartToken="02E3F050" typeEndToken="02E3EFD0" access="Argument" scope="018926D8" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E419F0" nameToken="02E3F190" typeStartToken="02E3F010" typeEndToken="02E3F0D0" access="Argument" scope="018926D8" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E41AF0" nameToken="02BFCD88" typeStartToken="02BFCE48" typeEndToken="02BFCE48" access="Local" scope="01892770" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E41B30" nameToken="02B3EA90" typeStartToken="02B3E9D0" typeEndToken="02B3E9D0" access="Local" scope="01892348" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E41BB0" nameToken="02BB0258" typeStartToken="02BB0558" typeEndToken="02BB0558" access="Local" scope="01892770" constness="0" isArgument="false" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="true" isPointer="false" isReference="false" isStatic="false"/>
+    <var id="02E41BF0" nameToken="01852198" typeStartToken="01851F98" typeEndToken="01852158" access="Argument" scope="018928A0" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E41C30" nameToken="01852718" typeStartToken="01852358" typeEndToken="01852558" access="Argument" scope="018928A0" constness="0" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E41FB0" nameToken="02E467B8" typeStartToken="02E46BB8" typeEndToken="02E468F8" access="Argument" scope="01892DF8" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+    <var id="02E422F0" nameToken="02E464F8" typeStartToken="02E465B8" typeEndToken="02E464B8" access="Argument" scope="01892E90" constness="1" isArgument="true" isArray="false" isClass="false" isConst="false" isExtern="false" isLocal="false" isPointer="true" isReference="false" isStatic="false"/>
+  </variables>
+  <valueflow>
+    <values id="0190B890">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="0190B8A0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="0190B790">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="0190B8F0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="0190B7A0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="0190B7B0">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="0190B7F0">
+      <value intvalue="-1" known="true"/>
+    </values>
+    <values id="02D932E8">
+      <value lifetime="02B3E7D0" possible="true"/>
+    </values>
+    <values id="0190B810">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="0190B820">
+      <value intvalue="-1" known="true"/>
+    </values>
+    <values id="02D93288">
+      <value lifetime="02E3E490" possible="true"/>
+    </values>
+    <values id="0190B8B0">
+      <value intvalue="1" known="true"/>
+    </values>
+    <values id="0190B840">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="02D93318">
+      <value intvalue="0" condition-line="109" possible="true"/>
+    </values>
+    <values id="02D93348">
+      <value intvalue="0" condition-line="109" possible="true"/>
+    </values>
+    <values id="02D93328">
+      <value intvalue="1" condition-line="109" possible="true"/>
+    </values>
+    <values id="0190B8D0">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="02D932C8">
+      <value lifetime="02BFD248" possible="true"/>
+    </values>
+    <values id="02D93398">
+      <value intvalue="0" known="true"/>
+    </values>
+    <values id="02D932F8">
+      <value intvalue="-1" known="true"/>
+    </values>
+  </valueflow>
+</dump>
+</dumps>

@@ -1,5 +1,5 @@
 
-	; Microchip MPLAB XC8 C Compiler V2.20
+	; Microchip MPLAB XC8 C Compiler V2.31
 	; Copyright (C) 2020 Microchip Technology Inc.
 
 	; Auto-generated runtime startup code for final link stage.
@@ -9,9 +9,11 @@
 	;
 	; -q --opt=none --chip=18f27k42 \
 	; -Mdist/MBRTU/production/PIC18F27K42.production.map -DXPRJ_MBRTU=MBRTU \
-	; -L--defsym=__MPLAB_BUILD=1 --double=32 --float=32 --emi=wordwrite \
-	; --opt=+2 --opt=+debug --opt=+local --addrqual=ignore -DMBRTU \
-	; -DDEBUGVECTOR -P -I../app/app_inc -I../hal/hal_inc -I../nwk/nwk_inc \
+	; -L--defsym=__MPLAB_BUILD=1 \
+	; --dfp=C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8 \
+	; --double=32 --float=32 --emi=wordwrite --opt=+2 --opt=+debug \
+	; --opt=+local --addrqual=ignore -DMBRTU -DDEBUGVECTOR -P \
+	; -I../app/app_inc -I../hal/hal_inc -I../nwk/nwk_inc \
 	; -I../phy/sx1216/phy_inc -I../sys/sys_inc -Imcc_generated_files \
 	; -I../modbus/mb_inc -I../modbus/port -I../modbus/rtu \
 	; -I../modbus/functions -I../aes/aes_inc -I../wdt/wdt_inc \
@@ -74,12 +76,13 @@
 	; build/MBRTU/production/_ext/423217399/circular_buffer.p1 \
 	; --callgraph=none --errformat=%f:%l:%c: error: (%n) %s \
 	; --warnformat=%f:%l:%c: warning: (%n) %s \
-	; --msgformat=%f:%l:%c: advisory: (%n) %s
+	; --msgformat=%f:%l:%c: advisory: (%n) %s \
+	; --summarycmp=C:\Users\samue\AppData\Local\Temp\s9t0.
 	;
 
 
 	processor	18F27K42
-	include "C:\Program Files\Microchip\xc8\v2.20\pic\include\proc\18f27k42.cgen.inc"
+	include "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\18f27k42.cgen.inc"
 
 	GLOBAL	_main,start
 	FNROOT	_main

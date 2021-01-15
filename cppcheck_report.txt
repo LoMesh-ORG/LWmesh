@@ -14,7 +14,7 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:2147]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:2153]: (style) Variable 'count' is modified but its new value is never used.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -28,6 +28,21 @@
 [nwk/nwk_src/nwkDataReq.c:132]: (style) Clarify calculation precedence for '&' and '?'.
 [nwk/nwk_src/nwkRouteDiscovery.c:196]: (style) The scope of the variable 'entry' can be reduced.
 [nwk/nwk_src/nwkTx.c:117] -> [nwk/nwk_src/nwkTx.c:113]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
+[phy/sx1280/sx1280_src/sx1280-hal.c:164]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1102]: (style) The scope of the variable 'correctionCoeff' can be reduced.
+[phy/sx1280/sx1280_src/sx1280.c:227]: (style) Unused variable: packet_typ
+[phy/sx1280/sx1280_src/sx1280_drv.c:124] -> [phy/sx1280/sx1280_src/sx1280_drv.c:120]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
+[phy/sx1280/sx1280_src/sx1280_drv.c:250]: (style) The scope of the variable 'temp' can be reduced.
+[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:164]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:291]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:315]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:182]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:211]: (style) Variable 'irqFlags' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:261]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:324]: (style) Variable 'rad_ver' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:362]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:313]: (style) Unused variable: test
+[phy/sx1280/sx1280_src/sx1280_drv.c:361]: (style) Variable 'freq_error' is assigned a value that is never used.
 [aes/aes_src/AES.c:536]: (style) The function 'AES_CTR_xcrypt_buffer' is never used.
 [aes/aes_src/AES.c:473]: (style) The function 'AES_ECB_decrypt' is never used.
 [aes/aes_src/AES.c:467]: (style) The function 'AES_ECB_encrypt' is never used.
@@ -42,7 +57,7 @@
 [PIC18F26K42/mcc_generated_files/crc.c:119]: (style) The function 'CRC_Start' is never used.
 [app/app_src/circular buffer.c:66]: (style) The function 'CircularBufferClear' is never used.
 [app/app_src/circular buffer.c:101]: (style) The function 'CircularBufferPeek' is never used.
-[phy/sx1216/phy_src/phy.c:690]: (style) The function 'DIO2_FHSS_ISR' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:686]: (style) The function 'DIO2_FHSS_ISR' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:125]: (style) The function 'DMA1_GetDestinationPointer' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:120]: (style) The function 'DMA1_GetSourcePointer' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:59]: (style) The function 'DMA1_Initialize' is never used.
@@ -68,15 +83,20 @@
 [nwk/nwk_src/nwk.c:160]: (style) The function 'NWK_SleepReq' is never used.
 [nwk/nwk_src/nwk.c:152]: (style) The function 'NWK_Unlock' is never used.
 [nwk/nwk_src/nwk.c:168]: (style) The function 'NWK_WakeupReq' is never used.
-[phy/sx1216/phy_src/phy.c:840]: (style) The function 'PHY_SetTxPower' is never used.
+[phy/phy_src/phy.c:54]: (style) The function 'PHY_SetTxPower' is never used.
 [PIC18F26K42/mcc_generated_files/pin_manager.c:134]: (style) The function 'PIN_MANAGER_IOC' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:95]: (style) The function 'SPI1_Close' is never used.
-[PIC18F26K42/mcc_generated_files/spi1.c:108]: (style) The function 'SPI1_ExchangeBlock' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:79]: (style) The function 'SPI1_Open' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:144]: (style) The function 'SPI1_ReadByte' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:139]: (style) The function 'SPI1_WriteByte' is never used.
-[phy/sx1216/phy_src/phy.c:108]: (style) The function 'SX1276ReadFifo' is never used.
-[phy/sx1216/phy_src/phy.c:96]: (style) The function 'SX1276WriteFifo' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:105]: (style) The function 'SX1276ReadFifo' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:93]: (style) The function 'SX1276WriteFifo' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1060]: (style) The function 'SX1280ComputeRangingCorrectionPolynome' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1015]: (style) The function 'SX1280GetRangingCorrectionPerSfBwGain' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:160]: (style) The function 'SX1280HalClearInstructionRam' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:327]: (style) The function 'SX1280HalExchangeByte' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:181]: (style) The function 'SX1280HalWakeup' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:916]: (style) The function 'SX1280ParseHexFileLine' is never used.
 [sys/sys_src/sysTimer.c:78]: (style) The function 'SYS_TimerStop' is never used.
 [PIC18F26K42/mcc_generated_files/tmr0.c:108]: (style) The function 'TMR0_ReadTimer' is never used.
 [PIC18F26K42/mcc_generated_files/tmr0.c:128]: (style) The function 'TMR0_Reload' is never used.
@@ -98,28 +118,27 @@
 [PIC18F27K42/mcc_generated_files/tmr5.c:157]: (style) The function 'TMR5_HasOverflowOccured' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:142]: (style) The function 'TMR5_Reload' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:147]: (style) The function 'TMR5_StartSinglePulseAcquisition' is never used.
-[app/app_src/application.c:1870]: (style) The function 'UART1_framing_error_handler' is never used.
+[app/app_src/application.c:1876]: (style) The function 'UART1_framing_error_handler' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:184]: (style) The function 'UART1_get_last_status' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:179]: (style) The function 'UART1_is_tx_done' is never used.
-[phy/sx1216/phy_src/phy.c:427]: (style) The function 'available' is never used.
-[phy/sx1216/phy_src/phy.c:575]: (style) The function 'cad_detected_isr' is never used.
-[phy/sx1216/phy_src/phy.c:561]: (style) The function 'cad_done_isr' is never used.
-[phy/sx1216/phy_src/phy.c:366]: (style) The function 'disableCrc' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:423]: (style) The function 'available' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:571]: (style) The function 'cad_detected_isr' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[app/app_src/application.c:2267]: (style) The function 'eMBRegHoldingCB' is never used.
+[app/app_src/application.c:2273]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:197]: (style) The function 'eeprom_rd_page' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:94]: (style) The function 'eeprom_wr_page' is never used.
-[phy/sx1216/phy_src/phy.c:343]: (style) The function 'getSyncWord' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:339]: (style) The function 'getSyncWord' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:237]: (style) The function 'getch' is never used.
 [modbus/functions/mbutils.c:117]: (style) The function 'prveMBError2Exception' is never used.
-[phy/sx1216/phy_src/phy.c:432]: (style) The function 'read' is never used.
-[phy/sx1216/phy_src/phy.c:884]: (style) The function 'readAllReg' is never used.
-[phy/sx1216/phy_src/phy.c:588]: (style) The function 'rx_timeout_isr' is never used.
-[app/app_src/application.c:1632]: (style) The function 'sendOKMessage' is never used.
-[app/app_src/application.c:1647]: (style) The function 'sendUARTMessage' is never used.
-[phy/sx1216/phy_src/phy.c:131]: (style) The function 'sleep' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:428]: (style) The function 'read' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:814]: (style) The function 'readAllReg' is never used.
+[phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
+[app/app_src/application.c:1639]: (style) The function 'sendOKMessage' is never used.
+[app/app_src/application.c:1654]: (style) The function 'sendUARTMessage' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.

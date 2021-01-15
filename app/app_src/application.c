@@ -25,6 +25,12 @@ Copyright 2020 Samuel Ramrajkar
 #include "uart_default_control.h"
 #include "AES.h"
 #include "wdt.h"
+#ifdef SX1276
+#include "sx1276.h"
+#endif
+#ifdef SX1280
+#include "sx1280_drv.h"
+#endif
 #ifdef FULLFEATURE
 #include "I2C_EEPROM.h"
 #endif
@@ -723,6 +729,7 @@ static void cmdMac(){
  * \param [OUT] None.
  * \param [IN] None.
  */
+
 static void cmdSetSink(*cmd){
 	char msgstr[16];
 	uint8_t buf_id, needed_size;   
@@ -1857,7 +1864,6 @@ void bootLoadApplication(void)
     NWK_SetPanId(pan_id);
     NWK_OpenEndpoint(DATA_EP, appDataInd);
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
-    PHY_SetRxState(true);
     TMR0_SetInterruptHandler(Timer0Handler);    
 }
 

@@ -72,7 +72,7 @@ void SPI1_Initialize(void)
     //CLKSEL HFINTOSC; 
     SPI1CLK = 0x01;
     //BAUD 0; 
-    SPI1BAUD = 0x03;
+    SPI1BAUD = 0x02;
     TRISCbits.TRISC7 = 0;
 }
 
