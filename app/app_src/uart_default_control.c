@@ -81,8 +81,10 @@ void uart_default_engine(void){
             break;
         case SWITCH_TO_CURRENT:
 #ifdef ATCOMM
-            int setpar1 = set_parity(DATAEE_ReadByte_Platform(UARTParity));
-            int setbaud2 = set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
+            {
+                int setpar1 = set_parity(DATAEE_ReadByte_Platform(UARTParity));
+                int setbaud2 = set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
+            }
 #endif
 #ifdef MBRTU
             {
