@@ -52,7 +52,7 @@ const uint8_t ascii_lut[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
 #ifndef MODULE
 extern void queue_serial_led_event(void);
 #endif
-extern uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed);
+extern uint16_t crc16_app(uint8_t* dptr, uint16_t len, uint16_t seed);
 static void free_tx_buffer(NWK_DataReq_t *req, bool ack);
 static bool get_free_rx_buffer(uint8_t *buf_id);
 static void exract_sink_addr(uint8_t* dataptr);

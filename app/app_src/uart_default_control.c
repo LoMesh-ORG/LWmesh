@@ -31,7 +31,7 @@ enum UART_DEFAULT_STATE_T uart_default_state_var = UART_DEFAULT_INIT;
     
 void uart_default_engine(void){
     bool getvaluebool;
-            if(BLEN_GetValue == 0){
+            if(BLEN_GetValue() == 0){
                 getvaluebool = false;
             }
             else{
@@ -58,8 +58,10 @@ void uart_default_engine(void){
             }
             break;
         case SWITCH_TO_DEFAULT:
-            int setpar = set_parity(UART_9BIT_EVEN_PARITY);
-            int setbaud = set_uart_baud(UART_BAUD_19200);
+            {
+                uint8_t parity_status = set_parity(UART_9BIT_EVEN_PARITY);
+                uint8_t uart_baud_status = set_uart_baud(UART_BAUD_19200);   
+            }
 #ifdef MBRTU
             eMBInit( MB_RTU, MB_RTU_ADDR_MAX, 0, UART_BAUD_19200, 
                                              UART_9BIT_EVEN_PARITY);
@@ -90,10 +92,12 @@ void uart_default_engine(void){
             int setbaud2 = set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
 #endif
 #ifdef MBRTU
-            int setpar2 = set_parity(curent_parity);
-            int setbaud3 = set_uart_baud(current_baud_rate);
-            eMBInit( MB_RTU, mb_rtu_addr, 0, current_baud_rate, 
-                                             curent_parity);
+            {
+                uint8_t parity_status = (uint8_t)set_parity(curent_parity);
+                uint8_t uart_baud_status = (uint8_t)set_uart_baud(current_baud_rate);
+                eMBInit( MB_RTU, mb_rtu_addr, 0, current_baud_rate, 
+                                                 curent_parity);
+            }
 #endif
             uart_default_state_var = WAIT_GPIO_GO_LOW;
         break;

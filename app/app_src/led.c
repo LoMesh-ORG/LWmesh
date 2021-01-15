@@ -86,7 +86,7 @@ void handle_led_events(void)
             if(0 == Eduration){
                 //Turn LED on and exit
                 LED_SetLow();
-                break;
+                return;
             }
             bool LEDcond;
             int LEDcondint = (int)temp.LEDCondition;
@@ -113,7 +113,7 @@ void handle_led_events(void)
 
 void queue_serial_led_event(void)
 {
-    int queueLedEvent(0,400);
+    queueLedEvent(0,400);
     for(int i = 0; i < 2; i++)
     {
         queueLedEvent(1,100);
