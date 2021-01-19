@@ -23,13 +23,6 @@ enum UART_DEFAULT_STATE_T{
 enum UART_DEFAULT_STATE_T uart_default_state_var = UART_DEFAULT_INIT;
     
 void uart_default_engine(void){
-    bool getvaluebool;
-            if(BLEN_GetValue() == 0){
-                getvaluebool = false;
-            }
-            else{
-                getvaluebool =  true;
-            }
     switch(uart_default_state_var){
         case UART_DEFAULT_INIT:
             uart_default_state_var = WAIT_GPIO_GO_LOW;
@@ -63,7 +56,7 @@ void uart_default_engine(void){
             break;
             
         case WAIT_GPIO_GO_HIGH:
-            if(getvaluebool){
+            if(BLEN_GetValue() && true){
                 set_timer0base(&blen_sample_timer, BLEN_SAMPLE_TIME_MS);
                 uart_default_state_var = DEBOUNCE_DEACTIVATION;
             }
@@ -71,7 +64,7 @@ void uart_default_engine(void){
             break;
         case DEBOUNCE_DEACTIVATION:
             if(!get_timer0base(&blen_sample_timer)){
-                if(getvaluebool){
+                if(BLEN_GetValue() && true){
                     uart_default_state_var = SWITCH_TO_CURRENT;
                 }
                 else{
@@ -82,8 +75,8 @@ void uart_default_engine(void){
         case SWITCH_TO_CURRENT:
 #ifdef ATCOMM
             {
-                int setpar1 = set_parity(DATAEE_ReadByte_Platform(UARTParity));
-                int setbaud2 = set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
+                uint8_t setpar1 = set_parity(DATAEE_ReadByte_Platform(UARTParity));
+                uint8_t setbaud2 = set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
             }
 #endif
 #ifdef MBRTU
