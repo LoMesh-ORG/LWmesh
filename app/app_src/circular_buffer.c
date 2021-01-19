@@ -60,8 +60,8 @@ void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
     ctx->write_pos = 0u;
     ctx->read_pos = 0u;
     ctx->element_size = element_size;
-    int sizeint = (int)size;
-    ctx->max_size = sizeint - 1;
+    uint8_t sizeint = (uint8_t)size;
+    ctx->max_size = sizeint - 1u;
 }
 
 void CircularBufferClear(CircularBufferContext *ctx) {
@@ -110,24 +110,20 @@ int8_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
     size_t write_pos = ctx->write_pos;
     size_t read_pos = ctx->read_pos;
     size_t size = ((write_pos - read_pos) & ctx->max_size);
-    int sizeint2 = (int)size;
+    uint8_t sizeint2 = (uint8_t)size;
 
     // Check that the buffer isn't empty and
     // that num is less than number of added elements
-    if ((sizeint2 == 0) || (size <= num)) {
+    if ((sizeint2 == 0u) || (size <= num)) {
         retvar = -1;
     }
 
     else{
-            size_t element_pos = ((read_pos + num) & ctx->max_size);
-    *elem = &ctx->buf[element_pos * ctx->element_size];
-
-    retvar = 0;
-}
+        size_t element_pos = ((read_pos + num) & ctx->max_size);
+        *elem = &ctx->buf[element_pos * ctx->element_size];
+        retvar = 0;
+    }
     return retvar;
-   
-//fail:
-//    return -1;
 }
 
 size_t CircularBufferSize(const CircularBufferContext *ctx) {
