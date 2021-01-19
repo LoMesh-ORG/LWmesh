@@ -28,38 +28,22 @@ Copyright 2020 Samuel Ramrajkar
 uint16_t crc16_app(uint8_t* dptr, uint16_t len, uint16_t seed){
     uint8_t* ptr = dptr;
     uint16_t result;
+    bool fullbool;
     //Reset the CRC engine
     CRCACCL = seed;
     CRCACCH = seed >> 8;
-    
-    //CRC_Start();
+
     CRCCON0bits.EN = 1;
     CRCCON0bits.CRCGO = 1;
     
-    bool fullbool;
-    if (CRCCON0bits.FULL==0){
-        fullbool = false;
-    }
-    else{
-        fullbool = true;
-    }
-    
-    bool busybool;
-    if (CRCCON0bits.BUSY==0){
-        busybool = false;
-    }
-    else{
-        busybool = true;
-    }
-    
     for(uint16_t i = 0; i < len; i++ )
     {
-        while(fullbool){} //Wait if the module is busy
+        while(CRCCON0bits.FULL == 1){} //Wait if the module is busy
         CRC_8BitDataWrite(*ptr);  
         ptr++;
     }
     //Now wait for the result to be computed
-    while(busybool){} //Wait if the module is busy
+    while(CRCCON0bits.BUSY == 1){} //Wait if the module is busy
     result = CRC_CalculatedResultGet(0,0);
     CRCCON0bits.CRCGO = 0;
     CRCCON0bits.EN = 0;
