@@ -334,7 +334,7 @@ void initRadio(void)
     mod_params.PacketType                    = PACKET_TYPE_LORA;
     mod_params.Params.LoRa.SpreadingFactor   = LORA_SF10;
     mod_params.Params.LoRa.Bandwidth         = LORA_BW_0800;
-    mod_params.Params.LoRa.CodingRate        = LORA_CR_4_6;
+    mod_params.Params.LoRa.CodingRate        = LORA_CR_4_8;
     
     SX1280SetModulationParams(&mod_params);
     SX1280HalWriteRegister(0x925u, 0x32u);
@@ -350,7 +350,7 @@ void initRadio(void)
     SX1280SetPacketParams(&packet_params);
     SX1280SetBufferBaseAddresses(0, 128);
     SX1280SetRfFrequency(2440000000);
-    SX1280SetTxParams(8, RADIO_RAMP_10_US);
+    SX1280SetTxParams(12, RADIO_RAMP_10_US);
     
     SX1280SetDioIrqParams(IRQ_RX_DONE | IRQ_CAD_DONE | IRQ_TX_DONE | 
             IRQ_CAD_ACTIVITY_DETECTED, IRQ_RX_DONE, IRQ_CAD_DONE, 
