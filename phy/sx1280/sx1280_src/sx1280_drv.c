@@ -164,8 +164,9 @@ void receive(uint8_t size)
     PacketParams_t     packet_params;
     packet_params.PacketType                 = PACKET_TYPE_LORA;
     packet_params.Params.LoRa.PreambleLength = 0x32u;    
-    packet_params.Params.LoRa.CrcMode        = LORA_CRC_ON;
+    packet_params.Params.LoRa.CrcMode        = LORA_CRC_OFF;
     packet_params.Params.LoRa.InvertIQ       = LORA_IQ_NORMAL;
+    packet_params.Params.LoRa.PayloadLength  = 127;
     if (0u != size) 
     {
         packet_params.Params.LoRa.HeaderType     = LORA_PACKET_IMPLICIT;
@@ -214,7 +215,7 @@ static void DIO0_Receive_ISR(void)
     if (/*(0 == pktStatus.Params.LoRa.ErrorStatus.CrcError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.LengthError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.AbortError) && */
-        (0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) &&
+        /*(0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) && */
         (0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived)) 
     {
         PHY_DataInd_t ind;
@@ -291,7 +292,7 @@ static void sx1276_send()
     PacketParams_t     packet_params;
     packet_params.PacketType                 = PACKET_TYPE_LORA;
     packet_params.Params.LoRa.PreambleLength = 0x32u;    
-    packet_params.Params.LoRa.CrcMode        = LORA_CRC_ON;
+    packet_params.Params.LoRa.CrcMode        = LORA_CRC_OFF;
     packet_params.Params.LoRa.InvertIQ       = LORA_IQ_NORMAL;
     packet_params.Params.LoRa.HeaderType     = LORA_PACKET_EXPLICIT;
     packet_params.Params.LoRa.PayloadLength  = phyTxSize;
@@ -314,13 +315,12 @@ void initRadio(void)
     volatile double freq_error;
     PacketParams_t     packet_params;
     CalibrationParams_t calib_params;
+    
     calib_params.PLLEnable = 1;
     calib_params.RC13MEnable = 1;
     calib_params.RC64KEnable = 1;
-    
-    
     SX1280Calibrate(calib_params);
-    SX1280SetRegulatorMode(USE_DCDC);  
+
     rad_ver = SX1280GetFirmwareVersion();    
     SX1280SetStandby(STDBY_RC);
 #if 0
@@ -332,8 +332,8 @@ void initRadio(void)
 #endif
     
     mod_params.PacketType                    = PACKET_TYPE_LORA;
-    mod_params.Params.LoRa.SpreadingFactor   = LORA_SF12;
-    mod_params.Params.LoRa.Bandwidth         = LORA_BW_1600;
+    mod_params.Params.LoRa.SpreadingFactor   = LORA_SF10;
+    mod_params.Params.LoRa.Bandwidth         = LORA_BW_0800;
     mod_params.Params.LoRa.CodingRate        = LORA_CR_4_6;
     
     SX1280SetModulationParams(&mod_params);
@@ -342,15 +342,15 @@ void initRadio(void)
 
         
     packet_params.PacketType                 = PACKET_TYPE_LORA;
-    packet_params.Params.LoRa.PreambleLength = 0x32u;    
-    packet_params.Params.LoRa.CrcMode        = LORA_CRC_ON;
+    packet_params.Params.LoRa.PreambleLength = 0b00011100;    
+    packet_params.Params.LoRa.CrcMode        = LORA_CRC_OFF;
     packet_params.Params.LoRa.InvertIQ       = LORA_IQ_NORMAL;
     packet_params.Params.LoRa.HeaderType     = LORA_PACKET_EXPLICIT;
     
     SX1280SetPacketParams(&packet_params);
     SX1280SetBufferBaseAddresses(0, 128);
-    SX1280SetRfFrequency(2404000000);
-    SX1280SetTxParams(8, RADIO_RAMP_02_US);
+    SX1280SetRfFrequency(2440000000);
+    SX1280SetTxParams(8, RADIO_RAMP_10_US);
     
     SX1280SetDioIrqParams(IRQ_RX_DONE | IRQ_CAD_DONE | IRQ_TX_DONE | 
             IRQ_CAD_ACTIVITY_DETECTED, IRQ_RX_DONE, IRQ_CAD_DONE, 
