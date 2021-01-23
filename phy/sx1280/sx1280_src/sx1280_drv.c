@@ -216,7 +216,8 @@ static void DIO0_Receive_ISR(void)
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.LengthError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.AbortError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) && */
-        (0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived)) 
+        /*(0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived)*/
+            1)
     {
         PHY_DataInd_t ind;
         uint8_t packetLength;
@@ -333,8 +334,8 @@ void initRadio(void)
     
     mod_params.PacketType                    = PACKET_TYPE_LORA;
     mod_params.Params.LoRa.SpreadingFactor   = LORA_SF10;
-    mod_params.Params.LoRa.Bandwidth         = LORA_BW_0800;
-    mod_params.Params.LoRa.CodingRate        = LORA_CR_4_8;
+    mod_params.Params.LoRa.Bandwidth         = LORA_BW_0400;
+    mod_params.Params.LoRa.CodingRate        = LORA_CR_4_6;
     
     SX1280SetModulationParams(&mod_params);
     SX1280HalWriteRegister(0x925u, 0x32u);
