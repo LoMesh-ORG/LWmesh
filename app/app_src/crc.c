@@ -28,7 +28,6 @@ Copyright 2020 Samuel Ramrajkar
 uint16_t crc16_app(uint8_t* dptr, uint16_t len, uint16_t seed){
     uint8_t* ptr = dptr;
     uint16_t result;
-    bool fullbool;
     //Reset the CRC engine
     CRCACCL = seed;
     CRCACCH = seed >> 8;
@@ -38,12 +37,12 @@ uint16_t crc16_app(uint8_t* dptr, uint16_t len, uint16_t seed){
     
     for(uint16_t i = 0; i < len; i++ )
     {
-        while(CRCCON0bits.FULL == 1){} //Wait if the module is busy
+        while(1 == CRCCON0bits.FULL){} //Wait if the module is busy
         CRC_8BitDataWrite(*ptr);  
         ptr++;
     }
     //Now wait for the result to be computed
-    while(CRCCON0bits.BUSY == 1){} //Wait if the module is busy
+    while(1 == CRCCON0bits.BUSY){} //Wait if the module is busy
     result = CRC_CalculatedResultGet(0,0);
     CRCCON0bits.CRCGO = 0;
     CRCCON0bits.EN = 0;

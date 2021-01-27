@@ -52,8 +52,8 @@ void uart_default_engine(void){
             break;
         case SWITCH_TO_DEFAULT:
             {
-                uint8_t parity_status = set_parity(UART_9BIT_EVEN_PARITY);
-                uint8_t uart_baud_status = set_uart_baud(UART_BAUD_19200);   
+                (void)set_parity(UART_9BIT_EVEN_PARITY);
+                (void)set_uart_baud(UART_BAUD_19200);   
             }
 #ifdef MBRTU
             eMBInit( MB_RTU, MB_RTU_ADDR_MAX, 0, UART_BAUD_19200, 
@@ -63,7 +63,7 @@ void uart_default_engine(void){
             break;
             
         case WAIT_GPIO_GO_HIGH:
-            if(BLEN_GetValue() && true){
+            if(!BLEN_GetValue()){
                 set_timer0base(&blen_sample_timer, BLEN_SAMPLE_TIME_MS);
                 uart_default_state_var = DEBOUNCE_DEACTIVATION;
             }
@@ -71,7 +71,7 @@ void uart_default_engine(void){
             break;
         case DEBOUNCE_DEACTIVATION:
             if(!get_timer0base(&blen_sample_timer)){
-                if(BLEN_GetValue() && true){
+                if(!BLEN_GetValue()){
                     uart_default_state_var = SWITCH_TO_CURRENT;
                 }
                 else{
@@ -82,14 +82,14 @@ void uart_default_engine(void){
         case SWITCH_TO_CURRENT:
 #ifdef ATCOMM
             {
-                uint8_t setpar1 = set_parity(DATAEE_ReadByte_Platform(UARTParity));
-                uint8_t setbaud2 = set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
+                (void)set_parity(DATAEE_ReadByte_Platform(UARTParity));
+                (void)set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
             }
 #endif
 #ifdef MBRTU
             {
-                uint8_t parity_status = (uint8_t)set_parity(curent_parity);
-                uint8_t uart_baud_status = (uint8_t)set_uart_baud(current_baud_rate);
+                (void)set_parity(curent_parity);
+                (void)set_uart_baud(current_baud_rate);
                 eMBInit( MB_RTU, mb_rtu_addr, 0, current_baud_rate, 
                                                  curent_parity);
             }
