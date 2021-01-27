@@ -29,43 +29,43 @@ void ledInit(void)
     
     //Now load the version blink activity on the queue
     //Initial off period
-    uint8_t ledEventStatus = queueLedEvent(0,2000);
+    (void)queueLedEvent(0,2000);
     
     //Blink major
     for(uint8_t i = 0; i < FirmwareVersionMajor; i++)
     {
-        ledEventStatus = queueLedEvent(1,250);
-        ledEventStatus = queueLedEvent(0,250);
+        (void)queueLedEvent(1,250);
+        (void)queueLedEvent(0,250);
     }
     //Gap between major and minor
-    ledEventStatus = queueLedEvent(0,1000);
+    (void)queueLedEvent(0,1000);
     //Blink minor
     for(uint8_t i = 0; i < FirmwareVersionMinor; i++)
     {
-        ledEventStatus = queueLedEvent(1,250);
-        ledEventStatus = queueLedEvent(0,250);
+        (void)queueLedEvent(1,250);
+        (void)queueLedEvent(0,250);
     }
     //Gap between minor and led always on
-    ledEventStatus = queueLedEvent(0,2000);
-    ledEventStatus = queueLedEvent(1,100);
+    (void)queueLedEvent(0,2000);
+    (void)queueLedEvent(1,100);
 }
 
 int8_t queueLedEvent(uint8_t LEDState,uint16_t duration)
 {   
-    int retvar1;
+    int ret_var;
     if(0 != CircularBufferSpace(&ledtasksbuf))
     {
         struct ledEvent temp;
         temp.LEDCondition = LEDState;
         temp.eventDuration = duration;
         CircularBufferPushBack(&ledtasksbuf,&temp);
-        retvar1 = 0;
+        ret_var = 0;
     }
     else
     {
-        retvar1 = -1;
+        ret_var = -1;
     }
-    return retvar1;
+    return ret_var;
 }
 
 void handle_led_events(void)
@@ -78,25 +78,16 @@ void handle_led_events(void)
             struct ledEvent temp;
             CircularBufferPopFront(&ledtasksbuf,&temp);
             //Check if it was a zero time event
-            int Eduration = (int)temp.eventDuration;
-            if(0 == Eduration){
+            if(0u == temp.eventDuration){
                 //Turn LED on and exit
                 LED_SetLow();
             }
             else {
-                bool LEDcond;
-                int LEDcondint = (int)temp.LEDCondition;
-                if (LEDcondint == 0){
-                    LEDcond = false;
+                if (0u == temp.LEDCondition){
+                    LED_SetHigh();
                 }
                 else{
-                    LEDcond =  true;
-                }
-                if(LEDcond){
                     LED_SetLow();
-                }
-                else{
-                    LED_SetHigh();           
                 }
                 set_timer0base(&ledtimer, temp.eventDuration);
             }
@@ -110,38 +101,38 @@ void handle_led_events(void)
 
 void queue_serial_led_event(void)
 {
-    uint8_t ledEventStatus = queueLedEvent(0,400);
+    (void)queueLedEvent(0,400);
     for(uint8_t i = 0; i < 2u; i++)
     {
-        ledEventStatus = queueLedEvent(1,100);
-        ledEventStatus = queueLedEvent(0,100);
+        (void)queueLedEvent(1,100);
+        (void)queueLedEvent(0,100);
     }
-    ledEventStatus = queueLedEvent(0,100);
-    ledEventStatus = queueLedEvent(1,100);
+    (void)queueLedEvent(0,100);
+    (void)queueLedEvent(1,100);
 }
 
 void queue_tx_led_event(void)
 {    
-    uint8_t ledEventStatus = queueLedEvent(0,400);
+    (void)queueLedEvent(0,400);
     for(int i = 0; i < 2; i++)
     {
-        ledEventStatus = queueLedEvent(1,100);
-        ledEventStatus = queueLedEvent(0,100);
+        (void)queueLedEvent(1,100);
+        (void)queueLedEvent(0,100);
     }
-    ledEventStatus = queueLedEvent(1,300);
-    ledEventStatus = queueLedEvent(0,300);
-    ledEventStatus = queueLedEvent(1,100);
+    (void)queueLedEvent(1,300);
+    (void)queueLedEvent(0,300);
+    (void)queueLedEvent(1,100);
 }
 
 void queue_rx_led_event(void)
 {
-    uint8_t ledEventStatus = queueLedEvent(0,400);
+    (void)queueLedEvent(0,400);
     for(int i = 0; i < 2; i++)
     {
-        ledEventStatus = queueLedEvent(1,300);
-        ledEventStatus = queueLedEvent(0,300);
+        (void)queueLedEvent(1,300);
+        (void)queueLedEvent(0,300);
     }
-    ledEventStatus = queueLedEvent(1,100);
-    ledEventStatus = queueLedEvent(0,300);
-    ledEventStatus = queueLedEvent(1,100);
+    (void)queueLedEvent(1,100);
+    (void)queueLedEvent(0,300);
+    (void)queueLedEvent(1,100);
 }

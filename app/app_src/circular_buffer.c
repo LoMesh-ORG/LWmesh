@@ -60,8 +60,7 @@ void CircularBufferInit(CircularBufferContext *ctx, void *buf, size_t buf_size,
     ctx->write_pos = 0u;
     ctx->read_pos = 0u;
     ctx->element_size = element_size;
-    uint8_t sizeint = (uint8_t)size;
-    ctx->max_size = sizeint - 1u;
+    ctx->max_size = size - 1u;
 }
 
 void CircularBufferClear(CircularBufferContext *ctx) {
@@ -71,59 +70,59 @@ void CircularBufferClear(CircularBufferContext *ctx) {
 
 int8_t CircularBufferPushBack(CircularBufferContext *ctx, void *val) {
     size_t write_pos = (ctx->write_pos + 1) & ctx->max_size;
-    int retvar2;
+    int ret_var;
     // Check if full
     if (write_pos == ctx->read_pos) {
 //    if (0 == CircularBufferSpace(&ctx)) {
-        retvar2 = -1;
+        ret_var = -1;
     }
     else{
     memcpy(&ctx->buf[ctx->write_pos * ctx->element_size], val,
            ctx->element_size);
     ctx->write_pos = write_pos;
     
-    retvar2 = 0;
+    ret_var = 0;
     }
-    return retvar2;
+    return ret_var;
 }
 
 int8_t CircularBufferPopFront(CircularBufferContext *ctx, void *val) {
     // Check if empty
-    int retvar3;
+    int ret_var;
     if (ctx->read_pos == ctx->write_pos) {
-        retvar3 = -1;
+        ret_var = -1;
     }
-    else{
+    else {
         memcpy(val, &ctx->buf[ctx->read_pos * ctx->element_size],
            ctx->element_size);
 
         ctx->read_pos = (ctx->read_pos + 1) & ctx->max_size;
 
-        retvar3 = 0;
-        }
-    return retvar3;
+        ret_var = 0;
+    }
+    return ret_var;
 }
 
 int8_t CircularBufferPeek(const CircularBufferContext *ctx, size_t num,
                            void **elem) {
-    int retvar;
+    int ret_var;
     size_t write_pos = ctx->write_pos;
     size_t read_pos = ctx->read_pos;
     size_t size = ((write_pos - read_pos) & ctx->max_size);
-    uint8_t sizeint2 = (uint8_t)size;
+    uint8_t size_int = (uint8_t)size;
 
     // Check that the buffer isn't empty and
     // that num is less than number of added elements
-    if ((sizeint2 == 0u) || (size <= num)) {
-        retvar = -1;
+    if ((0u == size_int) || (size <= num)) {
+        ret_var = -1;
     }
 
     else{
         size_t element_pos = ((read_pos + num) & ctx->max_size);
         *elem = &ctx->buf[element_pos * ctx->element_size];
-        retvar = 0;
+        ret_var = 0;
     }
-    return retvar;
+    return ret_var;
 }
 
 size_t CircularBufferSize(const CircularBufferContext *ctx) {

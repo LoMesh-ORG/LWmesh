@@ -39,6 +39,7 @@
 	; build/MBRTU/production/_ext/2104501039/mbcrc.p1 \
 	; build/MBRTU/production/_ext/2104501039/mbrtu.p1 \
 	; build/MBRTU/production/_ext/423217399/application.p1 \
+	; build/MBRTU/production/_ext/423217399/circular buffer.p1 \
 	; build/MBRTU/production/_ext/423217399/crc.p1 \
 	; build/MBRTU/production/_ext/423217399/EEPROM.p1 \
 	; build/MBRTU/production/_ext/423217399/led.p1 \
@@ -72,9 +73,8 @@
 	; build/MBRTU/production/_ext/2045976161/sysEncrypt.p1 \
 	; build/MBRTU/production/_ext/2045976161/sysTimer.p1 \
 	; build/MBRTU/production/_ext/127225941/wdt.p1 \
-	; build/MBRTU/production/main.p1 \
-	; build/MBRTU/production/_ext/423217399/circular_buffer.p1 \
-	; --callgraph=none --errformat=%f:%l:%c: error: (%n) %s \
+	; build/MBRTU/production/main.p1 --callgraph=none \
+	; --errformat=%f:%l:%c: error: (%n) %s \
 	; --warnformat=%f:%l:%c: warning: (%n) %s \
 	; --msgformat=%f:%l:%c: advisory: (%n) %s \
 	; --summarycmp=C:\Users\samue\AppData\Local\Temp\s9t0.
