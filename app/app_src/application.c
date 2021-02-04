@@ -299,7 +299,7 @@ static void UART_error_handler(){
     while(UART1_is_rx_ready()){
         UART1_Read();
     }
-    
+    U1ERRIRbits.RXFOIF = 0;
 }
 
 /*!
@@ -2208,9 +2208,9 @@ static void load_on_demand_mb_regs(void){
  */
 void MBRTUStack(void){
     //Check for errors in uart
-//    if(U1ERRIRbits.PERIF){
-//        UART_error_handler(); //Clear all error flags
-//    }
+    if((U1ERRIRbits.PERIF) || (U1ERRIRbits.RXFOIF)){
+        UART_error_handler(); //Clear all error flags
+    }
     if(!uartmode && UART1_is_rx_ready()){
         prvvUARTRxISR();
     }
@@ -2386,7 +2386,7 @@ static void exract_sink_addr(uint8_t* dataptr){
 }
 
 inline void application(void){
-    start_loop_timer();
+    //start_loop_timer();
 #ifdef ATCOMM
     processATCommand();
 #endif
@@ -2400,7 +2400,7 @@ inline void application(void){
 #endif
     sync_eeprom();
     uart_default_engine();
-    stop_loop_timer();
+    //stop_loop_timer();
 #ifdef BOOTABLE
     CLRWDT();
 #endif

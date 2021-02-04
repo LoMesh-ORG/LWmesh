@@ -19,6 +19,8 @@
             <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/application.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/circular%20buffer.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1280/sx1280_src/sx1280_drv.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/sys/sys_inc/sys.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/uart_default_control.c</file>
         </group>
     </open-files>
 </project-private>

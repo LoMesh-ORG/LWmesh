@@ -12,12 +12,13 @@
 	; -L--defsym=__MPLAB_BUILD=1 \
 	; --dfp=C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8 \
 	; --double=32 --float=32 --emi=wordwrite --opt=+2 --opt=+debug \
-	; --opt=+local --addrqual=ignore -DMBRTU -DDEBUGVECTOR -P \
-	; -I../app/app_inc -I../hal/hal_inc -I../nwk/nwk_inc \
-	; -I../phy/sx1216/phy_inc -I../sys/sys_inc -Imcc_generated_files \
-	; -I../modbus/mb_inc -I../modbus/port -I../modbus/rtu \
-	; -I../modbus/functions -I../aes/aes_inc -I../wdt/wdt_inc \
-	; -I../memory/eeprom/eeprom_inc --warn=-3 --asmlist \
+	; --opt=+local --addrqual=ignore -DMBRTU -DDEBUGVECTOR -DSX1276 -P \
+	; -I../app/app_inc -I../hal/hal_inc -I../nwk/nwk_inc -I../phy/phy_inc \
+	; -Imcc_generated_files -I../modbus/mb_inc -I../modbus/port \
+	; -I../modbus/rtu -I../modbus/functions -I../aes/aes_inc \
+	; -I../wdt/wdt_inc -I../memory/eeprom/eeprom_inc \
+	; -I../phy/sx1276/sx1276_inc -I../phy/sx1280/sx1280_inc \
+	; -I../sys/sys_inc --warn=-3 --asmlist \
 	; --summary=-psect,-class,+mem,-hex,-file --output=+inhx032 \
 	; --runtime=+clear --runtime=+init --runtime=+keep --runtime=-download \
 	; --runtime=+config --std=c99 --output=+elf:multilocs \
@@ -68,7 +69,11 @@
 	; build/MBRTU/production/_ext/93605685/nwkRx.p1 \
 	; build/MBRTU/production/_ext/93605685/nwkSecurity.p1 \
 	; build/MBRTU/production/_ext/93605685/nwkTx.p1 \
-	; build/MBRTU/production/_ext/1350403839/phy.p1 \
+	; build/MBRTU/production/_ext/1084134857/phy.p1 \
+	; build/MBRTU/production/_ext/1971803433/sx1276.p1 \
+	; build/MBRTU/production/_ext/1278352567/sx1280-hal.p1 \
+	; build/MBRTU/production/_ext/1278352567/sx1280.p1 \
+	; build/MBRTU/production/_ext/1278352567/sx1280_drv.p1 \
 	; build/MBRTU/production/_ext/2045976161/sys.p1 \
 	; build/MBRTU/production/_ext/2045976161/sysEncrypt.p1 \
 	; build/MBRTU/production/_ext/2045976161/sysTimer.p1 \
@@ -76,8 +81,7 @@
 	; build/MBRTU/production/main.p1 --callgraph=none \
 	; --errformat=%f:%l:%c: error: (%n) %s \
 	; --warnformat=%f:%l:%c: warning: (%n) %s \
-	; --msgformat=%f:%l:%c: advisory: (%n) %s \
-	; --summarycmp=C:\Users\samue\AppData\Local\Temp\s9t0.
+	; --msgformat=%f:%l:%c: advisory: (%n) %s
 	;
 
 
@@ -151,7 +155,7 @@ __accesstop EQU 96
 
 ;Initialize the stack pointer (FSR1)
 	global stacklo, stackhi
-	stacklo	equ	0193Fh
+	stacklo	equ	01B3Fh
 	stackhi	equ	01FFFh
 
 
@@ -159,21 +163,21 @@ __accesstop EQU 96
 	global ___sp,___inthi_sp,___intlo_sp
 ___sp:
 
-ds 577
+ds 407
 
 ___inthi_sp:
 
-ds 576
+ds 405
 
 ___intlo_sp:
 
-ds 576
+ds 405
 
 
 
 	psect	init
 start:
-	lfsr	1,6463
+	lfsr	1,6975
 	global start_initialization
 	goto start_initialization	;jump to C runtime clear & initialization
 
