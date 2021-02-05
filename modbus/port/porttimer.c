@@ -34,7 +34,7 @@ static uint16_t timerval = 0;
 BOOL
 xMBPortTimersInit( USHORT usTim1Timerout50us )
 {
-    timerval = 0xFFFF - (usTim1Timerout50us*2);
+    timerval = 0xFFFF - (usTim1Timerout50us*400);
     TMR3_SetInterruptHandler(&prvvTIMERExpiredISR);
     return TRUE;
 }

@@ -76,9 +76,9 @@ void  INTERRUPT_Initialize (void)
     GIE = state;
     // Assign peripheral interrupt priority vectors
     IPR3bits.U1TXIP = 0;
-    IPR3bits.U1RXIP = 1;
+    IPR3bits.U1RXIP = 0;
     IPR3bits.TMR0IP = 0;
-    IPR6bits.TMR3IP = 0;
+    IPR6bits.TMR3IP = 1;
 }
 
 #ifdef BOOTABLE

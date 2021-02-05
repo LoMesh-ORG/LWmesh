@@ -32,10 +32,3 @@ CND_ARTIFACT_PATH_MBbootable=dist/MBbootable/production/PIC18F27K42.production.h
 CND_PACKAGE_DIR_MBbootable=${CND_DISTDIR}/MBbootable/package
 CND_PACKAGE_NAME_MBbootable=pic18f27k42.tar
 CND_PACKAGE_PATH_MBbootable=${CND_DISTDIR}/MBbootable/package/pic18f27k42.tar
-# transparent_mode configuration
-CND_ARTIFACT_DIR_transparent_mode=dist/transparent_mode/production
-CND_ARTIFACT_NAME_transparent_mode=PIC18F27K42.production.hex
-CND_ARTIFACT_PATH_transparent_mode=dist/transparent_mode/production/PIC18F27K42.production.hex
-CND_PACKAGE_DIR_transparent_mode=${CND_DISTDIR}/transparent_mode/package
-CND_PACKAGE_NAME_transparent_mode=pic18f27k42.tar
-CND_PACKAGE_PATH_transparent_mode=${CND_DISTDIR}/transparent_mode/package/pic18f27k42.tar

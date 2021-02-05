@@ -244,9 +244,9 @@ void putch(char txData)
     UART1_Write(txData);
 }
 #ifdef BOOTABLE
-void __interrupt(irq(U1TX),base(16392)) UART1_tx_vect_isr()
+void __interrupt(irq(U1TX),base(16392),low_priority) UART1_tx_vect_isr()
 #else
-void __interrupt(irq(U1TX),base(8)) UART1_tx_vect_isr()
+void __interrupt(irq(U1TX),base(8),low_priority) UART1_tx_vect_isr()
 #endif
 {   
     if(UART1_TxInterruptHandler)
@@ -255,9 +255,9 @@ void __interrupt(irq(U1TX),base(8)) UART1_tx_vect_isr()
     }
 }
 #ifdef BOOTABLE
-void __interrupt(irq(U1RX),base(16392)) UART1_rx_vect_isr()
+void __interrupt(irq(U1RX),base(16392),low_priority) UART1_rx_vect_isr()
 #else
-void __interrupt(irq(U1RX),base(8)) UART1_rx_vect_isr()
+void __interrupt(irq(U1RX),base(8),low_priority) UART1_rx_vect_isr()
 #endif
 {
     if(UART1_RxInterruptHandler)

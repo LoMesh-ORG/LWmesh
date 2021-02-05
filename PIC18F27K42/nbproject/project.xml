@@ -29,14 +29,12 @@
                 <sourceRootElem>../aes/aes_src</sourceRootElem>
                 <sourceRootElem>../wdt/wdt_inc</sourceRootElem>
                 <sourceRootElem>../wdt/wdt_src</sourceRootElem>
-                <sourceRootElem>../memory/eeprom/inc</sourceRootElem>
-                <sourceRootElem>../memory/eeprom/eeprom_inc</sourceRootElem>
-                <sourceRootElem>../memory/eeprom/eeprom_src</sourceRootElem>
                 <sourceRootElem>../phy/phy_inc</sourceRootElem>
                 <sourceRootElem>../phy/sx1276/sx1276_inc</sourceRootElem>
+                <sourceRootElem>../phy/sx1280/sx1280_inc</sourceRootElem>
                 <sourceRootElem>../phy/phy_src</sourceRootElem>
                 <sourceRootElem>../phy/sx1276/sx1276_src</sourceRootElem>
-                <sourceRootElem>../phy/sx1280</sourceRootElem>
+                <sourceRootElem>../phy/sx1280/sx1280_src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
@@ -53,10 +51,6 @@
                 </confElem>
                 <confElem>
                     <name>MBbootable</name>
-                    <type>2</type>
-                </confElem>
-                <confElem>
-                    <name>transparent_mode</name>
                     <type>2</type>
                 </confElem>
             </confList>
