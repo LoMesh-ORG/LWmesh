@@ -139,6 +139,8 @@
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
 [app/app_src/application.c:1639]: (style) The function 'sendOKMessage' is never used.
 [app/app_src/application.c:1654]: (style) The function 'sendUARTMessage' is never used.
+[wdt/wdt_src/wdt.c:26]: (style) The function 'start_loop_timer' is never used.
+[wdt/wdt_src/wdt.c:31]: (style) The function 'stop_loop_timer' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.
