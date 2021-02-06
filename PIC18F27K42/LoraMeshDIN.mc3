@@ -1719,7 +1719,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR3" registerAlias="TCON"/>
-         <value>51</value>
+         <value>50</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="Pin Module" registerAlias="IOCAP" settingAlias="IOCAP2" alias="disabled"/>
@@ -4555,7 +4555,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR3" registerAlias="TCON" settingAlias="TMRON"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR5" registerAlias="TCON" settingAlias="TMRON"/>
@@ -10415,7 +10415,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR3" name="timerstart"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="DMA CHANNEL2" registerAlias="DMADCNTI" settingAlias="enable"/>
@@ -11345,7 +11345,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\tmr3.c</file>
-         <hash>4cc3a7d73d7a857812ede39592ed48037436f1cb2fd4c85370e3014fd564a114</hash>
+         <hash>db46cb0a4d58e1c71d7f8aab41b8018874f7922cef93fb29a37f00bd6b77e14a</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\tmr0.c</file>
