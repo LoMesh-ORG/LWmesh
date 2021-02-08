@@ -54,6 +54,7 @@ dkms.conf
 #MPLABX specific
 *.i
 *.p1
+*.flag
 PIC18F26K42/dist/default/production/PIC18F26K42.production.cmf
 PIC18F26K42/dist/default/production/PIC18F26K42.production.cmf
 PIC18F26K42/dist/default/production/PIC18F26K42.production.hxl

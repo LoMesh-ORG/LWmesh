@@ -482,7 +482,7 @@
         <C32Global>
         </C32Global>
       </item>
-      <item path="../modbus/rtu/mbcrc.c" ex="true" overriding="false">
+      <item path="../modbus/rtu/mbcrc.c" ex="false" overriding="false">
         <C32>
         </C32>
         <C32-AR>
@@ -523,7 +523,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="..\aes\aes_inc;..\app\app_inc;..\hal\hal_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\nwk\nwk_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\sys\sys_inc;..\wdt\wdt_inc;mcc_generated_files"/>
+                  value="..\aes\aes_inc;..\app\app_inc;..\hal\hal_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\nwk\nwk_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\sys\sys_inc;..\wdt\wdt_inc;mcc_generated_files;..\modbus\port"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="false"/>

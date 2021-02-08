@@ -20,6 +20,9 @@ Copyright 2020 Samuel Ramrajkar
 #endif
 #include "crc.h"
 #include <stdbool.h>
+#if (__32MM0256GPM048__)
+#include "port.h"
+#endif
 
 #if (_18F27K42 || _18F47K42 || _18F26K42)
 uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed){
@@ -48,9 +51,9 @@ uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed){
 #endif
 
 #if (__32MM0256GPM048__)
+extern USHORT usMBCRC16( UCHAR * pucFrame, USHORT usLen );
 uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed)
-{
-    //@TODO implement CRC logic 
-    return 0;
+{ 
+    return usMBCRC16((UCHAR *) dptr, len);
 }
 #endif

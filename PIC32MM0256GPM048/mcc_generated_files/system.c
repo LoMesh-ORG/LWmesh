@@ -83,22 +83,22 @@
 #include "pin_manager.h"
 #include "clock.h"
 #include "system.h"
-#include "coretimer.h"
-#include "interrupt_manager.h"
-#include "exceptions.h"
 #include "spi2.h"
-#include "uart2.h"
+#include "tmr3.h"
 #include "dma.h"
 #include "crc.h"
-#include "memory/flash.h"
+#include "interrupt_manager.h"
+#include "exceptions.h"
 #include "uart3.h"
-#include "tmr3.h"
+#include "uart2.h"
+#include "memory/flash.h"
+#include "coretimer.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
+    INTERRUPT_Initialize();
     CORETIMER_Initialize();
     CRC_Initialize();
     DMA_Initialize();

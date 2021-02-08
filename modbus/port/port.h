@@ -24,8 +24,10 @@
 
 #include <assert.h>
 #include <stdint.h>
+#if (_18F27K42 || _18F47K42 || _18F26K42)
 #include "mcc.h"
 #include "../mcc_generated_files/tmr3.h"
+#endif
 
 #define	INLINE                      inline
 #define PR_BEGIN_EXTERN_C           extern "C" {
