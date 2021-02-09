@@ -13,12 +13,12 @@
   @Description
     This source file provides APIs for UART1.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
-        Device            :  PIC18F26K42
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.6
+        Device            :  PIC18F27K42
         Driver Version    :  2.4.0
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above
-        MPLAB             :  MPLAB X 5.30
+        Compiler          :  XC8 2.30 and above
+        MPLAB             :  MPLAB X 5.40
 */
 
 /*
@@ -62,7 +62,7 @@ extern volatile bool tx_done;
 #endif
 #ifdef MBRTU
 #define UART1_TX_BUFFER_SIZE 64
-#define UART1_RX_BUFFER_SIZE 16
+#define UART1_RX_BUFFER_SIZE 64
 #endif
 
 /**
@@ -123,8 +123,8 @@ void UART1_Initialize(void)
     // BRGS high speed; MODE Asynchronous 8-bit mode with 9th bit even parity; RXEN enabled; TXEN enabled; ABDEN disabled; 
     U1CON0 = 0xB3;
 
-    // RXBIMD Set RXBKIF on rising RX input; BRKOVR disabled; WUE disabled; SENDB disabled; ON disabled; 
-    U1CON1 = 0x00;
+    // RXBIMD Set RXBKIF on rising RX input; BRKOVR disabled; WUE disabled; SENDB disabled; ON enabled; 
+    U1CON1 = 0x80;
 
     // TXPOL not inverted; FLO Hardware flow control; C0EN disabled; RXPOL not inverted; RUNOVF RX input shifter continues; STP Transmit 1Stop bit, receiver verifies first Stop bit; 
     U1CON2 = 0x82;
@@ -244,9 +244,9 @@ void putch(char txData)
     UART1_Write(txData);
 }
 #ifdef BOOTABLE
-void __interrupt(irq(U1TX),base(16392)) UART1_tx_vect_isr()
+void __interrupt(irq(U1TX),base(16392),low_priority) UART1_tx_vect_isr()
 #else
-void __interrupt(irq(U1TX),base(8)) UART1_tx_vect_isr()
+void __interrupt(irq(U1TX),base(8),low_priority) UART1_tx_vect_isr()
 #endif
 {   
     if(UART1_TxInterruptHandler)
@@ -255,9 +255,9 @@ void __interrupt(irq(U1TX),base(8)) UART1_tx_vect_isr()
     }
 }
 #ifdef BOOTABLE
-void __interrupt(irq(U1RX),base(16392)) UART1_rx_vect_isr()
+void __interrupt(irq(U1RX),base(16392),low_priority) UART1_rx_vect_isr()
 #else
-void __interrupt(irq(U1RX),base(8)) UART1_rx_vect_isr()
+void __interrupt(irq(U1RX),base(8),low_priority) UART1_rx_vect_isr()
 #endif
 {
     if(UART1_RxInterruptHandler)
@@ -322,7 +322,8 @@ void UART1_Receive_ISR(void)
 void UART1_RxDataHandler(void){
     // use this default receive interrupt handler code
     uart1RxBuffer[uart1RxHead++] = U1RXB;
-    if(sizeof(uart1RxBuffer) <= uart1RxHead){
+    if(sizeof(uart1RxBuffer) <= uart1RxHead)
+    {
         uart1RxHead = 0;
     }
     uart1RxCount++;

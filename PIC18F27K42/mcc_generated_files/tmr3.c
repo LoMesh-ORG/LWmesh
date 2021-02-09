@@ -13,12 +13,12 @@
   @Description
     This source file provides APIs for TMR3.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.0
-        Device            :  PIC18F26K42
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.6
+        Device            :  PIC18F27K42
         Driver Version    :  2.11
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above
-        MPLAB 	          :  MPLAB X 5.35
+        Compiler          :  XC8 2.30 and above
+        MPLAB 	          :  MPLAB X 5.40
 */
 
 /*
@@ -72,14 +72,14 @@ void TMR3_Initialize(void)
     //GSS T3G_pin; 
     T3GATE = 0x00;
 
-    //CS MFINTOSC_500kHz; 
-    T3CLK = 0x05;
+    //CS FOSC; 
+    T3CLK = 0x02;
 
-    //TMR3H 255; 
-    TMR3H = 0xFF;
+    //TMR3H 254; 
+    TMR3H = 0xFE;
 
-    //TMR3L 231; 
-    TMR3L = 0xE7;
+    //TMR3L 112; 
+    TMR3L = 0x70;
 
     // Clearing IF flag before enabling the interrupt.
     PIR6bits.TMR3IF = 0;
@@ -93,8 +93,8 @@ void TMR3_Initialize(void)
     // Set Default Interrupt Handler
     TMR3_SetInterruptHandler(TMR3_DefaultInterruptHandler);
 
-    // CKPS 1:1; NOT_SYNC synchronize; TMR3ON disabled; T3RD16 enabled; 
-    T3CON = 0x02;
+    // CKPS 1:8; NOT_SYNC synchronize; TMR3ON disabled; T3RD16 enabled; 
+    T3CON = 0x32;
 }
 
 void TMR3_StartTimer(void)

@@ -15,12 +15,12 @@
     For individual peripheral handlers please see the peripheral driver for
     all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
-        Device            :  PIC18F26K42
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.6
+        Device            :  PIC18F27K42
         Driver Version    :  2.12
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above or later
-        MPLAB 	          :  MPLAB X 5.30
+        Compiler          :  XC8 2.30 and above or later
+        MPLAB 	          :  MPLAB X 5.40
 */
 
 /*
@@ -75,11 +75,10 @@ void  INTERRUPT_Initialize (void)
 
     GIE = state;
     // Assign peripheral interrupt priority vectors
-    IPR3bits.U1TXIP = 1;
-    IPR3bits.U1RXIP = 1;
+    IPR3bits.U1TXIP = 0;
+    IPR3bits.U1RXIP = 0;
     IPR3bits.TMR0IP = 0;
     IPR6bits.TMR3IP = 1;
-    IPR4bits.TMR1IP = 1;
 }
 
 #ifdef BOOTABLE
