@@ -57,7 +57,7 @@ void ledInit(void)
 
 int8_t queueLedEvent(uint8_t LEDState,uint16_t duration)
 {   
-    int ret_var;
+    int8_t ret_var;
     if(0 != CircularBufferSpace(&ledtasksbuf))
     {
         struct ledEvent temp;
