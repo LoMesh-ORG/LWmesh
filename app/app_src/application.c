@@ -942,7 +942,7 @@ static void cmdSetRFCH(char* cmd){
     }
 	memcpy(CHstr,p1,2);
 	temp = (uint8_t)strtoul(CHstr,&p2,16) - 1;
-	if(temp > sizeof(fhssList)){
+	if(temp > (sizeof(fhssList)/4)){
 		printf("NOT OK:%u\r\n",CHOUTOFBOUNDS);
 	}
 	else{
@@ -1753,7 +1753,7 @@ void bootLoadApplication(void)
     
     //Load the RF channel setting from EEPROM
     channel = DATAEE_ReadByte_Platform(radioChannel);
-    if(channel > sizeof(fhssList)){
+    if(channel > (sizeof(fhssList)/4)){
         channel = 4;
         DATAEE_WriteByte_Platform(radioChannel,channel);
     }
@@ -1997,7 +1997,7 @@ static void handle_rw_regs(){
     }
     //Check if RF channel changed
     if(channel != read_write_mb_regs[RW_RF_CH]){
-        if(read_write_mb_regs[RW_RF_CH] < sizeof(fhssList)){
+        if(read_write_mb_regs[RW_RF_CH] > (sizeof(fhssList)/4)){
             channel = read_write_mb_regs[RW_RF_CH];
             set_eeprom_sync(EEPROM_RADIO_CH);
             need_radio_reset = 1;

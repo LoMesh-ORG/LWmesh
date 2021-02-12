@@ -339,6 +339,8 @@ void initRadio(void)
     SX1280SetModulationParams(&mod_params);
     SX1280HalWriteRegister(0x925u, 0x32u);
     SX1280HalWriteRegister(0x093Cu, 0x01u);
+    
+    setSpreadingFactor(current_sf);
 
         
     packet_params.PacketType                 = PACKET_TYPE_LORA;
@@ -349,15 +351,15 @@ void initRadio(void)
     
     SX1280SetPacketParams(&packet_params);
     SX1280SetBufferBaseAddresses(0, 128);
-    SX1280SetRfFrequency(2404000000);
-    SX1280SetTxParams(8, RADIO_RAMP_02_US);
+    SX1280SetRfFrequency(channel);
+    SX1280SetTxParams(TXPower, RADIO_RAMP_02_US);
     
     SX1280SetDioIrqParams(IRQ_RX_DONE | IRQ_CAD_DONE | IRQ_TX_DONE | 
             IRQ_CAD_ACTIVITY_DETECTED, IRQ_RX_DONE, IRQ_CAD_DONE, 
             IRQ_HEADER_ERROR);
     
     SX1280SetCadParams(LORA_CAD_04_SYMBOL);
-    SX1280SetFs();
+    //SX1280SetFs();
     freq_error = SX1280GetFrequencyError();
     rad_stat = SX1280GetStatus();
 }
@@ -372,6 +374,7 @@ void radio_engine(void)
 {
     switch(radio_state_var){
         case RAD_RESET_LOW:
+            __delay_ms(5);
             RADRST_SetLow();
             set_timer0base(&txTimeOut, 100); //Reuse the timer
             radio_state_var = RAD_RESET_LOW_WAIT;
