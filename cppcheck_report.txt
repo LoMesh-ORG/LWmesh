@@ -32,17 +32,17 @@
 [phy/sx1280/sx1280_src/sx1280.c:1102]: (style) The scope of the variable 'correctionCoeff' can be reduced.
 [phy/sx1280/sx1280_src/sx1280.c:227]: (style) Unused variable: packet_typ
 [phy/sx1280/sx1280_src/sx1280_drv.c:124] -> [phy/sx1280/sx1280_src/sx1280_drv.c:120]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
-[phy/sx1280/sx1280_src/sx1280_drv.c:250]: (style) The scope of the variable 'temp' can be reduced.
+[phy/sx1280/sx1280_src/sx1280_drv.c:252]: (style) The scope of the variable 'temp' can be reduced.
 [phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:164]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:291]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:315]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:182]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:211]: (style) Variable 'irqFlags' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:261]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:324]: (style) Variable 'rad_ver' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:362]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:313]: (style) Unused variable: test
-[phy/sx1280/sx1280_src/sx1280_drv.c:361]: (style) Variable 'freq_error' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:293]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:317]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:183]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:212]: (style) Variable 'irqFlags' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:263]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:325]: (style) Variable 'rad_ver' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:363]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:315]: (style) Unused variable: test
+[phy/sx1280/sx1280_src/sx1280_drv.c:362]: (style) Variable 'freq_error' is assigned a value that is never used.
 [aes/aes_src/AES.c:536]: (style) The function 'AES_CTR_xcrypt_buffer' is never used.
 [aes/aes_src/AES.c:473]: (style) The function 'AES_ECB_decrypt' is never used.
 [aes/aes_src/AES.c:467]: (style) The function 'AES_ECB_encrypt' is never used.
