@@ -351,7 +351,7 @@ void initRadio(void)
     
     SX1280SetPacketParams(&packet_params);
     SX1280SetBufferBaseAddresses(0, 128);
-    SX1280SetRfFrequency(channel);
+    SX1280SetRfFrequency(fhssList[channel]);
     SX1280SetTxParams(TXPower, RADIO_RAMP_02_US);
     
     SX1280SetDioIrqParams(IRQ_RX_DONE | IRQ_CAD_DONE | IRQ_TX_DONE | 
