@@ -293,7 +293,7 @@ void SX1280HalReadRegisters( uint16_t address, uint8_t *buffer, uint16_t size )
     SPI1_ExchangeBlock( halTxBuffer, halSize);
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(NULL, halSize, halTxBuffer);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, &halTxBuffer[0]);
 #endif    
     NSS_SetHigh();
     memcpy( buffer, &halTxBuffer + 4, size );
@@ -341,7 +341,7 @@ void SX1280HalReadBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
     SPI1_ExchangeBlock( halTxBuffer, halSize);
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(NULL, halSize, &halTxBuffer);
+    SPI2_Exchange8bitBuffer(&halTxBuffer, halSize, &halTxBuffer);
 #endif     
     memcpy( buffer, &halTxBuffer + 3, size );
     NSS_SetHigh();
