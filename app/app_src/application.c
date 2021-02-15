@@ -593,8 +593,11 @@ static void cmdSetNaddr(char* cmd){
 	pan_id = strtoul(p1,NULL,16);
 	//Now copy to memory location in EEPROM
     eeprom_write_flags.flag_netid = 1;	
+    eeprom_write_flags.flag_master = 1;
     NWK_SetPanId(pan_id);
+#ifndef SX1280
     PHY_Init();
+#endif
 	printf("OK\r\n");
 func_exit_bad:
 	return;
@@ -942,13 +945,15 @@ static void cmdSetRFCH(char* cmd){
     }
 	memcpy(CHstr,p1,2);
 	temp = (uint8_t)strtoul(CHstr,&p2,16) - 1;
-	if(temp > sizeof(fhssList)){
+	if(temp > (sizeof(fhssList)/4)){
 		printf("NOT OK:%u\r\n",CHOUTOFBOUNDS);
 	}
 	else{
 		channel = temp;
 		DATAEE_WriteByte_Platform(radioChannel,channel);
+#ifndef SX1280
 		PHY_Init();
+#endif
         printf("OK\r\n");
 	}
 	return;
@@ -989,7 +994,9 @@ static void cmdSetTX(char* cmd){
 	else{
 		TXPower = temp;
 		DATAEE_WriteByte_Platform(txPowerSetting,TXPower);
+#ifndef SX1280
 		PHY_Init();
+#endif
 		printf("OK\r\n");
 	}
 	return;
@@ -1025,7 +1032,9 @@ static void cmdSetCADRSSI(char* atCommand){
 	else{
 		RSSITarget = temp;
 		DATAEE_WriteByte_Platform(RSSITargetSetting,RSSITarget);
+#ifndef SX1280
 		PHY_Init();
+#endif
 		printf("OK\r\n");
 	}
 	return;
@@ -1137,14 +1146,16 @@ static void cmdSetSF(char* atCommand){
 	int8_t temp;
 	p1 = strstr(atCommand,"=") + 1;
 	memcpy(CHstr,p1,2);
-	temp = (uint8_t)strtol(CHstr,&p2,16);
+	temp = (uint8_t)strtol(CHstr,&p2,10);
 	if((temp > sx1276SFMAX) || (temp < sx1276SFMIN)){
-		printf("NOT OK:%u\r\n", ILLEGALPARAMETER);
+		printf("NOT OK:%u\r\n", (uint16_t)ILLEGALPARAMETER);
 	}
 	else{
 		current_sf = temp;
 		DATAEE_WriteByte_Platform(SF,temp);
+#ifndef SX1280
 		PHY_Init();
+#endif
 		printf("OK\r\n");
 	}
 	return;
@@ -1753,7 +1764,7 @@ void bootLoadApplication(void)
     
     //Load the RF channel setting from EEPROM
     channel = DATAEE_ReadByte_Platform(radioChannel);
-    if(channel > sizeof(fhssList)){
+    if(channel > (sizeof(fhssList)/4)){
         channel = 4;
         DATAEE_WriteByte_Platform(radioChannel,channel);
     }
@@ -1997,7 +2008,7 @@ static void handle_rw_regs(){
     }
     //Check if RF channel changed
     if(channel != read_write_mb_regs[RW_RF_CH]){
-        if(read_write_mb_regs[RW_RF_CH] < sizeof(fhssList)){
+        if(read_write_mb_regs[RW_RF_CH] > (sizeof(fhssList)/4)){
             channel = read_write_mb_regs[RW_RF_CH];
             set_eeprom_sync(EEPROM_RADIO_CH);
             need_radio_reset = 1;
@@ -2386,7 +2397,7 @@ static void exract_sink_addr(uint8_t* dataptr){
 }
 
 inline void application(void){
-    //start_loop_timer();
+    start_loop_timer();
 #ifdef ATCOMM
     processATCommand();
 #endif
@@ -2400,7 +2411,7 @@ inline void application(void){
 #endif
     sync_eeprom();
     uart_default_engine();
-    //stop_loop_timer();
+    stop_loop_timer();
 #ifdef BOOTABLE
     CLRWDT();
 #endif

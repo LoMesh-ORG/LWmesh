@@ -172,9 +172,16 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData)
     NVMCON1bits.NVMREG = 0;
     NVMCON1bits.WREN = 1;
     INTCON0bits.GIE = 0;     // Disable interrupts
+#if 0
     NVMCON2 = 0x55;
     NVMCON2 = 0xAA;
     NVMCON1bits.WR = 1;
+#endif
+    __asm("MOVLW 0x55");
+    __asm("MOVWF NVMCON2");
+    __asm("MOVLW 0xAA");
+    __asm("MOVWF NVMCON2");
+    __asm("BSF NVMCON1, 1");
     // Wait for write to complete
     while (NVMCON1bits.WR)
     {
@@ -192,7 +199,8 @@ uint8_t DATAEE_ReadByte(uint16_t bAdd)
     NVMCON1bits.RD = 1;
     NOP();  // NOPs may be required for latency at high frequencies
     NOP();
-
+    NOP();
+    NOP();
     return (NVMDAT);
 }
 

@@ -19,9 +19,9 @@ extern "C" {
 
 //SX1276 Output power limits
 #define sx1276LowerPower 2
-#define sx1276UpperPower 17
+#define sx1276UpperPower 12
 #define sx1276SFMAX      12
-#define sx1276SFMIN      7
+#define sx1276SFMIN      9
 #define SX1276RSSIMAX    -30
 #define SX1276RSSIMIN    -120
 #define PREAMBLE         12
@@ -44,15 +44,10 @@ uint8_t current_sf;
 //Channel setting variable
 uint8_t channel;
 
-//const uint32_t fhssList[] = {906E6,908E6,910E6,912E6,914E6,916E6,918E6,920E6,922E6,924E6,\
-//                       923E6,921E6,919E6,917E6,915E6,913E6,911E6,909E6,907E6,905E6,\
-//                       903E6,905.5E6,907.5E6,909.5E6,915.5E6,917.5E6,919.5E6,921.5E6,923.5E6,924.5E6,\
-//                       906.25E6,908.75E6,910.25E6,912.75E6,914.25E6,916.75E6,918.25E6,920.75E6,922.25E6,924.75E6,\
-//                       923.25E6,921.25E6,919.25E6,917.75E6,915.25E6,913.75E6,911.25E6,909.75E6,907.25E6,905.75E6,\
-//                       903.5E6,905.25E6,907.75E6,909.25E6,915.75E6,917.25E6,919.75E6,921.25E6,923.75E6,924.52E6,\
-//                       905.75E6,910.75E6,912.75E6};
-
-const uint32_t fhssList[] = {906E6,908E6,910E6,912E6,914E6,916E6,918E6,920E6,922E6,924E6};
+const uint32_t fhssList[] = {2412000000, 2417000000, 2422000000, 2427000000, 
+                             2432000000, 2437000000, 2442000000, 2447000000,
+                             2452000000, 2457000000, 2462000000, 2467000000,
+                             2472000000};
 
 //Stores precomputed frf values
 uint8_t fhssReg[sizeof(fhssList)/4][3];
