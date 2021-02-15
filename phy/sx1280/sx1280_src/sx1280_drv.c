@@ -8,6 +8,7 @@
 #include "led.h"
 #include <stdlib.h>
 
+extern uint16_t pan_id;;
 static ModulationParams_t mod_params;
 static PacketParams_t     packet_params;
 
@@ -214,8 +215,10 @@ static void DIO0_Receive_ISR(void)
     if (/*(0 == pktStatus.Params.LoRa.ErrorStatus.CrcError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.LengthError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.AbortError) && */
-        (0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) &&
-        (0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived)) 
+        /*(0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) && */
+        /*(0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived) */
+        1)    
+            
     {
         PHY_DataInd_t ind;
         uint8_t packetLength;
@@ -317,7 +320,7 @@ void initRadio(void)
     calib_params.PLLEnable = 1;
     calib_params.RC13MEnable = 1;
     calib_params.RC64KEnable = 1;
-    
+
     
     SX1280Calibrate(calib_params);
     SX1280SetRegulatorMode(USE_DCDC);  
@@ -341,7 +344,10 @@ void initRadio(void)
     SX1280HalWriteRegister(0x093Cu, 0x01u);
     
     setSpreadingFactor(current_sf);
-
+       
+    /*Program the network address sync address*/
+    SX1280HalWriteRegister(0x944u, (uint8_t)(pan_id >> 8));
+    SX1280HalWriteRegister(0x0955u, (uint8_t)pan_id);
         
     packet_params.PacketType                 = PACKET_TYPE_LORA;
     packet_params.Params.LoRa.PreambleLength = 0x32u;    
@@ -374,15 +380,15 @@ void radio_engine(void)
 {
     switch(radio_state_var){
         case RAD_RESET_LOW:
-            __delay_ms(5);
+            __delay_ms(500);
             RADRST_SetLow();
-            set_timer0base(&txTimeOut, 100); //Reuse the timer
+            set_timer0base(&txTimeOut, 1000); //Reuse the timer
             radio_state_var = RAD_RESET_LOW_WAIT;
             break;
         case RAD_RESET_LOW_WAIT:
             if(!get_timer0base(&txTimeOut)){
                 RADRST_SetHigh();
-                set_timer0base(&txTimeOut, 700); //Reuse the timer
+                set_timer0base(&txTimeOut, 1000); //Reuse the timer
                 radio_state_var = RAD_RESET_HIGH_WAIT;
             }
             break;
