@@ -14,7 +14,7 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:2153]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:2164]: (style) Variable 'count' is modified but its new value is never used.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -31,18 +31,18 @@
 [phy/sx1280/sx1280_src/sx1280-hal.c:164]: (style) Variable 'halSize' is assigned a value that is never used.
 [phy/sx1280/sx1280_src/sx1280.c:1102]: (style) The scope of the variable 'correctionCoeff' can be reduced.
 [phy/sx1280/sx1280_src/sx1280.c:227]: (style) Unused variable: packet_typ
-[phy/sx1280/sx1280_src/sx1280_drv.c:124] -> [phy/sx1280/sx1280_src/sx1280_drv.c:120]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
-[phy/sx1280/sx1280_src/sx1280_drv.c:250]: (style) The scope of the variable 'temp' can be reduced.
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:164]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:291]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:315]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:182]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:211]: (style) Variable 'irqFlags' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:261]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:324]: (style) Variable 'rad_ver' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:362]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:313]: (style) Unused variable: test
-[phy/sx1280/sx1280_src/sx1280_drv.c:361]: (style) Variable 'freq_error' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:125] -> [phy/sx1280/sx1280_src/sx1280_drv.c:121]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
+[phy/sx1280/sx1280_src/sx1280_drv.c:253]: (style) The scope of the variable 'temp' can be reduced.
+[phy/sx1280/sx1280_src/sx1280_drv.c:13] -> [phy/sx1280/sx1280_src/sx1280_drv.c:165]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:13] -> [phy/sx1280/sx1280_src/sx1280_drv.c:294]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:13] -> [phy/sx1280/sx1280_src/sx1280_drv.c:318]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:183]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:212]: (style) Variable 'irqFlags' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:264]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:327]: (style) Variable 'rad_ver' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:370]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:316]: (style) Unused variable: test
+[phy/sx1280/sx1280_src/sx1280_drv.c:369]: (style) Variable 'freq_error' is assigned a value that is never used.
 [aes/aes_src/AES.c:536]: (style) The function 'AES_CTR_xcrypt_buffer' is never used.
 [aes/aes_src/AES.c:473]: (style) The function 'AES_ECB_decrypt' is never used.
 [aes/aes_src/AES.c:467]: (style) The function 'AES_ECB_encrypt' is never used.
@@ -118,7 +118,7 @@
 [PIC18F27K42/mcc_generated_files/tmr5.c:157]: (style) The function 'TMR5_HasOverflowOccured' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:142]: (style) The function 'TMR5_Reload' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:147]: (style) The function 'TMR5_StartSinglePulseAcquisition' is never used.
-[app/app_src/application.c:1876]: (style) The function 'UART1_framing_error_handler' is never used.
+[app/app_src/application.c:1887]: (style) The function 'UART1_framing_error_handler' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:184]: (style) The function 'UART1_get_last_status' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:179]: (style) The function 'UART1_is_tx_done' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:423]: (style) The function 'available' is never used.
@@ -126,7 +126,7 @@
 [phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[app/app_src/application.c:2273]: (style) The function 'eMBRegHoldingCB' is never used.
+[app/app_src/application.c:2284]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:197]: (style) The function 'eeprom_rd_page' is never used.
@@ -137,10 +137,8 @@
 [phy/sx1276/sx1276_src/sx1276.c:428]: (style) The function 'read' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:814]: (style) The function 'readAllReg' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
-[app/app_src/application.c:1639]: (style) The function 'sendOKMessage' is never used.
-[app/app_src/application.c:1654]: (style) The function 'sendUARTMessage' is never used.
-[wdt/wdt_src/wdt.c:26]: (style) The function 'start_loop_timer' is never used.
-[wdt/wdt_src/wdt.c:31]: (style) The function 'stop_loop_timer' is never used.
+[app/app_src/application.c:1650]: (style) The function 'sendOKMessage' is never used.
+[app/app_src/application.c:1665]: (style) The function 'sendUARTMessage' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.
