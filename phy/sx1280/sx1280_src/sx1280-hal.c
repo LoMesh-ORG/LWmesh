@@ -177,7 +177,7 @@ void SX1280HalClearInstructionRam( void )
     SPI1_WriteBlock( halTxBuffer, 3 );
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(&halTxBuffer, 3, NULL);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], 3, NULL);
 #endif    
     for( uint16_t index = 0; index < IRAM_SIZE; index++ )
     {
@@ -203,7 +203,7 @@ void SX1280HalWakeup( void )
     SPI1_WriteBlock( halTxBuffer, halSize );
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(&halTxBuffer, halSize, NULL);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, NULL);
 #endif    
     NSS_SetHigh();
     // Wait for chip to be ready.
@@ -216,7 +216,7 @@ void SX1280HalWriteCommand( RadioCommands_t command, uint8_t *buffer, uint16_t s
     halTxBuffer[0] = command;
     if(0 != size)
     {
-        memcpy( &halTxBuffer + 1U, ( uint8_t * )buffer, size * sizeof( uint8_t ) );
+        memcpy( &halTxBuffer[0] + 1U, ( uint8_t * )buffer, size * sizeof( uint8_t ) );
     }
     SX1280HalWaitOnBusy( );
     NSS_SetLow();
@@ -224,7 +224,7 @@ void SX1280HalWriteCommand( RadioCommands_t command, uint8_t *buffer, uint16_t s
     SPI1_WriteBlock( halTxBuffer, halSize );
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(&halTxBuffer, halSize, NULL);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, NULL);
 #endif     
     NSS_SetHigh();
     if( command != RADIO_SET_SLEEP )
@@ -238,7 +238,7 @@ void SX1280HalReadCommand( RadioCommands_t command, uint8_t *buffer, uint16_t si
     uint16_t halSize = 2U + size;
     halTxBuffer[0] = command;
     halTxBuffer[1] = 0x00;
-    memset(&halTxBuffer + 2U, 0, size);
+    memset(&halTxBuffer[0] + 2U, 0, size);
 
     SX1280HalWaitOnBusy( );
     NSS_SetLow(); 
@@ -246,10 +246,10 @@ void SX1280HalReadCommand( RadioCommands_t command, uint8_t *buffer, uint16_t si
     SPI1_ExchangeBlock( halTxBuffer, halSize);
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(NULL, halSize, halTxBuffer);
+    SPI2_Exchange8bitBuffer(NULL, halSize, &halTxBuffer[0]);
 #endif 
     NSS_SetHigh();
-    memcpy( buffer, &halTxBuffer + 2, size );
+    memcpy( buffer, &halTxBuffer[0] + 2, size );
     SX1280HalWaitOnBusy( );
 }
 
@@ -259,7 +259,7 @@ void SX1280HalWriteRegisters( uint16_t address, uint8_t *buffer, uint16_t size )
     halTxBuffer[0] = RADIO_WRITE_REGISTER;
     halTxBuffer[1] = ( address & 0xFF00 ) >> 8;
     halTxBuffer[2] = address & 0x00FF;
-    memcpy( &halTxBuffer + 3, buffer, size);
+    memcpy( &halTxBuffer[0] + 3, buffer, size);
 
     SX1280HalWaitOnBusy( );
     NSS_SetLow();
@@ -267,7 +267,7 @@ void SX1280HalWriteRegisters( uint16_t address, uint8_t *buffer, uint16_t size )
     SPI1_WriteBlock( halTxBuffer, halSize );
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(&halTxBuffer, halSize, NULL);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, NULL);
 #endif     
     NSS_SetHigh();
     SX1280HalWaitOnBusy( );
@@ -296,7 +296,7 @@ void SX1280HalReadRegisters( uint16_t address, uint8_t *buffer, uint16_t size )
     SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, &halTxBuffer[0]);
 #endif    
     NSS_SetHigh();
-    memcpy( buffer, &halTxBuffer + 4, size );
+    memcpy( buffer, &halTxBuffer[0] + 4, size );
 
     SX1280HalWaitOnBusy( );
 }
@@ -313,7 +313,7 @@ void SX1280HalWriteBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
     uint16_t halSize = size + 2U;
     halTxBuffer[0] = RADIO_WRITE_BUFFER;
     halTxBuffer[1] = offset;
-    memcpy(&halTxBuffer + 2U, buffer, size );
+    memcpy(&halTxBuffer[0] + 2U, buffer, size );
 
     SX1280HalWaitOnBusy( );
     NSS_SetLow();
@@ -321,7 +321,7 @@ void SX1280HalWriteBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
     SPI1_WriteBlock( halTxBuffer, halSize );
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(&halTxBuffer, halSize, NULL);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, NULL);
 #endif     
     NSS_SetHigh();
     SX1280HalWaitOnBusy( );
@@ -333,7 +333,7 @@ void SX1280HalReadBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
     halTxBuffer[0] = RADIO_READ_BUFFER;
     halTxBuffer[1] = offset;
     halTxBuffer[2] = 0x00;
-    memset(halTxBuffer + 3U, 0 , size);
+    memset(halTxBuffer[0] + 3U, 0 , size);
     
     SX1280HalWaitOnBusy( );
     NSS_SetLow();
@@ -341,9 +341,9 @@ void SX1280HalReadBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
     SPI1_ExchangeBlock( halTxBuffer, halSize);
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(&halTxBuffer, halSize, &halTxBuffer);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, &halTxBuffer[0]);
 #endif     
-    memcpy( buffer, &halTxBuffer + 3, size );
+    memcpy( buffer, &halTxBuffer[0] + 3, size );
     NSS_SetHigh();
     SX1280HalWaitOnBusy( );
 }
