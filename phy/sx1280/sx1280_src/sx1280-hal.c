@@ -246,7 +246,7 @@ void SX1280HalReadCommand( RadioCommands_t command, uint8_t *buffer, uint16_t si
     SPI1_ExchangeBlock( halTxBuffer, halSize);
 #endif
 #if (__32MM0256GPM048__)
-    SPI2_Exchange8bitBuffer(NULL, halSize, &halTxBuffer[0]);
+    SPI2_Exchange8bitBuffer(&halTxBuffer[0], halSize, &halTxBuffer[0]);
 #endif 
     NSS_SetHigh();
     memcpy( buffer, &halTxBuffer[0] + 2, size );
