@@ -219,7 +219,7 @@ static void DIO0_Receive_ISR(void)
     if (/*(0 == pktStatus.Params.LoRa.ErrorStatus.CrcError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.LengthError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.AbortError) && */
-        (0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) &&
+        /* (0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) && */
         (0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived)) 
     {
         PHY_DataInd_t ind;

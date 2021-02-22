@@ -21,16 +21,16 @@
          <string>class com.microchip.mcc.mcu16.systemManager.wdt.Wdt</string>
       </entry>
       <entry>
-         <string>UART3</string>
-         <string>class com.microchip.mcc.mcu16.modules.uart_irda_upb.UART</string>
+         <string>Pin Module</string>
+         <string>class com.microchip.mcc.mcu16.pinManager.PinManager</string>
       </entry>
       <entry>
          <string>DMA-CRC</string>
          <string>class com.microchip.mcc.mcu16.modules.dma_crc.DMA</string>
       </entry>
       <entry>
-         <string>Pin Module</string>
-         <string>class com.microchip.mcc.mcu16.pinManager.PinManager</string>
+         <string>UART3</string>
+         <string>class com.microchip.mcc.mcu16.modules.uart_irda_upb.UART</string>
       </entry>
       <entry>
          <string>ICD</string>

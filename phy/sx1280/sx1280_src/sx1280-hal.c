@@ -333,7 +333,7 @@ void SX1280HalReadBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
     halTxBuffer[0] = RADIO_READ_BUFFER;
     halTxBuffer[1] = offset;
     halTxBuffer[2] = 0x00;
-    memset(halTxBuffer[0] + 3U, 0 , size);
+    memset(&halTxBuffer[0] + 3U, 0 , size);
     
     SX1280HalWaitOnBusy( );
     NSS_SetLow();

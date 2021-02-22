@@ -213,11 +213,11 @@ static bool appDataInd(NWK_DataInd_t *ind)
             goto func_exit;
     }
     if(get_free_rx_buffer(&buf_id)){       
-       memset(rx_buffer[buf_id].payload, 0 , sizeof(NWK_MAX_PAYLOAD_SIZE)); 
+       memset(&rx_buffer[buf_id].payload[0], 0 , sizeof(NWK_MAX_PAYLOAD_SIZE)); 
        rx_buffer[buf_id].rx_ind = *ind;
        ind->size -= AES_BLOCKLEN;
        
-       memcpy(rx_buffer[buf_id].payload,dataptr + AES_BLOCKLEN, 
+       memcpy(&rx_buffer[buf_id].payload[0],dataptr + AES_BLOCKLEN, 
                                           ind->size);
        CircularBufferPushBack(&rx_buffer_queue_context, &buf_id);
 #ifdef MBRTU
@@ -541,7 +541,7 @@ static void cmdBcast(char* cmd){
             return;
         }
         memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
-		memcpy(&tx_buffer[buf_id].payload + AES_BLOCKLEN,p1,strlen(p1));
+		memcpy(&tx_buffer[buf_id].payload[AES_BLOCKLEN],p1,strlen(p1));
         app_aes_encrypt(&tx_buffer[buf_id].payload, needed_size - AES_BLOCKLEN);
 		tx_buffer[buf_id].nwkDataReq.dstAddr = NWK_BROADCAST_ADDR;
         tx_buffer[buf_id].nwkDataReq.dstEndpoint = DATA_EP;
@@ -725,7 +725,7 @@ static void cmdRecv(){
                 putch(rx_buffer[buf_id].payload[i++]);
             #endif
             #if (__32MM0256GPM048__)
-                UART3_Write(rx_buffer[buf_id].payload[i++]);
+                UART2_Write(rx_buffer[buf_id].payload[i++]);
             #endif
             }
             printf("\r\nRSSI:%i\r\n", rx_buffer[buf_id].rx_ind.rssi);
