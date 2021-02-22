@@ -57,7 +57,7 @@ void PHY_SetTxPower(uint8_t txPower){
 }
 
 void PHY_Sleep(void){
-    
+    idle();
 }
 
 void PHY_Wakeup(void){

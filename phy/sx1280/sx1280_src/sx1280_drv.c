@@ -8,6 +8,7 @@
 #include "led.h"
 #include <stdlib.h>
 
+extern uint16_t pan_id;;
 static ModulationParams_t mod_params;
 static PacketParams_t     packet_params;
 
@@ -179,11 +180,6 @@ void receive(uint8_t size)
     SX1280SetBufferBaseAddresses(0u, 128u);
     SX1280ClearIrqStatus(IRQ_RADIO_ALL);
     SX1280SetRx(RX_TX_CONTINUOUS);
-#if (__32MM0256GPM048__)
-    //Currently 500mW radios only supported with this target
-    RAD_TXEN_SetLow();
-    RAD_RXEN_SetHigh();
-#endif    
     rad_stat = SX1280GetStatus();
 }
 
@@ -219,8 +215,10 @@ static void DIO0_Receive_ISR(void)
     if (/*(0 == pktStatus.Params.LoRa.ErrorStatus.CrcError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.LengthError) && */
         /*(0 == pktStatus.Params.LoRa.ErrorStatus.AbortError) && */
-        /* (0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) && */
-        (0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived)) 
+        /*(0 == pktStatus.Params.LoRa.ErrorStatus.SyncError) && */
+        /*(0 != pktStatus.Params.LoRa.ErrorStatus.PacketReceived) */
+        1)    
+            
     {
         PHY_DataInd_t ind;
         uint8_t packetLength;
@@ -294,11 +292,6 @@ static uint8_t cad(void){
 static void sx1276_send()
 {
     PacketParams_t     packet_params;
-#if (__32MM0256GPM048__)
-    //Currently 500mW radios only supported with this target
-    RAD_RXEN_SetLow();
-    RAD_TXEN_SetHigh();    
-#endif     
     packet_params.PacketType                 = PACKET_TYPE_LORA;
     packet_params.Params.LoRa.PreambleLength = 0x32u;    
     packet_params.Params.LoRa.CrcMode        = LORA_CRC_ON;
@@ -327,7 +320,7 @@ void initRadio(void)
     calib_params.PLLEnable = 1;
     calib_params.RC13MEnable = 1;
     calib_params.RC64KEnable = 1;
-    
+
     
     SX1280Calibrate(calib_params);
     SX1280SetRegulatorMode(USE_DCDC);  
@@ -349,7 +342,12 @@ void initRadio(void)
     SX1280SetModulationParams(&mod_params);
     SX1280HalWriteRegister(0x925u, 0x32u);
     SX1280HalWriteRegister(0x093Cu, 0x01u);
-
+    
+    setSpreadingFactor(current_sf);
+       
+    /*Program the network address sync address*/
+    SX1280HalWriteRegister(0x944u, (uint8_t)(pan_id >> 8));
+    SX1280HalWriteRegister(0x0955u, (uint8_t)pan_id);
         
     packet_params.PacketType                 = PACKET_TYPE_LORA;
     packet_params.Params.LoRa.PreambleLength = 0x32u;    
@@ -359,15 +357,15 @@ void initRadio(void)
     
     SX1280SetPacketParams(&packet_params);
     SX1280SetBufferBaseAddresses(0, 128);
-    SX1280SetRfFrequency(2404000000);
-    SX1280SetTxParams(8, RADIO_RAMP_02_US);
+    SX1280SetRfFrequency(fhssList[channel]);
+    SX1280SetTxParams(TXPower, RADIO_RAMP_02_US);
     
     SX1280SetDioIrqParams(IRQ_RX_DONE | IRQ_CAD_DONE | IRQ_TX_DONE | 
             IRQ_CAD_ACTIVITY_DETECTED, IRQ_RX_DONE, IRQ_CAD_DONE, 
             IRQ_HEADER_ERROR);
     
     SX1280SetCadParams(LORA_CAD_04_SYMBOL);
-    SX1280SetFs();
+    //SX1280SetFs();
     freq_error = SX1280GetFrequencyError();
     rad_stat = SX1280GetStatus();
 }
@@ -382,14 +380,15 @@ void radio_engine(void)
 {
     switch(radio_state_var){
         case RAD_RESET_LOW:
+            __delay_ms(500);
             RADRST_SetLow();
-            set_timer0base(&txTimeOut, 100); //Reuse the timer
+            set_timer0base(&txTimeOut, 1000); //Reuse the timer
             radio_state_var = RAD_RESET_LOW_WAIT;
             break;
         case RAD_RESET_LOW_WAIT:
             if(!get_timer0base(&txTimeOut)){
                 RADRST_SetHigh();
-                set_timer0base(&txTimeOut, 700); //Reuse the timer
+                set_timer0base(&txTimeOut, 1000); //Reuse the timer
                 radio_state_var = RAD_RESET_HIGH_WAIT;
             }
             break;
