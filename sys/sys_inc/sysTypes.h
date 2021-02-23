@@ -97,6 +97,9 @@
 #elif defined(__PICC18__)
 	#define ATOMIC_SECTION_ENTER	di()
 	#define ATOMIC_SECTION_LEAVE	ei()
+#elif defined(__PIC32__)
+	#define ATOMIC_SECTION_ENTER	__builtin_disable_interrupts()
+	#define ATOMIC_SECTION_LEAVE	__builtin_enable_interrupts()
 #else
   #if defined(HAL_ATSAMD20J18)
     #define DONT_USE_CMSIS_INIT

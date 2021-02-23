@@ -6,16 +6,36 @@
             <name>LWmesh</name>
             <creation-uuid>07cff613-7615-4e00-a8ff-107c1c27ed01</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions/>
+            <c-extensions>c</c-extensions>
             <cpp-extensions/>
-            <header-extensions/>
+            <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
-            <sourceRootList/>
+            <sourceRootList>
+                <sourceRootElem>../aes/aes_inc</sourceRootElem>
+                <sourceRootElem>../app/app_inc</sourceRootElem>
+                <sourceRootElem>../hal/hal_inc</sourceRootElem>
+                <sourceRootElem>../modbus</sourceRootElem>
+                <sourceRootElem>../nwk/nwk_inc</sourceRootElem>
+                <sourceRootElem>../phy/phy_inc</sourceRootElem>
+                <sourceRootElem>../phy/sx1276/sx1276_inc</sourceRootElem>
+                <sourceRootElem>../phy/sx1280/sx1280_inc</sourceRootElem>
+                <sourceRootElem>../wdt/wdt_inc</sourceRootElem>
+                <sourceRootElem>../sys/sys_inc</sourceRootElem>
+                <sourceRootElem>../aes/aes_src</sourceRootElem>
+                <sourceRootElem>../app/app_src</sourceRootElem>
+                <sourceRootElem>../hal/hal_src</sourceRootElem>
+                <sourceRootElem>../nwk/nwk_src</sourceRootElem>
+                <sourceRootElem>../phy/phy_src</sourceRootElem>
+                <sourceRootElem>../phy/sx1276/sx1276_src</sourceRootElem>
+                <sourceRootElem>../phy/sx1280/sx1280_src</sourceRootElem>
+                <sourceRootElem>../sys/sys_src</sourceRootElem>
+                <sourceRootElem>../wdt/wdt_src</sourceRootElem>
+            </sourceRootList>
             <confList>
                 <confElem>
-                    <name>default</name>
+                    <name>atcomm</name>
                     <type>2</type>
                 </confElem>
             </confList>

@@ -22,16 +22,30 @@ Copyright 2020 Samuel Ramrajkar
 
 #ifndef TIMERS_H
 #define	TIMERS_H
+#if defined(__PICC18__)
 #include "mcc.h"
-
+#else
+#include "system.h"
+#endif
+#if (__32MM0256GPM048__)
+#include "coretimer.h"
+#include "../mcc_generated_files/pin_manager.h"
+#include "../mcc_generated_files/uart2.h"
+#endif
 
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
+#if (_18F27K42 || _18F47K42 || _18F26K42)
 #define Enter_Timer0_Critical()   PIE3bits.TMR0IE = 0;
 #define Exit_Timer0_Critical()    PIE3bits.TMR0IE = 1;
+#endif
+#if (__32MM0256GPM048__)
+#define Enter_Timer0_Critical()   CORETIMER_DisableInterrupt();
+#define Exit_Timer0_Critical()    CORETIMER_EnableInterrupt();
+#endif
 #define HAL_TIMER_INTERVAL        1ul // ms
     
     volatile uint16_t halTimerIrqCount = 0;

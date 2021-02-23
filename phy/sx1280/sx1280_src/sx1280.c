@@ -919,7 +919,7 @@ int8_t SX1280ParseHexFileLine( char* line )
     uint16_t n;
     uint8_t code;
     uint8_t bytes[256];
-
+#if 0
     if( SX1280GetHexFileLineFields( line, bytes, &addr, &n, &code ) != 0 )
     {
         if( code == 0 )
@@ -939,6 +939,7 @@ int8_t SX1280ParseHexFileLine( char* line )
     {
         return 0;
     }
+#endif
     return 1;
 }
 
@@ -1142,9 +1143,19 @@ void SX1280ProcessIrqs( void )
     {
         if( IrqState == true )
         {
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
             di();
+            #endif 
+            #if (__32MM0256GPM048__)
+            __builtin_disable_interrupts();
+            #endif 
             IrqState = false;
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
             ei();
+            #endif 
+            #if (__32MM0256GPM048__)
+            __builtin_enable_interrupts();
+            #endif
         }
         else
         {

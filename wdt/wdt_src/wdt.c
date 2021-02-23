@@ -24,12 +24,15 @@ static uint16_t min_loop_time = 0xFFFF, max_loop_time = 0;
 static uint8_t  loop_timer_wrt_ptr = 0;
 
 inline void start_loop_timer(void){
+#if (_18F27K42 || _18F47K42 || _18F26K42)
 	TMR5_WriteTimer(LOOPTIMERRESET);
 	TMR5_StartTimer();
+#endif
 }
 
 inline void stop_loop_timer(void){
     uint16_t looptime;
+#if (_18F27K42 || _18F47K42 || _18F26K42)
 	TMR5_StopTimer();
 	looptime = TMR5_ReadTimer();
     if(looptime < min_loop_time){
@@ -38,6 +41,7 @@ inline void stop_loop_timer(void){
     if(looptime > max_loop_time){
         max_loop_time = looptime;
     }
+#endif
 }
 
 inline void get_loop_time(uint16_t* min, uint16_t* max){

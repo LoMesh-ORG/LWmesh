@@ -55,7 +55,7 @@
 #define NWK_FRAME_MAX_PAYLOAD_SIZE   128
 
 /*- Types ------------------------------------------------------------------*/
-__pack typedef struct NwkFrameHeader_t
+typedef struct __attribute__ ((packed)) NwkFrameHeader_t
 {
   uint16_t    macFcf;
   uint8_t     macSeq;
@@ -63,7 +63,7 @@ __pack typedef struct NwkFrameHeader_t
   uint16_t    macDstAddr;
   uint16_t    macSrcAddr;
 
-  __pack struct
+  struct __attribute__ ((packed))
   {
     uint8_t   ackRequest : 1;
     uint8_t   security   : 1;
@@ -75,14 +75,14 @@ __pack typedef struct NwkFrameHeader_t
   uint8_t     nwkSeq;
   uint16_t    nwkSrcAddr;
   uint16_t    nwkDstAddr;
-  __pack struct
+  struct __attribute__ ((packed))
   {
     uint8_t   nwkSrcEndpoint : 4;
     uint8_t   nwkDstEndpoint : 4;
   };
 } NwkFrameHeader_t;
 
-__pack typedef struct NwkFrameMulticastHeader_t
+typedef struct __attribute__ ((packed)) NwkFrameMulticastHeader_t
 {
   uint8_t    nonMemberRadius    : 4;
   uint8_t    maxNonMemberRadius : 4;
@@ -90,7 +90,7 @@ __pack typedef struct NwkFrameMulticastHeader_t
   uint8_t    maxMemberRadius    : 4;
 } NwkFrameMulticastHeader_t;
 
-typedef struct NwkFrame_t
+typedef struct __attribute__ ((packed)) NwkFrame_t
 {
   uint8_t      state;
   uint8_t      size;
@@ -105,13 +105,13 @@ typedef struct NwkFrame_t
 
   union
   {
-    struct
+    struct __attribute__ ((packed))
     {
       uint8_t  lqi;
       int8_t   rssi;
     } rx;
 
-    struct
+    struct __attribute__ ((packed))
     {
       uint8_t  status;
       uint16_t timeout;

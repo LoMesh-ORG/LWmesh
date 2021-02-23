@@ -24,15 +24,24 @@
 
 #include <assert.h>
 #include <stdint.h>
+#if (_18F27K42 || _18F47K42 || _18F26K42)
 #include "mcc.h"
 #include "../mcc_generated_files/tmr3.h"
+#endif
 
 #define	INLINE                      inline
 #define PR_BEGIN_EXTERN_C           extern "C" {
 #define	PR_END_EXTERN_C             }
 
+#if (_18F27K42 || _18F47K42 || _18F26K42)
 #define ENTER_CRITICAL_SECTION( )   GIE=0
 #define EXIT_CRITICAL_SECTION( )    GIE=1
+#endif
+#if (__32MM0256GPM048__)
+#include <xc-pic32m.h>
+#define ENTER_CRITICAL_SECTION( )   __builtin_disable_interrupts();
+#define EXIT_CRITICAL_SECTION( )    __builtin_enable_interrupts();
+#endif
 
 typedef uint8_t BOOL;
 

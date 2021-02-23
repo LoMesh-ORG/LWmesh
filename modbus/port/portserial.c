@@ -24,7 +24,12 @@
 /* ----------------------- Modbus includes ----------------------------------*/
 #include "mb.h"
 #include "mbport.h"
+#if defined(__PICC18__)
 #include "mcc.h"
+#else
+#include "system.h"
+#include "../mcc_generated_files/uart3.h"
+#endif
 
 extern uint8_t uartmode;
 extern volatile uint8_t uart1TxBufferRemaining;
@@ -65,8 +70,13 @@ xMBPortSerialPutByte( CHAR ucByte )
 {
     /* Put a byte in the UARTs transmit buffer. This function is called
      * by the protocol stack if pxMBFrameCBTransmitterEmpty( ) has been
-     * called. */
+     * called. */    
+    #if (_18F27K42 || _18F47K42 || _18F26K42)
     UART1_Write(ucByte);
+    #endif
+    #if (__32MM0256GPM048__)
+    UART3_Write(ucByte);
+    #endif 
     return TRUE;
     
 }
@@ -77,7 +87,13 @@ xMBPortSerialGetByte( CHAR * pucByte )
     /* Return the byte in the UARTs receive buffer. This function is called
      * by the protocol stack after pxMBFrameCBByteReceived( ) has been called.
      */
+    #if (_18F27K42 || _18F47K42 || _18F26K42)
     *pucByte = UART1_Read();
+    #endif
+    #if (__32MM0256GPM048__)
+    *pucByte = UART3_Read();
+    #endif  
+    
     return TRUE;
 }
 

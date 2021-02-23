@@ -6,6 +6,29 @@
 [PIC18F27K42/test.c:16] -> [PIC18F27K42/test.c:12]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
 [PIC18F47K42/mcc_generated_files/crc.c:161]: (style) The scope of the variable 'mask' can be reduced.
 [PIC18F47K42/mcc_generated_files/crc.c:62]: (style) struct member 'CRC_OBJ::seedDirection' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/clock.c:67]: (style) Boolean result is used in bitwise operation. Clarify expression with parentheses.
+[PIC32MM0256GPM048/mcc_generated_files/crc.c:178] -> [PIC32MM0256GPM048/mcc_generated_files/crc.c:181]: (style) Variable 'result' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.h:85] -> [PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:127]: (style, inconclusive) Function 'FLASH_WriteDoubleWord' argument 1 names different: declaration 'address' definition 'flashAddress'.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.h:93] -> [PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:157]: (style, inconclusive) Function 'FLASH_WriteRow' argument 1 names different: declaration 'address' definition 'flashAddress'.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.h:93] -> [PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:157]: (style, inconclusive) Function 'FLASH_WriteRow' argument 2 names different: declaration 'data' definition 'dataAddress'.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:133]: (style) Expression '(X & 0x1fffffff) > 0x1fffffff' is always false.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:163]: (style) Expression '(X & 0x1fffffff) > 0x1fffffff' is always false.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:231] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:232]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:232] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:233]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:233] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:234]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:234] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:235]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:235] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:236]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:236] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:237]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:237] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:238]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:238] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:239]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:239] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:240]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:240] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:241]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:241] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:242]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:242] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:243]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:243] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:244]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:244] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:245]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:245] -> [PIC32MM0256GPM048/mcc_generated_files/spi2.c:246]: (style) Variable 'dummyDataReceived' is reassigned a value before the old one has been used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:266]: (style) Variable 'dummyDataReceived' is assigned a value that is never used.
 [aes/aes_src/AES.c:153]: (style) The scope of the variable 'k' can be reduced.
 [aes/aes_src/AES.c:308]: (style) The scope of the variable 'Tmp' can be reduced.
 [aes/aes_src/AES.c:308]: (style) The scope of the variable 'Tm' can be reduced.
@@ -14,7 +37,11 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:2153]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:1847] -> [app/app_src/application.c:1856]: (style) Variable 'i' is reassigned a value before the old one has been used.
+[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
+[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM;FULLFEATURE'.
+[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM;REGION_NA'.
+[app/app_src/application.c:2223]: (style) Variable 'count' is modified but its new value is never used.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -28,27 +55,50 @@
 [nwk/nwk_src/nwkDataReq.c:132]: (style) Clarify calculation precedence for '&' and '?'.
 [nwk/nwk_src/nwkRouteDiscovery.c:196]: (style) The scope of the variable 'entry' can be reduced.
 [nwk/nwk_src/nwkTx.c:117] -> [nwk/nwk_src/nwkTx.c:113]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
-[phy/sx1280/sx1280_src/sx1280-hal.c:164]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280.c:1102]: (style) The scope of the variable 'correctionCoeff' can be reduced.
+[phy/sx1280/sx1280_src/sx1280-hal.c:169]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:199]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:215]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:238]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:258]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:283]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:313]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:332]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1103]: (style) The scope of the variable 'correctionCoeff' can be reduced.
 [phy/sx1280/sx1280_src/sx1280.c:227]: (style) Unused variable: packet_typ
-[phy/sx1280/sx1280_src/sx1280_drv.c:124] -> [phy/sx1280/sx1280_src/sx1280_drv.c:120]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
-[phy/sx1280/sx1280_src/sx1280_drv.c:250]: (style) The scope of the variable 'temp' can be reduced.
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:164]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:291]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:12] -> [phy/sx1280/sx1280_src/sx1280_drv.c:315]: (style) Local variable packet_params shadows outer variable
-[phy/sx1280/sx1280_src/sx1280_drv.c:182]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:211]: (style) Variable 'irqFlags' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:261]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:324]: (style) Variable 'rad_ver' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:362]: (style) Variable 'rad_stat' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280_drv.c:313]: (style) Unused variable: test
-[phy/sx1280/sx1280_src/sx1280_drv.c:361]: (style) Variable 'freq_error' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280.c:918]: (style) Unused variable: addr
+[phy/sx1280/sx1280_src/sx1280.c:919]: (style) Unused variable: n
+[phy/sx1280/sx1280_src/sx1280.c:920]: (style) Unused variable: code
+[phy/sx1280/sx1280_src/sx1280.c:921]: (style) Unused variable: bytes
+[phy/sx1280/sx1280_src/sx1280_drv.c:125] -> [phy/sx1280/sx1280_src/sx1280_drv.c:121]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
+[phy/sx1280/sx1280_src/sx1280_drv.c:259]: (style) The scope of the variable 'temp' can be reduced.
+[phy/sx1280/sx1280_src/sx1280_drv.c:13] -> [phy/sx1280/sx1280_src/sx1280_drv.c:165]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:13] -> [phy/sx1280/sx1280_src/sx1280_drv.c:300]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:13] -> [phy/sx1280/sx1280_src/sx1280_drv.c:330]: (style) Local variable packet_params shadows outer variable
+[phy/sx1280/sx1280_src/sx1280_drv.c:189]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:218]: (style) Variable 'irqFlags' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:270]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:339]: (style) Variable 'rad_ver' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:382]: (style) Variable 'rad_stat' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280_drv.c:328]: (style) Unused variable: test
+[phy/sx1280/sx1280_src/sx1280_drv.c:381]: (style) Variable 'freq_error' is assigned a value that is never used.
+[wdt/wdt_src/wdt.c:34]: (style) Unused variable: looptime
 [aes/aes_src/AES.c:536]: (style) The function 'AES_CTR_xcrypt_buffer' is never used.
 [aes/aes_src/AES.c:473]: (style) The function 'AES_ECB_decrypt' is never used.
 [aes/aes_src/AES.c:467]: (style) The function 'AES_ECB_encrypt' is never used.
 [aes/aes_src/AES.c:234]: (style) The function 'AES_ctx_set_iv' is never used.
 [aes/aes_src/AES.c:224]: (style) The function 'AES_init_ctx' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/coretimer.c:78]: (style) The function 'CORETIMER_CountGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/coretimer.c:73]: (style) The function 'CORETIMER_DisableInterrupt' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/coretimer.c:68]: (style) The function 'CORETIMER_EnableInterrupt' is never used.
+[PIC18F26K42/mcc_generated_files/crc.c:125]: (style) The function 'CRC_8BitDataWrite' is never used.
+[PIC18F26K42/mcc_generated_files/crc.c:159]: (style) The function 'CRC_CalculatedResultGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/crc.c:174]: (style) The function 'CRC_CalculationResultGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/crc.c:163]: (style) The function 'CRC_CalculationResultXORGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/crc.c:125]: (style) The function 'CRC_ChannelSelect' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/crc.c:120]: (style) The function 'CRC_Disable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/crc.c:115]: (style) The function 'CRC_Enable' is never used.
 [PIC18F26K42/mcc_generated_files/crc.c:201]: (style) The function 'CRC_IsBusy' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/crc.c:130]: (style) The function 'CRC_ReseltAppendMode' is never used.
 [PIC18F26K42/mcc_generated_files/crc.c:245]: (style) The function 'CRC_SCAN_HasScanCompleted' is never used.
 [PIC18F26K42/mcc_generated_files/crc.c:239]: (style) The function 'CRC_SCAN_IsScannerBusy' is never used.
 [PIC18F26K42/mcc_generated_files/crc.c:225]: (style) The function 'CRC_SCAN_SetAddressLimit' is never used.
@@ -57,9 +107,12 @@
 [PIC18F26K42/mcc_generated_files/crc.c:119]: (style) The function 'CRC_Start' is never used.
 [app/app_src/circular buffer.c:66]: (style) The function 'CircularBufferClear' is never used.
 [app/app_src/circular buffer.c:101]: (style) The function 'CircularBufferPeek' is never used.
+[PIC18F26K42/mcc_generated_files/memory.c:212]: (style) The function 'DIA_ReadByte' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:686]: (style) The function 'DIO2_FHSS_ISR' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:148]: (style) The function 'DMA0_ISR' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:125]: (style) The function 'DMA1_GetDestinationPointer' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:120]: (style) The function 'DMA1_GetSourcePointer' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:161]: (style) The function 'DMA1_ISR' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:59]: (style) The function 'DMA1_Initialize' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:95]: (style) The function 'DMA1_SelectSourceRegion' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:135]: (style) The function 'DMA1_SetAbortTrigger' is never used.
@@ -72,8 +125,31 @@
 [PIC18F26K42/mcc_generated_files/dma1.c:140]: (style) The function 'DMA1_StartTransfer' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:145]: (style) The function 'DMA1_StartTransferWithTrigger' is never used.
 [PIC18F26K42/mcc_generated_files/dma1.c:150]: (style) The function 'DMA1_StopTransfer' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:174]: (style) The function 'DMA2_ISR' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:187]: (style) The function 'DMA3_ISR' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:221]: (style) The function 'DMA_ChannelDisable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:195]: (style) The function 'DMA_ChannelEnable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:409]: (style) The function 'DMA_DestinationAddressSet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:337]: (style) The function 'DMA_DestinationSizeSet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:387]: (style) The function 'DMA_SourceAddressSet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:319]: (style) The function 'DMA_SourceSizeSet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:431]: (style) The function 'DMA_StatusGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:265]: (style) The function 'DMA_TransferAbortEnable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:301]: (style) The function 'DMA_TransferAbortIRQEnable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:373]: (style) The function 'DMA_TransferCountGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:355]: (style) The function 'DMA_TransferCountSet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:247]: (style) The function 'DMA_TransferStartEnable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/dma.c:283]: (style) The function 'DMA_TransferStartIRQEnable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:85]: (style) The function 'FLASH_ClearError' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:100]: (style) The function 'FLASH_ErasePage' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:187]: (style) The function 'FLASH_GetErasePageAddress' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:182]: (style) The function 'FLASH_GetErasePageOffset' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:79]: (style) The function 'FLASH_Lock' is never used.
 [PIC18F26K42/mcc_generated_files/memory.c:71]: (style) The function 'FLASH_ReadWord' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:33]: (style) The function 'FLASH_Unlock' is never used.
 [PIC18F26K42/mcc_generated_files/memory.c:76]: (style) The function 'FLASH_WriteByte' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:127]: (style) The function 'FLASH_WriteDoubleWord' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:157]: (style) The function 'FLASH_WriteRow' is never used.
 [PIC18F26K42/mcc_generated_files/memory.c:206]: (style) The function 'MEMORY_Tasks' is never used.
 [nwk/nwk_src/nwk.c:136]: (style) The function 'NWK_Busy' is never used.
 [nwk/nwk_src/nwk.c:178]: (style) The function 'NWK_LinearizeLqi' is never used.
@@ -83,19 +159,22 @@
 [nwk/nwk_src/nwk.c:160]: (style) The function 'NWK_SleepReq' is never used.
 [nwk/nwk_src/nwk.c:152]: (style) The function 'NWK_Unlock' is never used.
 [nwk/nwk_src/nwk.c:168]: (style) The function 'NWK_WakeupReq' is never used.
-[phy/phy_src/phy.c:54]: (style) The function 'PHY_SetTxPower' is never used.
+[phy/phy_src/phy.c:55]: (style) The function 'PHY_SetTxPower' is never used.
 [PIC18F26K42/mcc_generated_files/pin_manager.c:134]: (style) The function 'PIN_MANAGER_IOC' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:95]: (style) The function 'SPI1_Close' is never used.
+[PIC18F26K42/mcc_generated_files/spi1.c:108]: (style) The function 'SPI1_ExchangeBlock' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:79]: (style) The function 'SPI1_Open' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:144]: (style) The function 'SPI1_ReadByte' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:139]: (style) The function 'SPI1_WriteByte' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:369]: (style) The function 'SPI2_StatusGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/spi2.c:359]: (style) The function 'SPI2_TransferModeGet' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:105]: (style) The function 'SX1276ReadFifo' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:93]: (style) The function 'SX1276WriteFifo' is never used.
-[phy/sx1280/sx1280_src/sx1280.c:1060]: (style) The function 'SX1280ComputeRangingCorrectionPolynome' is never used.
-[phy/sx1280/sx1280_src/sx1280.c:1015]: (style) The function 'SX1280GetRangingCorrectionPerSfBwGain' is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:160]: (style) The function 'SX1280HalClearInstructionRam' is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:327]: (style) The function 'SX1280HalExchangeByte' is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:181]: (style) The function 'SX1280HalWakeup' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1061]: (style) The function 'SX1280ComputeRangingCorrectionPolynome' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1016]: (style) The function 'SX1280GetRangingCorrectionPerSfBwGain' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:165]: (style) The function 'SX1280HalClearInstructionRam' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:377]: (style) The function 'SX1280HalExchangeByte' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:196]: (style) The function 'SX1280HalWakeup' is never used.
 [phy/sx1280/sx1280_src/sx1280.c:916]: (style) The function 'SX1280ParseHexFileLine' is never used.
 [sys/sys_src/sysTimer.c:78]: (style) The function 'SYS_TimerStop' is never used.
 [PIC18F26K42/mcc_generated_files/tmr0.c:108]: (style) The function 'TMR0_ReadTimer' is never used.
@@ -111,36 +190,80 @@
 [PIC18F26K42/mcc_generated_files/tmr1.c:100]: (style) The function 'TMR1_StartTimer' is never used.
 [PIC18F26K42/mcc_generated_files/tmr1.c:106]: (style) The function 'TMR1_StopTimer' is never used.
 [PIC18F26K42/mcc_generated_files/tmr3.c:160]: (style) The function 'TMR3_CheckGateValueStatus' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/tmr3.c:135]: (style) The function 'TMR3_Counter16BitGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/tmr3.c:160]: (style) The function 'TMR3_GetElapsedThenClear' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/tmr3.c:122]: (style) The function 'TMR3_Period16BitGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/tmr3.c:114]: (style) The function 'TMR3_Period16BitSet' is never used.
 [PIC18F26K42/mcc_generated_files/tmr3.c:112]: (style) The function 'TMR3_ReadTimer' is never used.
 [PIC18F26K42/mcc_generated_files/tmr3.c:150]: (style) The function 'TMR3_Reload' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/tmr3.c:178]: (style) The function 'TMR3_SoftwareCounterClear' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/tmr3.c:173]: (style) The function 'TMR3_SoftwareCounterGet' is never used.
 [PIC18F26K42/mcc_generated_files/tmr3.c:155]: (style) The function 'TMR3_StartSinglePulseAcquisition' is never used.
+[PIC18F26K42/mcc_generated_files/tmr3.c:100]: (style) The function 'TMR3_StartTimer' is never used.
+[PIC18F26K42/mcc_generated_files/tmr3.c:106]: (style) The function 'TMR3_StopTimer' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/tmr3.c:103]: (style) The function 'TMR3_Tasks_16BitOperation' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:152]: (style) The function 'TMR5_CheckGateValueStatus' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:157]: (style) The function 'TMR5_HasOverflowOccured' is never used.
+[PIC18F27K42/mcc_generated_files/tmr5.c:104]: (style) The function 'TMR5_ReadTimer' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:142]: (style) The function 'TMR5_Reload' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:147]: (style) The function 'TMR5_StartSinglePulseAcquisition' is never used.
-[app/app_src/application.c:1876]: (style) The function 'UART1_framing_error_handler' is never used.
+[PIC18F27K42/mcc_generated_files/tmr5.c:92]: (style) The function 'TMR5_StartTimer' is never used.
+[PIC18F27K42/mcc_generated_files/tmr5.c:98]: (style) The function 'TMR5_StopTimer' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:184]: (style) The function 'UART1_get_last_status' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:179]: (style) The function 'UART1_is_tx_done' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:521]: (style) The function 'UART2_Disable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:514]: (style) The function 'UART2_Enable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:293]: (style) The function 'UART2_IsRxReady' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:455]: (style) The function 'UART2_Peek' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:385]: (style) The function 'UART2_ReadBuffer' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:467]: (style) The function 'UART2_ReceiveBufferIsEmpty' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:498]: (style) The function 'UART2_ReceiveBufferSizeGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:477]: (style) The function 'UART2_StatusGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:421]: (style) The function 'UART2_TransferStatusGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:472]: (style) The function 'UART2_TransmitBufferIsFull' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:482]: (style) The function 'UART2_TransmitBufferSizeGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:403]: (style) The function 'UART2_WriteBuffer' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:513]: (style) The function 'UART3_Disable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:506]: (style) The function 'UART3_Enable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:315]: (style) The function 'UART3_IsTxDone' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:447]: (style) The function 'UART3_Peek' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:377]: (style) The function 'UART3_ReadBuffer' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:459]: (style) The function 'UART3_ReceiveBufferIsEmpty' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:490]: (style) The function 'UART3_ReceiveBufferSizeGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:469]: (style) The function 'UART3_StatusGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:413]: (style) The function 'UART3_TransferStatusGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:464]: (style) The function 'UART3_TransmitBufferIsFull' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:474]: (style) The function 'UART3_TransmitBufferSizeGet' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:395]: (style) The function 'UART3_WriteBuffer' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/coretimer.c:83]: (style) The function '_CORE_TIMER_ISR' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:242]: (style) The function '_UART2_ERR' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:204]: (style) The function '_UART2_RX' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:154]: (style) The function '_UART2_TX' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:242]: (style) The function '_UART3_ERR' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:204]: (style) The function '_UART3_RX' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:154]: (style) The function '_UART3_TX' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/exceptions.c:111]: (style) The function '_general_exception_handler' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart2.c:325]: (style) The function '_mon_putc' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:423]: (style) The function 'available' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:571]: (style) The function 'cad_detected_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[app/app_src/application.c:2273]: (style) The function 'eMBRegHoldingCB' is never used.
+[app/app_src/application.c:2343]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
+[memory/eeprom/eeprom_src/I2C_EEPROM.c:70]: (style) The function 'eeprom_rd_byte' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:197]: (style) The function 'eeprom_rd_page' is never used.
+[memory/eeprom/eeprom_src/I2C_EEPROM.c:50]: (style) The function 'eeprom_wr_byte' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:94]: (style) The function 'eeprom_wr_page' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:339]: (style) The function 'getSyncWord' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:237]: (style) The function 'getch' is never used.
 [modbus/functions/mbutils.c:117]: (style) The function 'prveMBError2Exception' is never used.
+[PIC18F26K42/mcc_generated_files/uart1.c:242]: (style) The function 'putch' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:428]: (style) The function 'read' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:814]: (style) The function 'readAllReg' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
-[app/app_src/application.c:1639]: (style) The function 'sendOKMessage' is never used.
-[app/app_src/application.c:1654]: (style) The function 'sendUARTMessage' is never used.
-[wdt/wdt_src/wdt.c:26]: (style) The function 'start_loop_timer' is never used.
-[wdt/wdt_src/wdt.c:31]: (style) The function 'stop_loop_timer' is never used.
+[wdt/wdt_src/wdt.c:33]: (style) The function 'stop_loop_timer' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.

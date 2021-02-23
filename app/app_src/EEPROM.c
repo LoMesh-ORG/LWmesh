@@ -13,7 +13,11 @@ Copyright 2020 Samuel Ramrajkar
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+#if defined(__PICC18__)
 #include "mcc.h"
+#else
+#include "system.h"
+#endif
 #include "EEPROM.h"
 #include "application.h"
 #include "phy.h"

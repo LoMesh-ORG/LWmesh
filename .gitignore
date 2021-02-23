@@ -54,6 +54,7 @@ dkms.conf
 #MPLABX specific
 *.i
 *.p1
+*.flag
 PIC18F26K42/dist/default/production/PIC18F26K42.production.cmf
 PIC18F26K42/dist/default/production/PIC18F26K42.production.cmf
 PIC18F26K42/dist/default/production/PIC18F26K42.production.hxl
@@ -203,3 +204,5 @@ PIC18F47K42/dist/default/production/PIC18F47K42.production.rlf
 PIC18F47K42/dist/default/production/PIC18F47K42.production.sdb
 PIC18F47K42/dist/default/production/PIC18F47K42.production.sym
 PIC18F26K42/LoraMeshDIN.mc3.bak
+PIC32MM0256GPM048/dist/atcomm/debug/memoryfile.xml
+PIC32MM0256GPM048/dist/atcomm/production/memoryfile.xml

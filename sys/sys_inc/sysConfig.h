@@ -56,6 +56,9 @@
 #if (_18F27K42 || _18F47K42)
 #define NWK_BUFFERS_AMOUNT                       16
 #endif
+#if (__32MM0256GPM048__)
+#define NWK_BUFFERS_AMOUNT                       16
+#endif
 #endif
 
 #ifndef NWK_DUPLICATE_REJECTION_TABLE_SIZE

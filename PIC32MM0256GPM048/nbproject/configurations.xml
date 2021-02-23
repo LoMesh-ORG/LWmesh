@@ -4,6 +4,121 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="aes_inc" displayName="aes_inc" projectFiles="true">
+        <itemPath>../aes/aes_inc/AES.h</itemPath>
+        <itemPath>../aes/aes_inc/AESdef.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="app_inc" displayName="app_inc" projectFiles="true">
+        <itemPath>../app/app_inc/application.h</itemPath>
+        <itemPath>../app/app_inc/circular buffer.h</itemPath>
+        <itemPath>../app/app_inc/crc.h</itemPath>
+        <itemPath>../app/app_inc/EEPROM.h</itemPath>
+        <itemPath>../app/app_inc/errors.h</itemPath>
+        <itemPath>../app/app_inc/led.h</itemPath>
+        <itemPath>../app/app_inc/uart_default_control.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="hal_inc" displayName="hal_inc" projectFiles="true">
+        <itemPath>../hal/hal_inc/Timers.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="MCC Generated Files"
+                     displayName="MCC Generated Files"
+                     projectFiles="true">
+        <logicalFolder name="memory" displayName="memory" projectFiles="true">
+          <itemPath>mcc_generated_files/memory/flash.h</itemPath>
+        </logicalFolder>
+        <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
+        <itemPath>mcc_generated_files/exceptions.h</itemPath>
+        <itemPath>mcc_generated_files/pin_manager.h</itemPath>
+        <itemPath>mcc_generated_files/system.h</itemPath>
+        <itemPath>mcc_generated_files/clock.h</itemPath>
+        <itemPath>mcc_generated_files/watchdog.h</itemPath>
+        <itemPath>mcc_generated_files/mcc.h</itemPath>
+        <itemPath>mcc_generated_files/uart3.h</itemPath>
+        <itemPath>mcc_generated_files/spi2.h</itemPath>
+        <itemPath>mcc_generated_files/coretimer.h</itemPath>
+        <itemPath>mcc_generated_files/crc.h</itemPath>
+        <itemPath>mcc_generated_files/dma.h</itemPath>
+        <itemPath>mcc_generated_files/tmr3.h</itemPath>
+        <itemPath>mcc_generated_files/uart2.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="modbus" displayName="modbus" projectFiles="true">
+        <logicalFolder name="ascii" displayName="ascii" projectFiles="true">
+          <itemPath>../modbus/ascii/mbascii.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="functions" displayName="functions" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="mb_inc" displayName="mb_inc" projectFiles="true">
+          <itemPath>../modbus/mb_inc/mb.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbconfig.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbframe.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbfunc.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbport.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbproto.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbutils.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="port" displayName="port" projectFiles="true">
+          <itemPath>../modbus/port/port.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="rtu" displayName="rtu" projectFiles="true">
+          <itemPath>../modbus/rtu/mbcrc.h</itemPath>
+          <itemPath>../modbus/rtu/mbrtu.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="nwk_inc" displayName="nwk_inc" projectFiles="true">
+        <itemPath>../nwk/nwk_inc/nwk.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkCommand.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkDataReq.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkFrame.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkGroup.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkRoute.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkRouteDiscovery.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkRx.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkSecurity.h</itemPath>
+        <itemPath>../nwk/nwk_inc/nwkTx.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="phy_inc" displayName="phy_inc" projectFiles="true">
+        <itemPath>../phy/phy_inc/phy.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1276_inc" displayName="sx1276_inc" projectFiles="true">
+        <itemPath>../phy/sx1276/sx1276_inc/sx1276.h</itemPath>
+        <itemPath>../phy/sx1276/sx1276_inc/sx1276Regs-LoRa.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1280_inc" displayName="sx1280_inc" projectFiles="true">
+        <itemPath>../phy/sx1280/sx1280_inc/radio.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/RangingCorrection.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF10BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF10BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF10BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF5BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF5BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF5BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF6BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF6BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF6BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF7BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF7BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF7BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF8BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF8BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF8BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF9BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF9BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF9BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrection_defines.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/sx1280-hal.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/sx1280.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/sx1280_drv.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sys_inc" displayName="sys_inc" projectFiles="true">
+        <itemPath>../sys/sys_inc/sys.h</itemPath>
+        <itemPath>../sys/sys_inc/sysConfig.h</itemPath>
+        <itemPath>../sys/sys_inc/sysEncrypt.h</itemPath>
+        <itemPath>../sys/sys_inc/sysTimer.h</itemPath>
+        <itemPath>../sys/sys_inc/sysTypes.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="wdt_inc" displayName="wdt_inc" projectFiles="true">
+        <itemPath>../wdt/wdt_inc/wdt.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -12,6 +127,97 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="aes_src" displayName="aes_src" projectFiles="true">
+        <itemPath>../aes/aes_src/AES.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="app_src" displayName="app_src" projectFiles="true">
+        <itemPath>../app/app_src/application.c</itemPath>
+        <itemPath>../app/app_src/circular buffer.c</itemPath>
+        <itemPath>../app/app_src/crc.c</itemPath>
+        <itemPath>../app/app_src/EEPROM.c</itemPath>
+        <itemPath>../app/app_src/led.c</itemPath>
+        <itemPath>../app/app_src/uart_default_control.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="hal_src" displayName="hal_src" projectFiles="true">
+        <itemPath>../hal/hal_src/Timers.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="MCC Generated Files"
+                     displayName="MCC Generated Files"
+                     projectFiles="true">
+        <logicalFolder name="memory" displayName="memory" projectFiles="true">
+          <itemPath>mcc_generated_files/memory/flash.c</itemPath>
+        </logicalFolder>
+        <itemPath>mcc_generated_files/clock.c</itemPath>
+        <itemPath>mcc_generated_files/exceptions.c</itemPath>
+        <itemPath>mcc_generated_files/system.c</itemPath>
+        <itemPath>mcc_generated_files/mcc.c</itemPath>
+        <itemPath>mcc_generated_files/pin_manager.c</itemPath>
+        <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
+        <itemPath>mcc_generated_files/uart3.c</itemPath>
+        <itemPath>mcc_generated_files/spi2.c</itemPath>
+        <itemPath>mcc_generated_files/coretimer.c</itemPath>
+        <itemPath>mcc_generated_files/dma.c</itemPath>
+        <itemPath>mcc_generated_files/crc.c</itemPath>
+        <itemPath>mcc_generated_files/tmr3.c</itemPath>
+        <itemPath>mcc_generated_files/uart2.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="modbus" displayName="modbus" projectFiles="true">
+        <logicalFolder name="ascii" displayName="ascii" projectFiles="true">
+          <itemPath>../modbus/ascii/mbascii.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="functions" displayName="functions" projectFiles="true">
+          <itemPath>../modbus/functions/mbfunccoils.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncdiag.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncdisc.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncholding.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncinput.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncother.c</itemPath>
+          <itemPath>../modbus/functions/mbutils.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mb_inc" displayName="mb_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="port" displayName="port" projectFiles="true">
+          <itemPath>../modbus/port/portevent.c</itemPath>
+          <itemPath>../modbus/port/portserial.c</itemPath>
+          <itemPath>../modbus/port/porttimer.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="rtu" displayName="rtu" projectFiles="true">
+          <itemPath>../modbus/rtu/mbcrc.c</itemPath>
+          <itemPath>../modbus/rtu/mbrtu.c</itemPath>
+        </logicalFolder>
+        <itemPath>../modbus/mb.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="nwk_src" displayName="nwk_src" projectFiles="true">
+        <itemPath>../nwk/nwk_src/nwk.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkDataReq.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkFrame.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkGroup.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkRoute.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkRouteDiscovery.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkRx.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkSecurity.c</itemPath>
+        <itemPath>../nwk/nwk_src/nwkTx.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="phy_src" displayName="phy_src" projectFiles="true">
+        <itemPath>../phy/phy_src/phy.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1276_src" displayName="sx1276_src" projectFiles="true">
+        <itemPath>../phy/sx1276/sx1276_src/sx1276.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1280_src" displayName="sx1280_src" projectFiles="true">
+        <itemPath>../phy/sx1280/sx1280_src/sx1280-hal.c</itemPath>
+        <itemPath>../phy/sx1280/sx1280_src/sx1280.c</itemPath>
+        <itemPath>../phy/sx1280/sx1280_src/sx1280_drv.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sys_src" displayName="sys_src" projectFiles="true">
+        <itemPath>../sys/sys_src/sys.c</itemPath>
+        <itemPath>../sys/sys_src/sysEncrypt.c</itemPath>
+        <itemPath>../sys/sys_src/sysTimer.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="wdt_src" displayName="wdt_src" projectFiles="true">
+        <itemPath>../wdt/wdt_src/wdt.c</itemPath>
+      </logicalFolder>
+      <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -20,9 +226,30 @@
       <itemPath>module_P32.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../aes/aes_inc</Elem>
+    <Elem>../app/app_inc</Elem>
+    <Elem>../hal/hal_inc</Elem>
+    <Elem>../modbus</Elem>
+    <Elem>../nwk/nwk_inc</Elem>
+    <Elem>../phy/phy_inc</Elem>
+    <Elem>../phy/sx1276/sx1276_inc</Elem>
+    <Elem>../phy/sx1280/sx1280_inc</Elem>
+    <Elem>../wdt/wdt_inc</Elem>
+    <Elem>../sys/sys_inc</Elem>
+    <Elem>../aes/aes_src</Elem>
+    <Elem>../app/app_src</Elem>
+    <Elem>../hal/hal_src</Elem>
+    <Elem>../nwk/nwk_src</Elem>
+    <Elem>../phy/phy_src</Elem>
+    <Elem>../phy/sx1276/sx1276_src</Elem>
+    <Elem>../phy/sx1280/sx1280_src</Elem>
+    <Elem>../sys/sys_src</Elem>
+    <Elem>../wdt/wdt_src</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="default" type="2">
+    <conf name="atcomm" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>PIC32MM0256GPM048</targetDevice>
@@ -30,7 +257,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>2.40</languageToolchainVersion>
+        <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -63,6 +290,230 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <item path="../modbus/ascii/mbascii.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/functions/mbfunccoils.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/functions/mbfuncdiag.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/functions/mbfuncdisc.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/functions/mbfuncholding.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/functions/mbfuncinput.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/functions/mbfuncother.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/functions/mbutils.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/mb.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/port/portevent.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/port/portserial.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/port/porttimer.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/rtu/mbcrc.c" ex="false" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
+      <item path="../modbus/rtu/mbrtu.c" ex="true" overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
       <C32>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
@@ -71,16 +522,17 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
-        <property key="extra-include-directories" value=""/>
+        <property key="extra-include-directories"
+                  value="..\aes\aes_inc;..\app\app_inc;..\hal\hal_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\nwk\nwk_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\sys\sys_inc;..\wdt\wdt_inc;mcc_generated_files;..\modbus\port"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="false"/>
         <property key="make-warnings-into-errors" value="false"/>
-        <property key="optimization-level" value=""/>
+        <property key="optimization-level" value="-O2"/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros" value=""/>
+        <property key="preprocessor-macros" value="ATCOMM;SX1280"/>
         <property key="strict-ansi" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="toplevel-reordering" value=""/>
@@ -88,6 +540,7 @@
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
         <property key="use-indirect-calls" value="false"/>
+        <appendMe value="-std=gnu99 -fgnu89-inline -fno-builtin-memcpy -fno-builtin-memset"/>
       </C32>
       <C32-AR>
         <property key="additional-options-chop-files" value="false"/>
@@ -147,13 +600,14 @@
         <property key="optimization-level" value=""/>
         <property key="preprocessor-macros" value=""/>
         <property key="remove-unused-sections" value="false"/>
-        <property key="report-memory-usage" value="false"/>
+        <property key="report-memory-usage" value="true"/>
         <property key="serial-length" value=""/>
         <property key="serial-origin" value=""/>
         <property key="stack-size" value=""/>
         <property key="symbol-stripping" value=""/>
         <property key="trace-symbols" value=""/>
         <property key="warn-section-align" value="false"/>
+        <appendMe value="--allow-multiple-definition"/>
       </C32-LD>
       <C32CPP>
         <property key="additional-warnings" value="false"/>
@@ -187,14 +641,86 @@
       <C32Global>
         <property key="common-include-directories" value=""/>
         <property key="gp-relative-option" value=""/>
-        <property key="legacy-libc" value="true"/>
+        <property key="legacy-libc" value="false"/>
         <property key="mdtcm" value=""/>
         <property key="mitcm" value=""/>
         <property key="mstacktcm" value="false"/>
+        <property key="omit-pack-options" value="1"/>
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
+      <PICkit3PlatformTool>
+        <property key="ADC 1" value="true"/>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="CCP 1" value="true"/>
+        <property key="CCP 2" value="true"/>
+        <property key="CCP 3" value="true"/>
+        <property key="CCP 4" value="true"/>
+        <property key="CCP 5" value="true"/>
+        <property key="CCP 6" value="true"/>
+        <property key="CCP 7" value="true"/>
+        <property key="CCP 8" value="true"/>
+        <property key="CCP 9" value="true"/>
+        <property key="CHANGE NOTICE" value="true"/>
+        <property key="CLC" value="true"/>
+        <property key="CMP" value="true"/>
+        <property key="DMA" value="true"/>
+        <property key="Freeze All Other Peripherals" value="true"/>
+        <property key="HLVD" value="true"/>
+        <property key="I2C 1" value="true"/>
+        <property key="I2C 2" value="true"/>
+        <property key="I2C 3" value="true"/>
+        <property key="REAL TIME CLOCK" value="true"/>
+        <property key="REFERENCE CLOCK1" value="true"/>
+        <property key="SPI/I2S 1" value="true"/>
+        <property key="SPI/I2S 2" value="true"/>
+        <property key="SPI/I2S 3" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="TIMER1" value="true"/>
+        <property key="TIMER2" value="true"/>
+        <property key="TIMER3" value="true"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="UART1" value="true"/>
+        <property key="UART2" value="true"/>
+        <property key="UART3" value="true"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="hwtoolclock.frcindebug" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="1d000000-1d03ffff"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmertogo.imagename" value=""/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmspeed" value="2"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${programoptions.preservedataflash.ranges}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value=""/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="programoptions.usehighvoltageonmclr" value="false"/>
+        <property key="programoptions.uselvpprogramming" value="false"/>
+        <property key="voltagevalue" value="3.25"/>
+      </PICkit3PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

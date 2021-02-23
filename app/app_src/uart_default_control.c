@@ -1,10 +1,17 @@
+#if defined(__PICC18__)
 #include "mcc.h"
+#else
+#include "system.h"
+#endif
 #include "uart_default_control.h"
 #include "Timers.h"
 #include "application.h"
 #include "EEPROM.h"
 #ifdef MBRTU
 #include "mb.h"
+#endif
+#if (__32MM0256GPM048__)
+#include "pin_manager.h"
 #endif
 
 #define BLEN_SAMPLE_TIME_MS     250

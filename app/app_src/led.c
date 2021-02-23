@@ -1,6 +1,11 @@
 #include "led.h"
 #include "circular buffer.h"
+#if defined(__PICC18__)
 #include "mcc.h"
+#else
+#include "system.h"
+#include "pin_manager.h"
+#endif
 #include "Timers.h"
 #define led_event_queue_depth       32
    

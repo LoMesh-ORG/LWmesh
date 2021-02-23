@@ -27,7 +27,11 @@ Copyright 2020 Samuel Ramrajkar
 #include <string.h>
 #include <stdio.h>
 #include <xc.h> 
+#if defined(__PICC18__)
 #include "mcc.h"
+#else
+#include "system.h"
+#endif
 #include "EEPROM.h"
 #include "errors.h"
 #include "nwk.h"
@@ -53,6 +57,15 @@ enum UART_PARITY_ENUM {
     UART_PARITY_SENTINAL
 };  
 
+#if (__32MM0256GPM048__)
+enum PIC32_UART_PARITY_ENUM {
+    P8N = 0,
+    P8E,
+    P8O,
+    P9N
+};
+#endif
+
 //UART baud rate setting
 enum UART_BAUD_ENUM {
     UART_BAUD_9600 = 0,
@@ -62,7 +75,12 @@ enum UART_BAUD_ENUM {
     UART_BAUD_115200,
     UART_BAUD_SENTINAL
 };
+#if defined(__PICC18__)
 uint24_t current_baud_rate; //Used for the MB stack
+#endif
+#if defined(__PIC32__)
+uint32_t current_baud_rate; //Used for the MB stack
+#endif
 enum UART_BAUD_ENUM uart_baud_rate; // Used for MB map
 enum UART_PARITY_ENUM uart_parity;
 uint8_t curent_parity;
@@ -132,7 +150,7 @@ enum endpoint_t{
  * Buffer management structures for data send operation
  ******************************************************************************/
 #define APP_TX_BUFFER_DEPTH 4
-__pack struct tx_buffer_t{
+struct __attribute__ ((packed)) tx_buffer_t{
     unsigned retires:2; // Number of retires left for this message
     unsigned free:1;    // Descriptor un used
     unsigned active:1;  // Messages with stack do not request operation till 0
@@ -142,26 +160,26 @@ __pack struct tx_buffer_t{
     NWK_DataReq_t nwkDataReq; //Stack request
     uint8_t payload[NWK_MAX_PAYLOAD_SIZE];//message payload
 };
-__pack struct tx_buffer_t tx_buffer[APP_TX_BUFFER_DEPTH];
+struct tx_buffer_t tx_buffer[APP_TX_BUFFER_DEPTH];
 
 #if _18F26K42
 #define APP_RX_BUFFER_DEPTH 4
 #endif
-#if (_18F27K42 || _18F47K42)
+#if (_18F27K42 || _18F47K42 || __32MM0256GPM048__)
 #define APP_RX_BUFFER_DEPTH 8
 #endif
-__pack struct rx_buffer_t{
+struct __attribute__ ((packed)) rx_buffer_t{
     unsigned free:1;
     unsigned resv:7;
     NWK_DataInd_t rx_ind; //RX indication structure for the RX message
     uint8_t payload[NWK_MAX_PAYLOAD_SIZE];//message payload
 };
-__pack struct rx_buffer_t rx_buffer[APP_RX_BUFFER_DEPTH];
+struct rx_buffer_t rx_buffer[APP_RX_BUFFER_DEPTH];
 uint8_t rx_buffer_queue[APP_RX_BUFFER_DEPTH];
 CircularBufferContext rx_buffer_queue_context;
 
 #define MSG_ACK_BUF_DEPTH   8
-__pack struct msg_ack_t{
+struct __attribute__ ((packed)) msg_ack_t{
     uint16_t dest_addr;
     uint8_t msgid;
     bool status;
@@ -200,7 +218,7 @@ enum atState
 /*******************************************************************************
  * Application header
  ******************************************************************************/
-__pack struct app_header_t{
+struct __attribute__ ((packed)) app_header_t{
     uint16_t iv_seed;
     uint16_t crc16;
     uint8_t resv[12];
@@ -345,22 +363,6 @@ uint16_t reset_timer = 0;
  * \param [IN] None.
  */
 void processATCommand(void);
-
-/*!
- * \brief Send OK message over UART
- *
- * \param [OUT] None.
- * \param [IN] None.
- */
-void sendOKMessage(void);
-
-/*!
- * \brief Send message over UART
- *
- * \param [OUT] None.
- * \param [IN] String pointer.
- */
-void sendUARTMessage(char*);
 
 /*!
  * \brief Send information message

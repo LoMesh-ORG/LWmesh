@@ -28,6 +28,7 @@ Maintainer: Miguel Luis, Gregory Cristian and Wael Guibene
 #include "led.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 /******************************************************************************/
 //LWmesh phy interface

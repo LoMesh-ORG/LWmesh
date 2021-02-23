@@ -23,7 +23,11 @@ Copyright 2020 Samuel Ramrajkar
 #ifndef LED_H
 #define	LED_H
 
+#if defined(__PICC18__)
 #include "mcc.h"
+#else
+#include "system.h"
+#endif
 #include <xc.h>
 #ifdef	__cplusplus
 extern "C" {

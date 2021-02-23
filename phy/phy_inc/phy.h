@@ -15,7 +15,12 @@ Maintainer: Miguel Luis and Gregory Cristian
 #ifndef __PHY_H__
 #define __PHY_H__
 
+#if defined(__PICC18__)
 #include "mcc.h"
+#else
+#include "system.h"
+#include <stdbool.h>
+#endif
 /*- Types ------------------------------------------------------------------*/
 typedef struct PHY_DataInd_t
 {

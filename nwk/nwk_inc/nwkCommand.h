@@ -60,14 +60,14 @@ enum
   NWK_COMMAND_ROUTE_REPLY         = 0x03,
 };
 
-__pack typedef struct NwkCommandAck_t
+typedef struct __attribute__ ((packed)) NwkCommandAck_t
 {
   uint8_t    id;
   uint8_t    seq;
   uint8_t    control;
 } NwkCommandAck_t;
 
-__pack typedef struct NwkCommandRouteError_t
+typedef struct __attribute__ ((packed)) NwkCommandRouteError_t
 {
   uint8_t    id;
   uint16_t   srcAddr;
@@ -75,7 +75,7 @@ __pack typedef struct NwkCommandRouteError_t
   uint8_t    multicast;
 } NwkCommandRouteError_t;
 
-__pack typedef struct NwkCommandRouteRequest_t
+typedef struct __attribute__ ((packed)) NwkCommandRouteRequest_t
 {
   uint8_t    id;
   uint16_t   srcAddr;
@@ -84,7 +84,7 @@ __pack typedef struct NwkCommandRouteRequest_t
   uint8_t    linkQuality;
 } NwkCommandRouteRequest_t;
 
-__pack typedef struct NwkCommandRouteReply_t
+typedef struct __attribute__ ((packed)) NwkCommandRouteReply_t
 {
   uint8_t    id;
   uint16_t   srcAddr;

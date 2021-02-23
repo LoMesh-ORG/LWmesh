@@ -125,6 +125,11 @@ uint8_t DATAEE_ReadByte_Platform(uint16_t addr);
 void DATAEE_WriteByte_Platform(uint16_t addr, uint8_t data);
 void sync_eeprom(void);
 uint8_t set_eeprom_sync(uint8_t);
+
+#if (__32MM0256GPM048__)
+uint8_t DATAEE_ReadByte(uint32_t addr){}
+DATAEE_WriteByte(uint32_t addr, uint8_t data){}
+#endif
 #ifdef	__cplusplus
 }
 #endif

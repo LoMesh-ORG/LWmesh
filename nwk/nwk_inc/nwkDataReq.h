@@ -63,7 +63,7 @@ enum
   NWK_OPT_MULTICAST            = 1 << 4,
 };
 
-typedef struct NWK_DataReq_t
+typedef struct __attribute__ ((packed)) NWK_DataReq_t
 {
   // service fields
   void         *next;

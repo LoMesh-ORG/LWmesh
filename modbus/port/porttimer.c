@@ -34,8 +34,13 @@ static uint16_t timerval = 0;
 BOOL
 xMBPortTimersInit( USHORT usTim1Timerout50us )
 {
+#if (_18F27K42 || _18F47K42 || _18F26K42)
     timerval = 0xFFFF - (usTim1Timerout50us*400);
     TMR3_SetInterruptHandler(&prvvTIMERExpiredISR);
+#endif
+#if (__32MM0256GPM048__)
+    timerval = (uint16_t)((usTim1Timerout50us * 50) / 23);
+#endif
     return TRUE;
 }
 
@@ -44,16 +49,28 @@ void
 vMBPortTimersEnable(  )
 {
     /* Enable the timer with the timeout passed to xMBPortTimersInit( ) */
+#if (_18F27K42 || _18F47K42 || _18F26K42)
     TMR3_StopTimer();
     TMR3_WriteTimer(timerval);
     TMR3_StartTimer();
+#endif
+#if (__32MM0256GPM048__)
+    TMR3_Stop();
+    TMR3_Counter16BitSet(timerval);
+    TMR3_Start();
+#endif
 }
 
 void
 vMBPortTimersDisable(  )
 {
     /* Disable any pending timers. */
+#if (_18F27K42 || _18F47K42 || _18F26K42)
     TMR3_StopTimer();
+#endif
+#if (__32MM0256GPM048__)
+    TMR3_Stop();
+#endif
 }
 
 /* Create an ISR which is called whenever the timer has expired. This function
@@ -62,10 +79,19 @@ vMBPortTimersDisable(  )
  */
 void prvvTIMERExpiredISR( void )
 {
+#if (_18F27K42 || _18F47K42 || _18F26K42)
     TMR3_StopTimer();
+#endif
+#if (__32MM0256GPM048__)
+    TMR3_Stop();
+#endif
     ( void )pxMBPortCBTimerExpired(  );
 }
 
 void vMBPortTimersDelay( USHORT usTimeOutMS ){
 }
 
+void TMR3_CallBack(void)
+{
+    prvvTIMERExpiredISR();
+}

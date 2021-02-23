@@ -54,7 +54,9 @@ extern "C" {
 /* **** Defines **** */
 
 /* **** Typedefs **** */
-    typedef unsigned int size_t;
+#if defined(__PICC18__)
+typedef unsigned int size_t;
+#endif
 
 typedef struct {
     uint8_t *buf;         // Pointer to the buffer
