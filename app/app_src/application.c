@@ -1793,7 +1793,7 @@ void bootLoadApplication(void)
     //Set the network address from EEPROM
     pan_id = (DATAEE_ReadByte_Platform(networkID) << 8) |
               DATAEE_ReadByte_Platform(networkID_LSB);
-    if(0xFFFF == pan_id){
+    if((0xFFFF == pan_id) || (0x0000 == pan_id)){
         pan_id = 0xAAAA;
     }
     

@@ -8,7 +8,7 @@
 #include "led.h"
 #include <stdlib.h>
 
-extern uint16_t pan_id;;
+extern uint16_t pan_id;
 static ModulationParams_t mod_params;
 static PacketParams_t     packet_params;
 
@@ -180,6 +180,12 @@ void receive(uint8_t size)
     SX1280SetBufferBaseAddresses(0u, 128u);
     SX1280ClearIrqStatus(IRQ_RADIO_ALL);
     SX1280SetRx(RX_TX_CONTINUOUS);
+#if (__32MM0256GPM048__)
+    //Currently 500mW radios only supported with this target
+    RAD_TXEN_SetLow();
+    RAD_RXEN_SetHigh();
+#endif
+
     rad_stat = SX1280GetStatus();
 }
 
@@ -292,6 +298,12 @@ static uint8_t cad(void){
 static void sx1276_send()
 {
     PacketParams_t     packet_params;
+#if (__32MM0256GPM048__)
+    //Currently 500mW radios only supported with this target
+    RAD_RXEN_SetLow();
+    RAD_TXEN_SetHigh();
+#endif
+
     packet_params.PacketType                 = PACKET_TYPE_LORA;
     packet_params.Params.LoRa.PreambleLength = 0x32u;    
     packet_params.Params.LoRa.CrcMode        = LORA_CRC_ON;
@@ -380,7 +392,8 @@ void radio_engine(void)
 {
     switch(radio_state_var){
         case RAD_RESET_LOW:
-            __delay_ms(500);
+            set_timer0base(&txTimeOut, 500); //Reuse the timer
+            while(0 == get_timer0base(&txTimeOut));
             RADRST_SetLow();
             set_timer0base(&txTimeOut, 1000); //Reuse the timer
             radio_state_var = RAD_RESET_LOW_WAIT;
