@@ -1,6 +1,6 @@
 #include "led.h"
 #if defined(__PICC18__)
-#include "circularbuffer.h"
+#include "circular_buffer.h"
 #include "mcc.h"
 #else
 #include "system.h"
