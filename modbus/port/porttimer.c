@@ -91,7 +91,9 @@ void prvvTIMERExpiredISR( void )
 void vMBPortTimersDelay( USHORT usTimeOutMS ){
 }
 
+#if (__32MM0256GPM048__)
 void TMR3_CallBack(void)
 {
     prvvTIMERExpiredISR();
 }
+#endif
