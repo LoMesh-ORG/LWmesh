@@ -105,8 +105,8 @@
 [PIC18F26K42/mcc_generated_files/crc.c:207]: (style) The function 'CRC_SCAN_StartScanner' is never used.
 [PIC18F26K42/mcc_generated_files/crc.c:216]: (style) The function 'CRC_SCAN_StopScanner' is never used.
 [PIC18F26K42/mcc_generated_files/crc.c:119]: (style) The function 'CRC_Start' is never used.
-[app/app_src/circular buffer.c:66]: (style) The function 'CircularBufferClear' is never used.
-[app/app_src/circular buffer.c:101]: (style) The function 'CircularBufferPeek' is never used.
+[app/app_src/circular_buffer.c:66]: (style) The function 'CircularBufferClear' is never used.
+[app/app_src/circular_buffer.c:106]: (style) The function 'CircularBufferPeek' is never used.
 [PIC18F26K42/mcc_generated_files/memory.c:212]: (style) The function 'DIA_ReadByte' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:686]: (style) The function 'DIO2_FHSS_ISR' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/dma.c:148]: (style) The function 'DMA0_ISR' is never used.
