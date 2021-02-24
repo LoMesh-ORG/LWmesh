@@ -405,6 +405,13 @@ void app_processes_msg(void);
  */
 void MBRTUStack(void);
 
+/*1
+ * \brief User application
+ * \param [OUT] None
+ * \param [IN] None
+ */
+inline void user_application(void);
+
 /*!
  * \brief Call every main cycle to run the application tasks
  *

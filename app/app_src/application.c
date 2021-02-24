@@ -2455,6 +2455,10 @@ static void exract_sink_addr(uint8_t* dataptr){
 #endif                    
 }
 
+inline void user_application(void){
+    // no op
+}
+
 inline void application(void){
     //start_loop_timer();
     start_loop_timer();
@@ -2478,6 +2482,11 @@ inline void application(void){
     sync_eeprom();
     uart_default_engine();
     //stop_loop_timer();
+#ifndef USERAPP
+    if(SWITCH_TO_CURRENT == get_current_state())
+    {
+        user_application();   
+    }
 #ifdef BOOTABLE
     CLRWDT();
 #endif

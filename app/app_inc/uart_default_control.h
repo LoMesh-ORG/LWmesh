@@ -29,6 +29,9 @@ extern "C" {
     uint16_t blen_sample_timer = 0;
     
     void uart_default_engine(void);
+    
+    enum USER_APPLICATION_STATE;
+    enum USER_APPLICATION_STATE get_current_state(void);
 
 #ifdef	__cplusplus
 }
