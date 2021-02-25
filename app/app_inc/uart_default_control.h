@@ -30,7 +30,8 @@ extern "C" {
     
     void uart_default_engine(void);
     
-    enum USER_APPLICATION_STATE;
+    enum USER_APPLICATION_STATE {CURRENT_PROFILE, DEFAULT_PROFILE};
+    enum USER_APPLICATION_STATE user_application_state = CURRENT_PROFILE;
     enum USER_APPLICATION_STATE get_current_state(void);
 
 #ifdef	__cplusplus

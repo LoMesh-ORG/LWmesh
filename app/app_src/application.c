@@ -2455,7 +2455,7 @@ static void exract_sink_addr(uint8_t* dataptr){
 #endif                    
 }
 
-inline void user_application(void){
+void user_application(void){
     // no op
 }
 
@@ -2482,11 +2482,16 @@ inline void application(void){
     sync_eeprom();
     uart_default_engine();
     //stop_loop_timer();
-#ifndef USERAPP
-    if(SWITCH_TO_CURRENT == get_current_state())
+#ifdef USERAPP
+    if(CURRENT_PROFILE == get_current_state())
     {
         user_application();   
     }
+    else
+    {
+        processATCommand();
+    }
+#endif
 #ifdef BOOTABLE
     CLRWDT();
 #endif

@@ -410,7 +410,7 @@ void MBRTUStack(void);
  * \param [OUT] None
  * \param [IN] None
  */
-inline void user_application(void);
+void user_application(void);
 
 /*!
  * \brief Call every main cycle to run the application tasks
