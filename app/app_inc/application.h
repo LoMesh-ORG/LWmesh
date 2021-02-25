@@ -86,7 +86,7 @@ enum UART_PARITY_ENUM uart_parity;
 uint8_t curent_parity;
 uint16_t pan_id;
 
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
 enum ATTESTCASES{
     WDTTEST = 1,
     EETEST
@@ -115,7 +115,7 @@ uint8_t msgIDCounter = 0;
 //AES encryption key default value
 uint8_t aes_key[16];
 uint8_t net_key[16];
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
 char atCommand[atCommandLen];
 char uartmsg[6];
 volatile bool tx_done = 0;
@@ -196,7 +196,7 @@ uint8_t mb_rtu_addr = MB_RTU_ADDR_MAX;
 #endif
 const uint8_t ATVersionMajor = 1; 
 const uint8_t ATVersionMinor = 0;    
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
 const uint8_t FirmwareVersionMajor = 1;
 #endif
 #ifdef MBRTU
@@ -355,7 +355,7 @@ enum{
 #define RESET_TIMER     1000; //Time in ms to wait before reset
 uint16_t reset_timer = 0;
 #endif
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
 /*!
  * \brief Process a message command from UART
  *
@@ -404,13 +404,6 @@ void app_processes_msg(void);
  * \param [IN] None.
  */
 void MBRTUStack(void);
-
-/*1
- * \brief User application
- * \param [OUT] None
- * \param [IN] None
- */
-void user_application(void);
 
 /*!
  * \brief Call every main cycle to run the application tasks
