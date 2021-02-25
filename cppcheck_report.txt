@@ -37,6 +37,7 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
+[app/app_src/application.c:0]: (information) Too many #ifdef configurations - cppcheck only checks 12 of 13 configurations. Use --force to check all configurations.
 [app/app_src/application.c:1847] -> [app/app_src/application.c:1856]: (style) Variable 'i' is reassigned a value before the old one has been used.
 [app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
 [app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM;FULLFEATURE'.
