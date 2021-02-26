@@ -39,3 +39,10 @@ CND_ARTIFACT_PATH_transparent_mode=dist/transparent_mode/production/PIC18F27K42.
 CND_PACKAGE_DIR_transparent_mode=${CND_DISTDIR}/transparent_mode/package
 CND_PACKAGE_NAME_transparent_mode=pic18f27k42.tar
 CND_PACKAGE_PATH_transparent_mode=${CND_DISTDIR}/transparent_mode/package/pic18f27k42.tar
+# user_application configuration
+CND_ARTIFACT_DIR_user_application=dist/user_application/production
+CND_ARTIFACT_NAME_user_application=PIC18F27K42.production.hex
+CND_ARTIFACT_PATH_user_application=dist/user_application/production/PIC18F27K42.production.hex
+CND_PACKAGE_DIR_user_application=${CND_DISTDIR}/user_application/package
+CND_PACKAGE_NAME_user_application=pic18f27k42.tar
+CND_PACKAGE_PATH_user_application=${CND_DISTDIR}/user_application/package/pic18f27k42.tar

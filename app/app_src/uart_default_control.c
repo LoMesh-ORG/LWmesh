@@ -28,7 +28,11 @@ enum UART_DEFAULT_STATE_T{
         SWITCH_TO_CURRENT
     };
 enum UART_DEFAULT_STATE_T uart_default_state_var = UART_DEFAULT_INIT;
-    
+
+enum USER_APPLICATION_STATE get_current_state(void){
+    return user_application_state;
+}
+
 void uart_default_engine(void){
     switch(uart_default_state_var){
         case UART_DEFAULT_INIT:
@@ -53,7 +57,8 @@ void uart_default_engine(void){
         case SWITCH_TO_DEFAULT:
             {
                 (void*)set_parity(UART_9BIT_EVEN_PARITY);
-                (void*)set_uart_baud(UART_BAUD_19200);   
+                (void*)set_uart_baud(UART_BAUD_19200);
+                user_application_state = DEFAULT_PROFILE;
             }
 #ifdef MBRTU
             eMBInit( MB_RTU, MB_RTU_ADDR_MAX, 0, UART_BAUD_19200, 
@@ -84,6 +89,7 @@ void uart_default_engine(void){
             {
                 (void*)set_parity(DATAEE_ReadByte_Platform(UARTParity));
                 (void*)set_uart_baud(DATAEE_ReadByte_Platform(UARTBaud));
+                user_application_state = CURRENT_PROFILE;
             }
 #endif
 #ifdef MBRTU

@@ -433,7 +433,7 @@ uint8_t set_uart_baud(uint8_t i)
     return E_OK;
 }
 
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
 /*!
  * \brief execute AT commands
  *
@@ -793,7 +793,7 @@ static void cmdSetSink(uint8_t *cmd){
     msgstr[8] = N0;
     needed_size = needed_packet_length(strlen(msgstr));
     if(!get_free_tx_buffer(&buf_id)){
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
         printf("NOT OK:%u\r\n", NO_FREE_BUF);
 #endif
         return;
@@ -810,12 +810,12 @@ static void cmdSetSink(uint8_t *cmd){
     tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
     tx_buffer[buf_id].msgid = msgIDCounter++;
     NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
     printf("OK:%u\r\n", tx_buffer[buf_id].msgid);
 #endif
 }
 
-#ifdef ATCOMM
+#if (ATCOMM || USERAPP)
 /*!
  * \brief Send a message to sink
  *
@@ -1622,7 +1622,7 @@ void processATCommand(void)
             #endif 
                 //There is a byte available
                 #if (_18F27K42 || _18F47K42 || _18F26K42)
-                if(UART1_Read() == 'A')
+                if(UART1_Read() == 'T')
                 #endif
                 #if (__32MM0256GPM048__)
                 if(UART3_Read() == 'T')
@@ -2455,8 +2455,11 @@ static void exract_sink_addr(uint8_t* dataptr){
 #endif                    
 }
 
+static void user_application(void){
+    // no op
+}
+
 inline void application(void){
-    //start_loop_timer();
     start_loop_timer();
 #if (__32MM0256GPM048__)
     if(true == UART2_IsTxDone())
@@ -2477,7 +2480,17 @@ inline void application(void){
 #endif
     sync_eeprom();
     uart_default_engine();
-    //stop_loop_timer();
+#ifdef USERAPP
+    if(CURRENT_PROFILE == get_current_state())
+    {
+        user_application();   
+    }
+    else
+    {
+        processATCommand();
+    }
+#endif
+    stop_loop_timer();
 #ifdef BOOTABLE
     CLRWDT();
 #endif
