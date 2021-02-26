@@ -37,12 +37,10 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:0]: (information) Too many #ifdef configurations - cppcheck only checks 12 of 13 configurations. Use --force to check all configurations.
 [app/app_src/application.c:1847] -> [app/app_src/application.c:1856]: (style) Variable 'i' is reassigned a value before the old one has been used.
 [app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
-[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM;FULLFEATURE'.
-[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM;REGION_NA'.
 [app/app_src/application.c:2223]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -153,13 +151,18 @@
 [PIC32MM0256GPM048/mcc_generated_files/memory/flash.c:157]: (style) The function 'FLASH_WriteRow' is never used.
 [PIC18F26K42/mcc_generated_files/memory.c:206]: (style) The function 'MEMORY_Tasks' is never used.
 [nwk/nwk_src/nwk.c:136]: (style) The function 'NWK_Busy' is never used.
+[nwk/nwk_src/nwkGroup.c:91]: (style) The function 'NWK_GroupRemove' is never used.
+[nwk/nwk_src/nwkGroup.c:133]: (style) The function 'NWK_GroupTable' is never used.
 [nwk/nwk_src/nwk.c:178]: (style) The function 'NWK_LinearizeLqi' is never used.
 [nwk/nwk_src/nwk.c:144]: (style) The function 'NWK_Lock' is never used.
+[nwk/nwk_src/nwkRoute.c:159]: (style) The function 'NWK_RouteTable' is never used.
 [nwk/nwk_src/nwkRx.c:162]: (style) The function 'NWK_SetAckControl' is never used.
 [nwk/nwk_src/nwkSecurity.c:92]: (style) The function 'NWK_SetSecurityKey' is never used.
 [nwk/nwk_src/nwk.c:160]: (style) The function 'NWK_SleepReq' is never used.
 [nwk/nwk_src/nwk.c:152]: (style) The function 'NWK_Unlock' is never used.
 [nwk/nwk_src/nwk.c:168]: (style) The function 'NWK_WakeupReq' is never used.
+[phy/phy_src/phy.c:92]: (style) The function 'PHYGetCadCounter' is never used.
+[phy/phy_src/phy.c:95]: (style) The function 'PHYReSetCadCounter' is never used.
 [phy/phy_src/phy.c:55]: (style) The function 'PHY_SetTxPower' is never used.
 [PIC18F26K42/mcc_generated_files/pin_manager.c:134]: (style) The function 'PIN_MANAGER_IOC' is never used.
 [PIC18F26K42/mcc_generated_files/spi1.c:95]: (style) The function 'SPI1_Close' is never used.
@@ -226,6 +229,7 @@
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:403]: (style) The function 'UART2_WriteBuffer' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:513]: (style) The function 'UART3_Disable' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:506]: (style) The function 'UART3_Enable' is never used.
+[PIC32MM0256GPM048/mcc_generated_files/uart3.c:293]: (style) The function 'UART3_IsRxReady' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:315]: (style) The function 'UART3_IsTxDone' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:447]: (style) The function 'UART3_Peek' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:377]: (style) The function 'UART3_ReadBuffer' is never used.
@@ -258,15 +262,17 @@
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:50]: (style) The function 'eeprom_wr_byte' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:94]: (style) The function 'eeprom_wr_page' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:339]: (style) The function 'getSyncWord' is never used.
+[app/app_src/uart_default_control.c:32]: (style) The function 'get_current_state' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:237]: (style) The function 'getch' is never used.
 [modbus/functions/mbutils.c:117]: (style) The function 'prveMBError2Exception' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:242]: (style) The function 'putch' is never used.
+[app/app_src/led.c:107]: (style) The function 'queue_serial_led_event' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:428]: (style) The function 'read' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:814]: (style) The function 'readAllReg' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
-[wdt/wdt_src/wdt.c:33]: (style) The function 'stop_loop_timer' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
+[app/app_src/application.c:2458]: (style) The function 'user_application' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.
 [modbus/functions/mbutils.c:47]: (style) The function 'xMBUtilSetBits' is never used.
 (information) Cppcheck cannot find all the include files (use --check-config for details)
