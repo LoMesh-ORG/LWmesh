@@ -1622,7 +1622,7 @@ void processATCommand(void)
             #endif 
                 //There is a byte available
                 #if (_18F27K42 || _18F47K42 || _18F26K42)
-                if(UART1_Read() == 'A')
+                if(UART1_Read() == 'T')
                 #endif
                 #if (__32MM0256GPM048__)
                 if(UART3_Read() == 'T')
