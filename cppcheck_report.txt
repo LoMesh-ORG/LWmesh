@@ -37,17 +37,17 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when no macros are defined.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when no macros are defined.
 [app/app_src/application.c:1680]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when these macros are defined: 'BOOTABLE'.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when these macros are defined: 'FULLFEATURE'.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when these macros are defined: 'MBRTU'.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when these macros are defined: 'REGION_NA'.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when these macros are defined: 'SX1276'.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when these macros are defined: 'SX1280'.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'BOOTABLE'.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'FULLFEATURE'.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'MBRTU'.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'REGION_NA'.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'SX1276'.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'SX1280'.
 [app/app_src/application.c:1680]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
 [app/app_src/application.c:1857] -> [app/app_src/application.c:1866]: (style) Variable 'i' is reassigned a value before the old one has been used.
-[app/app_src/application.c:2556]: (error) Invalid number of character '{' when these macros are defined: '__PICC18__'.
+[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: '__PICC18__'.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -281,6 +281,7 @@
 [modbus/port/portserial.c:117]: (style) The function 'prvvUARTRxISR' is never used.
 [modbus/port/portserial.c:106]: (style) The function 'prvvUARTTxReadyISR' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:242]: (style) The function 'putch' is never used.
+[app/app_src/led.c:107]: (style) The function 'queue_serial_led_event' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:428]: (style) The function 'read' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:814]: (style) The function 'readAllReg' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
