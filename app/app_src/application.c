@@ -1374,7 +1374,7 @@ static void cmdSendPing(char *cmd){
  * \param [IN] None.
  */
 static uint8_t processDistanceData(uint8_t distance_data[3]){
-    uint16_t distance = distance_data[0] * 256 + distance_data;
+    uint16_t distance = distance_data[0] * 256 + distance_data[1];
     // TODO(anyone): Handle data obtained above
 }
 
