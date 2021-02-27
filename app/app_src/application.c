@@ -1369,6 +1369,16 @@ static void cmdSendPing(char *cmd){
 }
 
 /*!
+ * \brief process distance data
+ * \param [OUT] None.
+ * \param [IN] None.
+ */
+static uint8_t processDistanceData(uint8_t distance_data[3]){
+    uint16_t distance = distance_data[0] * 256 + distance_data;
+    // TODO(anyone): Handle data obtained above
+}
+
+/*!
  * \brief execute AT commands
  *
  * \param [OUT] None.
@@ -2456,7 +2466,156 @@ static void exract_sink_addr(uint8_t* dataptr){
 }
 
 static void user_application(void){
-    // no op
+    //Check if RS485 tx should be turned off
+#if 0
+    if(tx_done && U1ERRIRbits.TXMTIF){
+//       TXEN_SetLow();
+       tx_done = 0;
+    }
+#endif
+    //Check if there is a command halfway thru and it timed out   
+    if(((sensorStateVar != lookingForHeader) || (sensorStateVar != processData)) && 
+            (!get_timer0base(&ATTimeoutTimer)))        {
+        sensorStateVar = resetSensorMachine;
+    }
+    switch(sensorStateVar){
+        case initMessage:            
+            sensorStateVar = resetSensorMachine;
+            break;
+        case lookingForHeader:
+            //Read a byte if it is available
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            if(UART1_is_rx_ready()){
+            #endif
+            #if (__32MM0256GPM048__)
+            if(true == UART3_IsRxReady()){
+            #endif  
+                //There is a byte available
+                #if (_18F27K42 || _18F47K42 || _18F26K42)
+                if(UART1_Read() == 0xff)
+                #endif
+                #if (__32MM0256GPM048__)
+                if(UART3_Read() == 0xff)
+                #endif
+                {
+                    //Found 0xff
+                    sensorStateVar = lookingForDataL;
+                    set_timer0base(&ATTimeoutTimer, atCommandMaxTimeout);
+                }
+            }                
+            break;        
+        case lookingForDataH:
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            if(UART1_is_rx_ready()){
+            #endif
+            #if (__32MM0256GPM048__)
+            if(true == UART3_IsRxReady()){
+            #endif 
+                //There is a byte available
+                #if (_18F27K42 || _18F47K42 || _18F26K42)
+                uint8_t data = UART1_Read();
+                #endif
+                #if (__32MM0256GPM048__)
+                uint8_t data = UART3_Read();
+                #endif
+                if (data <= 255){
+                    //Found DATA_H
+                    sensorStateVar = lookingForDataL;
+                    distanceData[distanceDataCounter++] = data;
+                }
+                else
+                {
+                    sensorStateVar = lookingForDataH;
+                }
+            }
+            break;            
+        case lookingForDataL:
+            //Found a AT command start now read till it is /r
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            if(UART1_is_rx_ready()){
+            #endif
+            #if (__32MM0256GPM048__)
+            if(true == UART3_IsRxReady()){
+            #endif 
+                #if (_18F27K42 || _18F47K42 || _18F26K42)
+                uint8_t data = UART1_Read();
+                #endif  
+                #if (__32MM0256GPM048__)
+                uint8_t data = UART3_Read();
+                #endif
+                if(data <= 255u)
+                {
+                    // Found DATA_L
+                    sensorStateVar = lookingForSum;
+                    distanceData[distanceDataCounter++] = data;
+                }
+                else
+                {
+                    sensorStateVar = lookingForDataL;
+                }
+            }
+            break;         
+        case lookingForSum:
+            //Found an end of AT command. Wait for /n
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            if(UART1_is_rx_ready()){
+            #endif
+            #if (__32MM0256GPM048__)
+            if(true == UART3_IsRxReady()){
+            #endif 
+                #if (_18F27K42 || _18F47K42 || _18F26K42)
+                uint8_t data = UART1_Read();
+                #endif  
+                #if (__32MM0256GPM048__)
+                uint8_t data = UART3_Read();
+                #endif
+                if(data <= 255u)
+                {
+                    // Found sum
+                    distanceData[distanceDataCounter++] = data;
+                    
+                    // checksum validation
+                    uint8_t checksum = (0xff + 
+                                        distanceData[0] + 
+                                        distanceData[1]) &
+                                        0x00ff;
+                    if(checksum == distanceData[2])
+                    {
+                        sensorStateVar = processData;
+                    }
+                    else
+                    {
+                        sensorStateVar = resetSensorMachine;
+                    }
+                        
+                }
+                else
+                {
+                    //Error found. More than 64 bytes received
+                    sensorStateVar = resetATMachine;
+                }
+            }
+            break;
+            
+        case processData:
+            // TODO(anyone): Add distance calculation logic
+            processDistanceData(distanceData);
+#ifndef MODULE            
+            queue_serial_led_event();
+#endif
+            sensorStateVar = resetATMachine;
+            break;
+        case resetATMachine:
+            sensorStateVar = lookingForHeader;
+            commandByteCounter = 0;
+            //clear the ATcommand buffer
+            memset(atCommand,0,sizeof(atCommand));
+            set_timer0base(&ATTimeoutTimer, atCommandMaxTimeout);
+            break;
+            
+        default:
+            sensorStateVar = resetSensorMachine;
+    }
 }
 
 inline void application(void){
