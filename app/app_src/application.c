@@ -2499,8 +2499,8 @@ static void user_application(void){
                 #endif
                 {
                     //Found 0xff
-                    sensorStateVar = lookingForDataL;
-                    set_timer0base(&ATTimeoutTimer, atCommandMaxTimeout);
+                    sensorStateVar = lookingForDataH;
+                    set_timer0base(&ATTimeoutTimer, sensorTimeout);
                 }
             }                
             break;        
@@ -2518,15 +2518,9 @@ static void user_application(void){
                 #if (__32MM0256GPM048__)
                 uint8_t data = UART3_Read();
                 #endif
-                if (data <= 255){
-                    //Found DATA_H
-                    sensorStateVar = lookingForDataL;
-                    distanceData[distanceDataCounter++] = data;
-                }
-                else
-                {
-                    sensorStateVar = lookingForDataH;
-                }
+                //Found DATA_H
+                sensorStateVar = lookingForDataL;
+                distanceData[distanceDataCounter++] = data;
             }
             break;            
         case lookingForDataL:
@@ -2543,16 +2537,9 @@ static void user_application(void){
                 #if (__32MM0256GPM048__)
                 uint8_t data = UART3_Read();
                 #endif
-                if(data <= 255u)
-                {
-                    // Found DATA_L
-                    sensorStateVar = lookingForSum;
-                    distanceData[distanceDataCounter++] = data;
-                }
-                else
-                {
-                    sensorStateVar = lookingForDataL;
-                }
+                // Found DATA_L
+                sensorStateVar = lookingForSum;
+                distanceData[distanceDataCounter++] = data;
             }
             break;         
         case lookingForSum:
@@ -2569,30 +2556,17 @@ static void user_application(void){
                 #if (__32MM0256GPM048__)
                 uint8_t data = UART3_Read();
                 #endif
-                if(data <= 255u)
+                // Found sum
+                distanceData[distanceDataCounter++] = data;
+        
+                // checksum validation
+                uint8_t checksum = (0xff + 
+                                    distanceData[0] + 
+                                    distanceData[1]) &
+                                    0x00ff;
+                if(checksum == distanceData[2])
                 {
-                    // Found sum
-                    distanceData[distanceDataCounter++] = data;
-                    
-                    // checksum validation
-                    uint8_t checksum = (0xff + 
-                                        distanceData[0] + 
-                                        distanceData[1]) &
-                                        0x00ff;
-                    if(checksum == distanceData[2])
-                    {
-                        sensorStateVar = processData;
-                    }
-                    else
-                    {
-                        sensorStateVar = resetSensorMachine;
-                    }
-                        
-                }
-                else
-                {
-                    //Error found. More than 64 bytes received
-                    sensorStateVar = resetATMachine;
+                    sensorStateVar = processData;
                 }
             }
             break;
@@ -2600,17 +2574,14 @@ static void user_application(void){
         case processData:
             // TODO(anyone): Add distance calculation logic
             processDistanceData(distanceData);
-#ifndef MODULE            
-            queue_serial_led_event();
-#endif
             sensorStateVar = resetATMachine;
             break;
         case resetATMachine:
             sensorStateVar = lookingForHeader;
             commandByteCounter = 0;
             //clear the ATcommand buffer
-            memset(atCommand,0,sizeof(atCommand));
-            set_timer0base(&ATTimeoutTimer, atCommandMaxTimeout);
+            memset(distanceData,0,sizeof(distanceData));
+            set_timer0base(&ATTimeoutTimer, sensorTimeout);
             break;
             
         default:

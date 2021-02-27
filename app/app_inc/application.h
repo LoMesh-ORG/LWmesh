@@ -47,6 +47,7 @@ extern "C" {
 #define atCommandLen 80
 #define sensorDataLen 3
 #define atCommandMaxTimeout 1000
+#define sensorTimeout 1000
 #define payloadSizeMax (NWK_FRAME_MAX_PAYLOAD_SIZE - AES_BLOCKLEN)
     
 //Uart mode of operations
