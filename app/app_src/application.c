@@ -2465,6 +2465,7 @@ static void exract_sink_addr(uint8_t* dataptr){
 #endif                    
 }
 
+#ifdef USERAPP
 static void user_application(void){
     //Check if RS485 tx should be turned off
 #if 0
@@ -2588,6 +2589,7 @@ static void user_application(void){
             sensorStateVar = resetSensorMachine;
     }
 }
+#endif
 
 inline void application(void){
     start_loop_timer();

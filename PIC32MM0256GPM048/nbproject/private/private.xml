@@ -15,6 +15,15 @@
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC32MM0256GPM048/main.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC32MM0256GPM048/mcc_generated_files/uart3.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/phy/sx1280/sx1280_src/sx1280_drv.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/EEPROM.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/EEPROM.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/application.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC32MM0256GPM048/mcc_generated_files/memory/flash.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/hal/hal_inc/Timers.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/led.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/led.h</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/crc.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_inc/crc.h</file>
         </group>
     </open-files>
 </project-private>

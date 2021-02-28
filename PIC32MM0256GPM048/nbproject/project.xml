@@ -32,6 +32,8 @@
                 <sourceRootElem>../phy/sx1280/sx1280_src</sourceRootElem>
                 <sourceRootElem>../sys/sys_src</sourceRootElem>
                 <sourceRootElem>../wdt/wdt_src</sourceRootElem>
+                <sourceRootElem>../memory/dee_pic32/dee_inc</sourceRootElem>
+                <sourceRootElem>../memory/dee_pic32/dee_src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
