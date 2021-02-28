@@ -45,9 +45,7 @@ extern "C" {
 #define REGION_NA
     
 #define atCommandLen 80
-#define sensorDataLen 3
 #define atCommandMaxTimeout 1000
-#define sensorTimeout 1000
 #define payloadSizeMax (NWK_FRAME_MAX_PAYLOAD_SIZE - AES_BLOCKLEN)
     
 //Uart mode of operations
@@ -118,12 +116,11 @@ uint8_t msgIDCounter = 0;
 uint8_t aes_key[16];
 uint8_t net_key[16];
 #if (ATCOMM || USERAPP)
+#include "user_app.h"
 char atCommand[atCommandLen];
-uint8_t distanceData[sensorDataLen];
 char uartmsg[6];
 volatile bool tx_done = 0;
 #endif
-uint8_t distanceDataCounter = 0;
 uint8_t commandByteCounter = 0;
 volatile uint16_t ATTimeoutTimer = 1000;
 extern uint8_t currentAddr0,currentAddr1;
@@ -218,17 +215,6 @@ enum atState
     processCommand,
     resetATMachine
 }atStateVar = initMessage;
-
-enum sensorState
-{
-    initSensor = 0,
-    lookingForHeader,
-    lookingForDataL,
-    lookingForDataH,
-    lookingForSum,
-    processData,
-    resetSensorMachine
-}sensorStateVar = initSensor;
 
 /*******************************************************************************
  * Application header

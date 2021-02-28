@@ -16,6 +16,7 @@
         <itemPath>../app/app_inc/led.h</itemPath>
         <itemPath>../app/app_inc/uart_default_control.h</itemPath>
         <itemPath>../app/app_inc/circular_buffer.h</itemPath>
+        <itemPath>../app/app_inc/user_app.h</itemPath>
       </logicalFolder>
       <logicalFolder name="eeprom_inc" displayName="eeprom_inc" projectFiles="true">
         <itemPath>../memory/eeprom/eeprom_inc/I2C_EEPROM.h</itemPath>
@@ -140,6 +141,7 @@
         <itemPath>../modbus/mb.c</itemPath>
         <itemPath>../app/app_src/uart_default_control.c</itemPath>
         <itemPath>../app/app_src/circular_buffer.c</itemPath>
+        <itemPath>../app/app_src/user_app.c</itemPath>
       </logicalFolder>
       <logicalFolder name="eeprom_src" displayName="eeprom_src" projectFiles="true">
         <itemPath>../memory/eeprom/eeprom_src/I2C_EEPROM.c</itemPath>
@@ -1153,7 +1155,7 @@
         <targetDevice>PIC18F27K42</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.31</languageToolchainVersion>
         <platform>3</platform>
@@ -1277,6 +1279,7 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
