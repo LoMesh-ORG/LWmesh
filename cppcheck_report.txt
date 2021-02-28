@@ -37,10 +37,11 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:1847] -> [app/app_src/application.c:1856]: (style) Variable 'i' is reassigned a value before the old one has been used.
-[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
-[app/app_src/application.c:2223]: (style) Variable 'count' is modified but its new value is never used.
-[app/app_src/application.c:1670]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
+[app/app_src/application.c:1851] -> [app/app_src/application.c:1860]: (style) Variable 'i' is reassigned a value before the old one has been used.
+[app/app_src/application.c:1674]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
+[app/app_src/application.c:2227]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:1674]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
+[app/app_src/user_app.c:10]: (style) Variable 'distance' is assigned a value that is never used.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -229,7 +230,6 @@
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:403]: (style) The function 'UART2_WriteBuffer' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:513]: (style) The function 'UART3_Disable' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:506]: (style) The function 'UART3_Enable' is never used.
-[PIC32MM0256GPM048/mcc_generated_files/uart3.c:293]: (style) The function 'UART3_IsRxReady' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:315]: (style) The function 'UART3_IsTxDone' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:447]: (style) The function 'UART3_Peek' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:377]: (style) The function 'UART3_ReadBuffer' is never used.
@@ -254,7 +254,7 @@
 [phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[app/app_src/application.c:2343]: (style) The function 'eMBRegHoldingCB' is never used.
+[app/app_src/application.c:2347]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:70]: (style) The function 'eeprom_rd_byte' is never used.
@@ -272,7 +272,7 @@
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
-[app/app_src/application.c:2458]: (style) The function 'user_application' is never used.
+[app/app_src/user_app.c:14]: (style) The function 'user_application' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.
 [modbus/functions/mbutils.c:47]: (style) The function 'xMBUtilSetBits' is never used.
 (information) Cppcheck cannot find all the include files (use --check-config for details)

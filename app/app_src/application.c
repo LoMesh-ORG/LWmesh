@@ -39,6 +39,9 @@ Copyright 2020 Samuel Ramrajkar
 #ifdef FULLFEATURE
 #include "I2C_EEPROM.h"
 #endif
+#ifdef USERAPP
+#include "user_app.h"
+#endif
 #if (__32MM0256GPM048__)
 #include "uart3.h"
 #include "uart2.h"
@@ -1368,6 +1371,7 @@ static void cmdSendPing(char *cmd){
     printf("OK:%u\r\n", tx_buffer[buf_id].msgid);
 }
 
+
 /*!
  * \brief execute AT commands
  *
@@ -2453,10 +2457,6 @@ static void exract_sink_addr(uint8_t* dataptr){
 #ifdef ATCOMM
     printf("SINK SET:%02X%02X\r\n",sinkAddr0, sinkAddr1);
 #endif                    
-}
-
-static void user_application(void){
-    // no op
 }
 
 inline void application(void){

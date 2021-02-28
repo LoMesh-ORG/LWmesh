@@ -44,7 +44,7 @@ extern "C" {
 
 #define REGION_NA
     
-#define atCommandLen 80 
+#define atCommandLen 80
 #define atCommandMaxTimeout 1000
 #define payloadSizeMax (NWK_FRAME_MAX_PAYLOAD_SIZE - AES_BLOCKLEN)
     
@@ -116,6 +116,7 @@ uint8_t msgIDCounter = 0;
 uint8_t aes_key[16];
 uint8_t net_key[16];
 #if (ATCOMM || USERAPP)
+#include "user_app.h"
 char atCommand[atCommandLen];
 char uartmsg[6];
 volatile bool tx_done = 0;
