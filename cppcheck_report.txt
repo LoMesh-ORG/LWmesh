@@ -37,17 +37,11 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when no macros are defined.
-[app/app_src/application.c:1680]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'BOOTABLE'.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'FULLFEATURE'.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'MBRTU'.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'REGION_NA'.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'SX1276'.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: 'SX1280'.
-[app/app_src/application.c:1680]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
-[app/app_src/application.c:1857] -> [app/app_src/application.c:1866]: (style) Variable 'i' is reassigned a value before the old one has been used.
-[app/app_src/application.c:2543]: (error) Invalid number of character '{' when these macros are defined: '__PICC18__'.
+[app/app_src/application.c:1851] -> [app/app_src/application.c:1860]: (style) Variable 'i' is reassigned a value before the old one has been used.
+[app/app_src/application.c:1674]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
+[app/app_src/application.c:2227]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:1674]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
+[app/app_src/user_app.c:10]: (style) Variable 'distance' is assigned a value that is never used.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -221,9 +215,7 @@
 [PIC18F27K42/mcc_generated_files/tmr5.c:92]: (style) The function 'TMR5_StartTimer' is never used.
 [PIC18F27K42/mcc_generated_files/tmr5.c:98]: (style) The function 'TMR5_StopTimer' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:184]: (style) The function 'UART1_get_last_status' is never used.
-[PIC18F26K42/mcc_generated_files/uart1.c:169]: (style) The function 'UART1_is_rx_ready' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:179]: (style) The function 'UART1_is_tx_done' is never used.
-[PIC18F26K42/mcc_generated_files/uart1.c:174]: (style) The function 'UART1_is_tx_ready' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:521]: (style) The function 'UART2_Disable' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:514]: (style) The function 'UART2_Enable' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:293]: (style) The function 'UART2_IsRxReady' is never used.
@@ -248,7 +240,6 @@
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:464]: (style) The function 'UART3_TransmitBufferIsFull' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:474]: (style) The function 'UART3_TransmitBufferSizeGet' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart3.c:395]: (style) The function 'UART3_WriteBuffer' is never used.
-[app/app_src/application.c:306]: (style) The function 'UART_error_handler' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/coretimer.c:83]: (style) The function '_CORE_TIMER_ISR' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:242]: (style) The function '_UART2_ERR' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:204]: (style) The function '_UART2_RX' is never used.
@@ -261,12 +252,9 @@
 [phy/sx1276/sx1276_src/sx1276.c:423]: (style) The function 'available' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:571]: (style) The function 'cad_detected_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
-[app/app_src/application.c:767]: (style) The function 'cmdSetSink' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[modbus/mb.c:310]: (style) The function 'eMBDisable' is never used.
-[modbus/mb.c:292]: (style) The function 'eMBEnable' is never used.
-[modbus/mb.c:332]: (style) The function 'eMBPoll' is never used.
+[app/app_src/application.c:2347]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:70]: (style) The function 'eeprom_rd_byte' is never used.
@@ -275,20 +263,16 @@
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:94]: (style) The function 'eeprom_wr_page' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:339]: (style) The function 'getSyncWord' is never used.
 [app/app_src/uart_default_control.c:32]: (style) The function 'get_current_state' is never used.
-[wdt/wdt_src/wdt.c:47]: (style) The function 'get_loop_time' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:237]: (style) The function 'getch' is never used.
 [modbus/functions/mbutils.c:117]: (style) The function 'prveMBError2Exception' is never used.
-[modbus/port/portserial.c:117]: (style) The function 'prvvUARTRxISR' is never used.
-[modbus/port/portserial.c:106]: (style) The function 'prvvUARTTxReadyISR' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:242]: (style) The function 'putch' is never used.
 [app/app_src/led.c:107]: (style) The function 'queue_serial_led_event' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:428]: (style) The function 'read' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:814]: (style) The function 'readAllReg' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
-[app/app_src/EEPROM.c:153]: (style) The function 'set_eeprom_sync' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
-[app/app_src/application.c:2468]: (style) The function 'user_application' is never used.
+[app/app_src/user_app.c:14]: (style) The function 'user_application' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.
 [modbus/functions/mbutils.c:47]: (style) The function 'xMBUtilSetBits' is never used.
 (information) Cppcheck cannot find all the include files (use --check-config for details)
