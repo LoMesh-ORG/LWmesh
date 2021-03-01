@@ -256,6 +256,10 @@ func_exit:
     return true;
 }
 
+static bool appOtaEp(NWK_DataInd_t *ind){
+    
+}
+
 static bool get_free_tx_buffer(uint8_t *buf_id){
     *buf_id = 0;
     while(*buf_id < APP_TX_BUFFER_DEPTH){
@@ -1934,6 +1938,7 @@ void bootLoadApplication(void)
     NWK_SetPanId(pan_id);
     NWK_OpenEndpoint(DATA_EP, appDataInd);
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
+    NWK_OpenEndpoint(OTA_EP, appOtaEp);
 #if (_18F27K42 || _18F47K42 || _18F26K42)
     TMR0_SetInterruptHandler(Timer0Handler); 
 #endif
