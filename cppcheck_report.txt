@@ -37,10 +37,10 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/application.c:1851] -> [app/app_src/application.c:1860]: (style) Variable 'i' is reassigned a value before the old one has been used.
-[app/app_src/application.c:1674]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
-[app/app_src/application.c:2227]: (style) Variable 'count' is modified but its new value is never used.
-[app/app_src/application.c:1674]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
+[app/app_src/application.c:1855] -> [app/app_src/application.c:1864]: (style) Variable 'i' is reassigned a value before the old one has been used.
+[app/app_src/application.c:1678]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
+[app/app_src/application.c:2232]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:1678]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
 [app/app_src/user_app.c:10]: (style) Variable 'distance' is assigned a value that is never used.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
@@ -254,7 +254,7 @@
 [phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[app/app_src/application.c:2347]: (style) The function 'eMBRegHoldingCB' is never used.
+[app/app_src/application.c:2352]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:70]: (style) The function 'eeprom_rd_byte' is never used.
