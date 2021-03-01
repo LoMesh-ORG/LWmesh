@@ -1,4 +1,5 @@
 #include "user_app.h"
+#include "application.h"
 #include "Timers.h"
 #ifdef USERAPP
 /*!
@@ -6,12 +7,30 @@
  * \param [OUT] None.
  * \param [IN] None.
  */
+uint16_t distance;
+
+
 static uint8_t processDistanceData(uint8_t* distance_data){
-    uint16_t distance = ((distance_data[0] << 8u) & 0xFF00u) + distance_data[1];
+    distance = ((distance_data[0] << 8u) & 0xFF00u) + distance_data[1];
     // TODO(anyone): Handle data obtained above
 }
 
 void user_application(void){
+        uint8_t senddata[64];
+    void send_value(){
+        uint8_t send_val_Timeout = //value
+        while (true)
+            {
+            if (send_val_Timeout==0)
+                {
+                memset(senddata, 0, sizeof(senddata));
+                snprintf(senddata, sizeof(senddata), "AT+SSINK=%u\r\n", distance);
+                cmdSendSink(&(uint8_t*)senddata[0]);
+                }
+        
+            
+            }
+}
     //Check if RS485 tx should be turned off
 #if 0
     if(tx_done && U1ERRIRbits.TXMTIF){
