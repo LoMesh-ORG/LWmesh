@@ -1,4 +1,4 @@
-/*
+/*******************************************************************************
 Copyright 2020 Samuel Ramrajkar
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,7 @@ Copyright 2020 Samuel Ramrajkar
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/
+*******************************************************************************/
 //Handlers for all the timer ISRs
 #include "Timers.h"
 #ifdef SX1276
@@ -24,29 +24,38 @@ Copyright 2020 Samuel Ramrajkar
 #include "application.h"
 #include "led.h"
 #include "uart_default_control.h"
+#ifdef USERAPP
+#include "user_app.h"
+#endif
     
 void Timer0Handler(void){
-    if(txTimeOut){
+    if(0 != txTimeOut){
         txTimeOut--;
     }
-    if(ATTimeoutTimer){
+    if(0 != ATTimeoutTimer){
         ATTimeoutTimer--;
     }
-    if(cadTimeOut){
+    if(0 != cadTimeOut){
         cadTimeOut--;
     }
-    if(_cadBackoffTimer){
+    if(0 != _cadBackoffTimer){
         _cadBackoffTimer--;
     }
-    if(ledtimer){
+    if(0 != ledtimer){
         ledtimer--;
     }
-    if(blen_sample_timer){
+    if(0 != blen_sample_timer){
         blen_sample_timer--;
     }
 #ifdef MBRTU
-    if(reset_timer){
+    if(0 != reset_timer){
         reset_timer--;
+    }
+#endif
+#ifdef USERAPP
+    if(0 != sensor_send_timer)
+    {
+        sensor_send_timer--;
     }
 #endif
     halTimerIrqCount++;

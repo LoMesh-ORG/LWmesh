@@ -37,8 +37,10 @@ extern "C" {
 #endif /* __cplusplus */
 #define sensorDataLen 3
 #define sensorTimeout 1000
+#define SENSOR_SEND_TIMER_DEFAULT   10000
 uint8_t distanceDataCounter = 0;    
 uint8_t distanceData[sensorDataLen];
+volatile uint16_t sensor_send_timer;
 
 enum sensorState
 {
