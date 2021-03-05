@@ -1,18 +1,63 @@
 #include "user_app.h"
 #include "Timers.h"
+#include "application.h"
+#include <stdio.h>
 #ifdef USERAPP
+static uint16_t distance = 0;
+enum SENSO_SEND_STATE_ENUM
+{
+    SENSOR_STATE_INIT,
+    SENSOR_STATE_WAIT,
+    SENSOR_STATE_SEND
+}sensor_send_state_var = SENSOR_STATE_INIT;
+extern uint8_t set_parity(uint8_t parity);
+extern uint8_t set_uart_baud(uint8_t i);
 /*!
  * \brief process distance data
  * \param [OUT] None.
  * \param [IN] None.
  */
 static uint8_t processDistanceData(uint8_t* distance_data){
-    uint16_t distance = ((distance_data[0] << 8u) & 0xFF00u) + distance_data[1];
+    distance = ((distance_data[0] << 8u) & 0xFF00u) + distance_data[1];
     // TODO(anyone): Handle data obtained above
+}
+
+static void sendSensorData(void)
+{
+    uint8_t senddata[64];
+    switch(sensor_send_state_var)
+    {
+        case SENSOR_STATE_INIT:
+            set_timer0base(&sensor_send_timer, SENSOR_SEND_TIMER_DEFAULT);
+            sensor_send_state_var = SENSOR_STATE_WAIT;
+            break;
+        case SENSOR_STATE_WAIT:
+            if(!get_timer0base(&sensor_send_timer))
+            {
+                sensor_send_state_var = SENSOR_STATE_SEND;
+            }
+            break;
+        case SENSOR_STATE_SEND:
+            (void)memset(senddata, 0, sizeof(senddata));
+            (void)sprintf(senddata, 
+                    "=%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%04X", 
+                    EUIDbyte[0], EUIDbyte[1],EUIDbyte[2], EUIDbyte[3],
+                    EUIDbyte[4], EUIDbyte[5],EUIDbyte[6], EUIDbyte[7],
+                    EUIDbyte[8], EUIDbyte[9],EUIDbyte[10], EUIDbyte[11],
+                    distance);
+            cmdSendSinkUnacked((char*)&senddata[0]);
+            sensor_send_state_var = SENSOR_STATE_INIT;
+            break;
+        default:
+            sensor_send_state_var = SENSOR_STATE_INIT;
+            break;
+    }
+    
 }
 
 void user_application(void){
     //Check if RS485 tx should be turned off
+    sendSensorData();
 #if 0
     if(tx_done && U1ERRIRbits.TXMTIF){
 //       TXEN_SetLow();
@@ -25,7 +70,9 @@ void user_application(void){
         sensorStateVar = resetSensorMachine;
     }
     switch(sensorStateVar){
-        case initMessage:            
+        case initMessage:  
+            (void)set_parity(UART_8BIT_NO_PARITY);
+            (void)set_uart_baud(UART_BAUD_9600);
             sensorStateVar = resetSensorMachine;
             break;
         case lookingForHeader:

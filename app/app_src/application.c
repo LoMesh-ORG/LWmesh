@@ -2459,6 +2459,40 @@ static void exract_sink_addr(uint8_t* dataptr){
 #endif                    
 }
 
+#ifdef USERAPP
+uint8_t cmdSendSinkUnacked(char* atCommand){
+	char *p1;
+    uint8_t ret_code = 0xFF;
+    uint8_t buf_id, needed_size;
+	p1 = strstr(atCommand,"=") + 1;
+    if(!p1){
+        return ret_code;
+    }
+    needed_size = needed_packet_length(strlen(p1));
+	if(strlen(p1) > NWK_MAX_PAYLOAD_SIZE){
+	}
+	else{
+        if(!get_free_tx_buffer(&buf_id)){
+            return ret_code;
+        }
+        memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
+		memcpy(&tx_buffer[buf_id].payload + AES_BLOCKLEN,p1,strlen(p1));
+        app_aes_encrypt(&tx_buffer[buf_id].payload, needed_size - AES_BLOCKLEN);
+		tx_buffer[buf_id].nwkDataReq.dstAddr = (sinkAddr0 << 8) | sinkAddr1;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = DATA_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = DATA_EP;
+        tx_buffer[buf_id].nwkDataReq.options = NWK_OPT_ACK_REQUEST;
+        tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
+        tx_buffer[buf_id].nwkDataReq.size = needed_size;
+        tx_buffer[buf_id].nwkDataReq.confirm = appDataConf;
+        tx_buffer[buf_id].msgid = msgIDCounter++;
+        NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
+        ret_code = tx_buffer[buf_id].msgid;
+	}
+    return ret_code;
+}
+#endif
+
 inline void application(void){
     start_loop_timer();
 #if (__32MM0256GPM048__)

@@ -365,6 +365,8 @@ uint16_t reset_timer = 0;
  */
 void processATCommand(void);
 
+uint8_t cmdSendSinkUnacked(char* cmd);
+
 /*!
  * \brief Send information message
  *
