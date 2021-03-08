@@ -10,12 +10,15 @@
       </logicalFolder>
       <logicalFolder name="app_inc" displayName="app_inc" projectFiles="true">
         <itemPath>../app/app_inc/application.h</itemPath>
-        <itemPath>../app/app_inc/circular buffer.h</itemPath>
         <itemPath>../app/app_inc/crc.h</itemPath>
         <itemPath>../app/app_inc/EEPROM.h</itemPath>
         <itemPath>../app/app_inc/errors.h</itemPath>
         <itemPath>../app/app_inc/led.h</itemPath>
         <itemPath>../app/app_inc/uart_default_control.h</itemPath>
+        <itemPath>../app/app_inc/circular_buffer.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="flash_inc" displayName="flash_inc" projectFiles="true">
+        <itemPath>../memory/flash/flash_inc/w25q.h</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_inc" displayName="hal_inc" projectFiles="true">
         <itemPath>../hal/hal_inc/Timers.h</itemPath>
@@ -132,11 +135,14 @@
       </logicalFolder>
       <logicalFolder name="app_src" displayName="app_src" projectFiles="true">
         <itemPath>../app/app_src/application.c</itemPath>
-        <itemPath>../app/app_src/circular buffer.c</itemPath>
         <itemPath>../app/app_src/crc.c</itemPath>
         <itemPath>../app/app_src/EEPROM.c</itemPath>
         <itemPath>../app/app_src/led.c</itemPath>
         <itemPath>../app/app_src/uart_default_control.c</itemPath>
+        <itemPath>../app/app_src/circular_buffer.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="flash_src" displayName="flash_src" projectFiles="true">
+        <itemPath>../memory/flash/flash_src/w25q.c</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_src" displayName="hal_src" projectFiles="true">
         <itemPath>../hal/hal_src/Timers.c</itemPath>
@@ -246,6 +252,8 @@
     <Elem>../phy/sx1280/sx1280_src</Elem>
     <Elem>../sys/sys_src</Elem>
     <Elem>../wdt/wdt_src</Elem>
+    <Elem>../memory/flash/flash_inc</Elem>
+    <Elem>../memory/flash/flash_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -523,12 +531,12 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="..\aes\aes_inc;..\app\app_inc;..\hal\hal_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\nwk\nwk_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\sys\sys_inc;..\wdt\wdt_inc;mcc_generated_files;..\modbus\port"/>
+                  value="..\aes\aes_inc;..\app\app_inc;..\hal\hal_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\nwk\nwk_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\sys\sys_inc;..\wdt\wdt_inc;mcc_generated_files;..\modbus\port;..\memory\flash\flash_inc"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="false"/>
         <property key="make-warnings-into-errors" value="false"/>
-        <property key="optimization-level" value="-O2"/>
+        <property key="optimization-level" value=""/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>

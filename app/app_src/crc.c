@@ -52,7 +52,7 @@ uint16_t crc16_app(uint8_t* dptr, uint16_t len, uint16_t seed){
 
 #if (__32MM0256GPM048__)
 extern USHORT usMBCRC16( UCHAR * pucFrame, USHORT usLen );
-uint16_t crc16_app(void* dptr, uint16_t len, uint16_t seed)
+uint16_t crc16_app(uint8_t* dptr, uint16_t len, uint16_t seed)
 { 
     return usMBCRC16((UCHAR *) dptr, len);
 }
