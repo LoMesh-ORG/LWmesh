@@ -13,6 +13,7 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 
 Maintainer: Miguel Luis, Matthieu Verdy and Benjamin Boulet
 */
+#ifdef SX1280
 #include "mcc.h"
 #if (__32MM0256GPM048__)
 #include "spi2.h"
@@ -383,3 +384,4 @@ uint8_t SX1280HalExchangeByte( uint8_t byte )
     return SPI2_Exchange8bit(byte);
 #endif     
 }
+#endif

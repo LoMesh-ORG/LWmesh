@@ -13,6 +13,7 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 
 Maintainer: Miguel Luis, Matthieu Verdy and Benjamin Boulet
 */
+#ifdef SX1280
 #include <string.h>
 #include "sx1280.h"
 #include "sx1280-hal.h"
@@ -1428,3 +1429,4 @@ void SX1280ProcessIrqs( void )
             break;
     }
 }
+#endif

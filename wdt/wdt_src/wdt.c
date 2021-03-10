@@ -15,6 +15,9 @@ Copyright 2020 Samuel Ramrajkar
 */
 #include "mcc.h"
 #include "wdt.h"
+#if (_18F27K42 || _18F47K42 || _18F26K42)
+#include "tmr5.h"
+#endif
 #include <stdbool.h>
 
 #define LOOPTIMERRESET	    0

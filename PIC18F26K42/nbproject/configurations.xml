@@ -10,12 +10,13 @@
       </logicalFolder>
       <logicalFolder name="app_inc" displayName="app_inc" projectFiles="true">
         <itemPath>../app/app_inc/application.h</itemPath>
-        <itemPath>../app/app_inc/circular buffer.h</itemPath>
         <itemPath>../app/app_inc/crc.h</itemPath>
         <itemPath>../app/app_inc/EEPROM.h</itemPath>
         <itemPath>../app/app_inc/errors.h</itemPath>
         <itemPath>../app/app_inc/led.h</itemPath>
         <itemPath>../app/app_inc/uart_default_control.h</itemPath>
+        <itemPath>../app/app_inc/circular_buffer.h</itemPath>
+        <itemPath>../app/app_inc/user_app.h</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_inc" displayName="hal_inc" projectFiles="true">
         <itemPath>../hal/hal_inc/Timers.h</itemPath>
@@ -33,6 +34,30 @@
         <itemPath>mcc_generated_files/device_config.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/tmr3.h</itemPath>
+        <itemPath>mcc_generated_files/tmr5.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="modbus_inc" projectFiles="true">
+        <logicalFolder name="ascii" displayName="ascii" projectFiles="true">
+          <itemPath>../modbus/ascii/mbascii.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="functions" displayName="functions" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="mb_inc" displayName="mb_inc" projectFiles="true">
+          <itemPath>../modbus/mb_inc/mb.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbconfig.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbframe.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbfunc.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbport.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbproto.h</itemPath>
+          <itemPath>../modbus/mb_inc/mbutils.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="port" displayName="port" projectFiles="true">
+          <itemPath>../modbus/port/port.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="rtu" displayName="rtu" projectFiles="true">
+          <itemPath>../modbus/rtu/mbcrc.h</itemPath>
+          <itemPath>../modbus/rtu/mbrtu.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="nwk_inc" displayName="nwk_inc" projectFiles="true">
         <itemPath>../nwk/nwk_inc/nwk.h</itemPath>
@@ -47,8 +72,37 @@
         <itemPath>../nwk/nwk_inc/nwkTx.h</itemPath>
       </logicalFolder>
       <logicalFolder name="phy_inc" displayName="phy_inc" projectFiles="true">
-        <itemPath>../phy/sx1216/phy_inc/phy.h</itemPath>
-        <itemPath>../phy/sx1216/phy_inc/sx1276Regs-LoRa.h</itemPath>
+        <itemPath>../phy/phy_inc/phy.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1276_inc" displayName="sx1276_inc" projectFiles="true">
+        <itemPath>../phy/sx1276/sx1276_inc/sx1276.h</itemPath>
+        <itemPath>../phy/sx1276/sx1276_inc/sx1276Regs-LoRa.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1280_inc" displayName="sx1280_inc" projectFiles="true">
+        <itemPath>../phy/sx1280/sx1280_inc/radio.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/RangingCorrection.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF10BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF10BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF10BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF5BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF5BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF5BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF6BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF6BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF6BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF7BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF7BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF7BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF8BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF8BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF8BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF9BW0400.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF9BW0800.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrectionSF9BW1600.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/rangingCorrection_defines.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/sx1280-hal.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/sx1280.h</itemPath>
+        <itemPath>../phy/sx1280/sx1280_inc/sx1280_drv.h</itemPath>
       </logicalFolder>
       <logicalFolder name="sys_inc" displayName="sys_inc" projectFiles="true">
         <itemPath>../sys/sys_inc/sys.h</itemPath>
@@ -56,6 +110,9 @@
         <itemPath>../sys/sys_inc/sysEncrypt.h</itemPath>
         <itemPath>../sys/sys_inc/sysTimer.h</itemPath>
         <itemPath>../sys/sys_inc/sysTypes.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="wdt_inc" displayName="wdt_inc" projectFiles="true">
+        <itemPath>../wdt/wdt_inc/wdt.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -70,11 +127,12 @@
       </logicalFolder>
       <logicalFolder name="app_src" displayName="app_src" projectFiles="true">
         <itemPath>../app/app_src/application.c</itemPath>
-        <itemPath>../app/app_src/circular buffer.c</itemPath>
         <itemPath>../app/app_src/crc.c</itemPath>
         <itemPath>../app/app_src/EEPROM.c</itemPath>
         <itemPath>../app/app_src/led.c</itemPath>
         <itemPath>../app/app_src/uart_default_control.c</itemPath>
+        <itemPath>../app/app_src/circular_buffer.c</itemPath>
+        <itemPath>../app/app_src/user_app.c</itemPath>
       </logicalFolder>
       <logicalFolder name="hal_src" displayName="hal_src" projectFiles="true">
         <itemPath>../hal/hal_src/Timers.c</itemPath>
@@ -92,6 +150,33 @@
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
         <itemPath>mcc_generated_files/crc.c</itemPath>
         <itemPath>mcc_generated_files/tmr3.c</itemPath>
+        <itemPath>mcc_generated_files/tmr5.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="modbus_src" projectFiles="true">
+        <logicalFolder name="ascii" displayName="ascii" projectFiles="true">
+          <itemPath>../modbus/ascii/mbascii.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="functions" displayName="functions" projectFiles="true">
+          <itemPath>../modbus/functions/mbfunccoils.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncdiag.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncdisc.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncholding.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncinput.c</itemPath>
+          <itemPath>../modbus/functions/mbfuncother.c</itemPath>
+          <itemPath>../modbus/functions/mbutils.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mb_inc" displayName="mb_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="port" displayName="port" projectFiles="true">
+          <itemPath>../modbus/port/portevent.c</itemPath>
+          <itemPath>../modbus/port/portserial.c</itemPath>
+          <itemPath>../modbus/port/porttimer.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="rtu" displayName="rtu" projectFiles="true">
+          <itemPath>../modbus/rtu/mbcrc.c</itemPath>
+          <itemPath>../modbus/rtu/mbrtu.c</itemPath>
+        </logicalFolder>
+        <itemPath>../modbus/mb.c</itemPath>
       </logicalFolder>
       <logicalFolder name="nwk_src" displayName="nwk_src" projectFiles="true">
         <itemPath>../nwk/nwk_src/nwk.c</itemPath>
@@ -105,12 +190,23 @@
         <itemPath>../nwk/nwk_src/nwkTx.c</itemPath>
       </logicalFolder>
       <logicalFolder name="phy_src" displayName="phy_src" projectFiles="true">
-        <itemPath>../phy/sx1216/phy_src/phy.c</itemPath>
+        <itemPath>../phy/phy_src/phy.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1276_src" displayName="sx1276_src" projectFiles="true">
+        <itemPath>../phy/sx1276/sx1276_src/sx1276.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="sx1280_src" displayName="sx1280_src" projectFiles="true">
+        <itemPath>../phy/sx1280/sx1280_src/sx1280-hal.c</itemPath>
+        <itemPath>../phy/sx1280/sx1280_src/sx1280.c</itemPath>
+        <itemPath>../phy/sx1280/sx1280_src/sx1280_drv.c</itemPath>
       </logicalFolder>
       <logicalFolder name="sys_src" displayName="sys_src" projectFiles="true">
         <itemPath>../sys/sys_src/sys.c</itemPath>
         <itemPath>../sys/sys_src/sysEncrypt.c</itemPath>
         <itemPath>../sys/sys_src/sysTimer.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="wdt_src" displayName="wdt_src" projectFiles="true">
+        <itemPath>../wdt/wdt_src/wdt.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -135,23 +231,34 @@
     <Elem>../sys/sys_src</Elem>
     <Elem>../aes/aes_inc</Elem>
     <Elem>../aes/aes_src</Elem>
+    <Elem>../wdt/wdt_src</Elem>
+    <Elem>../wdt/wdt_inc</Elem>
+    <Elem>../phy/phy_src</Elem>
+    <Elem>../phy/phy_inc</Elem>
+    <Elem>../phy/sx1276/sx1276_inc</Elem>
+    <Elem>../phy/sx1280/sx1280_inc</Elem>
+    <Elem>../phy/sx1280/sx1280_src</Elem>
+    <Elem>../phy/sx1276/sx1276_src</Elem>
+    <Elem>../modbus</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="default" type="2">
+    <conf name="User_Application" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>PIC18F26K42</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.10</languageToolchainVersion>
+        <languageToolchainVersion>2.31</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.2.72"/>
+        <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.4.87"/>
       </packs>
+      <ScriptingSettings>
+      </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -169,6 +276,7 @@
       </compileType>
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep></makeCustomizationPostStep>
@@ -179,12 +287,13 @@
       <HI-TECH-COMP>
         <property key="additional-warnings" value="true"/>
         <property key="asmlist" value="true"/>
+        <property key="call-prologues" value="false"/>
         <property key="default-bitfield-type" value="true"/>
         <property key="default-char-type" value="true"/>
-        <property key="define-macros" value="ATCOMM"/>
+        <property key="define-macros" value="ATCOMM;SX1276;USERAPP"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\phy\sx1216\phy_inc;..\sys\sys_inc;mcc_generated_files;..\aes\aes_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\aes\aes_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\phy\phy_inc;..\wdt\wdt_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -247,7 +356,7 @@
         <property key="input-libraries" value="libm"/>
         <property key="keep-generated-startup.as" value="false"/>
         <property key="link-in-c-library" value="true"/>
-        <property key="link-in-c-library-gcc" value=""/>
+        <property key="link-in-c-library-gcc" value="-mc90lib"/>
         <property key="link-in-peripheral-library" value="false"/>
         <property key="managed-stack" value="false"/>
         <property key="opt-xc8-linker-file" value="false"/>
@@ -264,7 +373,6 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
@@ -308,12 +416,197 @@
         <property key="gcc-opt-std" value="-std=c99"/>
         <property key="gcc-output-file-format" value="dwarf-3"/>
         <property key="omit-pack-options" value="false"/>
+        <property key="omit-pack-options-new" value="1"/>
         <property key="output-file-format" value="-mcof,+elf"/>
         <property key="stack-size-high" value="auto"/>
         <property key="stack-size-low" value="auto"/>
         <property key="stack-size-main" value="auto"/>
         <property key="stack-type" value="hybrid"/>
         <property key="user-pack-device-support" value=""/>
+        <property key="wpo-lto" value="false"/>
+      </XC8-config-global>
+    </conf>
+    <conf name="MBRTU" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>PIC18F26K42</targetDevice>
+        <targetHeader></targetHeader>
+        <targetPluginBoard></targetPluginBoard>
+        <platformTool>noID</platformTool>
+        <languageToolchain>XC8</languageToolchain>
+        <languageToolchainVersion>2.31</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <packs>
+        <pack name="PIC18F-K_DFP" vendor="Microchip" version="1.4.87"/>
+      </packs>
+      <ScriptingSettings>
+      </ScriptingSettings>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+        <archiverTool>
+        </archiverTool>
+        <loading>
+          <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <parseOnProdLoad>false</parseOnProdLoad>
+          <alternateLoadableFile></alternateLoadableFile>
+        </loading>
+        <subordinates>
+        </subordinates>
+      </compileType>
+      <makeCustomizationType>
+        <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeUseCleanTarget>false</makeUseCleanTarget>
+        <makeCustomizationPreStep></makeCustomizationPreStep>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
+        <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
+        <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
+      </makeCustomizationType>
+      <HI-TECH-COMP>
+        <property key="additional-warnings" value="true"/>
+        <property key="asmlist" value="true"/>
+        <property key="call-prologues" value="false"/>
+        <property key="default-bitfield-type" value="true"/>
+        <property key="default-char-type" value="true"/>
+        <property key="define-macros" value="MBRTU;SX1276"/>
+        <property key="disable-optimizations" value="false"/>
+        <property key="extra-include-directories"
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\aes\aes_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\phy\phy_inc;..\wdt\wdt_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu"/>
+        <property key="favor-optimization-for" value="-speed,+space"/>
+        <property key="garbage-collect-data" value="true"/>
+        <property key="garbage-collect-functions" value="true"/>
+        <property key="identifier-length" value="255"/>
+        <property key="local-generation" value="true"/>
+        <property key="operation-mode" value="std"/>
+        <property key="opt-xc8-compiler-strict_ansi" value="false"/>
+        <property key="optimization-assembler" value="true"/>
+        <property key="optimization-assembler-files" value="true"/>
+        <property key="optimization-debug" value="false"/>
+        <property key="optimization-invariant-enable" value="false"/>
+        <property key="optimization-invariant-value" value="16"/>
+        <property key="optimization-level" value="-O2"/>
+        <property key="optimization-speed" value="false"/>
+        <property key="optimization-stable-enable" value="false"/>
+        <property key="pack-struct" value="true"/>
+        <property key="preprocess-assembler" value="true"/>
+        <property key="short-enums" value="true"/>
+        <property key="undefine-macros" value=""/>
+        <property key="use-cci" value="false"/>
+        <property key="use-iar" value="false"/>
+        <property key="verbose" value="false"/>
+        <property key="warning-level" value="-3"/>
+        <property key="what-to-do" value="ignore"/>
+      </HI-TECH-COMP>
+      <HI-TECH-LINK>
+        <property key="additional-options-checksum" value=""/>
+        <property key="additional-options-code-offset" value=""/>
+        <property key="additional-options-command-line" value=""/>
+        <property key="additional-options-errata" value=""/>
+        <property key="additional-options-extend-address" value="false"/>
+        <property key="additional-options-trace-type" value=""/>
+        <property key="additional-options-use-response-files" value="false"/>
+        <property key="backup-reset-condition-flags" value="false"/>
+        <property key="calibrate-oscillator" value="false"/>
+        <property key="calibrate-oscillator-value" value="0x3400"/>
+        <property key="clear-bss" value="true"/>
+        <property key="code-model-external" value="wordwrite"/>
+        <property key="code-model-rom" value=""/>
+        <property key="create-html-files" value="false"/>
+        <property key="data-model-ram" value=""/>
+        <property key="data-model-size-of-double" value="32"/>
+        <property key="data-model-size-of-double-gcc" value="no-short-double"/>
+        <property key="data-model-size-of-float" value="32"/>
+        <property key="data-model-size-of-float-gcc" value="no-short-float"/>
+        <property key="display-class-usage" value="false"/>
+        <property key="display-hex-usage" value="false"/>
+        <property key="display-overall-usage" value="true"/>
+        <property key="display-psect-usage" value="false"/>
+        <property key="extra-lib-directories" value=""/>
+        <property key="fill-flash-options-addr" value=""/>
+        <property key="fill-flash-options-const" value=""/>
+        <property key="fill-flash-options-how" value="0"/>
+        <property key="fill-flash-options-inc-const" value="1"/>
+        <property key="fill-flash-options-increment" value=""/>
+        <property key="fill-flash-options-seq" value=""/>
+        <property key="fill-flash-options-what" value="0"/>
+        <property key="format-hex-file-for-download" value="false"/>
+        <property key="initialize-data" value="true"/>
+        <property key="input-libraries" value="libm"/>
+        <property key="keep-generated-startup.as" value="false"/>
+        <property key="link-in-c-library" value="true"/>
+        <property key="link-in-c-library-gcc" value="-mc90lib"/>
+        <property key="link-in-peripheral-library" value="false"/>
+        <property key="managed-stack" value="false"/>
+        <property key="opt-xc8-linker-file" value="false"/>
+        <property key="opt-xc8-linker-link_startup" value="false"/>
+        <property key="opt-xc8-linker-serial" value=""/>
+        <property key="program-the-device-with-default-config-words" value="true"/>
+        <property key="remove-unused-sections" value="true"/>
+      </HI-TECH-LINK>
+      <PICkit3PlatformTool>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="Freeze Peripherals" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="hwtoolclock.frcindebug" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="0-ffff"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmertogo.imagename" value=""/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmspeed" value="2"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${programoptions.preservedataflash.ranges}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value="310000-3103ff"/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="programoptions.usehighvoltageonmclr" value="false"/>
+        <property key="programoptions.uselvpprogramming" value="false"/>
+        <property key="voltagevalue" value="5.0"/>
+      </PICkit3PlatformTool>
+      <XC8-CO>
+        <property key="coverage-enable" value=""/>
+      </XC8-CO>
+      <XC8-config-global>
+        <property key="advanced-elf" value="true"/>
+        <property key="gcc-opt-driver-new" value="true"/>
+        <property key="gcc-opt-std" value="-std=c99"/>
+        <property key="gcc-output-file-format" value="dwarf-3"/>
+        <property key="omit-pack-options" value="false"/>
+        <property key="omit-pack-options-new" value="1"/>
+        <property key="output-file-format" value="-mcof,+elf"/>
+        <property key="stack-size-high" value="auto"/>
+        <property key="stack-size-low" value="auto"/>
+        <property key="stack-size-main" value="auto"/>
+        <property key="stack-type" value="hybrid"/>
+        <property key="user-pack-device-support" value=""/>
+        <property key="wpo-lto" value="false"/>
       </XC8-config-global>
     </conf>
   </confs>

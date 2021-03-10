@@ -150,7 +150,12 @@ enum endpoint_t{
 /*******************************************************************************
  * Buffer management structures for data send operation
  ******************************************************************************/
+#if _18F26K42
+#define APP_TX_BUFFER_DEPTH 2
+#endif
+#if (_18F27K42 || _18F47K42 || __32MM0256GPM048__)
 #define APP_TX_BUFFER_DEPTH 4
+#endif
 struct __attribute__ ((packed)) tx_buffer_t{
     unsigned retires:2; // Number of retires left for this message
     unsigned free:1;    // Descriptor un used
@@ -164,7 +169,7 @@ struct __attribute__ ((packed)) tx_buffer_t{
 struct tx_buffer_t tx_buffer[APP_TX_BUFFER_DEPTH];
 
 #if _18F26K42
-#define APP_RX_BUFFER_DEPTH 4
+#define APP_RX_BUFFER_DEPTH 3
 #endif
 #if (_18F27K42 || _18F47K42 || __32MM0256GPM048__)
 #define APP_RX_BUFFER_DEPTH 8
