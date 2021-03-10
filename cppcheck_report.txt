@@ -55,20 +55,20 @@
 [nwk/nwk_src/nwkDataReq.c:132]: (style) Clarify calculation precedence for '&' and '?'.
 [nwk/nwk_src/nwkRouteDiscovery.c:196]: (style) The scope of the variable 'entry' can be reduced.
 [nwk/nwk_src/nwkTx.c:117] -> [nwk/nwk_src/nwkTx.c:113]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
-[phy/sx1280/sx1280_src/sx1280-hal.c:169]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:199]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:215]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:238]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:258]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:283]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:313]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:332]: (style) Variable 'halSize' is assigned a value that is never used.
-[phy/sx1280/sx1280_src/sx1280.c:1103]: (style) The scope of the variable 'correctionCoeff' can be reduced.
-[phy/sx1280/sx1280_src/sx1280.c:227]: (style) Unused variable: packet_typ
-[phy/sx1280/sx1280_src/sx1280.c:918]: (style) Unused variable: addr
-[phy/sx1280/sx1280_src/sx1280.c:919]: (style) Unused variable: n
-[phy/sx1280/sx1280_src/sx1280.c:920]: (style) Unused variable: code
-[phy/sx1280/sx1280_src/sx1280.c:921]: (style) Unused variable: bytes
+[phy/sx1280/sx1280_src/sx1280-hal.c:170]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:200]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:216]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:239]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:259]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:284]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:314]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:333]: (style) Variable 'halSize' is assigned a value that is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1104]: (style) The scope of the variable 'correctionCoeff' can be reduced.
+[phy/sx1280/sx1280_src/sx1280.c:228]: (style) Unused variable: packet_typ
+[phy/sx1280/sx1280_src/sx1280.c:919]: (style) Unused variable: addr
+[phy/sx1280/sx1280_src/sx1280.c:920]: (style) Unused variable: n
+[phy/sx1280/sx1280_src/sx1280.c:921]: (style) Unused variable: code
+[phy/sx1280/sx1280_src/sx1280.c:922]: (style) Unused variable: bytes
 [phy/sx1280/sx1280_src/sx1280_drv.c:125] -> [phy/sx1280/sx1280_src/sx1280_drv.c:121]: (style, inconclusive) Found duplicate branches for 'if' and 'else'.
 [phy/sx1280/sx1280_src/sx1280_drv.c:259]: (style) The scope of the variable 'temp' can be reduced.
 [phy/sx1280/sx1280_src/sx1280_drv.c:13] -> [phy/sx1280/sx1280_src/sx1280_drv.c:165]: (style) Local variable packet_params shadows outer variable
@@ -81,7 +81,7 @@
 [phy/sx1280/sx1280_src/sx1280_drv.c:382]: (style) Variable 'rad_stat' is assigned a value that is never used.
 [phy/sx1280/sx1280_src/sx1280_drv.c:328]: (style) Unused variable: test
 [phy/sx1280/sx1280_src/sx1280_drv.c:381]: (style) Variable 'freq_error' is assigned a value that is never used.
-[wdt/wdt_src/wdt.c:34]: (style) Unused variable: looptime
+[wdt/wdt_src/wdt.c:37]: (style) Unused variable: looptime
 [aes/aes_src/AES.c:536]: (style) The function 'AES_CTR_xcrypt_buffer' is never used.
 [aes/aes_src/AES.c:473]: (style) The function 'AES_ECB_decrypt' is never used.
 [aes/aes_src/AES.c:467]: (style) The function 'AES_ECB_encrypt' is never used.
@@ -175,12 +175,12 @@
 [PIC32MM0256GPM048/mcc_generated_files/spi2.c:359]: (style) The function 'SPI2_TransferModeGet' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:105]: (style) The function 'SX1276ReadFifo' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:93]: (style) The function 'SX1276WriteFifo' is never used.
-[phy/sx1280/sx1280_src/sx1280.c:1061]: (style) The function 'SX1280ComputeRangingCorrectionPolynome' is never used.
-[phy/sx1280/sx1280_src/sx1280.c:1016]: (style) The function 'SX1280GetRangingCorrectionPerSfBwGain' is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:165]: (style) The function 'SX1280HalClearInstructionRam' is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:377]: (style) The function 'SX1280HalExchangeByte' is never used.
-[phy/sx1280/sx1280_src/sx1280-hal.c:196]: (style) The function 'SX1280HalWakeup' is never used.
-[phy/sx1280/sx1280_src/sx1280.c:916]: (style) The function 'SX1280ParseHexFileLine' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1062]: (style) The function 'SX1280ComputeRangingCorrectionPolynome' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:1017]: (style) The function 'SX1280GetRangingCorrectionPerSfBwGain' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:166]: (style) The function 'SX1280HalClearInstructionRam' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:378]: (style) The function 'SX1280HalExchangeByte' is never used.
+[phy/sx1280/sx1280_src/sx1280-hal.c:197]: (style) The function 'SX1280HalWakeup' is never used.
+[phy/sx1280/sx1280_src/sx1280.c:917]: (style) The function 'SX1280ParseHexFileLine' is never used.
 [sys/sys_src/sysTimer.c:78]: (style) The function 'SYS_TimerStop' is never used.
 [PIC18F26K42/mcc_generated_files/tmr0.c:108]: (style) The function 'TMR0_ReadTimer' is never used.
 [PIC18F26K42/mcc_generated_files/tmr0.c:128]: (style) The function 'TMR0_Reload' is never used.
@@ -207,13 +207,13 @@
 [PIC18F26K42/mcc_generated_files/tmr3.c:100]: (style) The function 'TMR3_StartTimer' is never used.
 [PIC18F26K42/mcc_generated_files/tmr3.c:106]: (style) The function 'TMR3_StopTimer' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/tmr3.c:103]: (style) The function 'TMR3_Tasks_16BitOperation' is never used.
-[PIC18F27K42/mcc_generated_files/tmr5.c:152]: (style) The function 'TMR5_CheckGateValueStatus' is never used.
-[PIC18F27K42/mcc_generated_files/tmr5.c:157]: (style) The function 'TMR5_HasOverflowOccured' is never used.
-[PIC18F27K42/mcc_generated_files/tmr5.c:104]: (style) The function 'TMR5_ReadTimer' is never used.
-[PIC18F27K42/mcc_generated_files/tmr5.c:142]: (style) The function 'TMR5_Reload' is never used.
-[PIC18F27K42/mcc_generated_files/tmr5.c:147]: (style) The function 'TMR5_StartSinglePulseAcquisition' is never used.
-[PIC18F27K42/mcc_generated_files/tmr5.c:92]: (style) The function 'TMR5_StartTimer' is never used.
-[PIC18F27K42/mcc_generated_files/tmr5.c:98]: (style) The function 'TMR5_StopTimer' is never used.
+[PIC18F26K42/mcc_generated_files/tmr5.c:152]: (style) The function 'TMR5_CheckGateValueStatus' is never used.
+[PIC18F26K42/mcc_generated_files/tmr5.c:157]: (style) The function 'TMR5_HasOverflowOccured' is never used.
+[PIC18F26K42/mcc_generated_files/tmr5.c:104]: (style) The function 'TMR5_ReadTimer' is never used.
+[PIC18F26K42/mcc_generated_files/tmr5.c:142]: (style) The function 'TMR5_Reload' is never used.
+[PIC18F26K42/mcc_generated_files/tmr5.c:147]: (style) The function 'TMR5_StartSinglePulseAcquisition' is never used.
+[PIC18F26K42/mcc_generated_files/tmr5.c:92]: (style) The function 'TMR5_StartTimer' is never used.
+[PIC18F26K42/mcc_generated_files/tmr5.c:98]: (style) The function 'TMR5_StopTimer' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:184]: (style) The function 'UART1_get_last_status' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:179]: (style) The function 'UART1_is_tx_done' is never used.
 [PIC32MM0256GPM048/mcc_generated_files/uart2.c:521]: (style) The function 'UART2_Disable' is never used.
