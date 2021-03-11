@@ -46,12 +46,17 @@ Copyright 2020 Samuel Ramrajkar
 #include "uart3.h"
 #include "uart2.h"
 #include "pin_manager.h"
+#include "w25q.h"
 #endif
 
 #define swap_16(x) ((x << 8) | (x >> 8))
 
 const uint8_t ascii_lut[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
                              '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+#if (__32MM0256GPM048__)
+static volatile uint8_t test_bytes[128];
+#endif
 #ifndef MODULE
 extern void queue_serial_led_event(void);
 #endif
@@ -1318,6 +1323,17 @@ static void cmdTest(char* cmd){
             testcase = eeprom_rd_byte(0xAAAA);
             break;
 #endif
+#if (__32MM0256GPM048__)
+        case FLASHTEST:
+            memset(&test_bytes[0], 0xAA, sizeof(test_bytes));
+            W25Q_Erase_Sector(0);
+            W25Q_Write_Page(&test_bytes[0], 0, sizeof(test_bytes));
+            memset(&test_bytes[0], 0, sizeof(test_bytes));
+            W25Q_Read(&test_bytes[0], 0, sizeof(test_bytes));
+            test_bytes[0]++;
+            __asm("nop");
+            break;
+#endif
         default:
             printf("NOT OK %u\r\n", ILLEGALPARAMETER);
     }
@@ -1786,6 +1802,11 @@ void bootLoadApplication(void)
 #ifndef MODULE    
     //Initialize the led queue
     ledInit();
+#endif
+#if (__32MM0256GPM048__)
+    //volatile uint16_t nor_ver = W25Q_ReadDeviceID();
+    init_fs();
+    load_nvm_data();
 #endif
     //Load the EUID of the node
     loadMACAddr();

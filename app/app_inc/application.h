@@ -89,7 +89,8 @@ uint16_t pan_id;
 #if (ATCOMM || USERAPP)
 enum ATTESTCASES{
     WDTTEST = 1,
-    EETEST
+    EETEST,
+    FLASHTEST
 };
 #endif
 /*******************************************************************************

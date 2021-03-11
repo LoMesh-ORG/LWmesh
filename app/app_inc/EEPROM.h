@@ -12,9 +12,10 @@
 extern "C" {
 #endif
 
-#define EEPROMbase  0
+#define EEPROMbase   0
 #define EEPROMback1  256
 #define EEPROMback2  512
+#define EEPROM_SIZE  256
     
 //Boot load req
 #define REQBootLoad  EEPROMbase + 0  
@@ -127,8 +128,11 @@ void sync_eeprom(void);
 uint8_t set_eeprom_sync(uint8_t);
 
 #if (__32MM0256GPM048__)
-uint8_t DATAEE_ReadByte(uint32_t addr){}
-DATAEE_WriteByte(uint32_t addr, uint8_t data){}
+uint8_t DATAEE_ReadByte(uint32_t addr);
+DATAEE_WriteByte(uint32_t addr, uint8_t data);
+void format_fs(void);
+void init_fs(void);
+void load_nvm_data(void);
 #endif
 #ifdef	__cplusplus
 }
