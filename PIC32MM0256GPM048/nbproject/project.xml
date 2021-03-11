@@ -34,6 +34,10 @@
                 <sourceRootElem>../wdt/wdt_src</sourceRootElem>
                 <sourceRootElem>../memory/flash/flash_inc</sourceRootElem>
                 <sourceRootElem>../memory/flash/flash_src</sourceRootElem>
+                <sourceRootElem>../memory/spiffs/spiffs_inc</sourceRootElem>
+                <sourceRootElem>../memory/spiffs/spiffs_src</sourceRootElem>
+                <sourceRootElem>../memory/lfs/lfs_inc</sourceRootElem>
+                <sourceRootElem>../memory/lfs/lfs_src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

@@ -23,6 +23,10 @@
       <logicalFolder name="hal_inc" displayName="hal_inc" projectFiles="true">
         <itemPath>../hal/hal_inc/Timers.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="lfs_inc" displayName="lfs_inc" projectFiles="true">
+        <itemPath>../memory/lfs/lfs_inc/lfs.h</itemPath>
+        <itemPath>../memory/lfs/lfs_inc/lfs_util.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
@@ -147,6 +151,10 @@
       <logicalFolder name="hal_src" displayName="hal_src" projectFiles="true">
         <itemPath>../hal/hal_src/Timers.c</itemPath>
       </logicalFolder>
+      <logicalFolder name="lfs_src" displayName="lfs_src" projectFiles="true">
+        <itemPath>../memory/lfs/lfs_src/lfs.c</itemPath>
+        <itemPath>../memory/lfs/lfs_src/lfs_util.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
@@ -254,6 +262,10 @@
     <Elem>../wdt/wdt_src</Elem>
     <Elem>../memory/flash/flash_inc</Elem>
     <Elem>../memory/flash/flash_src</Elem>
+    <Elem>../memory/spiffs/spiffs_inc</Elem>
+    <Elem>../memory/spiffs/spiffs_src</Elem>
+    <Elem>../memory/lfs/lfs_inc</Elem>
+    <Elem>../memory/lfs/lfs_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -531,16 +543,17 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="..\aes\aes_inc;..\app\app_inc;..\hal\hal_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\nwk\nwk_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\sys\sys_inc;..\wdt\wdt_inc;mcc_generated_files;..\modbus\port;..\memory\flash\flash_inc"/>
+                  value="..\aes\aes_inc;..\app\app_inc;..\hal\hal_inc;..\modbus\ascii;..\modbus\functions;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\nwk\nwk_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\sys\sys_inc;..\wdt\wdt_inc;mcc_generated_files;..\modbus\port;..\memory\flash\flash_inc;..\memory\lfs\lfs_inc"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="false"/>
         <property key="make-warnings-into-errors" value="false"/>
-        <property key="optimization-level" value=""/>
+        <property key="optimization-level" value="-O3"/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros" value="ATCOMM;SX1280"/>
+        <property key="preprocessor-macros"
+                  value="ATCOMM;SX1280;LFS_NO_MALLOC;LFS_NO_ASSERT"/>
         <property key="strict-ansi" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="toplevel-reordering" value=""/>

@@ -1804,7 +1804,9 @@ void bootLoadApplication(void)
     ledInit();
 #endif
 #if (__32MM0256GPM048__)
-    volatile uint16_t nor_ver = W25Q_ReadDeviceID();
+    //volatile uint16_t nor_ver = W25Q_ReadDeviceID();
+    init_fs();
+    load_nvm_data();
 #endif
     //Load the EUID of the node
     loadMACAddr();

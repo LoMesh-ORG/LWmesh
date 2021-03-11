@@ -208,8 +208,6 @@ void W25Q_Erase_Sector(u32 Dst_Addr)
 //W25Q 擦除一块区
 void W25Q_Erase_Block(u32 Bst_Addr)   
 {   
-	Bst_Addr*=65536;
-
 	W25Q_Write_Enable();    
 	W25Q_Wait_Busy();   
 	F_CS_Low;        
