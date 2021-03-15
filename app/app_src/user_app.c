@@ -3,8 +3,7 @@
 #include "application.h"
 #include <stdio.h>
 #ifdef USERAPP
-#define SIZE_OF_DISTANCE_FILTER     16
-static uint16_t distance = 0; 
+static uint16_t distance = 0;
 enum SENSO_SEND_STATE_ENUM
 {
     SENSOR_STATE_INIT,
@@ -18,33 +17,9 @@ extern uint8_t set_uart_baud(uint8_t i);
  * \param [OUT] None.
  * \param [IN] None.
  */
-static uint16_t processDistanceData(uint8_t* distance_data){
-    static uint16_t distance_data_raw[SIZE_OF_DISTANCE_FILTER];
-    static uint8_t distance_data_ptr = 0;
-    static uint8_t initial_sample_ctr = 0;
-    uint32_t distance_avg = 0;
-    uint16_t dist_loc = 0;
-    distance_data_raw[distance_data_ptr] = 
-            ((distance_data[0] << 8u) & 0xFF00u) + distance_data[1];
-    distance_data_ptr++;
-    if(distance_data_ptr >= SIZE_OF_DISTANCE_FILTER)
-    {
-        distance_data_ptr = 0;
-    }    
-    //Add all samples and find average
-    for(uint8_t i = 0; i < SIZE_OF_DISTANCE_FILTER; i++)
-    {
-        distance_avg += distance_data_raw[i];
-    }
-    if(initial_sample_ctr < SIZE_OF_DISTANCE_FILTER)
-    {
-        initial_sample_ctr++;
-    }
-    else
-    {
-        dist_loc = distance_avg/SIZE_OF_DISTANCE_FILTER;
-    }
-    return dist_loc;
+static uint8_t processDistanceData(uint8_t* distance_data){
+    distance = ((distance_data[0] << 8u) & 0xFF00u) + distance_data[1];
+    // TODO(anyone): Handle data obtained above
 }
 
 static void sendSensorData(void)
@@ -203,7 +178,7 @@ void user_application(void){
             break;
             
         case processData:
-            distance = processDistanceData(&distanceData[0]);
+            (void)processDistanceData(&distanceData[0]);
             sensorStateVar = resetATMachine;
             break;
         case resetSensorMachine:
