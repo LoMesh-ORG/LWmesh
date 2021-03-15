@@ -37,7 +37,12 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'b' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
-[app/app_src/EEPROM.c:359]: (style) Variable 'ret' is assigned a value that is never used.
+[app/app_src/EEPROM.c:456]: (portability) 'buffer' is of type 'void *'. When using void pointers in calculations, the behaviour is undefined.
+[app/app_src/EEPROM.c:468]: (portability) 'buffer' is of type 'const void *'. When using void pointers in calculations, the behaviour is undefined.
+[app/app_src/EEPROM.c:534]: (style) Variable 'ret' is assigned a value that is never used.
+[app/app_src/EEPROM.c:454]: (error) Uninitialized variable: i
+[app/app_src/EEPROM.c:466]: (error) Uninitialized variable: i
+[app/app_src/EEPROM.c:404]: (style) Variable 'ret' is assigned a value that is never used.
 [app/app_src/application.c:1872] -> [app/app_src/application.c:1881]: (style) Variable 'i' is reassigned a value before the old one has been used.
 [app/app_src/application.c:1690]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
 [app/app_src/application.c:2248]: (style) Variable 'count' is modified but its new value is never used.
@@ -271,11 +276,9 @@
 [app/app_src/application.c:2368]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
-[memory/eeprom/eeprom_src/I2C_EEPROM.c:70]: (style) The function 'eeprom_rd_byte' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:197]: (style) The function 'eeprom_rd_page' is never used.
-[memory/eeprom/eeprom_src/I2C_EEPROM.c:50]: (style) The function 'eeprom_wr_byte' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:94]: (style) The function 'eeprom_wr_page' is never used.
-[app/app_src/EEPROM.c:365]: (style) The function 'format_fs' is never used.
+[app/app_src/EEPROM.c:540]: (style) The function 'format_fs' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:339]: (style) The function 'getSyncWord' is never used.
 [app/app_src/uart_default_control.c:32]: (style) The function 'get_current_state' is never used.
 [PIC18F26K42/mcc_generated_files/uart1.c:237]: (style) The function 'getch' is never used.
