@@ -109,6 +109,29 @@
                    displayName="Linker Files"
                    projectFiles="true">
     </logicalFolder>
+    <logicalFolder name="memory" displayName="memory" projectFiles="true">
+      <logicalFolder name="eeprom" displayName="eeprom" projectFiles="true">
+        <logicalFolder name="eeprom_inc" displayName="eeprom_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="eeprom_src" displayName="eeprom_src" projectFiles="true">
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="flash" displayName="flash" projectFiles="true">
+        <logicalFolder name="flash_inc" displayName="flash_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="flash_src" displayName="flash_src" projectFiles="true">
+          <itemPath>../memory/flash/flash_src/w25q.c</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="lfs" displayName="lfs" projectFiles="true">
+        <logicalFolder name="lfs_inc" displayName="lfs_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="lfs_src" displayName="lfs_src" projectFiles="true">
+          <itemPath>../memory/lfs/lfs_src/lfs.c</itemPath>
+          <itemPath>../memory/lfs/lfs_src/lfs_util.c</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+    </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
@@ -221,14 +244,12 @@
     <Elem>../aes/aes_src</Elem>
     <Elem>../wdt/wdt_inc</Elem>
     <Elem>../wdt/wdt_src</Elem>
-    <Elem>../memory/eeprom/inc</Elem>
-    <Elem>../memory/eeprom/eeprom_inc</Elem>
-    <Elem>../memory/eeprom/eeprom_src</Elem>
     <Elem>../phy/phy_inc</Elem>
     <Elem>../phy/sx1276/sx1276_inc</Elem>
     <Elem>../phy/phy_src</Elem>
     <Elem>../phy/sx1276/sx1276_src</Elem>
     <Elem>../phy/sx1280</Elem>
+    <Elem>../memory</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
