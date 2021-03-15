@@ -84,19 +84,19 @@ static uint8_t rd_buffer[128];
 static uint8_t wr_buffer[128];
 static uint8_t lookahead_buffer[128];
 static uint8_t file_cache[128];
-static int EEPROM_read(const struct lfs_config *c, lfs_block_t block,
+static int eeprom_read(const struct lfs_config *c, lfs_block_t block,
             lfs_off_t off, void *buffer, lfs_size_t size);
-static int EEPROM_write(const struct lfs_config *c, lfs_block_t block,
+static int eeprom_write(const struct lfs_config *c, lfs_block_t block,
             lfs_off_t off, const void *buffer, lfs_size_t size); 
-static int EEPROM_erase(const struct lfs_config *c, lfs_block_t block);
-static int EEPROM_sync(const struct lfs_config *c);
+static int eeprom_erase(const struct lfs_config *c, lfs_block_t block);
+static int eeprom_sync(const struct lfs_config *c);
 // configuration of the filesystem is provided by this struct    
 const struct lfs_config cfg = {
     // block device operations
-    .read  = EEPROM_read,
-    .prog  = EEPROM_write,
-    .erase = EEPROM_erase,
-    .sync  = EEPROM_sync,
+    .read  = eeprom_read,
+    .prog  = eeprom_write,
+    .erase = eeprom_erase,
+    .sync  = eeprom_sync,
 
     // block device configuration
     .read_size = 128,
@@ -447,27 +447,29 @@ DATAEE_WriteByte(uint32_t addr, uint8_t data)
  * PIC32 will use SPI flash and SPIFFS file system to save NV data
 *******************************************************************************/
 
-static int EEPROM_read(const struct lfs_config *c, lfs_block_t block,
+static int eeprom_read(const struct lfs_config *c, lfs_block_t block,
             lfs_off_t off, void *buffer, lfs_size_t size)
 {
    // W25Q_Read(buffer, (block * c->read_size) + off, size);
+    for(lfs_size_t i=0; i<0; i++)
+    {(buffer+i) = eeprom_rd((block*c->read_size)+ off + i)}
     return LFS_ERR_OK;
 }
 
-static int EEPROM_write(const struct lfs_config *c, lfs_block_t block,
+static int eeprom_write(const struct lfs_config *c, lfs_block_t block,
             lfs_off_t off, const void *buffer, lfs_size_t size)
 {
   //  W25Q_Write(buffer, (block * c->prog_size) + off, size);
     return LFS_ERR_OK;
 }
   
-static int EEPROM_erase(const struct lfs_config *c, lfs_block_t block)
+static int eeprom_erase(const struct lfs_config *c, lfs_block_t block)
 {
   //  W25Q_Erase_Sector(block * c->block_size);
     return LFS_ERR_OK;
 }
 
-static int EEPROM_sync(const struct lfs_config *c)
+static int eeprom_sync(const struct lfs_config *c)
 {
     return LFS_ERR_OK;
 }
