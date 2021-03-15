@@ -109,6 +109,29 @@
                    displayName="Linker Files"
                    projectFiles="true">
     </logicalFolder>
+    <logicalFolder name="memory" displayName="memory" projectFiles="true">
+      <logicalFolder name="eeprom" displayName="eeprom" projectFiles="true">
+        <logicalFolder name="eeprom_inc" displayName="eeprom_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="eeprom_src" displayName="eeprom_src" projectFiles="true">
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="flash" displayName="flash" projectFiles="true">
+        <logicalFolder name="flash_inc" displayName="flash_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="flash_src" displayName="flash_src" projectFiles="true">
+          <itemPath>../memory/flash/flash_src/w25q.c</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="lfs" displayName="lfs" projectFiles="true">
+        <logicalFolder name="lfs_inc" displayName="lfs_inc" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="lfs_src" displayName="lfs_src" projectFiles="true">
+          <itemPath>../memory/lfs/lfs_src/lfs.c</itemPath>
+          <itemPath>../memory/lfs/lfs_src/lfs_util.c</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+    </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
@@ -221,14 +244,12 @@
     <Elem>../aes/aes_src</Elem>
     <Elem>../wdt/wdt_inc</Elem>
     <Elem>../wdt/wdt_src</Elem>
-    <Elem>../memory/eeprom/inc</Elem>
-    <Elem>../memory/eeprom/eeprom_inc</Elem>
-    <Elem>../memory/eeprom/eeprom_src</Elem>
     <Elem>../phy/phy_inc</Elem>
     <Elem>../phy/sx1276/sx1276_inc</Elem>
     <Elem>../phy/phy_src</Elem>
     <Elem>../phy/sx1276/sx1276_src</Elem>
     <Elem>../phy/sx1280</Elem>
+    <Elem>../memory</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -238,7 +259,7 @@
         <targetDevice>PIC18F27K42</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.31</languageToolchainVersion>
         <platform>3</platform>
@@ -282,7 +303,7 @@
         <property key="define-macros" value="ATCOMM;DEBUGVECTOR;FULLFEATURE;SX1276"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\memory\lfs\lfs_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -345,7 +366,7 @@
         <property key="input-libraries" value="libm"/>
         <property key="keep-generated-startup.as" value="false"/>
         <property key="link-in-c-library" value="true"/>
-        <property key="link-in-c-library-gcc" value="-mc90lib"/>
+        <property key="link-in-c-library-gcc" value=""/>
         <property key="link-in-peripheral-library" value="false"/>
         <property key="managed-stack" value="false"/>
         <property key="opt-xc8-linker-file" value="false"/>
@@ -1279,7 +1300,6 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
