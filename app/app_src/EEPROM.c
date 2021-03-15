@@ -71,6 +71,48 @@ static uint8_t eeprom_data[EEPROM_SIZE];
 static void persisit_eeprom_data(void); //Write to data file
 #endif
 
+#if (__18F27K42__)
+#include "lfs.h"
+
+#define EEPROM_DATA_FILE "nvm_data.bin"
+// variables used by the filesystem
+static lfs_t lfs;
+static lfs_file_t file;
+static uint8_t rd_buffer[128];
+static uint8_t wr_buffer[128];
+static uint8_t lookahead_buffer[128];
+static uint8_t file_cache[128];
+static int flash_rd(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, void *buffer, lfs_size_t size);
+static int flash_wr(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, const void *buffer, lfs_size_t size); 
+static int flash_er(const struct lfs_config *c, lfs_block_t block);
+static int flash_sync(const struct lfs_config *c);
+// configuration of the filesystem is provided by this struct    
+const struct lfs_config cfg = {
+    // block device operations
+    .read  = flash_rd,
+    .prog  = flash_wr,
+    .erase = flash_er,
+    .sync  = flash_sync,
+
+    // block device configuration
+    .read_size = 128,
+    .prog_size = 128,
+    .block_size = 4096,
+    .block_count = 128,
+    .cache_size = 128,
+    .lookahead_size = 128,
+    .block_cycles = 500,
+    .read_buffer = &rd_buffer[0],
+    .prog_buffer = &wr_buffer[0],
+    .lookahead_buffer = &lookahead_buffer[0],
+    };
+static uint8_t eeprom_data[EEPROM_SIZE];
+
+static void persisit_eeprom_data(void); //Write to data file
+#endif
+
 uint8_t DATAEE_ReadByte_Platform(uint16_t addr){
     uint8_t copy1;
     uint8_t copy2;
@@ -298,6 +340,250 @@ static int flash_write(const struct lfs_config *c, lfs_block_t block,
 static int flash_erase(const struct lfs_config *c, lfs_block_t block)
 {
     W25Q_Erase_Sector(block * c->block_size);
+    return LFS_ERR_OK;
+}
+
+static int flash_sync(const struct lfs_config *c)
+{
+    return LFS_ERR_OK;
+}
+
+void init_fs(void)
+{
+    // mount the filesystem
+    int err = lfs_mount(&lfs, &cfg);
+
+    // reformat if we can't mount the filesystem
+    // this should only happen on the first boot
+    if (err) 
+    {
+        lfs_format(&lfs, &cfg);
+        lfs_mount(&lfs, &cfg);
+    }
+}
+
+void load_nvm_data(void)
+{
+    int ret;    
+    struct lfs_file_config file_cfg;
+    file_cfg.buffer = &file_cache[0];
+    file_cfg.attrs = NULL;
+    file_cfg.attr_count = 0;
+    memset(&eeprom_data[0], 0xFFu, sizeof(eeprom_data)); //Set to default
+    //Try to load eeprom data from saved file if it exist
+    ret = lfs_file_opencfg(&lfs, &file, EEPROM_DATA_FILE, LFS_O_RDWR, 
+                           &file_cfg);
+    if(0 == ret)
+    {
+        //File open for reading. Copy data to eeprom array
+        ret = lfs_file_read(&lfs, &file, &eeprom_data[0], sizeof(eeprom_data));
+        if(ret <= 0)
+        {
+            //Found error on reading or an empty file. Reset eeprom array
+            memset(&eeprom_data[0], 0xFFu, sizeof(eeprom_data)); 
+        }
+        lfs_file_close(&lfs, &file);
+    }
+}
+
+static void persisit_eeprom_data(void)
+{
+    int ret;     
+    struct lfs_file_config file_cfg;
+    file_cfg.buffer = &file_cache[0];
+    file_cfg.attrs = NULL;
+    file_cfg.attr_count = 0;
+    //Open file and create if it does not exist
+    ret = lfs_file_opencfg(&lfs, &file, EEPROM_DATA_FILE, 
+            LFS_O_RDWR | LFS_O_CREAT, &file_cfg);
+    if(LFS_ERR_OK == ret)
+    {
+        ret = lfs_file_write(&lfs, &file, &eeprom_data[0], 
+                             sizeof(eeprom_data));
+        lfs_file_close(&lfs, &file);
+    }
+}
+
+void format_fs(void)
+{
+    lfs_format(&lfs, &cfg);
+}
+#endif
+
+#if (____)
+uint8_t DATAEE_ReadByte(uint32_t addr)
+{
+    uint8_t data;
+    if(addr < 256)
+    {
+        data = eeprom_data[addr];
+    }
+    else if(addr < 512)
+    {
+        data = eeprom_data[addr - 256];
+    }
+    else if(addr > 512)
+    {
+        data = eeprom_data[addr - 512];
+    }
+    else
+    {
+        data = 0xFF;
+    }
+    return data;
+}
+
+DATAEE_WriteByte(uint32_t addr, uint8_t data)
+{
+    if(addr < 256)
+    {
+        eeprom_data[addr] = data;
+        persisit_eeprom_data();
+    }
+}
+/*******************************************************************************
+ * PIC32 will use SPI flash and SPIFFS file system to save NV data
+*******************************************************************************/
+
+static int flash_read(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, void *buffer, lfs_size_t size)
+{
+    W25Q_Read(buffer, (block * c->read_size) + off, size);
+    return LFS_ERR_OK;
+}
+
+static int flash_write(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, const void *buffer, lfs_size_t size)
+{
+    W25Q_Write(buffer, (block * c->prog_size) + off, size);
+    return LFS_ERR_OK;
+}
+
+static int flash_erase(const struct lfs_config *c, lfs_block_t block)
+{
+    W25Q_Erase_Sector(block * c->block_size);
+    return LFS_ERR_OK;
+}
+
+static int flash_sync(const struct lfs_config *c)
+{
+    return LFS_ERR_OK;
+}
+
+void init_fs(void)
+{
+    // mount the filesystem
+    int err = lfs_mount(&lfs, &cfg);
+
+    // reformat if we can't mount the filesystem
+    // this should only happen on the first boot
+    if (err) 
+    {
+        lfs_format(&lfs, &cfg);
+        lfs_mount(&lfs, &cfg);
+    }
+}
+
+void load_nvm_data(void)
+{
+    int ret;    
+    struct lfs_file_config file_cfg;
+    file_cfg.buffer = &file_cache[0];
+    file_cfg.attrs = NULL;
+    file_cfg.attr_count = 0;
+    memset(&eeprom_data[0], 0xFFu, sizeof(eeprom_data)); //Set to default
+    //Try to load eeprom data from saved file if it exist
+    ret = lfs_file_opencfg(&lfs, &file, EEPROM_DATA_FILE, LFS_O_RDWR, 
+                           &file_cfg);
+    if(0 == ret)
+    {
+        //File open for reading. Copy data to eeprom array
+        ret = lfs_file_read(&lfs, &file, &eeprom_data[0], sizeof(eeprom_data));
+        if(ret <= 0)
+        {
+            //Found error on reading or an empty file. Reset eeprom array
+            memset(&eeprom_data[0], 0xFFu, sizeof(eeprom_data)); 
+        }
+        lfs_file_close(&lfs, &file);
+    }
+}
+
+static void persisit_eeprom_data(void)
+{
+    int ret;     
+    struct lfs_file_config file_cfg;
+    file_cfg.buffer = &file_cache[0];
+    file_cfg.attrs = NULL;
+    file_cfg.attr_count = 0;
+    //Open file and create if it does not exist
+    ret = lfs_file_opencfg(&lfs, &file, EEPROM_DATA_FILE, 
+            LFS_O_RDWR | LFS_O_CREAT, &file_cfg);
+    if(LFS_ERR_OK == ret)
+    {
+        ret = lfs_file_write(&lfs, &file, &eeprom_data[0], 
+                             sizeof(eeprom_data));
+        lfs_file_close(&lfs, &file);
+    }
+}
+
+void format_fs(void)
+{
+    lfs_format(&lfs, &cfg);
+}
+#endif
+
+#if (__18F27K42__)
+uint8_t DATAEE_ReadByte(uint16_t addr)
+{
+    uint8_t data;
+    if(addr < 256)
+    {
+        data = eeprom_data[addr];
+    }
+    else if(addr < 512)
+    {
+        data = eeprom_data[addr - 256];
+    }
+    else if(addr > 512)
+    {
+        data = eeprom_data[addr - 512];
+    }
+    else
+    {
+        data = 0xFF;
+    }
+    return data;
+}
+
+void DATAEE_WriteByte(uint16_t addr, uint8_t data)
+{
+    if(addr < 256)
+    {
+        eeprom_data[addr] = data;
+        persisit_eeprom_data();
+    }
+}
+/*******************************************************************************
+ * PIC32 will use SPI flash and SPIFFS file system to save NV data
+*******************************************************************************/
+
+static int flash_rd(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, void *buffer, lfs_size_t size)
+{
+//    W25Q_Read(buffer, (block * c->read_size) + off, size);
+    return LFS_ERR_OK;
+}
+
+static int flash_wr(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, const void *buffer, lfs_size_t size)
+{
+//    W25Q_Write(buffer, (block * c->prog_size) + off, size);
+    return LFS_ERR_OK;
+}
+
+static int flash_er(const struct lfs_config *c, lfs_block_t block)
+{
+//    W25Q_Erase_Sector(block * c->block_size);
     return LFS_ERR_OK;
 }
 

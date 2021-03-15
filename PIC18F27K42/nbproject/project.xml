@@ -37,6 +37,7 @@
                 <sourceRootElem>../phy/phy_src</sourceRootElem>
                 <sourceRootElem>../phy/sx1276/sx1276_src</sourceRootElem>
                 <sourceRootElem>../phy/sx1280</sourceRootElem>
+                <sourceRootElem>../memory/lfs</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
