@@ -40,7 +40,7 @@
 [app/app_src/EEPROM.c:359]: (style) Variable 'ret' is assigned a value that is never used.
 [app/app_src/application.c:1872] -> [app/app_src/application.c:1881]: (style) Variable 'i' is reassigned a value before the old one has been used.
 [app/app_src/application.c:1690]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
-[app/app_src/application.c:2248]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:2250]: (style) Variable 'count' is modified but its new value is never used.
 [app/app_src/application.c:1690]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
 [app/app_src/user_app.c:10]: (style) Variable 'distance' is assigned a value that is never used.
 [memory/flash/flash_inc/w25q.h:54] -> [memory/flash/flash_src/w25q.c:154]: (style, inconclusive) Function 'W25Q_Write' argument 3 names different: declaration 'NumByte' definition 'ByteNum'.
@@ -268,7 +268,7 @@
 [phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[app/app_src/application.c:2368]: (style) The function 'eMBRegHoldingCB' is never used.
+[app/app_src/application.c:2372]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:70]: (style) The function 'eeprom_rd_byte' is never used.
