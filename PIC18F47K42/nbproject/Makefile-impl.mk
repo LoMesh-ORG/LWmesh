@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=PIC18F47K42
 
 # Active Configuration
-DEFAULTCONF=default
+DEFAULTCONF=modbus_RTU
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default 
+ALLCONFS=atcomm modbus_RTU 
 
 
 # build
@@ -45,13 +45,15 @@ ALLCONFS=default
 
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=atcomm clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=modbus_RTU clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=atcomm build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=modbus_RTU build
 
 
 

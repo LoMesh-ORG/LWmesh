@@ -68,5 +68,7 @@ inline void set_timer0base(uint16_t* timer, uint16_t tval){
 
 void UART2_Transmit_CallBack ( void )
 {
+#ifndef MODULE
     TXEN_SetHigh();
+#endif
 }

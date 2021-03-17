@@ -1908,7 +1908,9 @@ void bootLoadApplication(void)
     read_only_mb_regs[RO_FW_VER]  = FirmwareVersionMajor*100 + 
                                     FirmwareVersionMinor;
     read_only_mb_regs[RO_REGION]  = NA;
+#ifndef MODULE    
     read_only_mb_regs[RO_MODE]    = MODE_GetValue()? ROUTER:ENDDEVICE;
+#endif
     read_only_mb_regs[RO_TX_MSG_ID]   = 0xFFFF;
     read_only_mb_regs[RO_SADDR]       = (currentAddr0 << 8) | currentAddr1;
     read_only_mb_regs[RO_ADDR_DEBUG1] = 0xAA55;
@@ -2314,7 +2316,9 @@ void MBRTUStack(void){
         prvvUARTTxReadyISR();
     }
     //update Device mode
+#ifndef MODULE
     read_only_mb_regs[RO_MODE]    = MODE_GetValue()? ROUTER:ENDDEVICE;
+#endif
     currentMode = read_only_mb_regs[RO_MODE];
     
     //Check if MB regs are updated
@@ -2498,9 +2502,9 @@ inline void application(void){
 #ifndef MODULE
     nwkEnableRouting((MODE_GetValue()? false:true));
     handle_led_events();
-#endif
-    sync_eeprom();
     uart_default_engine();
+#endif
+    sync_eeprom();    
 #ifdef USERAPP
     if(CURRENT_PROFILE == get_current_state())
     {

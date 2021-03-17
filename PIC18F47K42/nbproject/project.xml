@@ -25,10 +25,24 @@
                 <sourceRootElem>../sys/sys_src</sourceRootElem>
                 <sourceRootElem>../aes/aes_inc</sourceRootElem>
                 <sourceRootElem>../aes/aes_src</sourceRootElem>
+                <sourceRootElem>../phy/phy_inc</sourceRootElem>
+                <sourceRootElem>../phy/sx1276/sx1276_inc</sourceRootElem>
+                <sourceRootElem>../phy/sx1280/sx1280_inc</sourceRootElem>
+                <sourceRootElem>../phy/sx1280/sx1280_src</sourceRootElem>
+                <sourceRootElem>../phy/sx1276/sx1276_src</sourceRootElem>
+                <sourceRootElem>../phy/phy_src</sourceRootElem>
+                <sourceRootElem>../wdt/wdt_inc</sourceRootElem>
+                <sourceRootElem>../wdt/wdt_src</sourceRootElem>
+                <sourceRootElem>mcc_generated_files</sourceRootElem>
+                <sourceRootElem>../modbus</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
-                    <name>default</name>
+                    <name>atcomm</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>modbus_RTU</name>
                     <type>2</type>
                 </confElem>
             </confList>

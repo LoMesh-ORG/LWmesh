@@ -12,6 +12,9 @@
             <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_inc/nwk.h</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/hal/hal_src/Timers.c</file>
             <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/mcc_generated_files/uart1.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/app/app_src/user_app.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/nwk/nwk_src/nwkTx.c</file>
+            <file>file:/D:/projects/xTendLoRa/LWmesh/PIC18F27K42/main.c</file>
         </group>
     </open-files>
 </project-private>

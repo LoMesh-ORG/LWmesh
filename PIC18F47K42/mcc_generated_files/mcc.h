@@ -53,9 +53,11 @@
 #include <stdbool.h>
 #include <conio.h>
 #include "interrupt_manager.h"
-#include "memory.h"
+#include "tmr5.h"
+#include "tmr3.h"
 #include "crc.h"
 #include "tmr0.h"
+#include "memory.h"
 #include "uart1.h"
 #include "spi1.h"
 
