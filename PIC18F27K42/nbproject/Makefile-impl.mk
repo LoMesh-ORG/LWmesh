@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=PIC18F27K42
 
 # Active Configuration
-DEFAULTCONF=user_application
+DEFAULTCONF=user_application_bootable
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application 
+ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application user_application_bootable 
 
 
 # build
@@ -51,6 +51,7 @@ ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBbootable clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=transparent_mode clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application_bootable clean
 
 
 
@@ -62,6 +63,7 @@ ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=MBbootable build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=transparent_mode build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application_bootable build
 
 
 
