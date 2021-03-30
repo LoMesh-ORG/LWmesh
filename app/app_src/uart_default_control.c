@@ -100,6 +100,11 @@ void uart_default_engine(void){
                                                  curent_parity);
             }
 #endif
+#ifdef USERAPP
+            (void)set_parity(UART_8BIT_NO_PARITY);
+            (void)set_uart_baud(UART_BAUD_9600);
+            user_application_state = CURRENT_PROFILE;
+#endif
             uart_default_state_var = WAIT_GPIO_GO_LOW;
         break;
         

@@ -42,7 +42,6 @@
 [app/app_src/application.c:1690]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
 [app/app_src/application.c:2248]: (style) Variable 'count' is modified but its new value is never used.
 [app/app_src/application.c:1690]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
-[app/app_src/user_app.c:10]: (style) Variable 'distance' is assigned a value that is never used.
 [memory/flash/flash_inc/w25q.h:54] -> [memory/flash/flash_src/w25q.c:154]: (style, inconclusive) Function 'W25Q_Write' argument 3 names different: declaration 'NumByte' definition 'ByteNum'.
 [memory/lfs/lfs_src/lfs.c:473] -> [memory/lfs/lfs_src/lfs.c:3907]: (style, inconclusive) Function 'lfs_fs_pred' argument 2 names different: declaration 'dir' definition 'pair'.
 [memory/lfs/lfs_src/lfs.c:475] -> [memory/lfs/lfs_src/lfs.c:3962]: (style, inconclusive) Function 'lfs_fs_parent' argument 2 names different: declaration 'dir' definition 'pair'.
@@ -310,7 +309,7 @@
 [phy/sx1276/sx1276_src/sx1276.c:584]: (style) The function 'rx_timeout_isr' is never used.
 [PIC18F26K42/test.c:29]: (style) The function 'test_init' is never used.
 [PIC18F26K42/test.c:37]: (style) The function 'test_send' is never used.
-[app/app_src/user_app.c:14]: (style) The function 'user_application' is never used.
+[app/app_src/user_app.c:58]: (style) The function 'user_application' is never used.
 [modbus/functions/mbutils.c:86]: (style) The function 'xMBUtilGetBits' is never used.
 [modbus/functions/mbutils.c:47]: (style) The function 'xMBUtilSetBits' is never used.
 (information) Cppcheck cannot find all the include files (use --check-config for details)
