@@ -896,7 +896,7 @@
         <property key="input-libraries" value="libm"/>
         <property key="keep-generated-startup.as" value="false"/>
         <property key="link-in-c-library" value="true"/>
-        <property key="link-in-c-library-gcc" value="-mc90lib"/>
+        <property key="link-in-c-library-gcc" value=""/>
         <property key="link-in-peripheral-library" value="false"/>
         <property key="managed-stack" value="false"/>
         <property key="opt-xc8-linker-file" value="false"/>
@@ -961,7 +961,7 @@
         <property key="stack-size-high" value="auto"/>
         <property key="stack-size-low" value="auto"/>
         <property key="stack-size-main" value="auto"/>
-        <property key="stack-type" value="hybrid"/>
+        <property key="stack-type" value="compiled"/>
         <property key="user-pack-device-support" value=""/>
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>
@@ -1511,7 +1511,7 @@
         <property key="stack-size-high" value="auto"/>
         <property key="stack-size-low" value="auto"/>
         <property key="stack-size-main" value="auto"/>
-        <property key="stack-type" value="hybrid"/>
+        <property key="stack-type" value="compiled"/>
         <property key="user-pack-device-support" value=""/>
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>
