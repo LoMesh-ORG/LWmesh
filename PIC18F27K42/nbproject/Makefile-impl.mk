@@ -27,7 +27,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=PIC18F27K42
 
 # Active Configuration
-DEFAULTCONF=user_application_bootable
+DEFAULTCONF=MBbootable
 CONF=${DEFAULTCONF}
 
 # All Configurations
