@@ -29,7 +29,7 @@
   300000h - 300009h
   
 ### Checksum Reports ###
- Checksum 0 : (4000h to 1FF7Fh) = 0xD1CC
+ Checksum 0 : (4000h to 1FF7Fh) = 0xBACC
 
 ### Hex Memory Map ###
  Legend:
