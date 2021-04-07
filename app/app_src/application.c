@@ -1191,7 +1191,7 @@ static void cmdSetSF(char* atCommand){
 	int8_t temp;
 	p1 = strstr(atCommand,"=") + 1;
 	memcpy(CHstr,p1,2);
-	temp = (uint8_t)strtol(CHstr,&p2,16);
+	temp = (uint8_t)strtol(CHstr,&p2,10);
 	if((temp > sx1276SFMAX) || (temp < sx1276SFMIN)){
 		printf("NOT OK:%u\r\n", ILLEGALPARAMETER);
 	}

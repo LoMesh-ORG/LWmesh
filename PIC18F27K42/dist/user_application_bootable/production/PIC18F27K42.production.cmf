@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\samue\AppData\Local\Temp\sefs.o
+$C:\Users\samue\AppData\Local\Temp\s9uc.o
 init CODE 0 40AE 40AE 4 1
 reset_vec CODE 0 4000 4000 4 1
 config CONFIG 4 300000 300000 A 1
@@ -4096,177 +4096,177 @@ AB92 text1 CODE >1961:D:\projects\xTendLoRa\LWmesh/app/app_src/application.c
 15F5E text0 CODE >73:D:\projects\xTendLoRa\LWmesh\PIC18F27K42\main.c
 15F60 text0 CODE >76:D:\projects\xTendLoRa\LWmesh\PIC18F27K42\main.c
 15F64 text0 CODE >77:D:\projects\xTendLoRa\LWmesh\PIC18F27K42\main.c
-F676 cinit CODE >76088:C:\Users\samue\AppData\Local\Temp\sefs.s
-F676 cinit CODE >76090:C:\Users\samue\AppData\Local\Temp\sefs.s
-F676 cinit CODE >76093:C:\Users\samue\AppData\Local\Temp\sefs.s
-F676 cinit CODE >76575:C:\Users\samue\AppData\Local\Temp\sefs.s
-F678 cinit CODE >76576:C:\Users\samue\AppData\Local\Temp\sefs.s
-F67A cinit CODE >76577:C:\Users\samue\AppData\Local\Temp\sefs.s
-F67C cinit CODE >76578:C:\Users\samue\AppData\Local\Temp\sefs.s
-F67E cinit CODE >76579:C:\Users\samue\AppData\Local\Temp\sefs.s
-F680 cinit CODE >76580:C:\Users\samue\AppData\Local\Temp\sefs.s
-F682 cinit CODE >76581:C:\Users\samue\AppData\Local\Temp\sefs.s
-F686 cinit CODE >76582:C:\Users\samue\AppData\Local\Temp\sefs.s
-F68A cinit CODE >76583:C:\Users\samue\AppData\Local\Temp\sefs.s
-F68A cinit CODE >76584:C:\Users\samue\AppData\Local\Temp\sefs.s
-F68C cinit CODE >76585:C:\Users\samue\AppData\Local\Temp\sefs.s
-F692 cinit CODE >76586:C:\Users\samue\AppData\Local\Temp\sefs.s
-F694 cinit CODE >76587:C:\Users\samue\AppData\Local\Temp\sefs.s
-F696 cinit CODE >76588:C:\Users\samue\AppData\Local\Temp\sefs.s
-F698 cinit CODE >76592:C:\Users\samue\AppData\Local\Temp\sefs.s
-F69A cinit CODE >76593:C:\Users\samue\AppData\Local\Temp\sefs.s
-F69C cinit CODE >76594:C:\Users\samue\AppData\Local\Temp\sefs.s
-F69E cinit CODE >76595:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6A0 cinit CODE >76596:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6A2 cinit CODE >76597:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6A4 cinit CODE >76598:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6A8 cinit CODE >76599:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6AC cinit CODE >76600:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6AC cinit CODE >76601:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6AE cinit CODE >76602:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6B4 cinit CODE >76603:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6B6 cinit CODE >76604:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6B8 cinit CODE >76605:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6BA cinit CODE >76609:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6BC cinit CODE >76610:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6BE cinit CODE >76611:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6C0 cinit CODE >76612:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6C2 cinit CODE >76613:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6C4 cinit CODE >76614:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6C6 cinit CODE >76615:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6CA cinit CODE >76616:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6CE cinit CODE >76617:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6CE cinit CODE >76618:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6D0 cinit CODE >76619:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6D6 cinit CODE >76620:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6D8 cinit CODE >76621:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6DA cinit CODE >76622:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6DC cinit CODE >76626:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6DE cinit CODE >76627:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6E0 cinit CODE >76628:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6E2 cinit CODE >76629:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6E4 cinit CODE >76630:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6E6 cinit CODE >76631:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6E8 cinit CODE >76632:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6EC cinit CODE >76633:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6F0 cinit CODE >76634:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6F0 cinit CODE >76635:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6F2 cinit CODE >76636:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6F8 cinit CODE >76637:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6FA cinit CODE >76638:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6FC cinit CODE >76639:C:\Users\samue\AppData\Local\Temp\sefs.s
-F6FE cinit CODE >76643:C:\Users\samue\AppData\Local\Temp\sefs.s
-F700 cinit CODE >76644:C:\Users\samue\AppData\Local\Temp\sefs.s
-F702 cinit CODE >76645:C:\Users\samue\AppData\Local\Temp\sefs.s
-F704 cinit CODE >76646:C:\Users\samue\AppData\Local\Temp\sefs.s
-F706 cinit CODE >76647:C:\Users\samue\AppData\Local\Temp\sefs.s
-F708 cinit CODE >76648:C:\Users\samue\AppData\Local\Temp\sefs.s
-F70A cinit CODE >76649:C:\Users\samue\AppData\Local\Temp\sefs.s
-F70E cinit CODE >76650:C:\Users\samue\AppData\Local\Temp\sefs.s
-F712 cinit CODE >76651:C:\Users\samue\AppData\Local\Temp\sefs.s
-F712 cinit CODE >76652:C:\Users\samue\AppData\Local\Temp\sefs.s
-F714 cinit CODE >76653:C:\Users\samue\AppData\Local\Temp\sefs.s
-F71A cinit CODE >76654:C:\Users\samue\AppData\Local\Temp\sefs.s
-F71C cinit CODE >76655:C:\Users\samue\AppData\Local\Temp\sefs.s
-F71E cinit CODE >76656:C:\Users\samue\AppData\Local\Temp\sefs.s
-F720 cinit CODE >76660:C:\Users\samue\AppData\Local\Temp\sefs.s
-F722 cinit CODE >76661:C:\Users\samue\AppData\Local\Temp\sefs.s
-F724 cinit CODE >76662:C:\Users\samue\AppData\Local\Temp\sefs.s
-F726 cinit CODE >76663:C:\Users\samue\AppData\Local\Temp\sefs.s
-F728 cinit CODE >76664:C:\Users\samue\AppData\Local\Temp\sefs.s
-F72A cinit CODE >76665:C:\Users\samue\AppData\Local\Temp\sefs.s
-F72C cinit CODE >76666:C:\Users\samue\AppData\Local\Temp\sefs.s
-F730 cinit CODE >76667:C:\Users\samue\AppData\Local\Temp\sefs.s
-F734 cinit CODE >76668:C:\Users\samue\AppData\Local\Temp\sefs.s
-F734 cinit CODE >76669:C:\Users\samue\AppData\Local\Temp\sefs.s
-F736 cinit CODE >76670:C:\Users\samue\AppData\Local\Temp\sefs.s
-F73C cinit CODE >76671:C:\Users\samue\AppData\Local\Temp\sefs.s
-F73E cinit CODE >76672:C:\Users\samue\AppData\Local\Temp\sefs.s
-F740 cinit CODE >76673:C:\Users\samue\AppData\Local\Temp\sefs.s
-F742 cinit CODE >76677:C:\Users\samue\AppData\Local\Temp\sefs.s
-F746 cinit CODE >76678:C:\Users\samue\AppData\Local\Temp\sefs.s
-F74A cinit CODE >76679:C:\Users\samue\AppData\Local\Temp\sefs.s
-F74A cinit CODE >76680:C:\Users\samue\AppData\Local\Temp\sefs.s
-F74C cinit CODE >76681:C:\Users\samue\AppData\Local\Temp\sefs.s
-F74E cinit CODE >76682:C:\Users\samue\AppData\Local\Temp\sefs.s
-F750 cinit CODE >76683:C:\Users\samue\AppData\Local\Temp\sefs.s
-F752 cinit CODE >76684:C:\Users\samue\AppData\Local\Temp\sefs.s
-F754 cinit CODE >76685:C:\Users\samue\AppData\Local\Temp\sefs.s
-F756 cinit CODE >76688:C:\Users\samue\AppData\Local\Temp\sefs.s
-F75A cinit CODE >76689:C:\Users\samue\AppData\Local\Temp\sefs.s
-F75E cinit CODE >76690:C:\Users\samue\AppData\Local\Temp\sefs.s
-F75E cinit CODE >76691:C:\Users\samue\AppData\Local\Temp\sefs.s
-F760 cinit CODE >76692:C:\Users\samue\AppData\Local\Temp\sefs.s
-F762 cinit CODE >76693:C:\Users\samue\AppData\Local\Temp\sefs.s
-F764 cinit CODE >76694:C:\Users\samue\AppData\Local\Temp\sefs.s
-F766 cinit CODE >76695:C:\Users\samue\AppData\Local\Temp\sefs.s
-F768 cinit CODE >76696:C:\Users\samue\AppData\Local\Temp\sefs.s
-F76A cinit CODE >76699:C:\Users\samue\AppData\Local\Temp\sefs.s
-F76E cinit CODE >76700:C:\Users\samue\AppData\Local\Temp\sefs.s
-F770 cinit CODE >76701:C:\Users\samue\AppData\Local\Temp\sefs.s
-F770 cinit CODE >76702:C:\Users\samue\AppData\Local\Temp\sefs.s
-F772 cinit CODE >76703:C:\Users\samue\AppData\Local\Temp\sefs.s
-F774 cinit CODE >76704:C:\Users\samue\AppData\Local\Temp\sefs.s
-F776 cinit CODE >76707:C:\Users\samue\AppData\Local\Temp\sefs.s
-F77A cinit CODE >76708:C:\Users\samue\AppData\Local\Temp\sefs.s
-F77E cinit CODE >76709:C:\Users\samue\AppData\Local\Temp\sefs.s
-F77E cinit CODE >76710:C:\Users\samue\AppData\Local\Temp\sefs.s
-F780 cinit CODE >76711:C:\Users\samue\AppData\Local\Temp\sefs.s
-F782 cinit CODE >76712:C:\Users\samue\AppData\Local\Temp\sefs.s
-F784 cinit CODE >76713:C:\Users\samue\AppData\Local\Temp\sefs.s
-F786 cinit CODE >76714:C:\Users\samue\AppData\Local\Temp\sefs.s
-F788 cinit CODE >76715:C:\Users\samue\AppData\Local\Temp\sefs.s
-F78A cinit CODE >76718:C:\Users\samue\AppData\Local\Temp\sefs.s
-F78E cinit CODE >76719:C:\Users\samue\AppData\Local\Temp\sefs.s
-F790 cinit CODE >76720:C:\Users\samue\AppData\Local\Temp\sefs.s
-F790 cinit CODE >76721:C:\Users\samue\AppData\Local\Temp\sefs.s
-F792 cinit CODE >76722:C:\Users\samue\AppData\Local\Temp\sefs.s
-F794 cinit CODE >76723:C:\Users\samue\AppData\Local\Temp\sefs.s
-F796 cinit CODE >76726:C:\Users\samue\AppData\Local\Temp\sefs.s
-F79A cinit CODE >76727:C:\Users\samue\AppData\Local\Temp\sefs.s
-F79C cinit CODE >76728:C:\Users\samue\AppData\Local\Temp\sefs.s
-F79C cinit CODE >76729:C:\Users\samue\AppData\Local\Temp\sefs.s
-F79E cinit CODE >76730:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7A0 cinit CODE >76731:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7A2 cinit CODE >76734:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7A6 cinit CODE >76735:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7A8 cinit CODE >76736:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7A8 cinit CODE >76737:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7AA cinit CODE >76738:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7AC cinit CODE >76739:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7AE cinit CODE >76742:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7B2 cinit CODE >76743:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7B4 cinit CODE >76744:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7B4 cinit CODE >76745:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7B6 cinit CODE >76746:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7B8 cinit CODE >76747:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7BA cinit CODE >76750:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7BE cinit CODE >76751:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7C0 cinit CODE >76752:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7C0 cinit CODE >76753:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7C2 cinit CODE >76754:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7C4 cinit CODE >76755:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7C6 cinit CODE >76758:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7CA cinit CODE >76759:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7CC cinit CODE >76760:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7CC cinit CODE >76761:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7CE cinit CODE >76762:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7D0 cinit CODE >76763:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7D2 cinit CODE >76766:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7D6 cinit CODE >76767:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7D8 cinit CODE >76768:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7D8 cinit CODE >76769:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7DA cinit CODE >76770:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7DC cinit CODE >76771:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7DE cinit CODE >76779:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7E0 cinit CODE >76780:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7E2 cinit CODE >76781:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7E4 cinit CODE >76782:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7E6 cinit CODE >76783:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7E8 cinit CODE >76784:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7EA cinit CODE >76790:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7EA cinit CODE >76792:C:\Users\samue\AppData\Local\Temp\sefs.s
-F7EC cinit CODE >76793:C:\Users\samue\AppData\Local\Temp\sefs.s
+F676 cinit CODE >76088:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F676 cinit CODE >76090:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F676 cinit CODE >76093:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F676 cinit CODE >76575:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F678 cinit CODE >76576:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F67A cinit CODE >76577:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F67C cinit CODE >76578:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F67E cinit CODE >76579:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F680 cinit CODE >76580:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F682 cinit CODE >76581:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F686 cinit CODE >76582:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F68A cinit CODE >76583:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F68A cinit CODE >76584:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F68C cinit CODE >76585:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F692 cinit CODE >76586:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F694 cinit CODE >76587:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F696 cinit CODE >76588:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F698 cinit CODE >76592:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F69A cinit CODE >76593:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F69C cinit CODE >76594:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F69E cinit CODE >76595:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6A0 cinit CODE >76596:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6A2 cinit CODE >76597:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6A4 cinit CODE >76598:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6A8 cinit CODE >76599:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6AC cinit CODE >76600:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6AC cinit CODE >76601:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6AE cinit CODE >76602:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6B4 cinit CODE >76603:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6B6 cinit CODE >76604:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6B8 cinit CODE >76605:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6BA cinit CODE >76609:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6BC cinit CODE >76610:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6BE cinit CODE >76611:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6C0 cinit CODE >76612:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6C2 cinit CODE >76613:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6C4 cinit CODE >76614:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6C6 cinit CODE >76615:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6CA cinit CODE >76616:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6CE cinit CODE >76617:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6CE cinit CODE >76618:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6D0 cinit CODE >76619:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6D6 cinit CODE >76620:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6D8 cinit CODE >76621:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6DA cinit CODE >76622:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6DC cinit CODE >76626:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6DE cinit CODE >76627:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6E0 cinit CODE >76628:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6E2 cinit CODE >76629:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6E4 cinit CODE >76630:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6E6 cinit CODE >76631:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6E8 cinit CODE >76632:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6EC cinit CODE >76633:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6F0 cinit CODE >76634:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6F0 cinit CODE >76635:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6F2 cinit CODE >76636:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6F8 cinit CODE >76637:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6FA cinit CODE >76638:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6FC cinit CODE >76639:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F6FE cinit CODE >76643:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F700 cinit CODE >76644:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F702 cinit CODE >76645:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F704 cinit CODE >76646:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F706 cinit CODE >76647:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F708 cinit CODE >76648:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F70A cinit CODE >76649:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F70E cinit CODE >76650:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F712 cinit CODE >76651:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F712 cinit CODE >76652:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F714 cinit CODE >76653:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F71A cinit CODE >76654:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F71C cinit CODE >76655:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F71E cinit CODE >76656:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F720 cinit CODE >76660:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F722 cinit CODE >76661:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F724 cinit CODE >76662:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F726 cinit CODE >76663:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F728 cinit CODE >76664:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F72A cinit CODE >76665:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F72C cinit CODE >76666:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F730 cinit CODE >76667:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F734 cinit CODE >76668:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F734 cinit CODE >76669:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F736 cinit CODE >76670:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F73C cinit CODE >76671:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F73E cinit CODE >76672:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F740 cinit CODE >76673:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F742 cinit CODE >76677:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F746 cinit CODE >76678:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F74A cinit CODE >76679:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F74A cinit CODE >76680:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F74C cinit CODE >76681:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F74E cinit CODE >76682:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F750 cinit CODE >76683:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F752 cinit CODE >76684:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F754 cinit CODE >76685:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F756 cinit CODE >76688:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F75A cinit CODE >76689:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F75E cinit CODE >76690:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F75E cinit CODE >76691:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F760 cinit CODE >76692:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F762 cinit CODE >76693:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F764 cinit CODE >76694:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F766 cinit CODE >76695:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F768 cinit CODE >76696:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F76A cinit CODE >76699:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F76E cinit CODE >76700:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F770 cinit CODE >76701:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F770 cinit CODE >76702:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F772 cinit CODE >76703:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F774 cinit CODE >76704:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F776 cinit CODE >76707:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F77A cinit CODE >76708:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F77E cinit CODE >76709:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F77E cinit CODE >76710:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F780 cinit CODE >76711:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F782 cinit CODE >76712:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F784 cinit CODE >76713:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F786 cinit CODE >76714:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F788 cinit CODE >76715:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F78A cinit CODE >76718:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F78E cinit CODE >76719:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F790 cinit CODE >76720:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F790 cinit CODE >76721:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F792 cinit CODE >76722:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F794 cinit CODE >76723:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F796 cinit CODE >76726:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F79A cinit CODE >76727:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F79C cinit CODE >76728:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F79C cinit CODE >76729:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F79E cinit CODE >76730:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7A0 cinit CODE >76731:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7A2 cinit CODE >76734:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7A6 cinit CODE >76735:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7A8 cinit CODE >76736:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7A8 cinit CODE >76737:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7AA cinit CODE >76738:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7AC cinit CODE >76739:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7AE cinit CODE >76742:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7B2 cinit CODE >76743:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7B4 cinit CODE >76744:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7B4 cinit CODE >76745:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7B6 cinit CODE >76746:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7B8 cinit CODE >76747:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7BA cinit CODE >76750:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7BE cinit CODE >76751:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7C0 cinit CODE >76752:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7C0 cinit CODE >76753:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7C2 cinit CODE >76754:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7C4 cinit CODE >76755:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7C6 cinit CODE >76758:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7CA cinit CODE >76759:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7CC cinit CODE >76760:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7CC cinit CODE >76761:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7CE cinit CODE >76762:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7D0 cinit CODE >76763:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7D2 cinit CODE >76766:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7D6 cinit CODE >76767:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7D8 cinit CODE >76768:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7D8 cinit CODE >76769:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7DA cinit CODE >76770:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7DC cinit CODE >76771:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7DE cinit CODE >76779:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7E0 cinit CODE >76780:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7E2 cinit CODE >76781:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7E4 cinit CODE >76782:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7E6 cinit CODE >76783:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7E8 cinit CODE >76784:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7EA cinit CODE >76790:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7EA cinit CODE >76792:C:\Users\samue\AppData\Local\Temp\s9uc.s
+F7EC cinit CODE >76793:C:\Users\samue\AppData\Local\Temp\s9uc.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -4349,7 +4349,7 @@ __Hibigdata 0 0 CODE 0 ibigdata dist/user_application_bootable/production\PIC18F
 _NWK_Init 14360 0 CODE 0 text251 dist/user_application_bootable/production\PIC18F27K42.production.o
 nwkFrameNext@frame AC 0 BANK0 1 cstackBANK0 dist/user_application_bootable/production\PIC18F27K42.production.o
 __end_of_nwkRouteRemove 15952 0 CODE 0 text193 dist/user_application_bootable/production\PIC18F27K42.production.o
-__mediumconst 40B2 0 MEDIUMCONST 0 mediumconst C:\Users\samue\AppData\Local\Temp\sefs.o
+__mediumconst 40B2 0 MEDIUMCONST 0 mediumconst C:\Users\samue\AppData\Local\Temp\s9uc.o
 __end_of_DATAEE_ReadByte_Platform FF96 0 CODE 0 text6 dist/user_application_bootable/production\PIC18F27K42.production.o
 __size_of_ledInit 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
 __end_of_SX1276Write 15F30 0 CODE 0 text151 dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -4422,7 +4422,7 @@ _WPUA 3A41 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.produ
 _WPUB 3A51 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
 _WPUC 3A61 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
 _WPUE 3A81 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
-___sp 0 0 STACK 2 stack C:\Users\samue\AppData\Local\Temp\sefs.o
+___sp 0 0 STACK 2 stack C:\Users\samue\AppData\Local\Temp\s9uc.o
 _cmdI 1629E 0 CODE 0 text71 dist/user_application_bootable/production\PIC18F27K42.production.o
 _idle 161A0 0 CODE 0 text142 dist/user_application_bootable/production\PIC18F27K42.production.o
 _main 15F4E 0 CODE 0 text0 dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -4440,7 +4440,7 @@ exract_sink_addr@tempaddr 11E 0 BANK1 1 cstackBANK1 dist/user_application_bootab
 __end_of_correctionRangingPolynomeSF9BW0400 7535 0 MEDIUMCONST 0 mediumconst dist/user_application_bootable/production\PIC18F27K42.production.o
 __end_of_correctionRangingPolynomeSF9BW0800 743F 0 MEDIUMCONST 0 mediumconst dist/user_application_bootable/production\PIC18F27K42.production.o
 __end_of_correctionRangingPolynomeSF9BW1600 7349 0 MEDIUMCONST 0 mediumconst dist/user_application_bootable/production\PIC18F27K42.production.o
-start 40AE 0 CODE 0 init C:\Users\samue\AppData\Local\Temp\sefs.o
+start 40AE 0 CODE 0 init C:\Users\samue\AppData\Local\Temp\s9uc.o
 CircularBufferInit@buf 102 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
 CircularBufferInit@ctx 100 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
 ledInit@i 120 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -4588,11 +4588,11 @@ __end_of_correctionRangingPolynomeSF10BW0400 750C 0 MEDIUMCONST 0 mediumconst di
 __end_of_correctionRangingPolynomeSF10BW0800 7416 0 MEDIUMCONST 0 mediumconst dist/user_application_bootable/production\PIC18F27K42.production.o
 __end_of_correctionRangingPolynomeSF10BW1600 7320 0 MEDIUMCONST 0 mediumconst dist/user_application_bootable/production\PIC18F27K42.production.o
 cmdSendPing@cmd 1FA 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
-__accesstop 60 0 ABS 0 - C:\Users\samue\AppData\Local\Temp\sefs.o
-intlevel0 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\sefs.o
-intlevel1 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\sefs.o
-intlevel2 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\sefs.o
-intlevel3 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\sefs.o
+__accesstop 60 0 ABS 0 - C:\Users\samue\AppData\Local\Temp\s9uc.o
+intlevel0 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\s9uc.o
+intlevel1 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\s9uc.o
+intlevel2 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\s9uc.o
+intlevel3 0 0 CODE 0 text C:\Users\samue\AppData\Local\Temp\s9uc.o
 __ptext100 7AAC 0 CODE 0 text100 dist/user_application_bootable/production\PIC18F27K42.production.o
 __ptext101 160F2 0 CODE 0 text101 dist/user_application_bootable/production\PIC18F27K42.production.o
 __ptext102 14C28 0 CODE 0 text102 dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -4920,9 +4920,9 @@ __size_of_UART1_is_rx_ready 0 0 ABS 0 - dist/user_application_bootable/productio
 _cmdRstCAD 16028 0 CODE 0 text61 dist/user_application_bootable/production\PIC18F27K42.production.o
 __end_of_CircularBufferPushBack 10340 0 CODE 0 text245 dist/user_application_bootable/production\PIC18F27K42.production.o
 SX1280SetRangingRequestAddress@F16431 34E 0 BANK3 1 bssBANK3 dist/user_application_bootable/production\PIC18F27K42.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\samue\AppData\Local\Temp\sefs.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\samue\AppData\Local\Temp\s9uc.o
 __size_of_NWK_RouteTable 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\samue\AppData\Local\Temp\sefs.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\samue\AppData\Local\Temp\s9uc.o
 TMR5_ReadTimer@readVal B0 0 BANK0 1 cstackBANK0 dist/user_application_bootable/production\PIC18F27K42.production.o
 __size_ofi2___wmul 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
 __size_of_stop_loop_timer 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -5204,7 +5204,7 @@ __end_of_XorWithIv 14F6A 0 CODE 0 text219 dist/user_application_bootable/product
 _nwkRouteFrame 111A2 0 CODE 0 text226 dist/user_application_bootable/production\PIC18F27K42.production.o
 SYS_TimerStart@timer B2 0 BANK0 1 cstackBANK0 dist/user_application_bootable/production\PIC18F27K42.production.o
 __size_of_SYS_TimerStarted 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
-__checksum0 1FF80 0 CODE 0 checksum C:\Users\samue\AppData\Local\Temp\sefs.o
+__checksum0 1FF80 0 CODE 0 checksum C:\Users\samue\AppData\Local\Temp\s9uc.o
 _TXPower D5 0 BANK0 1 bssBANK0 dist/user_application_bootable/production\PIC18F27K42.production.o
 __size_of_sprintf 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
 _nwkRouteTable 700 0 BANK7 1 bssBANK7 dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -5675,7 +5675,7 @@ _ATTimeoutTimer 2FB 0 BANK2 1 dataBANK2 dist/user_application_bootable/productio
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/user_application_bootable/production\PIC18F27K42.production.o
 __Hbigram 0 0 ABS 0 bigram dist/user_application_bootable/production\PIC18F27K42.production.o
 _msgIDCounter 2EA 0 BANK2 1 bssBANK2 dist/user_application_bootable/production\PIC18F27K42.production.o
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\samue\AppData\Local\Temp\sefs.o
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\samue\AppData\Local\Temp\s9uc.o
 __size_of_PHY_DataConf 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
 AES_CBC_encrypt_buffer@buf 111 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
 AES_CBC_encrypt_buffer@ctx 10F 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -6502,8 +6502,8 @@ __end_of_ascii_lut 45C0 0 MEDIUMCONST 0 mediumconst dist/user_application_bootab
 _nwkTxAckWaitTimerHandler 13704 0 CODE 0 text116 dist/user_application_bootable/production\PIC18F27K42.production.o
 __size_of_CircularBufferPopFront 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
 _usRcvBufferPos 382 0 BANK3 1 bssBANK3 dist/user_application_bootable/production\PIC18F27K42.production.o
-stackhi 1FFF 0 ABS 0 - C:\Users\samue\AppData\Local\Temp\sefs.o
-stacklo 199C 0 ABS 0 - C:\Users\samue\AppData\Local\Temp\sefs.o
+stackhi 1FFF 0 ABS 0 - C:\Users\samue\AppData\Local\Temp\s9uc.o
+stacklo 199C 0 ABS 0 - C:\Users\samue\AppData\Local\Temp\s9uc.o
 bit_in@data AC 0 BANK0 1 cstackBANK0 dist/user_application_bootable/production\PIC18F27K42.production.o
 cmdGetMcastId@cmd 12F 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
 xMBPortEventPost@eEvent 60 0 BANK0 1 cstackBANK0 dist/user_application_bootable/production\PIC18F27K42.production.o
@@ -6869,7 +6869,7 @@ _cmdSetParity 1242E 0 CODE 0 text42 dist/user_application_bootable/production\PI
 bootLoadApplication@buf_id 12A 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
 ?_get_timer0base AC 0 BANK0 1 cstackBANK0 dist/user_application_bootable/production\PIC18F27K42.production.o
 _SX1280GetIrqStatus 0 0 ABS 0 - dist/user_application_bootable/production\PIC18F27K42.production.o
-__ramtop 2000 0 RAM 0 ramtop C:\Users\samue\AppData\Local\Temp\sefs.o
+__ramtop 2000 0 RAM 0 ramtop C:\Users\samue\AppData\Local\Temp\s9uc.o
 _sprintf 145B2 0 CODE 0 text11 dist/user_application_bootable/production\PIC18F27K42.production.o
 free_tx_buffer@ack 11B 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o
 free_tx_buffer@req 119 0 BANK1 1 cstackBANK1 dist/user_application_bootable/production\PIC18F27K42.production.o

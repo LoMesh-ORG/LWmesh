@@ -33,7 +33,7 @@ Maintainer: Miguel Luis and Gregory Cristian
 #define SX1276RSSIMAX    -30
 #define SX1276RSSIMIN    -120
 #define PREAMBLE         12
-#define RSSIGOODMIN      -110
+#define RSSIGOODMIN      -127
 #define RSSIGOODMAX      -30
 
 #define PHY_RSSI_BASE_VAL                     (-157)
