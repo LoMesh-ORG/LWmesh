@@ -23,7 +23,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-#include <inttypes.h>
+//#include <inttypes.h>
 
 #ifndef LFS_NO_MALLOC
 #include <stdlib.h>

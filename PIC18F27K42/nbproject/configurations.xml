@@ -54,6 +54,10 @@
         <logicalFolder name="flash_inc" displayName="flash_inc" projectFiles="true">
           <itemPath>../memory/flash/flash_inc/w25q.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="lfs_inc" displayName="lfs_inc" projectFiles="true">
+          <itemPath>../memory/lfs/lfs_inc/lfs.h</itemPath>
+          <itemPath>../memory/lfs/lfs_inc/lfs_util.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="nwk_inc" displayName="nwk_inc" projectFiles="true">
         <itemPath>../nwk/nwk_inc/nwk.h</itemPath>
@@ -181,6 +185,10 @@
         <logicalFolder name="flash_src" displayName="flash_src" projectFiles="true">
           <itemPath>../memory/flash/flash_src/w25q.c</itemPath>
         </logicalFolder>
+        <logicalFolder name="lfs_src" displayName="lfs_src" projectFiles="true">
+          <itemPath>../memory/lfs/lfs_src/lfs.c</itemPath>
+          <itemPath>../memory/lfs/lfs_src/lfs_util.c</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="nwk_src" displayName="nwk_src" projectFiles="true">
         <itemPath>../nwk/nwk_src/nwk.c</itemPath>
@@ -255,6 +263,8 @@
     <Elem>../powerctl/powerctl_src</Elem>
     <Elem>../memory/flash/flash_inc</Elem>
     <Elem>../memory/flash/flash_src</Elem>
+    <Elem>../memory/lfs/lfs_inc</Elem>
+    <Elem>../memory/lfs/lfs_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -353,10 +363,11 @@
         <property key="call-prologues" value="false"/>
         <property key="default-bitfield-type" value="true"/>
         <property key="default-char-type" value="true"/>
-        <property key="define-macros" value="ATCOMM;DEBUGVECTOR;FULLFEATURE;SX1276"/>
+        <property key="define-macros"
+                  value="ATCOMM;DEBUGVECTOR;FULLFEATURE;SX1276;LFS_NO_INTRINSICS;LFS_NO_DEBUG;LFS_NO_WARN;LFS_NO_ERROR;LFS_NO_ASSERT"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\powerctl\powerctl_inc;..\memory\flash\flash_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\powerctl\powerctl_inc;..\memory\flash\flash_inc;..\memory\lfs\lfs_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>

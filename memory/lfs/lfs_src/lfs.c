@@ -3933,7 +3933,7 @@ static int lfs_fs_pred(lfs_t *lfs,
 #ifndef LFS_READONLY
 struct lfs_fs_parent_match {
     lfs_t *lfs;
-    const lfs_block_t pair[2];
+    lfs_block_t pair[2];
 };
 #endif
 
