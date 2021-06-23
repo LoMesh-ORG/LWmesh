@@ -14,7 +14,11 @@
 
 
 //  _Includes
-#include "../../../PIC32MM0256GPM048/mcc_generated_files/pin_manager.h"
+#if (_18F27K42)
+#include "mcc.h"
+#else
+#include "../../../PIC32MM0256GPM048/mcc_generated_files/spi2.h"
+#endif
 
 /* -------------------------------- W25Q ָ�� ------------------------------ */
 

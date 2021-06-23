@@ -39,8 +39,8 @@ extern "C" {
 #endif
 
 #if (_18F27K42 || _18F47K42 || _18F26K42)
-#define Enter_Timer0_Critical()   PIE3bits.TMR0IE = 0;
-#define Exit_Timer0_Critical()    PIE3bits.TMR0IE = 1;
+#define Enter_Timer0_Critical()   PIE4bits.TMR1IE = 0;
+#define Exit_Timer0_Critical()    PIE4bits.TMR1IE = 1;
 #endif
 #if (__32MM0256GPM048__)
 #define Enter_Timer0_Critical()   CORETIMER_DisableInterrupt();

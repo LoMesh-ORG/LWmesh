@@ -48,6 +48,12 @@
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/tmr3.h</itemPath>
         <itemPath>mcc_generated_files/tmr5.h</itemPath>
+        <itemPath>mcc_generated_files/tmr1.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="memory" projectFiles="true">
+        <logicalFolder name="flash_inc" displayName="flash_inc" projectFiles="true">
+          <itemPath>../memory/flash/flash_inc/w25q.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="nwk_inc" displayName="nwk_inc" projectFiles="true">
         <itemPath>../nwk/nwk_inc/nwk.h</itemPath>
@@ -63,6 +69,11 @@
       </logicalFolder>
       <logicalFolder name="phy_inc" displayName="phy_inc" projectFiles="true">
         <itemPath>../phy/phy_inc/phy.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="powerctl_inc"
+                     displayName="powerctl_inc"
+                     projectFiles="true">
+        <itemPath>../powerctl/powerctl_inc/pwrctl.h</itemPath>
       </logicalFolder>
       <logicalFolder name="sx1276_inc" displayName="sx1276_inc" projectFiles="true">
         <itemPath>../phy/sx1276/sx1276_inc/sx1276.h</itemPath>
@@ -164,6 +175,12 @@
         <itemPath>mcc_generated_files/crc.c</itemPath>
         <itemPath>mcc_generated_files/tmr3.c</itemPath>
         <itemPath>mcc_generated_files/tmr5.c</itemPath>
+        <itemPath>mcc_generated_files/tmr1.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="memory" projectFiles="true">
+        <logicalFolder name="flash_src" displayName="flash_src" projectFiles="true">
+          <itemPath>../memory/flash/flash_src/w25q.c</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="nwk_src" displayName="nwk_src" projectFiles="true">
         <itemPath>../nwk/nwk_src/nwk.c</itemPath>
@@ -178,6 +195,11 @@
       </logicalFolder>
       <logicalFolder name="phy_src" displayName="phy_src" projectFiles="true">
         <itemPath>../phy/phy_src/phy.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="powerctl_src"
+                     displayName="powerctl_src"
+                     projectFiles="true">
+        <itemPath>../powerctl/powerctl_src/pwrctl.c</itemPath>
       </logicalFolder>
       <logicalFolder name="sx1276_src" displayName="sx1276_src" projectFiles="true">
         <itemPath>../phy/sx1276/sx1276_src/sx1276.c</itemPath>
@@ -229,6 +251,10 @@
     <Elem>../phy/phy_src</Elem>
     <Elem>../phy/sx1276/sx1276_src</Elem>
     <Elem>../phy/sx1280</Elem>
+    <Elem>../powerctl/powerctl_inc</Elem>
+    <Elem>../powerctl/powerctl_src</Elem>
+    <Elem>../memory/flash/flash_inc</Elem>
+    <Elem>../memory/flash/flash_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -238,7 +264,7 @@
         <targetDevice>PIC18F27K42</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.31</languageToolchainVersion>
         <platform>3</platform>
@@ -273,6 +299,54 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <item path="../memory/eeprom/eeprom_inc/I2C_EEPROM.h"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-CO>
+        </XC8-CO>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="../memory/eeprom/eeprom_inc/PIC16_I2C_BITBANG.h"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-CO>
+        </XC8-CO>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="../memory/eeprom/eeprom_src/I2C_EEPROM.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-CO>
+        </XC8-CO>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
+      <item path="../memory/eeprom/eeprom_src/PIC16_I2C_BITBANG.c"
+            ex="true"
+            overriding="false">
+        <HI-TECH-COMP>
+        </HI-TECH-COMP>
+        <HI-TECH-LINK>
+        </HI-TECH-LINK>
+        <XC8-CO>
+        </XC8-CO>
+        <XC8-config-global>
+        </XC8-config-global>
+      </item>
       <HI-TECH-COMP>
         <property key="additional-warnings" value="true"/>
         <property key="asmlist" value="true"/>
@@ -282,7 +356,7 @@
         <property key="define-macros" value="ATCOMM;DEBUGVECTOR;FULLFEATURE;SX1276"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories"
-                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc"/>
+                  value="..\app\app_inc;..\hal\hal_inc;..\nwk\nwk_inc;..\sys\sys_inc;mcc_generated_files;..\modbus\mb_inc;..\modbus\port;..\modbus\rtu;..\modbus\functions;..\aes\aes_inc;..\wdt\wdt_inc;..\memory\eeprom\eeprom_inc;..\phy\phy_inc;..\phy\sx1276\sx1276_inc;..\phy\sx1280\sx1280_inc;..\powerctl\powerctl_inc;..\memory\flash\flash_inc"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
@@ -414,6 +488,113 @@
         <property key="user-pack-device-support" value=""/>
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>
+      <pk4hybrid>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="Freeze Peripherals" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UpdateOptions"
+                  value="ToolFirmwareOption.UseLatest"/>
+        <property key="ToolFirmwareToolPack"
+                  value="Press to select which tool pack to use"/>
+        <property key="communication.activationmode" value="nohv"/>
+        <property key="communication.interface" value=""/>
+        <property key="communication.interface.jtag" value="2wire"/>
+        <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="freeze.timers" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.exclude.configurationmemory" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="0-1ffff"/>
+        <property key="memories.rww" value="true"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoImageName" value="base_ptg"/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.ledbrightness" value="1"/>
+        <property key="programoptions.pgcconfig" value="pull down"/>
+        <property key="programoptions.pgcresistor.value" value="4.7"/>
+        <property key="programoptions.pgdconfig" value="pull down"/>
+        <property key="programoptions.pgdresistor.value" value="4.7"/>
+        <property key="programoptions.pgmentry.voltage" value="high"/>
+        <property key="programoptions.pgmspeed" value="Med"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${memories.dataflash.default}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value="310000-3103ff"/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="ptgProgramImage" value="true"/>
+        <property key="ptgSendImage" value="true"/>
+        <property key="toolpack.updateoptions"
+                  value="toolpack.updateoptions.uselatestoolpack"/>
+        <property key="toolpack.updateoptions.packversion"
+                  value="Press to select which tool pack to use"/>
+        <property key="voltagevalue" value="5.0"/>
+      </pk4hybrid>
+      <snap>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="Freeze Peripherals" value="true"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UpdateOptions"
+                  value="ToolFirmwareOption.UseLatest"/>
+        <property key="ToolFirmwareToolPack"
+                  value="Press to select which tool pack to use"/>
+        <property key="communication.interface" value=""/>
+        <property key="communication.interface.jtag" value="2wire"/>
+        <property key="communication.speed" value="${communication.speed.default}"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="freeze.timers" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.exclude.configurationmemory" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="0-1ffff"/>
+        <property key="memories.rww" value="true"/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmentry.voltage" value="low"/>
+        <property key="programoptions.pgmspeed" value="Max"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${memories.dataflash.default}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value="310000-3103ff"/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="toolpack.updateoptions"
+                  value="toolpack.updateoptions.uselatestoolpack"/>
+        <property key="toolpack.updateoptions.packversion"
+                  value="Press to select which tool pack to use"/>
+      </snap>
     </conf>
     <conf name="atbootable" type="2">
       <toolsSet>
@@ -1279,7 +1460,6 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

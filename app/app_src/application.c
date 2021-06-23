@@ -42,11 +42,11 @@ Copyright 2020 Samuel Ramrajkar
 #ifdef USERAPP
 #include "user_app.h"
 #endif
+#include "w25q.h"
 #if (__32MM0256GPM048__)
 #include "uart3.h"
 #include "uart2.h"
 #include "pin_manager.h"
-#include "w25q.h"
 #endif
 
 #define swap_16(x) ((x << 8) | (x >> 8))
@@ -1318,9 +1318,11 @@ static void cmdTest(char* cmd){
             break;
 #ifdef FULLFEATURE
         case EETEST:
+#if 0
             eeprom_wr_byte(0xAAAA, 0xAA);
             __delay_ms(15);
             testcase = eeprom_rd_byte(0xAAAA);
+#endif
             break;
 #endif
 #if (__32MM0256GPM048__)
@@ -1332,6 +1334,12 @@ static void cmdTest(char* cmd){
             W25Q_Read(&test_bytes[0], 0, sizeof(test_bytes));
             test_bytes[0]++;
             __asm("nop");
+            break;
+#endif
+#if (_18F27K42 || _18F47K42 || _18F26K42)
+        case SLEEPTEST:
+            //Enter sleep for 5 sec then wake up again
+            
             break;
 #endif
         default:
@@ -1803,6 +1811,7 @@ void bootLoadApplication(void)
     //Initialize the led queue
     ledInit();
 #endif
+    volatile uint16_t nor_ver = W25Q_ReadDeviceID();
 #if (__32MM0256GPM048__)
     //volatile uint16_t nor_ver = W25Q_ReadDeviceID();
     init_fs();
@@ -1956,7 +1965,7 @@ void bootLoadApplication(void)
     NWK_OpenEndpoint(DATA_EP, appDataInd);
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
 #if (_18F27K42 || _18F47K42 || _18F26K42)
-    TMR0_SetInterruptHandler(Timer0Handler); 
+    TMR1_SetInterruptHandler(Timer0Handler); 
 #endif
 }
 
