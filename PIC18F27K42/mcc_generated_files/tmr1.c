@@ -13,12 +13,12 @@
   @Description
     This source file provides APIs for TMR1.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.0
-        Device            :  PIC18F26K42
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.6
+        Device            :  PIC18F27K42
         Driver Version    :  2.11
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above
-        MPLAB 	          :  MPLAB X 5.35
+        Compiler          :  XC8 2.30 and above
+        MPLAB 	          :  MPLAB X 5.40
 */
 
 /*
@@ -72,14 +72,14 @@ void TMR1_Initialize(void)
     //GSS T1G_pin; 
     T1GATE = 0x00;
 
-    //CS MFINTOSC_31.25kHz; 
-    T1CLK = 0x06;
+    //CS FOSC/4; 
+    T1CLK = 0x01;
 
-    //TMR1H 103; 
-    TMR1H = 0x67;
+    //TMR1H 193; 
+    TMR1H = 0xC1;
 
-    //TMR1L 105; 
-    TMR1L = 0x69;
+    //TMR1L 128; 
+    TMR1L = 0x80;
 
     // Clearing IF flag before enabling the interrupt.
     PIR4bits.TMR1IF = 0;
@@ -93,8 +93,8 @@ void TMR1_Initialize(void)
     // Set Default Interrupt Handler
     TMR1_SetInterruptHandler(TMR1_DefaultInterruptHandler);
 
-    // CKPS 1:8; NOT_SYNC synchronize; TMR1ON enabled; T1RD16 disabled; 
-    T1CON = 0x31;
+    // CKPS 1:1; NOT_SYNC synchronize; TMR1ON enabled; T1RD16 enabled; 
+    T1CON = 0x03;
 }
 
 void TMR1_StartTimer(void)

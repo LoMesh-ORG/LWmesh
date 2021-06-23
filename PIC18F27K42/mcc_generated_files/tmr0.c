@@ -13,12 +13,12 @@
   @Description
     This source file provides APIs for TMR0.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.0
-        Device            :  PIC18F26K42
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.6
+        Device            :  PIC18F27K42
         Driver Version    :  3.10
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above
-        MPLAB 	          :  MPLAB X 5.35
+        Compiler          :  XC8 2.30 and above
+        MPLAB 	          :  MPLAB X 5.40
 */
 
 /*
@@ -68,14 +68,14 @@ void TMR0_Initialize(void)
 {
     // Set TMR0 to the options selected in the User Interface
 
-    // T0CS FOSC/4; T0CKPS 1:1; T0ASYNC synchronised; 
-    T0CON1 = 0x40;
+    // T0CS LFINTOSC; T0CKPS 1:512; T0ASYNC synchronised; 
+    T0CON1 = 0x89;
 
-    // TMR0H 193; 
-    TMR0H = 0xC1;
+    // TMR0H 255; 
+    TMR0H = 0xFF;
 
-    // TMR0L 128; 
-    TMR0L = 0x80;
+    // TMR0L 225; 
+    TMR0L = 0xE1;
 
     // Load TMR0 value to the 16-bit reload variable
     timer0ReloadVal16bit = (TMR0H << 8) | TMR0L;
@@ -89,8 +89,8 @@ void TMR0_Initialize(void)
     // Set Default Interrupt Handler
     TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
 
-    // T0OUTPS 1:1; T0EN enabled; T016BIT 16-bit; 
-    T0CON0 = 0x90;
+    // T0OUTPS 1:16; T0EN enabled; T016BIT 16-bit; 
+    T0CON0 = 0x9F;
 }
 
 void TMR0_StartTimer(void)

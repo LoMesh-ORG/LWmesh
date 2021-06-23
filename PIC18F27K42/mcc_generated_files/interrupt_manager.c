@@ -79,6 +79,7 @@ void  INTERRUPT_Initialize (void)
     IPR3bits.U1RXIP = 0;
     IPR3bits.TMR0IP = 0;
     IPR6bits.TMR3IP = 1;
+    IPR4bits.TMR1IP = 1;
 }
 
 #ifdef BOOTABLE

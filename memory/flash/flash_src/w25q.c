@@ -16,7 +16,11 @@
 //  _Includes
 
 #include "../flash_inc/w25q.h"
+#if (_18F27K42)
+#include "mcc.h"
+#else
 #include "../../../PIC32MM0256GPM048/mcc_generated_files/spi2.h"
+#endif
 
 //  _Declare
 
@@ -28,7 +32,10 @@
 u8 SPI_Communication(u8 TxData)
 {
 
-  return SPI2_Exchange8bit(TxData);
+  //return SPI2_Exchange8bit(TxData);
+#if (_18F27K42)
+  return SPI1_ExchangeByte(TxData);
+#endif
 }
 
 

@@ -90,7 +90,8 @@ uint16_t pan_id;
 enum ATTESTCASES{
     WDTTEST = 1,
     EETEST,
-    FLASHTEST
+    FLASHTEST,
+    SLEEPTEST
 };
 #endif
 /*******************************************************************************

@@ -13,12 +13,12 @@
   @Description:
     This header file provides implementations for driver APIs for all modules selected in the GUI.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.6
         Device            :  PIC18F27K42
         Driver Version    :  2.00
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above or later
-        MPLAB             :  MPLAB X 5.30
+        Compiler          :  XC8 2.30 and above or later
+        MPLAB             :  MPLAB X 5.40
 */
 
 /*
@@ -55,6 +55,7 @@
 #include "interrupt_manager.h"
 #include "tmr5.h"
 #include "tmr3.h"
+#include "tmr1.h"
 #include "crc.h"
 #include "tmr0.h"
 #include "memory.h"

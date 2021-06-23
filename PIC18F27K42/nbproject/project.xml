@@ -37,6 +37,10 @@
                 <sourceRootElem>../phy/phy_src</sourceRootElem>
                 <sourceRootElem>../phy/sx1276/sx1276_src</sourceRootElem>
                 <sourceRootElem>../phy/sx1280</sourceRootElem>
+                <sourceRootElem>../powerctl/powerctl_inc</sourceRootElem>
+                <sourceRootElem>../powerctl/powerctl_src</sourceRootElem>
+                <sourceRootElem>../memory/flash/flash_inc</sourceRootElem>
+                <sourceRootElem>../memory/flash/flash_src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
