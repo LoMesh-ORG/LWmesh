@@ -70,6 +70,45 @@ static uint8_t eeprom_data[EEPROM_SIZE];
 
 static void persisit_eeprom_data(void); //Write to data file
 #endif
+#if (_18F27K42)
+#include "w25q.h"
+#include "lfs.h"
+
+#define EEPROM_DATA_FILE "nvm_data.bin"
+// variables used by the filesystem
+static lfs_t lfs;
+static lfs_file_t file;
+static uint8_t rd_buffer[128];
+static uint8_t wr_buffer[128];
+static uint8_t lookahead_buffer[128];
+static uint8_t file_cache[128];
+static int _flash_read(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, void *buffer, lfs_size_t size);
+static int _flash_write(const struct lfs_config *c, lfs_block_t block,
+            lfs_off_t off, const void *buffer, lfs_size_t size); 
+static int _flash_erase(const struct lfs_config *c, lfs_block_t block);
+static int flash_sync(const struct lfs_config *c);
+// configuration of the filesystem is provided by this struct    
+const struct lfs_config cfg = {
+    // block device operations
+    .read  = _flash_read,
+    .prog  = _flash_write,
+    .erase = _flash_erase,
+    .sync  = flash_sync,
+
+    // block device configuration
+    .read_size = 128,
+    .prog_size = 128,
+    .block_size = 4096,
+    .block_count = 128,
+    .cache_size = 128,
+    .lookahead_size = 128,
+    .block_cycles = 500,
+    .read_buffer = &rd_buffer[0],
+    .prog_buffer = &wr_buffer[0],
+    .lookahead_buffer = &lookahead_buffer[0],
+    };
+#endif
 
 uint8_t DATAEE_ReadByte_Platform(uint16_t addr){
     uint8_t copy1;
@@ -277,25 +316,26 @@ DATAEE_WriteByte(uint32_t addr, uint8_t data)
         persisit_eeprom_data();
     }
 }
+#endif
 /*******************************************************************************
  * PIC32 will use SPI flash and SPIFFS file system to save NV data
 *******************************************************************************/
 
-static int flash_read(const struct lfs_config *c, lfs_block_t block,
+static int _flash_read(const struct lfs_config *c, lfs_block_t block,
             lfs_off_t off, void *buffer, lfs_size_t size)
 {
     W25Q_Read(buffer, (block * c->read_size) + off, size);
     return LFS_ERR_OK;
 }
 
-static int flash_write(const struct lfs_config *c, lfs_block_t block,
+static int _flash_write(const struct lfs_config *c, lfs_block_t block,
             lfs_off_t off, const void *buffer, lfs_size_t size)
 {
     W25Q_Write(buffer, (block * c->prog_size) + off, size);
     return LFS_ERR_OK;
 }
   
-static int flash_erase(const struct lfs_config *c, lfs_block_t block)
+static int _flash_erase(const struct lfs_config *c, lfs_block_t block)
 {
     W25Q_Erase_Sector(block * c->block_size);
     return LFS_ERR_OK;
@@ -320,6 +360,7 @@ void init_fs(void)
     }
 }
 
+#if (__32MM0256GPM048__)
 void load_nvm_data(void)
 {
     int ret;    
@@ -361,9 +402,8 @@ static void persisit_eeprom_data(void)
         lfs_file_close(&lfs, &file);
     }
 }
-
+#endif
 void format_fs(void)
 {
     lfs_format(&lfs, &cfg);
 }
-#endif

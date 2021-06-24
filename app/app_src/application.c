@@ -53,6 +53,7 @@ Copyright 2020 Samuel Ramrajkar
 
 const uint8_t ascii_lut[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
                              '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+struct AES_ctx ctx;
 
 #if (__32MM0256GPM048__)
 static volatile uint8_t test_bytes[128];
@@ -119,7 +120,6 @@ static void reset_handler(void){
  * \param [IN] None.
  */
 static void app_aes_encrypt(uint8_t* data, uint8_t size){
-    struct AES_ctx ctx;
     struct app_header_t *apphdr = (struct app_header_t*)data;
     uint8_t iv[16];
     apphdr->iv_seed = rand();
@@ -140,7 +140,6 @@ static void app_aes_encrypt(uint8_t* data, uint8_t size){
  * \param [IN] None.
  */
 static uint8_t app_aes_decrypt(uint8_t* data, uint8_t size){
-    struct AES_ctx ctx;
     struct app_header_t *apphdr = (struct app_header_t*)data;
     uint8_t iv[16];
     uint16_t crc16_cal;
@@ -1812,9 +1811,10 @@ void bootLoadApplication(void)
     ledInit();
 #endif
     volatile uint16_t nor_ver = W25Q_ReadDeviceID();
+    init_fs();
 #if (__32MM0256GPM048__)
     //volatile uint16_t nor_ver = W25Q_ReadDeviceID();
-    init_fs();
+    
     load_nvm_data();
 #endif
     //Load the EUID of the node

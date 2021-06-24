@@ -31,7 +31,8 @@ static int lfs_bd_read(lfs_t *lfs,
     uint8_t *data = buffer;
     if (block >= lfs->cfg->block_count ||
             off+size > lfs->cfg->block_size) {
-        return LFS_ERR_CORRUPT;
+        int rc = LFS_ERR_CORRUPT;
+        return rc;
     }
 
     while (size > 0) {
@@ -133,7 +134,8 @@ static int lfs_bd_cmp(lfs_t *lfs,
 
         res = memcmp(dat, data + i, diff);
         if (res) {
-            return res < 0 ? LFS_CMP_LT : LFS_CMP_GT;
+            int rc = res < 0 ? LFS_CMP_LT : LFS_CMP_GT;
+            return rc;
         }
     }
 
@@ -164,7 +166,8 @@ static int lfs_bd_flush(lfs_t *lfs,
             }
 
             if (res != LFS_CMP_EQ) {
-                return LFS_ERR_CORRUPT;
+                int rc = LFS_ERR_CORRUPT;
+                return rc;
             }
         }
 
@@ -455,7 +458,7 @@ static void lfs_mlist_append(lfs_t *lfs, struct lfs_mlist *mlist) {
 
 /// Internal operations predeclared here ///
 #ifndef LFS_READONLY
-static int lfs_dir_commit(lfs_t *lfs, lfs_mdir_t *dir,
+static int __compiled lfs_dir_commit(lfs_t *lfs, lfs_mdir_t *dir,
         const struct lfs_mattr *attrs, int attrcount);
 static int lfs_dir_compact(lfs_t *lfs,
         lfs_mdir_t *dir, const struct lfs_mattr *attrs, int attrcount,
@@ -559,7 +562,8 @@ static int lfs_alloc(lfs_t *lfs, lfs_block_t *block) {
         if (lfs->free.ack == 0) {
             LFS_ERROR("No more free space %"PRIu32,
                     lfs->free.i + lfs->free.off);
-            return LFS_ERR_NOSPC;
+            int rc = LFS_ERR_NOSPC;
+            return rc;
         }
 
         lfs->free.off = (lfs->free.off + lfs->free.size)
@@ -654,7 +658,8 @@ static int lfs_dir_getread(lfs_t *lfs, const lfs_mdir_t *dir,
         lfs_off_t off, void *buffer, lfs_size_t size) {
     uint8_t *data = buffer;
     if (off+size > lfs->cfg->block_size) {
-        return LFS_ERR_CORRUPT;
+        int rc = LFS_ERR_CORRUPT;
+        return rc;
     }
 
     while (size > 0) {
@@ -1155,7 +1160,8 @@ static int lfs_dir_find_match(void *data,
 
     // only equal if our size is still the same
     if (name->size != lfs_tag_size(tag)) {
-        return (name->size < lfs_tag_size(tag)) ? LFS_CMP_LT : LFS_CMP_GT;
+        int rc = (name->size < lfs_tag_size(tag)) ? LFS_CMP_LT : LFS_CMP_GT;
+        return rc;
     }
 
     // found a match!
@@ -1285,7 +1291,8 @@ static int lfs_dir_commitprog(lfs_t *lfs, struct lfs_commit *commit,
     }
 
     commit->crc = lfs_crc(commit->crc, buffer, size);
-    commit->off += size;
+    lfs_size_t sizetmp = commit->off + size;
+    commit->off = sizetmp;
     return 0;
 }
 #endif
@@ -1296,7 +1303,8 @@ static int lfs_dir_commitattr(lfs_t *lfs, struct lfs_commit *commit,
     // check if we fit
     lfs_size_t dsize = lfs_tag_dsize(tag);
     if (commit->off + dsize > commit->end) {
-        return LFS_ERR_NOSPC;
+        int rc = LFS_ERR_NOSPC;
+        return rc;
     }
 
     // write out tag
@@ -1407,7 +1415,8 @@ static int lfs_dir_commitcrc(lfs_t *lfs, struct lfs_commit *commit) {
             // check against written crc, may catch blocks that
             // become readonly and match our commit size exactly
             if (i == off1 && crc != crc1) {
-                return LFS_ERR_CORRUPT;
+                int rc = LFS_ERR_CORRUPT;
+                return rc;
             }
 
             // leave it up to caching to make this efficient
@@ -1424,7 +1433,8 @@ static int lfs_dir_commitcrc(lfs_t *lfs, struct lfs_commit *commit) {
 
         // detected write error?
         if (crc != 0) {
-            return LFS_ERR_CORRUPT;
+            int rc = LFS_ERR_CORRUPT;
+            return rc;
         }
 
         // skip padding
@@ -1794,7 +1804,8 @@ relocate:
         if (lfs_pair_cmp(dir->pair, (const lfs_block_t[2]){0, 1}) == 0) {
             LFS_WARN("Superblock 0x%"PRIx32" has become unwritable",
                     dir->pair[1]);
-            return LFS_ERR_NOSPC;
+            int rc = LFS_ERR_NOSPC;
+            return rc;
         }
 
         // relocate half of pair
@@ -1823,7 +1834,8 @@ relocate:
 #endif
 
 #ifndef LFS_READONLY
-static int lfs_dir_commit(lfs_t *lfs, lfs_mdir_t *dir,
+lfs_mdir_t olddir;
+static int __compiled lfs_dir_commit(lfs_t *lfs, lfs_mdir_t *dir,
         const struct lfs_mattr *attrs, int attrcount) {
     // check for any inline files that aren't RAM backed and
     // forcefully evict them, needed for filesystem consistency
@@ -1844,7 +1856,7 @@ static int lfs_dir_commit(lfs_t *lfs, lfs_mdir_t *dir,
     }
 
     // calculate changes to the directory
-    lfs_mdir_t olddir = *dir;
+    olddir = *dir;
     bool hasdelete = false;
     for (int i = 0; i < attrcount; i++) {
         if (lfs_tag_type3(attrs[i].tag) == LFS_TYPE_CREATE) {
@@ -3827,7 +3839,8 @@ int lfs_fs_rawtraverse(lfs_t *lfs,
     while (!lfs_pair_isnull(dir.tail)) {
         if (cycle >= lfs->cfg->block_count/2) {
             // loop detected
-            return LFS_ERR_CORRUPT;
+            int rc = LFS_ERR_CORRUPT;
+            return rc;
         }
         cycle += 1;
 
@@ -3912,7 +3925,8 @@ static int lfs_fs_pred(lfs_t *lfs,
     while (!lfs_pair_isnull(pdir->tail)) {
         if (cycle >= lfs->cfg->block_count/2) {
             // loop detected
-            return LFS_ERR_CORRUPT;
+            int rc = LFS_ERR_CORRUPT;
+            return rc;
         }
         cycle += 1;
 
@@ -3925,8 +3939,8 @@ static int lfs_fs_pred(lfs_t *lfs,
             return err;
         }
     }
-
-    return LFS_ERR_NOENT;
+    int rc = LFS_ERR_NOENT;
+    return rc;
 }
 #endif
 
