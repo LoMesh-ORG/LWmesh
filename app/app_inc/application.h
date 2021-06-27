@@ -416,6 +416,8 @@ void MBRTUStack(void);
  * \param [OUT] None.
  * \param [IN] None.
  */
+void sendBytes(void);
+
 inline void application(void);
 
 #ifdef	__cplusplus

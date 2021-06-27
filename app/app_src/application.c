@@ -54,7 +54,7 @@ Copyright 2020 Samuel Ramrajkar
 const uint8_t ascii_lut[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
                              '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-#if (__32MM0256GPM048__)
+#if (__32MM0256GPM048__ || _18F27K42)
 static volatile uint8_t test_bytes[128];
 #endif
 #ifndef MODULE
@@ -1325,14 +1325,10 @@ static void cmdTest(char* cmd){
 #endif
             break;
 #endif
-#if (__32MM0256GPM048__)
+#if (__32MM0256GPM048__ || _18F27K42)
         case FLASHTEST:
-            memset(&test_bytes[0], 0xAA, sizeof(test_bytes));
-            W25Q_Erase_Sector(0);
-            W25Q_Write_Page(&test_bytes[0], 0, sizeof(test_bytes));
-            memset(&test_bytes[0], 0, sizeof(test_bytes));
-            W25Q_Read(&test_bytes[0], 0, sizeof(test_bytes));
-            test_bytes[0]++;
+            sendBytes();
+            
             __asm("nop");
             break;
 #endif
@@ -1346,7 +1342,21 @@ static void cmdTest(char* cmd){
             printf("NOT OK %u\r\n", ILLEGALPARAMETER);
     }
 }
-
+void sendBytes(void)
+{
+    //Fill in the size and bytes to test
+    uint8_t tabSize = 2;
+    uint8_t bytesForTest[2] = {0xAA, 0x55};
+    for(uint8_t iterSend = 0; iterSend < tabSize; iterSend++ )
+    {
+        memset(&test_bytes[0], bytesForTest[iterSend], sizeof(test_bytes));
+        W25Q_Erase_Sector(0);
+        W25Q_Write_Page(&test_bytes[0], 0, sizeof(test_bytes));
+        memset(&test_bytes[0], 0, sizeof(test_bytes));
+        W25Q_Read(&test_bytes[0], 0, sizeof(test_bytes));
+        test_bytes[0]++;
+    }
+}
 /*!
  * \brief Send ping command on network interface
  *
