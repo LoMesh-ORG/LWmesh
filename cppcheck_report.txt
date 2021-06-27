@@ -38,11 +38,11 @@
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'c' can be reduced.
 [aes/aes_src/AES.c:350]: (style) The scope of the variable 'd' can be reduced.
 [app/app_src/EEPROM.c:359]: (style) Variable 'ret' is assigned a value that is never used.
-[app/app_src/application.c:1881] -> [app/app_src/application.c:1890]: (style) Variable 'i' is reassigned a value before the old one has been used.
-[app/app_src/application.c:1814]: (style) Variable 'nor_ver' is assigned a value that is never used.
-[app/app_src/application.c:1698]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
-[app/app_src/application.c:2257]: (style) Variable 'count' is modified but its new value is never used.
-[app/app_src/application.c:1698]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
+[app/app_src/application.c:1891] -> [app/app_src/application.c:1900]: (style) Variable 'i' is reassigned a value before the old one has been used.
+[app/app_src/application.c:1824]: (style) Variable 'nor_ver' is assigned a value that is never used.
+[app/app_src/application.c:1708]: (error) Invalid number of character '{' when these macros are defined: 'ATCOMM'.
+[app/app_src/application.c:2267]: (style) Variable 'count' is modified but its new value is never used.
+[app/app_src/application.c:1708]: (error) Invalid number of character '{' when these macros are defined: 'USERAPP'.
 [memory/flash/flash_inc/w25q.h:58] -> [memory/flash/flash_src/w25q.c:161]: (style, inconclusive) Function 'W25Q_Write' argument 3 names different: declaration 'NumByte' definition 'ByteNum'.
 [memory/lfs/lfs_src/lfs.c:473] -> [memory/lfs/lfs_src/lfs.c:3907]: (style, inconclusive) Function 'lfs_fs_pred' argument 2 names different: declaration 'dir' definition 'pair'.
 [memory/lfs/lfs_src/lfs.c:475] -> [memory/lfs/lfs_src/lfs.c:3962]: (style, inconclusive) Function 'lfs_fs_parent' argument 2 names different: declaration 'dir' definition 'pair'.
@@ -51,8 +51,6 @@
 [memory/lfs/lfs_src/lfs.c:3349]: (error, inconclusive) Address of local auto-variable assigned to a function parameter.
 [memory/lfs/lfs_src/lfs.c:1269]: (style) struct member 'lfs_commit::ptag' is never used.
 [memory/lfs/lfs_src/lfs.c:1270]: (style) struct member 'lfs_commit::crc' is never used.
-[memory/partitions.h:15]: (warning) Redundant code: Found a statement that begins with string constant.
-[memory/partitions.h:16]: (warning) Redundant code: Found a statement that begins with string constant.
 [modbus/mb.c:228]: (style) The scope of the variable 'i' can be reduced.
 [modbus/mb.c:340]: (style) The scope of the variable 'i' can be reduced.
 [modbus/rtu/mbcrc.c:89]: (style) The scope of the variable 'iIndex' can be reduced.
@@ -268,14 +266,14 @@
 [phy/sx1276/sx1276_src/sx1276.c:557]: (style) The function 'cad_done_isr' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:362]: (style) The function 'disableCrc' is never used.
 [modbus/mb.c:273]: (style) The function 'eMBClose' is never used.
-[app/app_src/application.c:2377]: (style) The function 'eMBRegHoldingCB' is never used.
+[app/app_src/application.c:2387]: (style) The function 'eMBRegHoldingCB' is never used.
 [modbus/mb.c:226]: (style) The function 'eMBRegisterCB' is never used.
 [modbus/mb.c:197]: (style) The function 'eMBTCPInit' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:70]: (style) The function 'eeprom_rd_byte' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:197]: (style) The function 'eeprom_rd_page' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:50]: (style) The function 'eeprom_wr_byte' is never used.
 [memory/eeprom/eeprom_src/I2C_EEPROM.c:94]: (style) The function 'eeprom_wr_page' is never used.
-[memory/partitions.c:4]: (style) The function 'formatPartitions' is never used.
+[memory/partitions.c:7]: (style) The function 'formatPartitions' is never used.
 [app/app_src/EEPROM.c:365]: (style) The function 'format_fs' is never used.
 [phy/sx1276/sx1276_src/sx1276.c:339]: (style) The function 'getSyncWord' is never used.
 [app/app_src/uart_default_control.c:32]: (style) The function 'get_current_state' is never used.
