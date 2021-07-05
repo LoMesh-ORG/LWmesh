@@ -13,12 +13,12 @@
   @Description
     This header file provides implementations for driver APIs for SPI1.
     Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.80.0
+        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.6
         Device            :  PIC18F27K42
         Driver Version    :  1.0.0
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.10 and above or later
-        MPLAB             :  MPLAB X 5.30
+        Compiler          :  XC8 2.30 and above or later
+        MPLAB             :  MPLAB X 5.40
 */
 
 /*
@@ -58,21 +58,21 @@ typedef struct {
 
 //con0 == SPIxCON0, con1 == SPIxCON1, con2 == SPIxCON2, baud == SPIxBAUD, operation == Master/Slave
 static const spi1_configuration_t spi1_configuration[] = {   
-    { 0x82, 0x40, 0x0, 0x5, 0 }
+    { 0x82, 0x40, 0x3, 0x7, 0 }
 };
 
 void SPI1_Initialize(void)
 {
     //EN enabled; LSBF MSb first; MST bus master; BMODE last byte; 
     SPI1CON0 = 0x82;
-    //SMP End; CKE Active to idle; CKP Idle:Low, Active:High; FST disabled; SSP active high; SDIP active high; SDOP active high; 
-    SPI1CON1 = 0xC0;
+    //SMP Middle; CKE Active to idle; CKP Idle:Low, Active:High; FST disabled; SSP active high; SDIP active high; SDOP active high; 
+    SPI1CON1 = 0x40;
     //SSET disabled; TXR required for a transfer; RXR suspended if the RxFIFO is full; 
     SPI1CON2 = 0x03;
-    //CLKSEL HFINTOSC; 
-    SPI1CLK = 0x01;
-    //BAUD 0; 
-    SPI1BAUD = 0x02;
+    //CLKSEL FOSC; 
+    SPI1CLK = 0x00;
+    //BAUD 7; 
+    SPI1BAUD = 0x07;
     TRISCbits.TRISC7 = 0;
 }
 
