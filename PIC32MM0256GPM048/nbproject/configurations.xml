@@ -307,7 +307,7 @@
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>C:\Program Files\Microchip\MPLABX\v5.50\mplab_platform\bin\hexmate ${ImagePath} -o${ImagePath}_bootable -CK=0x1D004000-0x1D03FFFB@0x1D03FFFCw4g1</makeCustomizationPostStep>
+        <makeCustomizationPostStep>C:\Program Files\Microchip\MPLABX\v5.50\mplab_platform\bin\hexmate.exe ${ImagePath} -o${ImagePath}_bootable  -CK=0x1D004000-0x1D03FFFB@0x1D03FFFCw4g1</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>true</makeCustomizationNormalizeHexFile>

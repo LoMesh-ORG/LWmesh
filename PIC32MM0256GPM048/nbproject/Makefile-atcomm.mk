@@ -106,8 +106,8 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-atcomm.mk dist/${CND_CONF}/${IMAGE_TYPE}/PIC32MM0256GPM048.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 	@echo "--------------------------------------"
-	@echo "User defined post-build step: [C:\Program Files\Microchip\MPLABX\v5.50\mplab_platform\bin\hexmate ${ImagePath} -o${ImagePath}_bootable -CK=0x1D004000-0x1D03FFFB@0x1D03FFFCw4g1]"
-	@C:\Program Files\Microchip\MPLABX\v5.50\mplab_platform\bin\hexmate ${ImagePath} -o${ImagePath}_bootable -CK=0x1D004000-0x1D03FFFB@0x1D03FFFCw4g1
+	@echo "User defined post-build step: [C:\Program Files\Microchip\MPLABX\v5.50\mplab_platform\bin\hexmate.exe ${ImagePath} -o${ImagePath}_bootable  -CK=0x1D004000-0x1D03FFFB@0x1D03FFFCw4g1]"
+	@C:\Program Files\Microchip\MPLABX\v5.50\mplab_platform\bin\hexmate.exe ${ImagePath} -o${ImagePath}_bootable  -CK=0x1D004000-0x1D03FFFB@0x1D03FFFCw4g1
 	@echo "--------------------------------------"
 
 MP_PROCESSOR_OPTION=32MM0256GPM048
