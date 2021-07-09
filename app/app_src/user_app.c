@@ -195,3 +195,87 @@ void user_application(void){
     }
 }
 #endif
+
+#ifdef TRANS
+static uint8_t transParentPayload[MAX_TRANSPARENT_PAYLOAD];
+static uint16_t payloadWritePtr;
+static const uint16_t timeOutTable[] = 
+{
+    (0xFFFF - 4.004E-6/TIMEOUT_TIMER_RESOLUTION) + 1, /*9600*/
+    (0xFFFF - 2.002E-6/TIMEOUT_TIMER_RESOLUTION) + 1, /*19200*/
+    (0xFFFF - 1.75E-6/TIMEOUT_TIMER_RESOLUTION) + 1,  /*38400*/
+    (0xFFFF - 1.75E-6/TIMEOUT_TIMER_RESOLUTION) + 1,  /*57600*/
+    (0xFFFF - 1.75E-6/TIMEOUT_TIMER_RESOLUTION) + 1   /*115200*/
+};
+static void serialEndOfPacketTimeoutHandler(void)
+{
+    exitConditionTransparent = true;
+}
+
+void transparentMode(void)
+{
+    switch(transparentStateVar)
+    {
+        case initTransparent:
+            memset(transParentPayload, 0, sizeof(transParentPayload));
+            payloadWritePtr = 0;
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            TMR0_SetInterruptHandler(serialEndOfPacketTimeoutHandler);
+            #endif
+            #if (__32MM0256GPM048__)
+            #error //@TODO PIC32 time out timer setup
+            #endif
+            transparentStateVar = waitForPacketTransparent;            
+            break;
+        case waitForPacketTransparent:
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            if(UART1_is_rx_ready())
+            #endif
+            #if (__32MM0256GPM048__)
+            if(true == UART3_IsRxReady())
+            #endif 
+            {
+                //Found at least one byte. Advance to receive packet
+                exitConditionTransparent = false;
+                transparentStateVar = recievingPacketTransparent;
+            }
+            break;
+        case recievingPacketTransparent:
+            if(true == exitConditionTransparent)
+            {
+                TMR0_StopTimer();
+                transparentStateVar = processPacketTransparent;
+            }
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            else if(UART1_is_rx_ready())
+            #endif
+            #if (__32MM0256GPM048__)
+            else if(true == UART3_IsRxReady())
+            #endif 
+            {
+                #if (_18F27K42 || _18F47K42 || _18F26K42)
+                transParentPayload[payloadWritePtr++] = UART1_Read();
+                TMR0_StopTimer();
+                TMR0_WriteTimer(timeOutTable[uart_baud_rate]);
+                TMR0_StartTimer();
+                #endif  
+                #if (__32MM0256GPM048__)
+                transParentPayload[payloadWritePtr++] = UART3_Read();
+                #endif
+            }  
+            if(payloadWritePtr >= MAX_TRANSPARENT_PAYLOAD)
+            {
+                //bail as more than max payload received
+                transparentStateVar = initTransparent;
+            }
+            break;
+        case processPacketTransparent:
+            //Broad cast the message.@TODO packets > 84 bytes
+            transparentStateVar = initTransparent;
+            break;
+        default:
+            transparentStateVar = initTransparent;
+            break;
+    }
+}
+#endif

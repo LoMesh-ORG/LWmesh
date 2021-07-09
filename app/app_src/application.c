@@ -441,7 +441,7 @@ uint8_t set_uart_baud(uint8_t i)
     return E_OK;
 }
 
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 /*!
  * \brief execute AT commands
  *
@@ -801,7 +801,7 @@ static void cmdSetSink(uint8_t *cmd){
     msgstr[8] = N0;
     needed_size = needed_packet_length(strlen(msgstr));
     if(!get_free_tx_buffer(&buf_id)){
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
         printf("NOT OK:%u\r\n", NO_FREE_BUF);
 #endif
         return;
@@ -818,12 +818,12 @@ static void cmdSetSink(uint8_t *cmd){
     tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
     tx_buffer[buf_id].msgid = msgIDCounter++;
     NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
     printf("OK:%u\r\n", tx_buffer[buf_id].msgid);
 #endif
 }
 
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 /*!
  * \brief Send a message to sink
  *
@@ -2544,10 +2544,15 @@ inline void application(void){
 #endif
     sync_eeprom();
     uart_default_engine();
-#ifdef USERAPP
+#if (USERAPP || TRANS)
     if(CURRENT_PROFILE == get_current_state())
     {
-        user_application();   
+#if USERAPP
+        user_application();  
+#endif
+#if TRANS
+        transparentMode();
+#endif
     }
     else
     {

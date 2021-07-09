@@ -35,6 +35,7 @@ Copyright 2021 Samuel Ramrajkar
 #ifdef	__cplusplus
 extern "C" {
 #endif /* __cplusplus */
+#ifdef USERAPP
 #define sensorDataLen 3
 #define sensorTimeout 1000
 #define SENSOR_SEND_TIMER_DEFAULT   10000
@@ -54,6 +55,24 @@ enum sensorState
 }sensorStateVar = initSensor;
 
 void user_application(void); 
+#endif
+
+#ifdef TRANS
+#define MAX_TRANSPARENT_PAYLOAD     256
+#if (_18F27K42 || _18F47K42 || _18F26K42)
+#define TIMEOUT_TIMER_RESOLUTION    250E-9
+#endif
+bool exitConditionTransparent = false;
+enum transparentState
+{
+    initTransparent = 0,
+    waitForPacketTransparent,
+    recievingPacketTransparent,
+    processPacketTransparent
+}transparentStateVar = initTransparent;
+
+void transparentMode(void);
+#endif
 
 #ifdef	__cplusplus
 }
