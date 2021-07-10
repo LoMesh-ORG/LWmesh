@@ -139,7 +139,8 @@ static void app_aes_encrypt(uint8_t* data, uint8_t size){
  * \param [OUT] None.
  * \param [IN] None.
  */
-static uint8_t app_aes_decrypt(uint8_t* data, uint8_t size){
+uint8_t app_aes_decrypt(uint8_t* data, uint8_t size)
+{
     struct AES_ctx ctx;
     struct app_header_t *apphdr = (struct app_header_t*)data;
     uint8_t iv[16];
@@ -233,7 +234,7 @@ static bool appDataInd(NWK_DataInd_t *ind)
                                CircularBufferSize(&rx_buffer_queue_context);
 #endif
     }
-
+    return true;
 func_exit:
     return false;
 }
@@ -1964,6 +1965,9 @@ void bootLoadApplication(void)
     NWK_SetPanId(pan_id);
     NWK_OpenEndpoint(DATA_EP, appDataInd);
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
+#if TRANS
+    NWK_OpenEndpoint(TRANSPARENT_EP, transparentDataInd);
+#endif
 #if (_18F27K42 || _18F47K42 || _18F26K42)
     TMR1_SetInterruptHandler(Timer0Handler); 
 #endif
@@ -2521,6 +2525,51 @@ uint8_t cmdSendSinkUnacked(char* atCommand){
 	}
     return ret_code;
 }
+#endif
+
+#ifdef TRANS
+/*!
+ * \brief Send a broad cast message with binary data
+ *
+ * \param [OUT] None.
+ * \param [IN] Data pointer and len for bytes to be sent
+ */
+void binaryBcast(uint8_t* data, uint8_t len)
+{
+    uint8_t needed_size;
+    struct app_header_t* appHdr;
+	//Now find the message and queue it
+    needed_size = needed_packet_length(len);
+	//Report error and reset state machine if length if bigger than payload max
+	if(needed_size > (NWK_FRAME_MAX_PAYLOAD_SIZE - 3*AES_BLOCKLEN))
+    {
+        __asm("NOP");
+	}
+	else
+    {
+		uint8_t buf_id;
+        if(!get_free_tx_buffer(&buf_id))
+        {           
+            return;
+        }
+        memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
+		memcpy(&tx_buffer[buf_id].payload[AES_BLOCKLEN], data, len);
+        appHdr = &tx_buffer[buf_id].payload;
+        appHdr->dataLen = len;
+        app_aes_encrypt(&tx_buffer[buf_id].payload, needed_size - AES_BLOCKLEN);
+		tx_buffer[buf_id].nwkDataReq.dstAddr = NWK_BROADCAST_ADDR;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = TRANSPARENT_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = TRANSPARENT_EP;
+        tx_buffer[buf_id].nwkDataReq.options = 0;
+        tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
+        tx_buffer[buf_id].nwkDataReq.size = needed_size;
+        tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
+        tx_buffer[buf_id].msgid = msgIDCounter++;
+        NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
+	}
+	return;
+}
+
 #endif
 
 inline void application(void){

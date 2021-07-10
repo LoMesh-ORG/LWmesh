@@ -1,6 +1,7 @@
 #include "user_app.h"
 #include "Timers.h"
 #include "application.h"
+#include "AES.h"
 #include <stdio.h>
 #ifdef USERAPP
 static uint16_t distance = 0;
@@ -198,7 +199,10 @@ void user_application(void){
 
 #ifdef TRANS
 static uint8_t transParentPayload[MAX_TRANSPARENT_PAYLOAD];
+static uint8_t transParentPayloadTx[MAX_TRANSPARENT_PAYLOAD];
 static uint16_t payloadWritePtr;
+static bool transDataToTx = false;
+static uint8_t transDataToTxLen = 0;
 static const uint16_t timeOutTable[] = 
 {
     (0xFFFF - 4.004E-6/TIMEOUT_TIMER_RESOLUTION) + 1, /*9600*/
@@ -212,8 +216,43 @@ static void serialEndOfPacketTimeoutHandler(void)
     exitConditionTransparent = true;
 }
 
+bool transparentDataInd(NWK_DataInd_t *ind)
+{
+    // process the frame
+    uint8_t buf_id;
+    uint8_t* dataptr = ind->data;
+    uint8_t bytesToTx = 0;
+    struct app_header_t* appHdr;
+    if(CRC_OK != app_aes_decrypt(dataptr, (ind->size - AES_BLOCKLEN))){
+            goto func_exit;
+    }
+    appHdr = dataptr;
+    memcpy(&transParentPayloadTx[0],dataptr + AES_BLOCKLEN, appHdr->dataLen);
+    transDataToTx = true;
+    transDataToTxLen = appHdr->dataLen;
+    return true;
+func_exit:
+    return false;
+}
+
 void transparentMode(void)
 {
+    //Check if we have to Tx data and FSM is ready for tx
+    if((true == transDataToTx) && 
+            (recievingPacketTransparent != transparentStateVar))
+    {
+        //There is data to Tx and FSM is good state to Tx
+        for(uint8_t i = 0; i < transDataToTxLen; i++)
+        {
+            #if (_18F27K42 || _18F47K42 || _18F26K42)
+            UART1_Write(transParentPayloadTx[i]);
+            #endif
+            #if (__32MM0256GPM048__)
+            #error //@TODO PIC32 time out timer setup
+            #endif
+        }
+        transDataToTx = false;
+    }
     switch(transparentStateVar)
     {
         case initTransparent:
@@ -271,6 +310,7 @@ void transparentMode(void)
             break;
         case processPacketTransparent:
             //Broad cast the message.@TODO packets > 84 bytes
+            binaryBcast(&transParentPayload, payloadWritePtr);
             transparentStateVar = initTransparent;
             break;
         default:

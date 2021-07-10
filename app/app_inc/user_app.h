@@ -72,6 +72,7 @@ enum transparentState
 }transparentStateVar = initTransparent;
 
 void transparentMode(void);
+bool transparentDataInd(NWK_DataInd_t *ind);
 #endif
 
 #ifdef	__cplusplus

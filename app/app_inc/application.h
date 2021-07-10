@@ -135,7 +135,7 @@ enum endpoint_t{
     DATA_EP,
     MANAGEMENT_EP,
     OTA_EP,
-    RESV1,
+    TRANSPARENT_EP,
     RESV2,
     RESV3,
     RESV4,
@@ -224,7 +224,8 @@ enum atState
 struct __attribute__ ((packed)) app_header_t{
     uint16_t iv_seed;
     uint16_t crc16;
-    uint8_t resv[12];
+    uint8_t  dataLen;
+    uint8_t resv[11];
 };
 
 #ifdef MBRTU
@@ -417,6 +418,22 @@ void MBRTUStack(void);
  * \param [IN] None.
  */
 inline void application(void);
+
+/*!
+ * \brief Send a broad cast message with binary data
+ *
+ * \param [OUT] None.
+ * \param [IN] Data pointer and len for bytes to be sent
+ */
+void binaryBcast(uint8_t* data, uint8_t len);
+
+/*!
+ * \brief Application level decryption
+ *
+ * \param [OUT] None.
+ * \param [IN] None.
+ */
+uint8_t app_aes_decrypt(uint8_t* data, uint8_t size);
 
 #ifdef	__cplusplus
 }
