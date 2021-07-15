@@ -55,14 +55,19 @@
 /**
   Section: Macro Declarations
 */
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP)
 #define UART1_TX_BUFFER_SIZE 64
-#define UART1_RX_BUFFER_SIZE 16
+#define UART1_RX_BUFFER_SIZE 64
 extern volatile bool tx_done;
 #endif
 #ifdef MBRTU
 #define UART1_TX_BUFFER_SIZE 64
 #define UART1_RX_BUFFER_SIZE 64
+#endif
+#if TRANS
+#define UART1_TX_BUFFER_SIZE 253
+#define UART1_RX_BUFFER_SIZE 253
+extern volatile bool tx_done;
 #endif
 
 /**

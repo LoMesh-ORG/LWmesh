@@ -48,6 +48,8 @@ extern "C" {
 #define atCommandMaxTimeout 1000
 #define payloadSizeMax (NWK_FRAME_MAX_PAYLOAD_SIZE - AES_BLOCKLEN)
     
+#define MAX_USE_PAYLOAD     80 //Max 80 bytes in one packet    
+    
 //Uart mode of operations
 enum UART_PARITY_ENUM {
     UART_8BIT_NO_PARITY = 0,
@@ -225,7 +227,10 @@ struct __attribute__ ((packed)) app_header_t{
     uint16_t iv_seed;
     uint16_t crc16;
     uint8_t  dataLen;
-    uint8_t resv[11];
+    uint8_t  moreBytes:1;
+    uint8_t  startOfPacket:1;
+    uint8_t  resvBuf:6;
+    uint8_t resv[10];
 };
 
 #ifdef MBRTU
@@ -425,7 +430,7 @@ inline void application(void);
  * \param [OUT] None.
  * \param [IN] Data pointer and len for bytes to be sent
  */
-void binaryBcast(uint8_t* data, uint8_t len);
+void binaryBcast(uint8_t* data, uint8_t len, bool moreBytes, bool startOfPacket);
 
 /*!
  * \brief Application level decryption

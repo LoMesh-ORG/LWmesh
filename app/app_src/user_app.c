@@ -201,6 +201,7 @@ void user_application(void){
 static uint8_t transParentPayload[MAX_TRANSPARENT_PAYLOAD];
 static uint8_t transParentPayloadTx[MAX_TRANSPARENT_PAYLOAD];
 static uint16_t payloadWritePtr;
+static uint16_t rxPayloadLenToTx;
 static bool transDataToTx = false;
 static uint8_t transDataToTxLen = 0;
 static const uint16_t timeOutTable[] = 
@@ -222,14 +223,31 @@ bool transparentDataInd(NWK_DataInd_t *ind)
     uint8_t buf_id;
     uint8_t* dataptr = ind->data;
     uint8_t bytesToTx = 0;
+    static uint16_t rxPayloadWritePtr = 0;
     struct app_header_t* appHdr;
     if(CRC_OK != app_aes_decrypt(dataptr, (ind->size - AES_BLOCKLEN))){
             goto func_exit;
     }
     appHdr = dataptr;
-    memcpy(&transParentPayloadTx[0],dataptr + AES_BLOCKLEN, appHdr->dataLen);
-    transDataToTx = true;
-    transDataToTxLen = appHdr->dataLen;
+    //Check if it is first packet
+    if(true == appHdr->startOfPacket)
+    {
+        rxPayloadWritePtr = 0;
+    }
+    memcpy(&transParentPayloadTx[rxPayloadWritePtr],dataptr + AES_BLOCKLEN, 
+            appHdr->dataLen);
+    rxPayloadWritePtr += appHdr->dataLen;
+    if(rxPayloadWritePtr > sizeof(transParentPayloadTx))
+    {
+        //Error detected prevent overwriting
+        rxPayloadWritePtr = 0;
+    }
+    //Set Tx flag if no more data to be Rxed
+    if(false == appHdr->moreBytes)
+    {
+        transDataToTx = true;
+        transDataToTxLen = rxPayloadWritePtr;
+    }    
     return true;
 func_exit:
     return false;
@@ -237,6 +255,9 @@ func_exit:
 
 void transparentMode(void)
 {
+    static uint16_t bytesToSend = 0;
+    static uint16_t txPtr = 0;
+    static bool firstPacket = false;
     //Check if we have to Tx data and FSM is ready for tx
     if((true == transDataToTx) && 
             (recievingPacketTransparent != transparentStateVar))
@@ -283,6 +304,9 @@ void transparentMode(void)
             if(true == exitConditionTransparent)
             {
                 TMR0_StopTimer();
+                bytesToSend = payloadWritePtr;
+                firstPacket = true;
+                txPtr = 0;
                 transparentStateVar = processPacketTransparent;
             }
             #if (_18F27K42 || _18F47K42 || _18F26K42)
@@ -295,6 +319,11 @@ void transparentMode(void)
                 #if (_18F27K42 || _18F47K42 || _18F26K42)
                 transParentPayload[payloadWritePtr++] = UART1_Read();
                 TMR0_StopTimer();
+                while((UART1_is_rx_ready()) && 
+                        (payloadWritePtr < MAX_TRANSPARENT_PAYLOAD))
+                {
+                    transParentPayload[payloadWritePtr++] = UART1_Read(); 
+                }
                 TMR0_WriteTimer(timeOutTable[uart_baud_rate]);
                 TMR0_StartTimer();
                 #endif  
@@ -309,9 +338,35 @@ void transparentMode(void)
             }
             break;
         case processPacketTransparent:
-            //Broad cast the message.@TODO packets > 84 bytes
-            binaryBcast(&transParentPayload, payloadWritePtr);
-            transparentStateVar = initTransparent;
+            if(bytesToSend > 0)
+            {
+                if(bytesToSend > MAX_USE_PAYLOAD)
+                {
+                    binaryBcast(&transParentPayload[txPtr], 
+                            MAX_USE_PAYLOAD, true, firstPacket);
+                    txPtr += MAX_USE_PAYLOAD;
+                    bytesToSend -= MAX_USE_PAYLOAD;
+                    txComplete = false;
+                    transparentStateVar = waitSendPacket;
+                }
+                else
+                {
+                    binaryBcast(&transParentPayload[txPtr], 
+                            bytesToSend, false, firstPacket);
+                    transparentStateVar = initTransparent;
+                }
+            }
+            else
+            {
+                transparentStateVar = initTransparent;
+            }
+            firstPacket = false;
+            break;
+        case waitSendPacket:
+            if(true == txComplete)
+            {
+                transparentStateVar = processPacketTransparent;
+            }
             break;
         default:
             transparentStateVar = initTransparent;

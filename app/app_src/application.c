@@ -192,6 +192,9 @@ void appDataConf(NWK_DataReq_t *req)
     #endif
         ack = false;
     }
+    #ifdef TRANS
+    txComplete = true;
+    #endif
     //Free the app tx buffer any way
     free_tx_buffer(req, ack);
 }
@@ -2534,14 +2537,14 @@ uint8_t cmdSendSinkUnacked(char* atCommand){
  * \param [OUT] None.
  * \param [IN] Data pointer and len for bytes to be sent
  */
-void binaryBcast(uint8_t* data, uint8_t len)
+void binaryBcast(uint8_t* data, uint8_t len, bool moreBytes, bool startOfPacket)
 {
     uint8_t needed_size;
     struct app_header_t* appHdr;
 	//Now find the message and queue it
     needed_size = needed_packet_length(len);
 	//Report error and reset state machine if length if bigger than payload max
-	if(needed_size > (NWK_FRAME_MAX_PAYLOAD_SIZE - 3*AES_BLOCKLEN))
+	if(needed_size > (NWK_FRAME_MAX_PAYLOAD_SIZE - 2*AES_BLOCKLEN))
     {
         __asm("NOP");
 	}
@@ -2556,6 +2559,8 @@ void binaryBcast(uint8_t* data, uint8_t len)
 		memcpy(&tx_buffer[buf_id].payload[AES_BLOCKLEN], data, len);
         appHdr = &tx_buffer[buf_id].payload;
         appHdr->dataLen = len;
+        appHdr->moreBytes = moreBytes;
+        appHdr->startOfPacket = startOfPacket;
         app_aes_encrypt(&tx_buffer[buf_id].payload, needed_size - AES_BLOCKLEN);
 		tx_buffer[buf_id].nwkDataReq.dstAddr = NWK_BROADCAST_ADDR;
         tx_buffer[buf_id].nwkDataReq.dstEndpoint = TRANSPARENT_EP;

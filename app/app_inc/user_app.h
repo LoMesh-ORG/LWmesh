@@ -63,12 +63,14 @@ void user_application(void);
 #define TIMEOUT_TIMER_RESOLUTION    250E-9
 #endif
 bool exitConditionTransparent = false;
+bool txComplete = false;
 enum transparentState
 {
     initTransparent = 0,
     waitForPacketTransparent,
     recievingPacketTransparent,
-    processPacketTransparent
+    processPacketTransparent,
+    waitSendPacket,
 }transparentStateVar = initTransparent;
 
 void transparentMode(void);
