@@ -75,7 +75,9 @@ inline void set_timer0base(uint16_t* timer, uint16_t tval){
     Exit_Timer0_Critical();
 }
 
+#if (__32MM0256GPM048__)
 void UART2_Transmit_CallBack ( void )
 {
     TXEN_SetHigh();
 }
+#endif

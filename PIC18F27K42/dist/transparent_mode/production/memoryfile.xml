@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/transparent_mode/production\PIC18F27K42.production.hex">
+    <memory name="program">
+      <units>bytes</units>
+      <length>131072</length>
+      <used>71450</used>
+      <free>59622</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>8192</length>
+      <used>6128</used>
+      <free>2064</free>
+    </memory>
+  </executable>
+</project>

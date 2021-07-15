@@ -397,7 +397,11 @@ static void nwkRxHandleReceivedFrame(NwkFrame_t *frame)
   {
     if (NWK_BROADCAST_ADDR == header->macDstAddr && nwkIb.addr != header->nwkDstAddr &&
         0 == header->nwkFcf.linkLocal)
-      nwkTxBroadcastFrame(frame);
+    {
+        #ifndef TRANS
+        nwkTxBroadcastFrame(frame);
+        #endif
+    }
 
     if (nwkIb.addr == header->nwkDstAddr || NWK_BROADCAST_ADDR == header->nwkDstAddr)
     {

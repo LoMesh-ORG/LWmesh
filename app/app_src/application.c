@@ -139,7 +139,8 @@ static void app_aes_encrypt(uint8_t* data, uint8_t size){
  * \param [OUT] None.
  * \param [IN] None.
  */
-static uint8_t app_aes_decrypt(uint8_t* data, uint8_t size){
+uint8_t app_aes_decrypt(uint8_t* data, uint8_t size)
+{
     struct AES_ctx ctx;
     struct app_header_t *apphdr = (struct app_header_t*)data;
     uint8_t iv[16];
@@ -191,6 +192,9 @@ void appDataConf(NWK_DataReq_t *req)
     #endif
         ack = false;
     }
+    #ifdef TRANS
+    txComplete = true;
+    #endif
     //Free the app tx buffer any way
     free_tx_buffer(req, ack);
 }
@@ -233,7 +237,7 @@ static bool appDataInd(NWK_DataInd_t *ind)
                                CircularBufferSize(&rx_buffer_queue_context);
 #endif
     }
-
+    return true;
 func_exit:
     return false;
 }
@@ -441,7 +445,7 @@ uint8_t set_uart_baud(uint8_t i)
     return E_OK;
 }
 
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 /*!
  * \brief execute AT commands
  *
@@ -801,7 +805,7 @@ static void cmdSetSink(uint8_t *cmd){
     msgstr[8] = N0;
     needed_size = needed_packet_length(strlen(msgstr));
     if(!get_free_tx_buffer(&buf_id)){
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
         printf("NOT OK:%u\r\n", NO_FREE_BUF);
 #endif
         return;
@@ -818,12 +822,12 @@ static void cmdSetSink(uint8_t *cmd){
     tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
     tx_buffer[buf_id].msgid = msgIDCounter++;
     NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
     printf("OK:%u\r\n", tx_buffer[buf_id].msgid);
 #endif
 }
 
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 /*!
  * \brief Send a message to sink
  *
@@ -1964,6 +1968,9 @@ void bootLoadApplication(void)
     NWK_SetPanId(pan_id);
     NWK_OpenEndpoint(DATA_EP, appDataInd);
     NWK_OpenEndpoint(MANAGEMENT_EP, appManagementEp);
+#if TRANS
+    NWK_OpenEndpoint(TRANSPARENT_EP, transparentDataInd);
+#endif
 #if (_18F27K42 || _18F47K42 || _18F26K42)
     TMR1_SetInterruptHandler(Timer0Handler); 
 #endif
@@ -2523,6 +2530,53 @@ uint8_t cmdSendSinkUnacked(char* atCommand){
 }
 #endif
 
+#ifdef TRANS
+/*!
+ * \brief Send a broad cast message with binary data
+ *
+ * \param [OUT] None.
+ * \param [IN] Data pointer and len for bytes to be sent
+ */
+void binaryBcast(uint8_t* data, uint8_t len, bool moreBytes, bool startOfPacket)
+{
+    uint8_t needed_size;
+    struct app_header_t* appHdr;
+	//Now find the message and queue it
+    needed_size = needed_packet_length(len);
+	//Report error and reset state machine if length if bigger than payload max
+	if(needed_size > (NWK_FRAME_MAX_PAYLOAD_SIZE - 2*AES_BLOCKLEN))
+    {
+        __asm("NOP");
+	}
+	else
+    {
+		uint8_t buf_id;
+        if(!get_free_tx_buffer(&buf_id))
+        {           
+            return;
+        }
+        memset(&tx_buffer[buf_id].payload, 0, NWK_MAX_PAYLOAD_SIZE);
+		memcpy(&tx_buffer[buf_id].payload[AES_BLOCKLEN], data, len);
+        appHdr = &tx_buffer[buf_id].payload;
+        appHdr->dataLen = len;
+        appHdr->moreBytes = moreBytes;
+        appHdr->startOfPacket = startOfPacket;
+        app_aes_encrypt(&tx_buffer[buf_id].payload, needed_size - AES_BLOCKLEN);
+		tx_buffer[buf_id].nwkDataReq.dstAddr = NWK_BROADCAST_ADDR;
+        tx_buffer[buf_id].nwkDataReq.dstEndpoint = TRANSPARENT_EP;
+        tx_buffer[buf_id].nwkDataReq.srcEndpoint = TRANSPARENT_EP;
+        tx_buffer[buf_id].nwkDataReq.options = 0;
+        tx_buffer[buf_id].nwkDataReq.data = &tx_buffer[buf_id].payload;
+        tx_buffer[buf_id].nwkDataReq.size = needed_size;
+        tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
+        tx_buffer[buf_id].msgid = msgIDCounter++;
+        NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
+	}
+	return;
+}
+
+#endif
+
 inline void application(void){
     start_loop_timer();
 #if (__32MM0256GPM048__)
@@ -2544,10 +2598,15 @@ inline void application(void){
 #endif
     sync_eeprom();
     uart_default_engine();
-#ifdef USERAPP
+#if (USERAPP || TRANS)
     if(CURRENT_PROFILE == get_current_state())
     {
-        user_application();   
+#if USERAPP
+        user_application();  
+#endif
+#if TRANS
+        transparentMode();
+#endif
     }
     else
     {

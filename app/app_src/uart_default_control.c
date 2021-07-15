@@ -105,6 +105,11 @@ void uart_default_engine(void){
             (void)set_uart_baud(UART_BAUD_9600);
             user_application_state = CURRENT_PROFILE;
 #endif
+#ifdef TRANS
+            (void)set_parity(uart_parity);
+            (void)set_uart_baud(uart_baud_rate);
+            user_application_state = CURRENT_PROFILE;
+#endif
             uart_default_state_var = WAIT_GPIO_GO_LOW;
         break;
         

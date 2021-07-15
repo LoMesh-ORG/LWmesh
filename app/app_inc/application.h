@@ -48,6 +48,8 @@ extern "C" {
 #define atCommandMaxTimeout 1000
 #define payloadSizeMax (NWK_FRAME_MAX_PAYLOAD_SIZE - AES_BLOCKLEN)
     
+#define MAX_USE_PAYLOAD     80 //Max 80 bytes in one packet    
+    
 //Uart mode of operations
 enum UART_PARITY_ENUM {
     UART_8BIT_NO_PARITY = 0,
@@ -86,7 +88,7 @@ enum UART_PARITY_ENUM uart_parity;
 uint8_t curent_parity;
 uint16_t pan_id;
 
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 enum ATTESTCASES{
     WDTTEST = 1,
     EETEST,
@@ -117,7 +119,7 @@ uint8_t msgIDCounter = 0;
 //AES encryption key default value
 uint8_t aes_key[16];
 uint8_t net_key[16];
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 #include "user_app.h"
 char atCommand[atCommandLen];
 char uartmsg[6];
@@ -135,7 +137,7 @@ enum endpoint_t{
     DATA_EP,
     MANAGEMENT_EP,
     OTA_EP,
-    RESV1,
+    TRANSPARENT_EP,
     RESV2,
     RESV3,
     RESV4,
@@ -199,7 +201,7 @@ uint8_t mb_rtu_addr = MB_RTU_ADDR_MAX;
 #endif
 const uint8_t ATVersionMajor = 1; 
 const uint8_t ATVersionMinor = 0;    
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 const uint8_t FirmwareVersionMajor = 1;
 #endif
 #ifdef MBRTU
@@ -224,7 +226,11 @@ enum atState
 struct __attribute__ ((packed)) app_header_t{
     uint16_t iv_seed;
     uint16_t crc16;
-    uint8_t resv[12];
+    uint8_t  dataLen;
+    uint8_t  moreBytes:1;
+    uint8_t  startOfPacket:1;
+    uint8_t  resvBuf:6;
+    uint8_t resv[10];
 };
 
 #ifdef MBRTU
@@ -358,7 +364,7 @@ enum{
 #define RESET_TIMER     1000; //Time in ms to wait before reset
 uint16_t reset_timer = 0;
 #endif
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || TRANS)
 /*!
  * \brief Process a message command from UART
  *
@@ -417,6 +423,22 @@ void MBRTUStack(void);
  * \param [IN] None.
  */
 inline void application(void);
+
+/*!
+ * \brief Send a broad cast message with binary data
+ *
+ * \param [OUT] None.
+ * \param [IN] Data pointer and len for bytes to be sent
+ */
+void binaryBcast(uint8_t* data, uint8_t len, bool moreBytes, bool startOfPacket);
+
+/*!
+ * \brief Application level decryption
+ *
+ * \param [OUT] None.
+ * \param [IN] None.
+ */
+uint8_t app_aes_decrypt(uint8_t* data, uint8_t size);
 
 #ifdef	__cplusplus
 }
