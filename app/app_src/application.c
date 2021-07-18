@@ -39,7 +39,7 @@ Copyright 2020 Samuel Ramrajkar
 #ifdef FULLFEATURE
 #include "I2C_EEPROM.h"
 #endif
-#ifdef USERAPP
+#if (USERAPP || TRANS || ENERGYMTR)
 #include "user_app.h"
 #endif
 #include "w25q.h"
@@ -445,7 +445,7 @@ uint8_t set_uart_baud(uint8_t i)
     return E_OK;
 }
 
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 /*!
  * \brief execute AT commands
  *
@@ -805,7 +805,7 @@ static void cmdSetSink(uint8_t *cmd){
     msgstr[8] = N0;
     needed_size = needed_packet_length(strlen(msgstr));
     if(!get_free_tx_buffer(&buf_id)){
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
         printf("NOT OK:%u\r\n", NO_FREE_BUF);
 #endif
         return;
@@ -822,12 +822,12 @@ static void cmdSetSink(uint8_t *cmd){
     tx_buffer[buf_id].nwkDataReq.confirm = (void*)&appDataConf;
     tx_buffer[buf_id].msgid = msgIDCounter++;
     NWK_DataReq(&tx_buffer[buf_id].nwkDataReq); 
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
     printf("OK:%u\r\n", tx_buffer[buf_id].msgid);
 #endif
 }
 
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 /*!
  * \brief Send a message to sink
  *
@@ -2496,7 +2496,7 @@ static void exract_sink_addr(uint8_t* dataptr){
 #endif                    
 }
 
-#ifdef USERAPP
+#if (USERAPP || ENERGYMTR)
 uint8_t cmdSendSinkUnacked(char* atCommand){
 	char *p1;
     uint8_t ret_code = 0xFF;
@@ -2598,10 +2598,10 @@ inline void application(void){
 #endif
     sync_eeprom();
     uart_default_engine();
-#if (USERAPP || TRANS)
+#if (USERAPP || TRANS || ENERGYMTR)
     if(CURRENT_PROFILE == get_current_state())
     {
-#if USERAPP
+#if (USERAPP || ENERGYMTR)
         user_application();  
 #endif
 #if TRANS

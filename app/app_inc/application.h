@@ -88,7 +88,7 @@ enum UART_PARITY_ENUM uart_parity;
 uint8_t curent_parity;
 uint16_t pan_id;
 
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 enum ATTESTCASES{
     WDTTEST = 1,
     EETEST,

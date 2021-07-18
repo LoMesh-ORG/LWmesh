@@ -58,7 +58,8 @@ static void sendSensorData(void)
     
 }
 
-void user_application(void){
+void user_application(void)
+{
     //Check if RS485 tx should be turned off
     sendSensorData();
 #if 0
@@ -394,8 +395,10 @@ static uint8_t send_voltage_current_gen(uint8_t nominal_val,
 {
     // Voltage or current to return
     uint8_t pwr_ret_val = 0;
-    uint8_t calc_pos_tol = nominal_val + (nominal_val * (pos_tolerance/100));
-    uint8_t calc_neg_tol = nominal_val - (nominal_val * (neg_tolerance/100));
+    uint8_t calc_pos_tol = (uint8_t)((float)nominal_val + 
+               ((float)nominal_val * (float)((float)pos_tolerance/(float)100)));
+    uint8_t calc_neg_tol = (uint8_t)((float)nominal_val - 
+               ((float)nominal_val * (float)((float)neg_tolerance/(float)100)));
 
     //generate random number between the +/- tolerance
     pwr_ret_val = (rand() % (calc_pos_tol - calc_neg_tol + 1)) + calc_neg_tol;
@@ -447,5 +450,9 @@ static void sendSensorData(void)
     }
     
 }        
-        
+   
+void user_application(void)
+{
+    sendSensorData();
+}
 #endif

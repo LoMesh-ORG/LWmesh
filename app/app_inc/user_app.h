@@ -99,6 +99,8 @@ volatile uint16_t sensor_send_timer;
 #define AMP_NEG_TOL3    3
 
 #define PWR_RATE        1000
+
+void user_application(void);
 #endif
 
 #ifdef	__cplusplus
