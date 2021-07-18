@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=PIC18F27K42
 
 # Active Configuration
-DEFAULTCONF=transparent_mode
+DEFAULTCONF=energy_meter
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application user_application_bootable 
+ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application user_application_bootable energy_meter 
 
 
 # build
@@ -52,6 +52,7 @@ ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application user
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=transparent_mode clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application_bootable clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=energy_meter clean
 
 
 
@@ -64,6 +65,7 @@ ALLCONFS=base atbootable MBRTU MBbootable transparent_mode user_application user
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=transparent_mode build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=user_application_bootable build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=energy_meter build
 
 
 

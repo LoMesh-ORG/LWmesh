@@ -119,7 +119,7 @@ uint8_t msgIDCounter = 0;
 //AES encryption key default value
 uint8_t aes_key[16];
 uint8_t net_key[16];
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 #include "user_app.h"
 char atCommand[atCommandLen];
 char uartmsg[6];
@@ -201,7 +201,7 @@ uint8_t mb_rtu_addr = MB_RTU_ADDR_MAX;
 #endif
 const uint8_t ATVersionMajor = 1; 
 const uint8_t ATVersionMinor = 0;    
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 const uint8_t FirmwareVersionMajor = 1;
 #endif
 #ifdef MBRTU

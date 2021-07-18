@@ -53,3 +53,10 @@ CND_ARTIFACT_PATH_user_application_bootable=dist/user_application_bootable/produ
 CND_PACKAGE_DIR_user_application_bootable=${CND_DISTDIR}/user_application_bootable/package
 CND_PACKAGE_NAME_user_application_bootable=pic18f27k42.tar
 CND_PACKAGE_PATH_user_application_bootable=${CND_DISTDIR}/user_application_bootable/package/pic18f27k42.tar
+# energy_meter configuration
+CND_ARTIFACT_DIR_energy_meter=dist/energy_meter/production
+CND_ARTIFACT_NAME_energy_meter=PIC18F27K42.production.hex
+CND_ARTIFACT_PATH_energy_meter=dist/energy_meter/production/PIC18F27K42.production.hex
+CND_PACKAGE_DIR_energy_meter=${CND_DISTDIR}/energy_meter/package
+CND_PACKAGE_NAME_energy_meter=pic18f27k42.tar
+CND_PACKAGE_PATH_energy_meter=${CND_DISTDIR}/energy_meter/package/pic18f27k42.tar

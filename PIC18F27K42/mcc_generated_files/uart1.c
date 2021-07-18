@@ -55,7 +55,7 @@
 /**
   Section: Macro Declarations
 */
-#if (ATCOMM || USERAPP)
+#if (ATCOMM || USERAPP || ENERGYMTR)
 #define UART1_TX_BUFFER_SIZE 64
 #define UART1_RX_BUFFER_SIZE 64
 extern volatile bool tx_done;
