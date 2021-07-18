@@ -364,7 +364,7 @@ enum{
 #define RESET_TIMER     1000; //Time in ms to wait before reset
 uint16_t reset_timer = 0;
 #endif
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 /*!
  * \brief Process a message command from UART
  *
