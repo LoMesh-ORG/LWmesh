@@ -86,7 +86,7 @@ volatile uint16_t sensor_send_timer;
 #define NOMINAL_AMP     5
 #define VLTG_POS_TOL1   5
 #define VLTG_POS_TOL2   10
-#define VLTG_POS_TOL3   15
+#define VLTG_POS_TOL3   9
 #define VLTG_NEG_TOL1   4
 #define VLTG_NEG_TOL2   8
 #define VLTG_NEG_TOL3   12

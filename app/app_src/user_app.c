@@ -379,7 +379,7 @@ void transparentMode(void)
 #endif
 
 #ifdef ENERGYMTR
-
+#define PAYLOADVER  1
 enum SENSO_SEND_STATE_ENUM
 {
     SENSOR_STATE_INIT,
@@ -434,8 +434,8 @@ static void sendSensorData(void)
             uint8_t I3 = send_voltage_current_gen(NOMINAL_AMP,AMP_POS_TOL3,
                     AMP_NEG_TOL3);
             (void)sprintf(senddata, 
-                    "=%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X/V1/%.1f"
-                    "/V2/%.1f/V3/%.1f/I1/%.1f/I2/%.1f/I3/%.1f/PWR/%.1f", 
+                    "=%u/%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X/%.1f"
+                    "/%.1f/%.1f/%.1f/%.1f/%.1f/%.1f", PAYLOADVER,
                     EUIDbyte[0], EUIDbyte[1],EUIDbyte[2], EUIDbyte[3],
                     EUIDbyte[4], EUIDbyte[5],EUIDbyte[6], EUIDbyte[7],
                     EUIDbyte[8], EUIDbyte[9],EUIDbyte[10], EUIDbyte[11],

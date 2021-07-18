@@ -352,3 +352,10 @@ PIC18F27K42/dist/energy_meter/debug/PIC18F27K42.debug.lst
 PIC18F27K42/dist/energy_meter/debug/PIC18F27K42.debug.hxl
 PIC18F27K42/dist/energy_meter/debug/PIC18F27K42.debug.cmf
 PIC18F27K42/dist/energy_meter/debug/memoryfile.xml
+PIC18F27K42/dist/energy_meter/production/PIC18F27K42.production.cmf
+PIC18F27K42/dist/energy_meter/production/PIC18F27K42.production.hxl
+PIC18F27K42/dist/energy_meter/production/PIC18F27K42.production.lst
+PIC18F27K42/dist/energy_meter/production/PIC18F27K42.production.mum
+PIC18F27K42/dist/energy_meter/production/PIC18F27K42.production.rlf
+PIC18F27K42/dist/energy_meter/production/PIC18F27K42.production.sdb
+PIC18F27K42/dist/energy_meter/production/PIC18F27K42.production.sym
