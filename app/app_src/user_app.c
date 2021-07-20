@@ -435,7 +435,7 @@ static void sendSensorData(void)
                     AMP_NEG_TOL3);
             (void)sprintf(senddata, 
                     "=%u/%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X/%.1f"
-                    "/%.1f/%.1f/%.1f/%.1f/%.1f/%.1f", PAYLOADVER,
+                    "/%.1f/%.1f/%.1f/%.1f/%.1f/%.1f/", PAYLOADVER,
                     EUIDbyte[0], EUIDbyte[1],EUIDbyte[2], EUIDbyte[3],
                     EUIDbyte[4], EUIDbyte[5],EUIDbyte[6], EUIDbyte[7],
                     EUIDbyte[8], EUIDbyte[9],EUIDbyte[10], EUIDbyte[11],

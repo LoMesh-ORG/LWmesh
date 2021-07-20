@@ -40,7 +40,7 @@
       </runprofile>
     </conf>
     <conf name="MBRTU" type="2">
-      <platformToolSN>noToolString</platformToolSN>
+      <platformToolSN>:=MPLABComm-USB-Microchip:=&lt;vid>04D8:=&lt;pid>9012:=&lt;rev>0100:=&lt;man>Microchip Technology Incorporated:=&lt;prod>MPLAB PICkit 4:=&lt;sn>BUR211671670:=&lt;drv>x:=&lt;xpt>b:=end</platformToolSN>
       <languageToolchainDir>D:\software\xc8_2_32\bin</languageToolchainDir>
       <mdbdebugger version="1">
         <placeholder1>place holder 1</placeholder1>
