@@ -3,6 +3,8 @@
 #include "application.h"
 #include "AES.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #ifdef USERAPP
 static uint16_t distance = 0;
 enum SENSO_SEND_STATE_ENUM
@@ -56,7 +58,8 @@ static void sendSensorData(void)
     
 }
 
-void user_application(void){
+void user_application(void)
+{
     //Check if RS485 tx should be turned off
     sendSensorData();
 #if 0
@@ -372,5 +375,84 @@ void transparentMode(void)
             transparentStateVar = initTransparent;
             break;
     }
+}
+#endif
+
+#ifdef ENERGYMTR
+#define PAYLOADVER  1
+enum SENSO_SEND_STATE_ENUM
+{
+    SENSOR_STATE_INIT,
+    SENSOR_STATE_WAIT,
+    SENSOR_STATE_SEND
+}sensor_send_state_var = SENSOR_STATE_INIT;
+
+uint8_t senddata[MAX_USE_PAYLOAD];
+//function for V1,V2,V3 and I1, I2, I3
+//when you call this function --> then return rand()+ 230V +/- 10
+static uint8_t send_voltage_current_gen(uint8_t nominal_val, 
+        uint8_t pos_tolerance, uint8_t neg_tolerance)
+{
+    // Voltage or current to return
+    uint8_t pwr_ret_val = 0;
+    uint8_t calc_pos_tol = (uint8_t)((float)nominal_val + 
+               ((float)nominal_val * (float)((float)pos_tolerance/(float)100)));
+    uint8_t calc_neg_tol = (uint8_t)((float)nominal_val - 
+               ((float)nominal_val * (float)((float)neg_tolerance/(float)100)));
+
+    //generate random number between the +/- tolerance
+    pwr_ret_val = (rand() % (calc_pos_tol - calc_neg_tol + 1)) + calc_neg_tol;
+
+    return pwr_ret_val;
+}      
+static void sendSensorData(void)
+{
+    switch(sensor_send_state_var)
+    {
+        case SENSOR_STATE_INIT:
+            set_timer0base(&sensor_send_timer, SENSOR_SEND_TIMER_DEFAULT);
+            sensor_send_state_var = SENSOR_STATE_WAIT;
+            break;
+        case SENSOR_STATE_WAIT:
+            if(!get_timer0base(&sensor_send_timer))
+            {
+                sensor_send_state_var = SENSOR_STATE_SEND;
+            }
+            break;
+        case SENSOR_STATE_SEND:
+            (void)memset(senddata, 0, sizeof(senddata));
+            uint8_t V1 = send_voltage_current_gen(NOMINAL_VLT,VLTG_POS_TOL1,
+                    VLTG_NEG_TOL1);
+            uint8_t V2 = send_voltage_current_gen(NOMINAL_VLT,VLTG_POS_TOL2,
+                    VLTG_NEG_TOL2);
+            uint8_t V3 = send_voltage_current_gen(NOMINAL_VLT,VLTG_POS_TOL3,
+                    VLTG_NEG_TOL3);
+            uint8_t I1 = send_voltage_current_gen(NOMINAL_AMP,AMP_POS_TOL1,
+                    AMP_NEG_TOL1);
+            uint8_t I2 = send_voltage_current_gen(NOMINAL_AMP,AMP_POS_TOL2,
+                    AMP_NEG_TOL2);
+            uint8_t I3 = send_voltage_current_gen(NOMINAL_AMP,AMP_POS_TOL3,
+                    AMP_NEG_TOL3);
+            (void)sprintf(senddata, 
+                    "=%u/%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X/%.1f"
+                    "/%.1f/%.1f/%.1f/%.1f/%.1f/%.1f/", PAYLOADVER,
+                    EUIDbyte[0], EUIDbyte[1],EUIDbyte[2], EUIDbyte[3],
+                    EUIDbyte[4], EUIDbyte[5],EUIDbyte[6], EUIDbyte[7],
+                    EUIDbyte[8], EUIDbyte[9],EUIDbyte[10], EUIDbyte[11],
+                    (float)V1,(float)V2,(float)V3,(float)I1,(float)I2,
+                    (float)I3,(float)PWR_RATE);
+            cmdSendSinkUnacked((char*)&senddata[0]);
+            sensor_send_state_var = SENSOR_STATE_INIT;
+            break;
+        default:
+            sensor_send_state_var = SENSOR_STATE_INIT;
+            break;
+    }
+    
+}        
+   
+void user_application(void)
+{
+    sendSensorData();
 }
 #endif

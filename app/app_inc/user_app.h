@@ -77,6 +77,32 @@ void transparentMode(void);
 bool transparentDataInd(NWK_DataInd_t *ind);
 #endif
 
+#ifdef ENERGYMTR
+
+#define SENSOR_SEND_TIMER_DEFAULT   10000
+volatile uint16_t sensor_send_timer;
+
+#define NOMINAL_VLT     230
+#define NOMINAL_AMP     5
+#define VLTG_POS_TOL1   5
+#define VLTG_POS_TOL2   10
+#define VLTG_POS_TOL3   9
+#define VLTG_NEG_TOL1   4
+#define VLTG_NEG_TOL2   8
+#define VLTG_NEG_TOL3   12
+
+#define AMP_POS_TOL1    2
+#define AMP_POS_TOL2    4
+#define AMP_POS_TOL3    6
+#define AMP_NEG_TOL1    1
+#define AMP_NEG_TOL2    2
+#define AMP_NEG_TOL3    3
+
+#define PWR_RATE        1000
+
+void user_application(void);
+#endif
+
 #ifdef	__cplusplus
 }
 #endif /* __cplusplus */

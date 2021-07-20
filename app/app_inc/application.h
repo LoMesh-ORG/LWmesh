@@ -88,7 +88,7 @@ enum UART_PARITY_ENUM uart_parity;
 uint8_t curent_parity;
 uint16_t pan_id;
 
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 enum ATTESTCASES{
     WDTTEST = 1,
     EETEST,
@@ -119,7 +119,7 @@ uint8_t msgIDCounter = 0;
 //AES encryption key default value
 uint8_t aes_key[16];
 uint8_t net_key[16];
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 #include "user_app.h"
 char atCommand[atCommandLen];
 char uartmsg[6];
@@ -201,7 +201,7 @@ uint8_t mb_rtu_addr = MB_RTU_ADDR_MAX;
 #endif
 const uint8_t ATVersionMajor = 1; 
 const uint8_t ATVersionMinor = 0;    
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 const uint8_t FirmwareVersionMajor = 1;
 #endif
 #ifdef MBRTU
@@ -364,7 +364,7 @@ enum{
 #define RESET_TIMER     1000; //Time in ms to wait before reset
 uint16_t reset_timer = 0;
 #endif
-#if (ATCOMM || USERAPP || TRANS)
+#if (ATCOMM || USERAPP || TRANS || ENERGYMTR)
 /*!
  * \brief Process a message command from UART
  *

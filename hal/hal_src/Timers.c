@@ -52,7 +52,7 @@ void Timer0Handler(void){
         reset_timer--;
     }
 #endif
-#ifdef USERAPP
+#if (USERAPP || ENERGYMTR)
     if(0 != sensor_send_timer)
     {
         sensor_send_timer--;
